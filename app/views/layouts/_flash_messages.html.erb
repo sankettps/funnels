@@ -11,5 +11,28 @@
       ShopifyApp.flashError("<%= j flash[:error].html_safe %>");
     <% end %>
   });
+  var singleProductOptions = {
+  'selectMultiple': false,
+};
+
+ShopifyApp.Modal.productPicker(productPickerOptions, function(success, data) {
+  // Callback is triggered any time a button
+  // is clicked or the window is closed.
+
+  if(!success) {
+    // Success is true when a resource is picked successfully
+    return;
+  }
+
+  if (data.products.length > 0) {
+    var selectedProducts = data.products;
+    console.log(selectedProducts)
+    // useSelectedProducts(selectedProducts);
+  }
+
+  if (data.errors) {
+    console.error(data.errors);
+  }
+})
 </script>
 <% end %>
