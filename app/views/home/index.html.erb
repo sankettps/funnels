@@ -1,28 +1,45 @@
-<% content_for :javascript do %>
-  <script type="text/javascript">
-    ShopifyApp.ready(function(){
-      ShopifyApp.Bar.initialize({ title: "Home" });
-    });
-  </script>
-<% end %>
-<h2>Products</h2>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <div class="login-panel panel panel-default">
+      <div class="panel-heading">
+        Initial Products
+        <div class="pull-right">
+        <button class="btn btn-default" id="btnInitialProduct">Select Product</button>
+        </div>
+      </div>
+      <div class="panel-body" id="productData">
+      
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  var multipleProductOptions = {
+  'selectMultiple': true,
+};
+  $(document).on('click', '#btnInitialProduct', function(event) {
+    ShopifyApp.Modal.productPicker(multipleProductOptions, function(success, data) {
+      // Callback is triggered any time a button
+      // is clicked or the window is closed.
 
-<ul>
-  <% @products.each do |product| %>
-    <li><%= link_to product.title, "https://#{@shop_session.url}/admin/products/#{product.id}", target: "_top" %></li>
-  <% end %>
-</ul>
+      if(!success) {
+        // Success is true when a resource is picked successfully
+        return;
+      }
 
-<hr>
+      if (data.products.length > 0) {
+        var selectedProducts = data.products;
+        console.log(selectedProducts)
+        $.each(data.products, function(i, item) {
+          alert(data.products[i].title);
+          // $("")
+        });​
+        // useSelectedProducts(selectedProducts);
+      }
 
-<h2>Webhooks</h2>
-
-<% if @webhooks.present? %>
-  <ul>
-    <% @webhooks.each do |webhook| %>
-      <li><%= webhook.topic %> : <%= webhook.address %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>This app has not created any webhooks for this Shop. Add webhooks to your ShopifyApp initializer if you need webhooks</p>
-<% end %>
+      if (data.errors) {
+        console.error(data.errors);
+      }
+    })
+  });
+</script>
