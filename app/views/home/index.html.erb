@@ -63,7 +63,7 @@
   var singleProductOptions = {
     'selectMultiple': false
   };
-  $(document).on('click', '#btnInitialProduct', function(event) {
+  $(document).on('click', '#btnInitialProducts', function(event) {
     ShopifyApp.Modal.productPicker(multipleProductOptions, function(success, data) {
       // Callback is triggered any time a button
       // is clicked or the window is closed.
