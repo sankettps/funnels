@@ -1,22 +1,68 @@
 <div class="row">
+  
   <div class="col-md-4 col-md-offset-4">
     <div class="login-panel panel panel-default">
       <div class="panel-heading">
-        Initial Products
+        Upsell Product
+        <div class="pull-right">
+        <button class="btn btn-default" id="btnUpsellProduct">Select Product</button>
+        </div>
+      </div>
+      <div class="panel-body" id="upsellProduct">
+        <ul>
+          <li>
+            4-Blade Ninja Shuriken Fidget Spinner
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4 ">
+    <div class="login-panel panel panel-default">
+      <div class="panel-heading">
+        <div>
+          Initial Products
+        </div>
         <div class="pull-right">
         <button class="btn btn-default" id="btnInitialProduct">Select Product</button>
         </div>
       </div>
-      <div class="panel-body" id="productData">
-      
+      <div class="panel-body" id="initialProducts">
+        <ul>
+          <li>
+            4-Blade Ninja Shuriken Fidget Spinner
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-md-offset-4">
+    <div class="login-panel panel panel-default">
+      <div class="panel-heading">
+        Downsell Product
+        <div class="pull-right">
+        <button class="btn btn-default" id="downsellProduct">Select Product</button>
+        </div>
+      </div>
+      <div class="panel-body" id="initialProducts">
+        <ul>
+          <li>
+            4-Blade Ninja Shuriken Fidget Spinner
+          </li>
+        </ul>
       </div>
     </div>
   </div>
 </div>
 <script type="text/javascript">
   var multipleProductOptions = {
-  'selectMultiple': true,
-};
+    'selectMultiple': true,
+  };
+  var singleProductOptions = {
+    'selectMultiple': false
+  };
   $(document).on('click', '#btnInitialProduct', function(event) {
     ShopifyApp.Modal.productPicker(multipleProductOptions, function(success, data) {
       // Callback is triggered any time a button
@@ -30,10 +76,57 @@
       if (data.products.length > 0) {
         var selectedProducts = data.products;
         console.log(selectedProducts)
+        var intl_products = '';
         $.each(data.products, function(i, item) {
-          alert(data.products[i].title);
+          // alert(data.products[i].title);
+          intl_products += "<li>" + data.products[i].title + "</li>"
           // $("")
         })
+          $("#initialProducts ul").html(intl_products)
+        // useSelectedProducts(selectedProducts);
+      }
+
+      if (data.errors) {
+        console.error(data.errors);
+      }
+    })
+  });
+  $(document).on('click', '#btnUpsellProduct', function(event) {
+    ShopifyApp.Modal.productPicker(singleProductOptions, function(success, data) {
+      // Callback is triggered any time a button
+      // is clicked or the window is closed.
+
+      if(!success) {
+        // Success is true when a resource is picked successfully
+        return;
+      }
+
+      if (data.products.length > 0) {
+        var selectedProduct = data.products;
+        console.log("upsell-->",selectedProduct[0].title)
+        $("#upsellProduct ul").html("<li>" + selectedProduct[0].title + "</li>")
+        // useSelectedProducts(selectedProducts);
+      }
+
+      if (data.errors) {
+        console.error(data.errors);
+      }
+    })
+  });
+  $(document).on('click', '#btnDownsellProduct', function(event) {
+    ShopifyApp.Modal.productPicker(singleProductOptions, function(success, data) {
+      // Callback is triggered any time a button
+      // is clicked or the window is closed.
+
+      if(!success) {
+        // Success is true when a resource is picked successfully
+        return;
+      }
+
+      if (data.products.length > 0) {
+        var selectedProduct = data.products;
+        console.log("downsell-->",selectedProduct[0].title)
+        $("#downsellProduct ul").html("<li>" + selectedProduct[0].title + "</li>")
         // useSelectedProducts(selectedProducts);
       }
 
