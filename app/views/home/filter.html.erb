@@ -1,0 +1,112 @@
+<script type="text/javascript"> 
+      //Menu active class
+      $('.menu ul li').removeClass("active");
+      $('.volume_discount_app').addClass("active");
+</script>    
+<div class="add_form">
+  <h4>Add New Offer</h4>    
+  <div class="row card-box">  
+    <!-- <form class="form-horizontal"  id="add_offer_form" name='options_form' action="create" method="post"> -->
+      <%= form_tag "create", :method => :post, :class => "form-horizontal",name: 'options_form',id: "add_offer_form" do %>
+      <input name="utf8" type="hidden" value="✓">
+      <input type="hidden" name="products_list" class="products_list">
+      <input type="hidden" name="price_levels_list" class="price_levels_list">
+      <div class="shop_url" style="display:none"><%= @shop_url %></div>
+      <div class="store_id" style="display:none"><%= @store_id %></div>
+      <div class="product_titles" style="display:none"><%= @product_titles %></div>
+      <div class="product_types" style="display:none"><%= @product_types %></div>
+      <div class="product_vendors" style="display:none"><%= @product_vendors %></div>
+      <div class="product_tags" style="display:none"><%= @product_tags %></div>
+      <div class="product_custom_collections" style="display:none"><%= @product_custom_collections %></div> 
+      <div class="product_smart_collections" style="display:none"><%= @product_smart_collections %></div>
+      <div class="col-lg-12">
+        
+        <div class="form-group">
+          <label>Product Filter
+            <a href="#" data-toggle="tooltip" data-html="true" title="You can filter products by title, vendor, tag, collection etc."><span class="glyphicon glyphicon-question-sign"></span></a>
+          </label>
+          <div class="product_filters" data-count-filters="1">
+            <div class="radio-list">                                 
+              <label class="radio-inline">
+                <input type="radio" id="OR" value="OR" name="any_or" checked="" class="and_or"> 
+                <label for="OR"><span></span>Any Conditions</label>
+              </label>
+              <label class="radio-inline">
+                <input type="radio" id="AND" value="AND" name="any_or" class="and_or"> 
+                <label for="AND"><span></span>All Conditions</label>
+              </label>
+            </div>
+            <div class="filter">
+                <ul class="clearfix">
+                    <li>
+                        <select class="filter_name form-control">
+                            <option value="product_titles">Product Title</option>
+                            <option value="product_vendors">Product Vendor</option>
+                            <option value="product_types">Product Type</option>
+                            <option value="product_tags">Product Tag</option>
+                            <option value="product_custom_collections">Custom Collection</option>
+                            <option value="product_smart_collections">Smart Collection</option>
+                        </select>
+                    </li>
+                    <li>
+                      <select class="filter_condition form-control">            
+                        <option value="equal">is equal to</option>
+                        <option value="not-equal">is not equal to</option>
+                        <option value="contain">contains</option>
+                        <option value="not-contain">does not contain</option>
+                        <option value="start-with">starts with</option>
+                        <option value="end-with">ends with</option>
+                      </select>
+                    </li>
+                    <li><input type="text" class="form-control filter_val required" placeholder="Type Here"></li>
+                </ul>
+            </div>
+            <button type="button" class="btn btn-small btn-default form" id="add_condition"><span class="glyphicon glyphicon-plus"></span> Add Condition</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="select_products_section">              
+            <div class="col-lg-6">
+              <div class="row clearfix table_top_portion_left">
+                <h3 class="left">Select Products</h3>
+              </div>
+              <div id="products">
+                <%= render 'getproducts' %>
+              </div>
+            </div>  
+            <div class="col-lg-6">
+              <div class="row table_top_portion_right">
+                <h3>Selected products</h3>
+              </div>
+              <div class="right_table">
+                <table class="table selected_products">
+                  <thead>
+                      <tr>
+                          <th></th>
+                          <th class="col-md-10">Product Name</th>
+                          <th class="col-md-2">Action</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="no_products">
+                        <td colspan="3" class="dataTables_empty">No records available</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="selected_products_count">Showing 0 entries</div>
+
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-danger offer_submit">Submit</button>
+      </div>
+    <% end %>   
+  </div>
+</div>
+
+<%= render 'common' %>
+
+
+ 
+

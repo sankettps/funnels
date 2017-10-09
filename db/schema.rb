@@ -10,17 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171005154640) do
+ActiveRecord::Schema.define(version: 20171009155925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "filter_shop_attributes", force: :cascade do |t|
+    t.bigint "shop_id"
+    t.string "detail_type"
+    t.string "detail_value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shop_id"], name: "index_filter_shop_attributes_on_shop_id"
+  end
+
+  create_table "filter_shop_products", force: :cascade do |t|
+    t.bigint "shop_id"
+    t.string "product_id"
+    t.string "title"
+    t.string "handle"
+    t.string "vendor"
+    t.string "product_type"
+    t.text "tags"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shop_id"], name: "index_filter_shop_products_on_shop_id"
+  end
 
   create_table "shops", force: :cascade do |t|
     t.string "shopify_domain", null: false
     t.string "shopify_token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_products_cloned", default: false
+    t.string "domain"
+    t.string "email"
+    t.string "currency_symbol"
+    t.string "currency"
+    t.boolean "is_products_clonning", default: false
     t.index ["shopify_domain"], name: "index_shops_on_shopify_domain", unique: true
   end
 
+  add_foreign_key "filter_shop_attributes", "shops"
+  add_foreign_key "filter_shop_products", "shops"
 end

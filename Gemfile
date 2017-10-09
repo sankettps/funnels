@@ -54,3 +54,13 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "figaro"
 gem 'shopify_app'
+gem 'activeresource', github: 'rails/activeresource'
+
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'jquery-datatables-rails', '~> 3.4'
+gem 'rack-cors', :require => 'rack/cors'
+# gem 'whenever', :require => false
+gem "font-awesome-rails"
+# get currency symbol from currency code
+gem 'currencies'

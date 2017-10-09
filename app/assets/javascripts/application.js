@@ -10,8 +10,19 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
 //= require jquery
+//= require rails-ujs
 //= require bootstrap
 //= require metisMenu
 //= require sb-admin-2
+//= require sweetalert
+//= require_tree .
+//= require jquery-ui
+//= require dataTables/jquery.dataTables   
+
+$(document).ready(function(){
+	$('.glyphicon.glyphicon-question-sign').closest( "a" ).click(function(ev){
+	 ev.preventDefault();
+	});
+});
+
