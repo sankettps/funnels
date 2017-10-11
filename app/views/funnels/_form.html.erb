@@ -1,0 +1,42 @@
+<%= form_with(model: funnel, local: true) do |form| %>
+  <% if funnel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(funnel.errors.count, "error") %> prohibited this funnel from being saved:</h2>
+
+      <ul>
+      <% funnel.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :funnel_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :up_product_id %>
+    <%= form.text_field :up_product_id, id: :funnel_up_product_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :down_product_id %>
+    <%= form.text_field :down_product_id, id: :funnel_down_product_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_active %>
+    <%= form.check_box :is_active, id: :funnel_is_active %>
+  </div>
+
+  <div class="field">
+    <%= form.label :shop_id %>
+    <%= form.text_field :shop_id, id: :funnel_shop_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  up_product_id: MyString
+  down_product_id: MyString
+  is_active: false
+  shop: one
+
+two:
+  name: MyString
+  up_product_id: MyString
+  down_product_id: MyString
+  is_active: false
+  shop: two
