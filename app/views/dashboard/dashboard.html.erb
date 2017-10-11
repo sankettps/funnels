@@ -1,0 +1,23 @@
+<div class="sync_product">
+  we are syncronising products...
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    var set_loader = setInterval(function(){
+      $.ajax({
+        type:'GET',
+        url: '/dashboard/product_sync_status',
+        success:function(data){
+          console.log("inside success-->",data);
+          if(data == "synced"){
+            console.log("inside if");
+            $(".sync_product").html('');
+            clearInterval(set_loader);
+          }
+        }
+      })
+    },10000);
+    
+  });
+
+</script>

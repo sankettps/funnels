@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "dashboard/dashboard"
   resources :funnels
   root :to => 'home#index'
   mount ShopifyApp::Engine, at: '/'
