@@ -33,7 +33,7 @@ class Shop < ActiveRecord::Base
 				    e.preventDefault();
 				    $("#hfUpsell").modal();
 				  });
-				}       
+				});       
     	});
     ', :theme_id => @theme.id)
 
