@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009155925) do
+ActiveRecord::Schema.define(version: 20171011012303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,26 @@ ActiveRecord::Schema.define(version: 20171009155925) do
     t.index ["shop_id"], name: "index_filter_shop_products_on_shop_id"
   end
 
+  create_table "funnel_products", force: :cascade do |t|
+    t.bigint "filter_shop_product_id"
+    t.bigint "funnel_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["filter_shop_product_id"], name: "index_funnel_products_on_filter_shop_product_id"
+    t.index ["funnel_id"], name: "index_funnel_products_on_funnel_id"
+  end
+
+  create_table "funnels", force: :cascade do |t|
+    t.string "name"
+    t.string "up_product_id"
+    t.string "down_product_id"
+    t.boolean "is_active"
+    t.bigint "shop_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shop_id"], name: "index_funnels_on_shop_id"
+  end
+
   create_table "shops", force: :cascade do |t|
     t.string "shopify_domain", null: false
     t.string "shopify_token", null: false
@@ -53,4 +73,7 @@ ActiveRecord::Schema.define(version: 20171009155925) do
 
   add_foreign_key "filter_shop_attributes", "shops"
   add_foreign_key "filter_shop_products", "shops"
+  add_foreign_key "funnel_products", "filter_shop_products"
+  add_foreign_key "funnel_products", "funnels"
+  add_foreign_key "funnels", "shops"
 end

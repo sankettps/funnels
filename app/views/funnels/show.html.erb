@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @funnel.name %>
+</p>
+
+<p>
+  <strong>Up product:</strong>
+  <%= @funnel.up_product_id %>
+</p>
+
+<p>
+  <strong>Down product:</strong>
+  <%= @funnel.down_product_id %>
+</p>
+
+<p>
+  <strong>Is active:</strong>
+  <%= @funnel.is_active %>
+</p>
+
+<p>
+  <strong>Shop:</strong>
+  <%= @funnel.shop %>
+</p>
+
+<%= link_to 'Edit', edit_funnel_path(@funnel) %> |
+<%= link_to 'Back', funnels_path %>
