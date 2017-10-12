@@ -1,69 +1,61 @@
-<script type="text/javascript"> 
-      //Menu active class
-      $('.menu ul li').removeClass("active");
-      $('.volume_discount_app').addClass("active");
-</script>    
 <div class="add_form">
-  <h4>Add New Offer</h4>    
-  <div class="row card-box">  
-    <!-- <form class="form-horizontal"  id="add_offer_form" name='options_form' action="create" method="post"> -->
-      <%= form_tag "create", :method => :post, :class => "form-horizontal",name: 'options_form',id: "add_offer_form" do %>
-      <input name="utf8" type="hidden" value="✓">
+  <h4>Add New Funnel</h4> 
+      <%= form_tag "create", :method => :post, :class => "form-horizontal",name: 'options_form',id: "add_funnel_form" do %>
       <input type="hidden" name="products_list" class="products_list">
-      <input type="hidden" name="price_levels_list" class="price_levels_list">
-      <div class="shop_url" style="display:none"><%= @shop_url %></div>
-      <div class="store_id" style="display:none"><%= @store_id %></div>
-      <div class="product_titles" style="display:none"><%= @product_titles %></div>
-      <div class="product_types" style="display:none"><%= @product_types %></div>
-      <div class="product_vendors" style="display:none"><%= @product_vendors %></div>
-      <div class="product_tags" style="display:none"><%= @product_tags %></div>
-      <div class="product_custom_collections" style="display:none"><%= @product_custom_collections %></div> 
-      <div class="product_smart_collections" style="display:none"><%= @product_smart_collections %></div>
+      <div class="shop-url hide"><%= @shop_url %></div>
+      <div class="store-id hide"><%= @store_id %></div>
+      <div class="product-titles hide"><%= @product_titles %></div>
+      <div class="product-types hide"><%= @product_types %></div>
+      <div class="product-custom-collections hide"><%= @product_custom_collections %></div> 
+      <div class="product-smart-collections hide"><%= @product_smart_collections %></div>
+      <div class="product-tags hide"><%= @product_tags %></div>
       <div class="col-lg-12">
-        
         <div class="form-group">
-          <label>Product Filter
-            <a href="#" data-toggle="tooltip" data-html="true" title="You can filter products by title, vendor, tag, collection etc."><span class="glyphicon glyphicon-question-sign"></span></a>
-          </label>
-          <div class="product_filters" data-count-filters="1">
-            <div class="radio-list">                                 
-              <label class="radio-inline">
-                <input type="radio" id="OR" value="OR" name="any_or" checked="" class="and_or"> 
-                <label for="OR"><span></span>Any Conditions</label>
-              </label>
-              <label class="radio-inline">
-                <input type="radio" id="AND" value="AND" name="any_or" class="and_or"> 
-                <label for="AND"><span></span>All Conditions</label>
-              </label>
-            </div>
-            <div class="filter">
-                <ul class="clearfix">
-                    <li>
-                        <select class="filter_name form-control">
-                            <option value="product_titles">Product Title</option>
-                            <option value="product_vendors">Product Vendor</option>
-                            <option value="product_types">Product Type</option>
-                            <option value="product_tags">Product Tag</option>
-                            <option value="product_custom_collections">Custom Collection</option>
-                            <option value="product_smart_collections">Smart Collection</option>
-                        </select>
-                    </li>
-                    <li>
-                      <select class="filter_condition form-control">            
-                        <option value="equal">is equal to</option>
-                        <option value="not-equal">is not equal to</option>
-                        <option value="contain">contains</option>
-                        <option value="not-contain">does not contain</option>
-                        <option value="start-with">starts with</option>
-                        <option value="end-with">ends with</option>
-                      </select>
-                    </li>
-                    <li><input type="text" class="form-control filter_val required" placeholder="Type Here"></li>
-                </ul>
-            </div>
-            <button type="button" class="btn btn-small btn-default form" id="add_condition"><span class="glyphicon glyphicon-plus"></span> Add Condition</button>
+          <label for="offer_name">Funnel Name*</label>
+            <input type="text" name="funnel[name]" id="funnelName" class="form-control small-width" placeholder="Enter Funnel Name">
+        </div>
+        <div class="form-group">
+          <h4>Product Filter</h4>
+        </div>
+
+        <div class="form-group">
+          <div class="col-lg-6">
+            <label for="productTitle">Product Title</label>
+            <input type="text" id="productTitle" class="form-control" placeholder="Enter Product Title">
+          </div>
+          <div class="col-lg-6">
+            <label for="productType">Product Type</label>
+            <input type="text" id="productType" class="form-control" placeholder="Enter Product Type">
           </div>
         </div>
+
+        <div class="form-group">
+          <div class="col-lg-6">
+            <label for="customCollection">Custom Collection</label>
+            <input type="text" id="customCollection" class="form-control" placeholder="Enter Custom Collection">
+          </div>
+          <div class="col-lg-6">
+            <label for="smallCollection">Smart Collection</label>
+            <input type="text" id="smallCollection" class="form-control" placeholder="Enter Smart Collection">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-lg-6">
+            <label for="productTag">Product Tag</label>
+            <input type="text" id="productTag" class="form-control" placeholder="Enter Product Tag">
+          </div>
+          <div class="col-lg-6">
+            <label for="andOrCondition">Select Condition</label>
+            <select class="form-control" id="andOrCondition">
+              <option value="OR">OR</option>
+              <option value="AND">AND</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="btn btn-primary filter-submit" type="button">Filter</button>
+        <button class="btn btn-danger filter-reset" type="reset">Reset</button>
         <div class="form-group">
           <div class="select_products_section">              
             <div class="col-lg-6">

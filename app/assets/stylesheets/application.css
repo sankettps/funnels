@@ -245,3 +245,9 @@
 .loader img{
   width: 35px;
 }
+.small-width{
+  width: 40%;
+}
+.hide{
+  display: none;
+}

@@ -63,42 +63,7 @@ $(document).ready(function(){
       console.log('=========',$(this).parents('form'));
       $(this).parents('form').submit();
     }
-  });          
-  // quantity or Price > 0 and not number validation
-  $("body").on('change', '.quantity', function(e) { 
-      if((!$.isNumeric($(this).val())) || ($(this).val() < 0)){
-        $(this).val('');
-      }
-  });
-  
-  $("body").on('change', '.discount_price', function(e) { 
-      if((!$.isNumeric($(this).val())) || ($(this).val() < 0)){
-        $(this).val('');
-      }
-      var discount_price = $(this).val();
-      var discount_type = $(this).parent().find('.discount_type').val();
-      var instruction = (discount_type == 'fix_amount') ? "Get <%= @currency_symbol %>"+discount_price+" Off on each product" : "Get "+discount_price+"% Off on each product";
-      $(this).parents('.price_level').find('td:last-child').html(instruction);
-  });
-
-  $("body").on('change', '.discount_type', function(e) {  
-      var discount_type = $(this).val();
-      var discount_price = $(this).parents('.price_level').find('.discount_price').val();
-      var instruction = (discount_type == 'fix_amount') ? "Get <%= @currency_symbol %>"+discount_price+" Off on each product" : "Get "+discount_price+"% Off on each product";
-      if(discount_price != ''){
-       $(this).parents('.price_level').find('td:last-child').html(instruction);
-      }
-  });
-
-  $("body").on('click', '#add_level', function() { 
-    $('.price_levels_table').append('<tr class="price_level"><td class="col-md-3"><input type="number" class="quantity form-control" name="quantity" min=1></td><td class="col-md-3"> <div class="input-group"> <input type="number" name="discount_price" class="discount_price form-control" min=1> <div class="input-group-addon"> <select class="discount_type form-control"> <option value="fix_amount"><%= @currency %></option> <option value="% Off">% Off</option> </select> </div></div></td><td class="col-md-1"><a href="#" class="table-action-btn btn btn-small btn-danger remove_level"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td><td class="col-md-5"></td></tr>'); 
-  });
-
-  $("body").on('click','.remove_level',function(e){
-    e.preventDefault();
-    $(this).closest('.price_level').remove();
-  });
-
+  });  
   //sort function
   function sortfunc(a,b){
     return parseInt(a[0]) - parseInt(b[0]);
@@ -249,27 +214,31 @@ $(document).ready(function(){
                 $('.dataTables_filter input').attr('placeholder', 'Search Text');
             });
     }else{
-      $('.filter ul').each(function() {
-          var filter_name = $(this).find('.filter_name').val();
-          var filter_condition = $(this).find('.filter_condition').val();
-          var filter_val = $(this).find('.filter_val').val();
-          filter_array.push([filter_name, filter_condition, filter_val]);
-      });
+      // $('.filter ul').each(function() {
+      //     var filter_name = $(this).find('.filter_name').val();
+      //     var filter_condition = $(this).find('.filter_condition').val();
+      //     var filter_val = $(this).find('.filter_val').val();
+      //     filter_array.push([filter_name, filter_condition, filter_val]);
+      // });
       swal({
           title: '<div class="loader"><img src="/images/loader.gif"></div>',
           html: true,
           showConfirmButton: false
       });
-      var and_or = $("input[name=any_or]:checked").val();
-      var filter_data = JSON.stringify(filter_array);
+      // var and_or = $("input[name=any_or]:checked").val();
+      // var filter_data = JSON.stringify(filter_array);
       url = "/shop/filter_products";
       $.ajax({
               type: "POST",
               url: url,
               data: {
                   store_id: store_id,
-                  and_or: and_or,
-                  filter_data: filter_data
+                  and_or: $('#andOrCondition').val(),
+                  ptitle: $('#productTitle').val(),
+                  ptype: $('#productType').val(),
+                  pccollection: $('#customCollection').val(),
+                  pscollection: $('#smallCollection').val(),
+                  ptag: $('#productTag').val()
               }
           })
           .done(function(response) {
@@ -302,10 +271,9 @@ $(document).ready(function(){
               });
               $('.dataTables_filter input').attr('placeholder', 'Search Text');
           });
-    }
+      }
   }
 
-  
   table = $('#before_selected_products').DataTable({
     "columnDefs": [
             {
@@ -404,49 +372,14 @@ $(document).ready(function(){
             }, 500); 
     }
   });
-  //add condition
-  $("body").on('click', '#add_condition', function() {
-      $('.filter ul').each(function(){
-          var filter_val = $(this).find('.filter_val').val();
-          if(filter_val==''){
-            $(this).find('.filter_val').addClass('errorr');
-          }else{
-            $(this).find('.filter_val').removeClass('errorr');
-          }
-      });
-      if($('.filter_val.errorr').length == 0){
-        $('.filter').append("<ul class='clearfix'> <li> <select class='filter_name form-control'> <option value='product_titles'>Product Title</option> <option value='product_vendors'>Product Vendor</option> <option value='product_types'>Product Type</option> <option value='product_tags'>Product Tag</option> <option value='product_custom_collections'>Custom Collection</option> <option value='product_smart_collections'>Smart Collection</option> </select> </li><li> <select class='filter_condition form-control'> <option value='equal'>is equal to</option> <option value='not-equal'>is not equal to</option> <option value='contain'>contains</option> <option value='not-contain'>does not contain</option> <option value='start-with'>starts with</option> <option value='end-with'>ends with</option> </select> </li><li><input type='text' class='form-control filter_val' placeholder='Type Here'></li><li class='remove'><td class='col-md-4'> <a href='#' class='table-action-btn btn btn-small btn-danger remove_condition'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a> </td></li></ul>");
-      }
-  });
-  //remove condition
-  $("body").on('click', '.remove_condition', function(e) {
-    e.preventDefault();
-    $(this).closest('ul').remove();
-    product_filter();
-  });
 
-  //
-  //filter_name change
-   
-  $("body").on('change', '.filter_name', function() {
-    var filter_name = $(this).val(); 
-    if(filter_name=='product_custom_collections' || filter_name=='product_smart_collections'){
-      $(this).closest('ul').find('.filter_condition').html("<option value='equal'>is equal to</option>");
-    }
-    else if(filter_name=='product_tags'){
-      $(this).closest('ul').find('.filter_condition').html("<option value='contain'>contains</option>");
-    }
-    else{
-      $(this).closest('ul').find('.filter_condition').html("<option value='equal'>is equal to</option> <option value='not-equal'>is not equal to</option> <option value='contain'>contains</option> <option value='not-contain'>does not contain</option> <option value='start-with'>starts with</option> <option value='end-with'>ends with</option>");
-    }
-  });
   //autocomplete
-  $("body").on('keypress', '.filter_val', function(event) {
-            var filter_type = $(this).closest('ul').find('.filter_name').val();
+  function autocomplete(filter_id,filter_class){
+    $("body").on('keypress', '#'+filter_id, function(event) {
             var filter_data = $(this).val().toLowerCase();
             var myarray = [];
             var length = filter_data.length
-            var res = $('.'+filter_type).text();
+            var res = $('.'+filter_class).text();
             if(res.includes(",")){
                 var res = res.split(",");
                 count=0;
@@ -462,26 +395,91 @@ $(document).ready(function(){
                 });
             }
             else{
-                var myarray = [res.trim()];
+                var res = [res.trim()];
             }
-            res  = JSON.stringify(myarray);
-            res  = JSON.parse(res);
             $(this).autocomplete({
               source: res
             });
+    });
+  }
+
+  autocomplete('productTitle','product-titles');
+  autocomplete('productType','product-types');
+  autocomplete('customCollection','product-custom-collections');
+  autocomplete('smallCollection','product-smart-collections');
+  autocomplete('productTag','product-tags');
+
+  $("body").on('click', '.filter-submit', function() {
+    swal({
+        title: '<div class="loader"><img src="/images/loader.gif"></div>',
+        html: true,
+        showConfirmButton: false
+    });
+    url = "/shop/filter_products";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {
+            store_id: $('.store-id').html(),
+            and_or: $('#andOrCondition').val(),
+            ptitle: $('#productTitle').val(),
+            ptype: $('#productType').val(),
+            pccollection: $('#customCollection').val(),
+            pscollection: $('#smallCollection').val(),
+            ptag: $('#productTag').val()
+        }
+    })
+    .done(function(response) {
+        table.destroy()
+        $('#before_selected_products tbody').html(response);
+        table = $('#before_selected_products').DataTable({
+            "columnDefs": [{
+                "targets": [0],
+                "visible": false,
+                "searchable": false
+            }],
+            "bLengthChange": false,
+            "ordering": false,
+            responsive: true,
+            "oLanguage": {
+                "sEmptyTable": "No records available",
+                "sLoadingRecords": "Please wait - loading...",
+                "oPaginate": {
+                    "sFirst": "First",
+                    "sLast": "Last",
+                    "sNext": "<i class='glyphicon glyphicon-chevron-right'></i>",
+                    "sPrevious": "<i class='glyphicon glyphicon-chevron-left'></i>"
+                }
+            },
+            "fnDrawCallback": function(oSettings) {
+                check_tickmark();
+               // $('.check_all').prop('checked', false);
+                swal.close();
+            }
+        });
+        $('.dataTables_filter input').attr('placeholder', 'Search Text');
+    });
   });
 
-  $("body").on('change', '.filter_val, .filter_condition, .filter_name', function(event) {
-    $(this).removeClass('errorr');
-      $(this).blur();
-      product_filter(); 
+  $("body").on('click', '.filter-reset', function() {
+    $('#productTitle').val('');
+    $('#productType').val('');
+    $('#customCollection').val('');
+    $('#smallCollection').val('');
+    $('#productTag').val('');
   });
-  $("body").on('change', '.and_or', function(event) {
-    var filter_length=$('.filter ul').length;
-    if(filter_length > 1){
-      product_filter(); 
-    }
-  });
+
+  // $("body").on('change', '.filter_val, .filter_condition, .filter_name', function(event) {
+  //   $(this).removeClass('errorr');
+  //     $(this).blur();
+  //     product_filter(); 
+  // });
+  // $("body").on('change', '.and_or', function(event) {
+  //   var filter_length=$('.filter ul').length;
+  //   if(filter_length > 1){
+  //     product_filter(); 
+  //   }
+  // });
 });
   
 </script>
