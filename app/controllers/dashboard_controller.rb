@@ -1,5 +1,5 @@
-# class DashboardController < ShopifyApp::AuthenticatedController
-class DashboardController < ApplicationController
+class DashboardController < ShopifyApp::AuthenticatedController
+# class DashboardController < ApplicationController
 	before_action :set_current_shop
 	def dashboard
 		# check_shop_details
@@ -14,9 +14,9 @@ class DashboardController < ApplicationController
 
 	private
 		def set_current_shop
-			# @current_shop = ShopifyAPI::Shop.current
-  	# 	@shop = Shop.find_by_shopify_domain(@current_shop.myshopify_domain)
-  	@shop = Shop.first
+			@current_shop = ShopifyAPI::Shop.current
+  		@shop = Shop.find_by_shopify_domain(@current_shop.myshopify_domain)
+  	# @shop = Shop.first
 		end
 
 		# add detail of shop only if not exist
