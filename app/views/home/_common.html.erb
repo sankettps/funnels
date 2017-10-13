@@ -85,7 +85,8 @@ $(document).ready(function(){
       var single_product = $(this).closest('tr').html();
       var pid=$(this).closest('tr').find('.product_data').data('pid');
       var ptitle=$(this).closest('tr').find('.product_data').data('ptitle');
-      var product_html="<tr class='single_product "+pid+"'>"+"<td></td><td data-pid='"+pid+"' data-ptitle='"+ptitle+"' class='product_data'>"+ptitle+"</td><td><button type='button' class='btn btn-small btn-danger remove-product'>Remove</button></td></tr>";
+      var pimage=$(this).closest('tr').find('.product_data').data('pimage');
+      var product_html="<tr class='single_product "+pid+"'>"+"<td><img src="+pimage+" width=30 height=30></td><td data-pid='"+pid+"' data-ptitle="+ptitle+" class='product_data'>"+ptitle+"</td><td><button type='button' class='btn btn-small btn-danger remove-product'>Remove</button></td></tr>";
       $('.selected_products tbody').append(product_html);
       // check_tickmark();
 
@@ -108,7 +109,6 @@ $(document).ready(function(){
 
 
   function check_tickmark(){
-    alert();
     var before_select_array = new Array();
     var after_select_array = new Array();
     $( ".selected_products .single_product" ).each(function( index ) {
@@ -585,6 +585,54 @@ $(document).ready(function(){
         $('.dataTables_filter input').attr('placeholder', 'Search Text');
     });
   });
+  var singleProductOptions = {
+    'selectMultiple': false
+  };
+  $(document).on('click', '#btnUpsellProduct', function(event) {
+    ShopifyApp.Modal.productPicker(singleProductOptions, function(success, data) {
+      // Callback is triggered any time a button
+      // is clicked or the window is closed.
+
+      if(!success) {
+        // Success is true when a resource is picked successfully
+        return;
+      }
+
+      if (data.products.length > 0) {
+        var selectedProduct = data.products;
+        console.log("upsell-->",selectedProduct[0].title)
+        $("#upsellProduct ul").html("<li>" + selectedProduct[0].title + "</li>")
+        // useSelectedProducts(selectedProducts);
+      }
+
+      if (data.errors) {
+        console.error(data.errors);
+      }
+    })
+  });
+  $(document).on('click', '#btnDownsellProduct', function(event) {
+    ShopifyApp.Modal.productPicker(singleProductOptions, function(success, data) {
+      // Callback is triggered any time a button
+      // is clicked or the window is closed.
+
+      if(!success) {
+        // Success is true when a resource is picked successfully
+        return;
+      }
+
+      if (data.products.length > 0) {
+        var selectedProduct = data.products;
+        console.log("downsell-->",selectedProduct[0].title)
+        $("#downsellProduct ul").html("<li>" + selectedProduct[0].title + "</li>")
+        // useSelectedProducts(selectedProducts);
+      }
+
+      if (data.errors) {
+        console.error(data.errors);
+      }
+    })
+  });
+  
 });
   
 </script>

@@ -8,15 +8,12 @@
         </tr>
     </thead>
     <tbody>
-    <% @products.each do |product| 
-      @p_id=product.product_id
-      @p_title=product.title
-
-       %>
-        <tr class="single_product <%= @p_id %>">
+    <% @products.each do |product| %>
+        <tr class="single_product <%= product.product_id %>">
             <td><%= @p_id %></td>
-            <td><!-- <input type="checkbox" id="p_<%= @p_id %>" class="select_product"><label for="p_<%= @p_id %>"><span></span></label> --></td>
-            <td data-pid="<%= @p_id %>" data-ptitle="<%= @p_title %>" class="product_data"><%= @p_title %></td>
+            <td><img src="<%= product.image %>" width="30" height="30" /></td>
+            <!-- <td><input type="checkbox" id="p_<%= @p_id %>" class="select_product"><label for="p_<%= @p_id %>"><span></span></label></td> -->
+            <td data-pid="<%= product.product_id %>" data-ptitle="<%= product.title %>"" data-pimage="<%= product.image %>" class="product_data"><%= product.title %></td>
             <!-- <td><a href="<%= @shop_url %><%= @p_id %>" target="_blank"><button type="button" class="btn btn-small btn-inverse">View in Store</button></a></td> -->
             <td><button type="button" class="btn btn-small btn-success add-product">Add</button></td>
         </tr>

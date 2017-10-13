@@ -27,10 +27,4 @@ class HomeController < ShopifyApp::AuthenticatedController
     @product_custom_collections=ShopifyAPI::CustomCollection.find(:all).collect(&:title).join(",")
     @product_smart_collections=ShopifyAPI::SmartCollection.find(:all).collect(&:title).join(",")
   end
-  def test_modal
-    # @shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
-    # ShopifyAPI::Base.site = @shop_url
-    @product = ShopifyAPI::Product.find(10945801676)
-    @funnel = Funnel.first
-  end
 end
