@@ -10,7 +10,7 @@ module HeroFunnels
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
-    config.generators.test_framework false
+    # config.generators.test_framework false
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
