@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # root :to => 'home#index'
   root :to => 'dashboard#dashboard'
 
+  get 'home/test_modal'
   get "frontend/get_upsell_detail"
   mount ShopifyApp::Engine, at: '/'
   match ':controller(/:action(/:id(.:format)))' => 'offers#list', via: [:get, :post]
