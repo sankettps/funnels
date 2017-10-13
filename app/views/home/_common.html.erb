@@ -56,7 +56,7 @@ $(document).ready(function(){
       $('.selected_products .'+pid).remove();  
       var products_count = $('.selected_products tbody tr').length;
       if(products_count == 0){
-        $('.selected_products tbody').append('<tr class="no_products"><td colspan="3" class="dataTables_empty">No records available</td></tr>');
+        $('.selected_products tbody').append('<tr class="no_products"><td colspan="3" class="dataTables_empty">No products selected</td></tr>');
       }
       $('.selected_products_count').html('Showing '+$(".selected_products tr[class^='single_product']").length+' entries');
     }
@@ -69,12 +69,46 @@ $(document).ready(function(){
     $('.check_all').prop('checked',false);
     var products_count = $('.selected_products tbody tr').length;
     if(products_count == 0){
-      $('.selected_products tbody').append('<tr class="no_products"><td colspan="3" class="dataTables_empty">No records available</td></tr>');
+      $('.selected_products tbody').append('<tr class="no_products"><td colspan="3" class="dataTables_empty">No products selected</td></tr>');
     }
     $('.selected_products_count').html('Showing '+$(".selected_products tr[class^='single_product']").length+' entries');
   });
 
+
+
+  // add product
+  $("body").on('click', '.add-product', function() {
+    $(this).attr('disabled',true);
+    $('.no_products').remove();
+    $('.no_products_error').remove();
+    var shop_url=$('.shop_url').html();
+      var single_product = $(this).closest('tr').html();
+      var pid=$(this).closest('tr').find('.product_data').data('pid');
+      var ptitle=$(this).closest('tr').find('.product_data').data('ptitle');
+      var product_html="<tr class='single_product "+pid+"'>"+"<td></td><td data-pid='"+pid+"' data-ptitle='"+ptitle+"' class='product_data'>"+ptitle+"</td><td><button type='button' class='btn btn-small btn-danger remove-product'>Remove</button></td></tr>";
+      $('.selected_products tbody').append(product_html);
+      // check_tickmark();
+
+      $('.selected_products_count').html('Showing '+$(".selected_products tr[class^='single_product']").length+' entries');
+  });
+
+  
+  $("body").on('click', '.remove-product', function() {
+    var pid=$(this).closest('tr').find('.product_data').data('pid');
+    $(this).closest('tr').remove();
+    $('.non_selected_products .'+pid).find('.add-product').attr('disabled',false);
+    $('.check_all').prop('checked',false);
+    var products_count = $('.selected_products tbody tr').length;
+    if(products_count == 0){
+      $('.selected_products tbody').append('<tr class="no_products"><td colspan="3" class="dataTables_empty">No Products Selected</td></tr>');
+    }
+    $('.selected_products_count').html('Showing '+$(".selected_products tr[class^='single_product']").length+' entries');
+
+  });
+
+
   function check_tickmark(){
+    alert();
     var before_select_array = new Array();
     var after_select_array = new Array();
     $( ".selected_products .single_product" ).each(function( index ) {
@@ -85,12 +119,14 @@ $(document).ready(function(){
             var pid=$(this).find('.product_data').data("pid");
             before_select_array.push(pid);
     });
+    console.log("after_select_array",after_select_array);
+    console.log("before_select_array",before_select_array);
     $.each( after_select_array, function( key, value ) {
       if(jQuery.inArray(value, before_select_array) !== -1){
              $( ".non_selected_products .single_product" ).each(function( index ) {
                     var pid=$(this).find('.product_data').data("pid");
                     if(pid==value){
-                      $(this).find('.select_product').prop('checked',true);
+                      $(this).find('.add-product').attr('disabled',true);
                     } 
               });
       }
@@ -100,7 +136,7 @@ $(document).ready(function(){
                $( ".non_selected_products .single_product" ).each(function( index ) {
                       var pid=$(this).find('.product_data').data("pid");
                       if(pid==value){
-                          $(this).find('.select_product').prop('checked',false);
+                          $(this).find('.add-product').prop('disabled',false);
                       }
                       
                 });
@@ -161,7 +197,7 @@ $(document).ready(function(){
   //                   "ordering": false,
   //                   responsive: true,
   //                   "oLanguage": {
-  //                       "sEmptyTable": "No records available",
+  //                       "sEmptyTable": "No products selected",
   //                       "sLoadingRecords": "Please wait - loading...",
   //                       "oPaginate": {
   //                           "sFirst": "First",
@@ -219,7 +255,7 @@ $(document).ready(function(){
   //                 "ordering": false,
   //                 responsive: true,
   //                 "oLanguage": {
-  //                     "sEmptyTable": "No records available",
+  //                     "sEmptyTable": "No products selected",
   //                     "sLoadingRecords": "Please wait - loading...",
   //                     "oPaginate": {
   //                         "sFirst": "First",
@@ -251,7 +287,7 @@ $(document).ready(function(){
     "ordering": false,
     responsive: true,
     "oLanguage": {
-        "sEmptyTable": "No records available",
+        "sEmptyTable": "No products selected",
         "sLoadingRecords": "Please wait - loading...",
         "oPaginate": {
           "sFirst": "First",
@@ -265,7 +301,79 @@ $(document).ready(function(){
     }
   });
 
-  $("body").on('change', '.check_all', function() { 
+  // $("body").on('change', '.check_all', function() { 
+  //   $('.no_products_error').remove();
+  //   swal({
+  //          title: '<div class="loader"><img src="/images/loader.gif"></div>',
+  //          html: true,
+  //          showConfirmButton: false
+  //   });
+
+  //   if($(this).prop('checked') == true) { 
+  //       $('.selected_products tbody tr').remove();
+  //       setTimeout(function(){ 
+  //         after_select_html='';
+  //         var shop_url=$('.shop_url').html();
+  //         table.rows({search: 'applied'}).every( function ( rowIdx, tableLoop, rowLoop ) {
+  //           cells = this.cells(function (cellIdx, data, node) {
+  //             return (cellIdx.row == rowIdx);
+  //           });
+  //           var ct=1;
+  //           var pid='';
+  //           var ptitle='';
+  //           cells.every(function() {
+  //             if(ct==1){
+  //               pid=this.data();
+  //             }
+  //             if(ct==3){
+  //               ptitle=this.data();
+  //             }   
+  //             ct=ct+1;
+  //           });
+  //          after_select_html=after_select_html + "<tr class='single_product "+pid+"'>"+"<td><input type='checkbox' id='p_"+pid+"' class='remove_product' checked='checked'><label for='p_"+pid+"'><span></span></label></td><td data-pid='"+pid+"' data-ptitle='"+ptitle+"' class='product_data'>"+ptitle+"</td><td><a href='"+shop_url+pid+"' target='_blank'><button type='button' class='btn btn-small btn-inverse'>View in Store</button></a></td></tr>";
+  //         });
+  //         $('.no_products').remove();
+  //         $('.selected_products tbody').append(after_select_html);
+  //         check_tickmark(); 
+  //         var seen = {};
+  //         $('.selected_products tbody tr td:nth-child(2)').each(function() {
+  //             var txt = $(this).attr("data-pid");
+  //             if (seen[txt])
+  //                 $(this).remove();
+  //             else
+  //                 seen[txt] = true;
+  //         });
+  //         swal.close();
+  //         $('.selected_products_count').html('Showing '+$(".selected_products tr[class^='single_product']").length+' entries');
+  //       }, 500);   
+  //   }  
+  //   else{
+  //         setTimeout(function(){ 
+  //             before_select_html='';
+  //             var shop_url=$('.shop_url').html();
+  //             table.rows({search: 'applied'}).every( function ( rowIdx, tableLoop, rowLoop ) {
+  //               cells = this.cells(function (cellIdx, data, node) {
+  //                 return (cellIdx.row == rowIdx);
+  //               });
+  //               var ct=1;
+  //               var pid='';
+  //               cells.every(function() {
+  //                 if(ct==1){
+  //                   pid=this.data();
+  //                 }  
+  //                 ct=ct+1;
+  //               });
+  //               $('.non_selected_products .'+pid).find('.select_product').prop('checked',false);
+  //               $('.selected_products .'+pid).remove();
+  //             });
+  //             swal.close();
+  //             $('.selected_products_count').html('Showing '+$(".selected_products tr[class^='single_product']").length+' entries');
+  //             $('.selected_products tbody').append('<tr class="no_products"><td colspan="3" class="dataTables_empty">No products selected</td></tr>');
+  //           }, 500); 
+  //   }
+  // });
+
+  $("body").on('click', '.select-all', function() { 
     $('.no_products_error').remove();
     swal({
            title: '<div class="loader"><img src="/images/loader.gif"></div>',
@@ -273,7 +381,6 @@ $(document).ready(function(){
            showConfirmButton: false
     });
 
-    if($(this).prop('checked') == true) { 
         $('.selected_products tbody tr').remove();
         setTimeout(function(){ 
           after_select_html='';
@@ -294,7 +401,7 @@ $(document).ready(function(){
               }   
               ct=ct+1;
             });
-           after_select_html=after_select_html + "<tr class='single_product "+pid+"'>"+"<td><input type='checkbox' id='p_"+pid+"' class='remove_product' checked='checked'><label for='p_"+pid+"'><span></span></label></td><td data-pid='"+pid+"' data-ptitle='"+ptitle+"' class='product_data'>"+ptitle+"</td><td><a href='"+shop_url+pid+"' target='_blank'><button type='button' class='btn btn-small btn-inverse'>View in Store</button></a></td></tr>";
+           after_select_html=after_select_html + "<tr class='single_product "+pid+"'>"+"<td></td><td data-pid='"+pid+"' data-ptitle='"+ptitle+"' class='product_data'>"+ptitle+"</td><td><button type='button' class='btn btn-small btn-danger'>Remove</button></td></tr>";
           });
           $('.no_products').remove();
           $('.selected_products tbody').append(after_select_html);
@@ -310,9 +417,10 @@ $(document).ready(function(){
           swal.close();
           $('.selected_products_count').html('Showing '+$(".selected_products tr[class^='single_product']").length+' entries');
         }, 500);   
-    }  
-    else{
-          setTimeout(function(){ 
+  });
+
+  $("body").on('click', '.remove-all', function() { 
+    setTimeout(function(){ 
               before_select_html='';
               var shop_url=$('.shop_url').html();
               table.rows({search: 'applied'}).every( function ( rowIdx, tableLoop, rowLoop ) {
@@ -327,14 +435,13 @@ $(document).ready(function(){
                   }  
                   ct=ct+1;
                 });
-                $('.non_selected_products .'+pid).find('.select_product').prop('checked',false);
+                $('.non_selected_products .'+pid).find('.add-product').prop('disabled',false);
                 $('.selected_products .'+pid).remove();
               });
               swal.close();
               $('.selected_products_count').html('Showing '+$(".selected_products tr[class^='single_product']").length+' entries');
-              $('.selected_products tbody').append('<tr class="no_products"><td colspan="3" class="dataTables_empty">No records available</td></tr>');
+              $('.selected_products tbody').html('<tr class="no_products"><td colspan="3" class="dataTables_empty">No products selected</td></tr>');
             }, 500); 
-    }
   });
 
   //autocomplete
@@ -406,7 +513,7 @@ $(document).ready(function(){
             "ordering": false,
             responsive: true,
             "oLanguage": {
-                "sEmptyTable": "No records available",
+                "sEmptyTable": "No products selected",
                 "sLoadingRecords": "Please wait - loading...",
                 "oPaginate": {
                     "sFirst": "First",
@@ -461,7 +568,7 @@ $(document).ready(function(){
             "ordering": false,
             responsive: true,
             "oLanguage": {
-                "sEmptyTable": "No records available",
+                "sEmptyTable": "No products selected",
                 "sLoadingRecords": "Please wait - loading...",
                 "oPaginate": {
                     "sFirst": "First",

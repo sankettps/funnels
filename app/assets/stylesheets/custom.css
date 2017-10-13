@@ -38,7 +38,7 @@
 }
 
 .select_products_section .selected{
-  background-color: #00a9a2 !important ;
+  background-color: #337ab7 !important ;
   border: 1px solid #006b66 !important;
 }
 .selected_products .remove_product{
@@ -94,18 +94,18 @@
   padding-left: 0px;
 }
 .right_table .selected_products tr th{
-  padding: 20px 18px 23px 10px !important;
+  /*padding: 20px 18px 23px 10px !important;*/
 }
 #products .dataTables_wrapper .dataTables_paginate .paginate_button.current,#products .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover,#products .dataTables_wrapper .dataTables_paginate .paginate_button:hover{
-  border: 1px solid #00a9a2 !important;
-  background: #00a9a2 !important;
+  border: 1px solid #337ab7 !important;
+  background: #337ab7 !important;
   color: #fff !important;
 }
 .right_table .selected_products tr td{
   padding: 8px;
 }
 .dataTables_wrapper .dataTables_filter input{
-  padding: 7px;
+  padding: 5px;
   border-radius: 5px;
   width: 200px;
 }
@@ -113,16 +113,16 @@
   font-size: 15px;
   padding: 10px !important;
 }
-#before_selected_products_filter{
+/*#before_selected_products_filter{
   margin-top: -17px;
   padding-bottom: 15px;
-}
+}*/
 .table_top_portion_right h3{
   padding:0px 0px 11px 15px;
   margin-bottom: 19px;
 }
 #before_selected_products tr th{
-  padding: 20px 10px;
+  /*padding: 20px 10px;*/
   border: none;
 }
 .dataTables_paginate.paging_simple_numbers{
@@ -167,13 +167,13 @@
     z-index: 999;
     padding: 7px;
     background-color: #fff;
-    border: 1px solid #00a9a2;
+    border: 1px solid #337ab7;
     width: 150px;
     right: 0;
     margin: 24px 0 0 0 !important;
 }
 .menu .sub_menu li a {
-    color: #00a9a2;
+    color: #337ab7;
     font-size: 13px;
     padding: 0px;
     -webkit-transition: 0s ease-in-out;
@@ -210,6 +210,7 @@
 .selected_products{
   border-bottom: 1px solid #dbe1e8;
   margin-bottom: 0px;
+  margin-top: 44px !important;
 }
 /* filter css end */
 .loader,.submit-loader{
@@ -230,3 +231,17 @@
 .hide{
   display: none;
 } 
+.table tbody tr td{
+  vertical-align: middle;
+  /*border-bottom: 1px solid #ddd !important;*/
+}
+
+.table thead tr th{
+  border-bottom: none !important;
+}
+.add-product{
+  padding: 5px 25px;
+}
+table.dataTable.no-footer {
+     border-bottom: 1px solid #ddd !important; 
+}

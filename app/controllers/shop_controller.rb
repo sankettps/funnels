@@ -266,9 +266,8 @@ class ShopController < ApplicationController
   end
 
   def get_all_products
-    # @store_id=params[:store_id]
-    # @store = Shop.find_by_shopify_domain(@store_id)
-    @store = Shop.first
+    @store_id=params[:store_id]
+    @store = Shop.find_by_shopify_domain(@store_id)
     @products = @store.filter_shop_products
     @table_html=''
     if !@products.blank?
