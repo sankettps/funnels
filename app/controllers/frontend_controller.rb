@@ -4,6 +4,10 @@ class FrontendController < ApplicationController
 	 	@shop = Shop.find_by_shopify_domain(params[:shop_id])
 	 	if @shop.present?
 	 		@funnel = @shop.funnels.find_by(is_active: true)
+	 		# @shop_url ="https://#{ShopifyApp.configuration.api_key}:#{@shop.shopify_token}@#{@shop.shopify_domain}/admin/"
+    	# ShopifyAPI::Base.site = @shop_url
+	 		@up_product = ShopifyAPI::Product.find(@funnel.up_product_id)
+	 		puts "<======test product========#{@up_product.inspect}===============>"
 	 		modal_html
 	 		# @html = modal_html
 	 		# @funnel

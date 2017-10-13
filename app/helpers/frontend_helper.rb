@@ -1,6 +1,6 @@
 module FrontendHelper
 	def modal_html
-		@html = "<div id=\"hfUpsell\" class=\"modal fade\" role=\"dialog\">
+		@html = "<div id=\"hfUpsellModal\" class=\"modal fade\" role=\"dialog\">
 			  <div class=\"modal-dialog\">
 			    <!-- Modal content-->
 			    <div class=\"modal-content\">

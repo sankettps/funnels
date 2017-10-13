@@ -18,7 +18,7 @@ class Shop < ActiveRecord::Base
 	    $.getScript("//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js", function(){
 	    	$.ajax({
 		      url: \''+ENV["hf_domain"]+'/frontend/get_upsell_detail\',
-		      data: {shop_id: "value1"},
+		      data: {shop_id: "{{shop.permanent_domain}}"},
 		    })
 		    .done(function(data) {
 		      console.log("success funnel");
@@ -33,7 +33,7 @@ class Shop < ActiveRecord::Base
 				    e.preventDefault();
 				    $("#hfUpsell").modal();
 				  });
-				}       
+				});       
     	});
     ', :theme_id => @theme.id)
 
