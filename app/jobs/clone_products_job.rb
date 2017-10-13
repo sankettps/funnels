@@ -33,7 +33,7 @@ class CloneProductsJob < ApplicationJob
 					
 						@tag_array = []
 
-						@query = shop.filter_shop_products.find_or_create_by(:product_id => @product_id,:title => @product_title,handle: @product_handle,vendor: @product_vendor,product_type: @product_type,tags: @product_tags)
+						@query = shop.filter_shop_products.find_or_create_by(:product_id => @product_id,:title => @product_title,handle: @product_handle,vendor: @product_vendor,product_type: @product_type,tags: @product_tags,image: product.image.try(:src))
 
 						@query = shop.filter_shop_attributes.find_or_create_by(:detail_type => 'type',:detail_value => @product_type)
 
