@@ -266,10 +266,10 @@ class ShopController < ApplicationController
   end
 
   def get_all_products
-    @store_id=params[:store_id]
-    @store = Shop.find_by_shopify_domain(@store_id)
+    # @store_id=params[:store_id]
+    # @store = Shop.find_by_shopify_domain(@store_id)
+    @store = Shop.first
     @products = @store.filter_shop_products
-    # @products=FilterShopProduct.where(shop_id: @store_id)
     @table_html=''
     if !@products.blank?
       @products.each do |product|
