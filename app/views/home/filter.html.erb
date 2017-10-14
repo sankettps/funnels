@@ -9,43 +9,53 @@
       <div class="product-custom-collections hide"><%= @product_custom_collections %></div> 
       <div class="product-smart-collections hide"><%= @product_smart_collections %></div>
       <div class="product-tags hide"><%= @product_tags %></div>
-      <div class="col-lg-12">
-        <div class="form-group">
-          <label for="offer_name">Funnel Name*</label>
-            <input type="text" name="funnel[name]" id="funnelName" class="form-control small-width" placeholder="Enter Funnel Name">
+      <div class="col-sm-12">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Funnel Name*
+            </div>
+            <div class="panel-body">
+                <input type="text" name="funnel[name]" id="funnelName" class="form-control small-width" placeholder="Enter Funnel Name">
+            </div>
         </div>
+      <!-- 
         <div class="form-group">
           <h4>Product Filter</h4>
-        </div>
-
-        <div class="form-group">
-          <div class="col-lg-6">
+        </div> -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Product Filter*
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+          <div class="col-sm-6">
             <label for="productTitle">Product Title</label>
             <input type="text" id="productTitle" class="form-control" placeholder="Enter Product Title">
           </div>
-          <div class="col-lg-6">
+          <div class="col-sm-6">
             <label for="productType">Product Type</label>
             <input type="text" id="productType" class="form-control" placeholder="Enter Product Type">
           </div>
         </div>
 
         <div class="form-group">
-          <div class="col-lg-6">
+          <div class="col-sm-6">
             <label for="customCollection">Custom Collection</label>
             <input type="text" id="customCollection" class="form-control" placeholder="Enter Custom Collection">
           </div>
-          <div class="col-lg-6">
+          <div class="col-sm-6">
             <label for="smallCollection">Smart Collection</label>
             <input type="text" id="smallCollection" class="form-control" placeholder="Enter Smart Collection">
           </div>
         </div>
 
         <div class="form-group">
-          <div class="col-lg-6">
+          <div class="col-sm-6">
             <label for="productTag">Product Tag</label>
             <input type="text" id="productTag" class="form-control" placeholder="Enter Product Tag">
           </div>
-          <div class="col-lg-6">
+          <div class="col-sm-6">
             <label for="andOrCondition">Select Condition</label>
             <select class="form-control" id="andOrCondition">
               <option value="OR">OR</option>
@@ -58,30 +68,28 @@
         <button class="btn btn-danger filter-reset" type="reset">Reset</button>
         <div class="form-group">
           <div class="select_products_section">              
-            <div class="col-lg-6">
+            <div class="col-sm-6">
               <div class="row clearfix table_top_portion_left">
-                <h3 class="left">Select Products</h3>
               </div>
               <div id="products">
                 <%= render 'getproducts' %>
               </div>
             </div>  
-            <div class="col-lg-6">
+            <div class="col-sm-6">
               <div class="row table_top_portion_right">
-                <h3>Selected products</h3>
               </div>
               <div class="right_table">
-                <table class="table selected_products">
+                <table class="table selected_products table-striped">
                   <thead>
                       <tr>
                           <th></th>
-                          <th class="col-md-10">Product Name</th>
-                          <th class="col-md-2">Action</th>
+                          <th class="col-md-10"><h4>Selected Products</h4></th>
+                          <th class="col-md-2"><button type="button" class="btn btn-danger remove-all">Remove All</button></th>
                       </tr>
                   </thead>
                   <tbody>
                     <tr class="no_products">
-                        <td colspan="3" class="dataTables_empty">No records available</td>
+                        <td colspan="3" class="dataTables_empty">No products selected</td>
                     </tr>
                   </tbody>
                 </table>
@@ -91,6 +99,42 @@
             </div>
           </div>
         </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Upsell Product*
+            </div>
+            <div class="panel-body">
+            <button type="button" class="btn btn-default" id="btnDownsellProduct">Select Product</button>
+             <div id="initialProducts">
+                <ul>
+                  <li>
+                    4-Blade Ninja Shuriken Fidget Spinner
+                  </li>
+                </ul>
+              </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Downsell Product*
+            </div>
+            <div class="panel-body">
+                <button type="button" class="btn btn-default" id="btnDownsellProduct">Select Product</button>
+                <div id="downsellProduct">
+                <ul>
+                  <li>
+                    4-Blade Ninja Shuriken Fidget Spinner
+                  </li>
+                </ul>
+              </div>
+            </div>
+        </div>
+
+
         <button type="submit" class="btn btn-danger offer_submit">Submit</button>
       </div>
     <% end %>   
