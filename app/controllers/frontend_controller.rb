@@ -10,10 +10,10 @@ class FrontendController < ApplicationController
 	 		@shop_url ="https://#{ShopifyApp.configuration.api_key}:#{@shop.shopify_token}@#{@shop.shopify_domain}/admin/"
     	ShopifyAPI::Base.site = @shop_url
     	if @funnel
-		 		@up_product = ShopifyAPI::Product.find_by(up_product_id: @funnel.up_product_id)
+		 		@up_product = ShopifyAPI::Product.find(@funnel.up_product_id)
     		@up_variant = @up_product.variants.first
 		 		
-		 		@down_product = ShopifyAPI::Product.find_by(down_product_id: @funnel.down_product_id)
+		 		@down_product = ShopifyAPI::Product.find(@funnel.down_product_id)
     		@down_variant = @down_product.variants.first
 		 		puts "<======test product========#{@up_product.inspect}===============>"
 		 		modal_html
@@ -21,9 +21,11 @@ class FrontendController < ApplicationController
 		 		# @funnel
 		 		@response = {data: @html}
 		 	else
+		 		puts "no funnel=========================="
 	 			@response = {data: ''}
 		 	end
 	 	else
+		 		puts "no shop=========================="
 	 		@response = {data: ''}
 	 	end
 	 	render json: @response
