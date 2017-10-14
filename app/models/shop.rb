@@ -31,7 +31,7 @@ class Shop < ActiveRecord::Base
 		    $.getScript( "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", function( ) {
 			    jQuery(\'form[action="/cart/add"]\').submit(function(e) {
 				    e.preventDefault();
-				    $("#hfUpsell").modal();
+				    $("#hfUpsellModal").modal();
 				  });
 				});       
     	});
@@ -52,6 +52,8 @@ class Shop < ActiveRecord::Base
 
 			$(document).on(\'click\', \'#hfDownsellCancel\', function(event) {
 				$("#hfUpsellModal").modal(\'hide\');
+				$("#hfDownsellBody").hide();
+				$("#hfUpsellBody").show();
 			});
     ', :theme_id => @theme.id)
 

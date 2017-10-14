@@ -45,7 +45,7 @@ module FrontendHelper
 	      			<div class=\"row\">
 	      				<div class=\"col-xs-12\">
 	      					<p class=\"pro-price\">$ #{@up_variant.price}</p>
-	      					<input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\" #{@up_variant.id}\">
+	      					<input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
 	      				</div>
 	      			</div>
 	      			<div class=\"row\">
@@ -81,7 +81,7 @@ module FrontendHelper
 	      			<div class=\"row\">
 	      				<div class=\"col-xs-12\">
 	      					<p class=\"pro-price\">$ #{@down_variant.price}</p>
-	      					<input type=\"hidden\" name=\"\" id=\"hfDownsellVariant\" value=\" #{@down_variant.id}\">
+	      					<input type=\"hidden\" name=\"\" id=\"hfDownsellVariant\" value=\"#{@down_variant.id}\">
 	      				</div>
 	      			</div>
 	      			<div class=\"row\">
