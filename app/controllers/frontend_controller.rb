@@ -3,15 +3,26 @@ class FrontendController < ApplicationController
 	def get_upsell_detail
 	 	@shop = Shop.find_by_shopify_domain(params[:shop_id])
 	 	if @shop.present?
-	 		@funnel = @shop.funnels.find_by(is_active: true)
+	 		# @funnel = @shop.funnels.find_by(is_active: true)
+	 		@filter_product = FilterShopProduct.find_by(product_id: params[:product_id])
+	 		@funnel = @filter_product.funnels.find_by(is_active: true) if @filter_product
+
 	 		@shop_url ="https://#{ShopifyApp.configuration.api_key}:#{@shop.shopify_token}@#{@shop.shopify_domain}/admin/"
     	ShopifyAPI::Base.site = @shop_url
-	 		@up_product = ShopifyAPI::Product.find(@funnel.up_product_id)
-	 		puts "<======test product========#{@up_product.inspect}===============>"
-	 		modal_html
-	 		# @html = modal_html
-	 		# @funnel
-	 		@response = {data: @html}
+    	if @funnel
+		 		@up_product = ShopifyAPI::Product.find_by(up_product_id: @funnel.up_product_id)
+    		@up_variant = @up_product.variants.first
+		 		
+		 		@down_product = ShopifyAPI::Product.find_by(down_product_id: @funnel.down_product_id)
+    		@down_variant = @down_product.variants.first
+		 		puts "<======test product========#{@up_product.inspect}===============>"
+		 		modal_html
+		 		# @html = modal_html
+		 		# @funnel
+		 		@response = {data: @html}
+		 	else
+	 			@response = {data: ''}
+		 	end
 	 	else
 	 		@response = {data: ''}
 	 	end

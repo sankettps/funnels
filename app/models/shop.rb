@@ -18,7 +18,7 @@ class Shop < ActiveRecord::Base
 	    $.getScript("//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js", function(){
 	    	$.ajax({
 		      url: \''+ENV["hf_domain"]+'/frontend/get_upsell_detail\',
-		      data: {shop_id: "{{shop.permanent_domain}}"},
+		      data: {shop_id: "{{shop.permanent_domain}}",product_id: {{product.id}}},
 		    })
 		    .done(function(data) {
 		      console.log("success funnel");
@@ -35,6 +35,24 @@ class Shop < ActiveRecord::Base
 				  });
 				});       
     	});
+    	$(document).on(\'click\', \'#hfUpsellBuy\', function(event) {
+				event.preventDefault();
+				jQuery.post(\'/cart/add.js\', { quantity: 1, id: $("#hfUpsellVariant").val() });
+			});
+			
+			$(document).on(\'click\', \'#hfUpsellCancel\', function(event) {
+				$("#hfDownsellBody").show();
+				$("#hfUpsellBody").hide();
+			});
+
+			$(document).on(\'click\', \'#hfDownsellBuy\', function(event) {
+				event.preventDefault();
+				jQuery.post(\'/cart/add.js\', { quantity: 1, id: $("#hfDownsellVariant").val() });
+			});
+
+			$(document).on(\'click\', \'#hfDownsellCancel\', function(event) {
+				$("#hfUpsellModal").modal(\'hide\');
+			});
     ', :theme_id => @theme.id)
 
   end
