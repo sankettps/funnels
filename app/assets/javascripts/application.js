@@ -16,7 +16,6 @@
 //= require metisMenu
 //= require sb-admin-2
 //= require sweetalert
-//= require_tree .
 //= require jquery-ui
 //= require dataTables/jquery.dataTables   
 

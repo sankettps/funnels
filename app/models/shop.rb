@@ -13,7 +13,7 @@ class Shop < ActiveRecord::Base
     @asset = ShopifyAPI::Asset.find('layout/theme.liquid', :params => { :theme_id => @theme.id})
     @asset_value = @asset.value
     @asset.update_attributes(value: @asset_value.gsub('</body>',"<div id='hfUpsell'></div>{{ 'hf_common.js' | asset_url | script_tag }}</body>")) unless @asset_value.include?("<div id='hfUpsell'>")
-
+    
     @asset = ShopifyAPI::Asset.create(:key => 'assets/hf_common.js', value: '
 	    $.getScript("//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js", function(){
 	    	$.ajax({
@@ -31,13 +31,23 @@ class Shop < ActiveRecord::Base
 		    $.getScript( "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", function( ) {
 			    jQuery(\'form[action="/cart/add"]\').submit(function(e) {
 				    e.preventDefault();
+				    $("#hfDownsellBody").hide();
+						$("#hfUpsellBody").show();
 				    $("#hfUpsellModal").modal();
 				  });
-				});       
+				});
+		    $.getScript("https://cdnjs.cloudflare.com/ajax/libs/shopify-cartjs/0.4.1/cart.min.js", function( ) {
+		    	$.getScript("https://cdnjs.cloudflare.com/ajax/libs/shopify-cartjs/0.4.1/rivets-cart.min.js", function( ) {
+						jQuery(function() {
+				      CartJS.init({{ cart | json }});
+				    });
+				  }); 
+			  });      
     	});
     	$(document).on(\'click\', \'#hfUpsellBuy\', function(event) {
 				event.preventDefault();
-				jQuery.post(\'/cart/add.js\', { quantity: 1, id: $("#hfUpsellVariant").val() });
+				CartJS.addItem($("#hfUpsellVariant").val());
+				$("#hfUpsellModal").modal(\'hide\');
 			});
 			
 			$(document).on(\'click\', \'#hfUpsellCancel\', function(event) {
@@ -47,13 +57,12 @@ class Shop < ActiveRecord::Base
 
 			$(document).on(\'click\', \'#hfDownsellBuy\', function(event) {
 				event.preventDefault();
-				jQuery.post(\'/cart/add.js\', { quantity: 1, id: $("#hfDownsellVariant").val() });
+				CartJS.addItem($("#hfDownsellVariant").val());
+				$("#hfUpsellModal").modal(\'hide\');
 			});
 
 			$(document).on(\'click\', \'#hfDownsellCancel\', function(event) {
 				$("#hfUpsellModal").modal(\'hide\');
-				$("#hfDownsellBody").hide();
-				$("#hfUpsellBody").show();
 			});
     ', :theme_id => @theme.id)
 
