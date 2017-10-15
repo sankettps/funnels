@@ -1,5 +1,5 @@
-class HomeController < ShopifyApp::AuthenticatedController
-# class HomeController < ApplicationController
+# class HomeController < ShopifyApp::AuthenticatedController
+class HomeController < ApplicationController
   def index
     # @products = ShopifyAPI::Product.find(:all, params: { limit: 10 })
     # @webhooks = ShopifyAPI::Webhook.find(:all)
@@ -10,8 +10,8 @@ class HomeController < ShopifyApp::AuthenticatedController
 	  # ShopifyAPI::Base.site = @shop_url
     @store_id = ShopifyAPI::Shop.current.myshopify_domain 
     @store = Shop.find_by_shopify_domain(@store_id)
-    @store = Shop.first
-    @store_id = Shop.first.shopify_domain
+    # @store = Shop.first
+    # @store_id = Shop.first.shopify_domain
     @currency_symbol = @store.currency_symbol
     @currency = @store.currency
     @shop_url="https://#{@store_id}/admin/products/"

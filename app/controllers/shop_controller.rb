@@ -54,9 +54,7 @@ class ShopController < ApplicationController
         @count1=@products.count
         @count+=@count1
         @products.each do |product| 
-          @id=product.id
-          @title=product.title
-          @aa=[@id,@title]
+          @aa=[product.id,product.title,product.image.try(:src)]
           @ccollection_array.push(@aa)  
         end
       end
@@ -75,9 +73,7 @@ class ShopController < ApplicationController
         @count1=@products.count
         @count+=@count1
         @products.each do |product| 
-          @id=product.id
-          @title=product.title
-          @aa=[@id,@title]
+          @aa=[product.id,product.title,product.image.try(:src)]
           @scollection_array.push(@aa)
         end
       end
@@ -95,9 +91,7 @@ class ShopController < ApplicationController
       @products = @store.filter_shop_products.where(@query)
       # render json: @products and return
       @products.each do |product| 
-        @id=product.product_id.to_i
-        @title=product.title
-        @aa=[@id,@title]
+        @aa=[product.product_id.to_i,product.title,product.image]
         @products_array.push(@aa)
       end
       @all_products_array.push(@products_array)
@@ -119,10 +113,14 @@ class ShopController < ApplicationController
     end
     @table_html=''
     @result.each do |product|
-      @p_id=product[0]
-      @p_title=product[1]
-      @shop_url="https://#{@store_id}/admin/products/#{@p_id}"
-      @html="<tr class='single_product #{@p_id}'><td>#{@p_id}</td><td><input type='checkbox' id='p_#{@p_id}' class='select_product'><label for='p_#{@p_id}'><span></span></label></td><td data-pid='#{@p_id}' data-ptitle='#{@p_title}' class='product_data'>#{@p_title}</td><td><a href='#{@shop_url}'' target='_blank'><button type='button' class='btn btn-small btn-inverse'>View in Store</button></a></td></tr>"
+      @p_id = product[0]
+      @p_title = product[1]
+      @p_image = 
+      @shop_url="https://#{@store_id}/admin/products/#{product[0]}"
+
+      @html = "<tr class='single_product #{product[0]}'><td>#{product[0]}</td><td><img src='#{product[2]}' width='30' height='30' /></td><td data-pid='#{product[0]}' data-ptitle='#{product[0]}' data-pimage='#{product[2]}' class='product_data'>#{product[1]}</td><td><button type='button' class='btn btn-small btn-success add-product'>Add</button></td></tr>"
+
+
       @table_html = @table_html + @html
     end 
     render plain: @table_html
@@ -275,7 +273,7 @@ class ShopController < ApplicationController
         @p_id=product['product_id']
         @p_title=product['title']
         @shop_url="https://#{@store_id}/admin/products/#{@p_id}"
-        @html="<tr class='single_product #{@p_id}'><td>#{@p_id}</td><td><input type='checkbox' id='p_#{@p_id}' class='select_product'><label for='p_#{@p_id}'><span></span></label></td><td data-pid='#{@p_id}' data-ptitle='#{@p_title}' class='product_data'>#{@p_title}</td><td><a href='#{@shop_url}'' target='_blank'><button type='button' class='btn btn-small btn-inverse'>View in Store</button></a></td></tr>"
+        @html = "<tr class='single_product #{product['product_id']}'><td>#{product['product_id']}</td><td><img src='#{product['image']}' width='30' height='30' /></td><td data-pid='#{product['product_id']}' data-ptitle='#{product['product_id']}' data-pimage='#{product['image']}' class='product_data'>#{product['title']}</td><td><button type='button' class='btn btn-small btn-success add-product'>Add</button></td></tr>"
         @table_html = @table_html + @html
       end 
     end

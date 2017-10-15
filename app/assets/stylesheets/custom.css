@@ -226,7 +226,7 @@
   width: 35px;
 }
 .small-width{
-  width: 40%;
+  width: 40% !important;
 }
 .hide{
   display: none;
