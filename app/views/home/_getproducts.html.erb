@@ -10,7 +10,7 @@
     <tbody>
     <% @products.each do |product| %>
         <tr class="single_product <%= product.product_id %>">
-            <td><%= @p_id %></td>
+            <td><%= product.product_id %></td>
             <td><img src="<%= product.image %>" width="30" height="30" /></td>
             <!-- <td><input type="checkbox" id="p_<%= @p_id %>" class="select_product"><label for="p_<%= @p_id %>"><span></span></label></td> -->
             <td data-pid="<%= product.product_id %>" data-ptitle="<%= product.title %>"" data-pimage="<%= product.image %>" class="product_data"><%= product.title %></td>
