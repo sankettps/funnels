@@ -5077,8 +5077,8 @@ blockquote {
 button:focus {
   outline: 0 !important; }
 
-/*.btn {
-  font-size: 0.8rem;
+.btn {
+  font-size: 12px;
   padding: 0.85rem 2.13rem;
   margin: 6px;
   border-radius: 2px;
@@ -5089,7 +5089,7 @@ button:focus {
   white-space: normal !important;
   word-wrap: break-word;
   cursor: pointer; 
-}*/
+}
   .btn:hover, .btn:active, .btn:focus {
     outline: 0; }
   .btn .fa {
@@ -6945,7 +6945,7 @@ textarea.md-textarea {
   outline: none;
   height: 2.1rem;
   width: 100%;
-  font-size: 1rem;
+  font-size: 14px;
   -webkit-box-shadow: none;
   box-shadow: none;
   -webkit-box-sizing: content-box;

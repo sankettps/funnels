@@ -5,7 +5,7 @@ class ShopController < ApplicationController
     @store_id = params[:store_id]
     @store = Shop.find_by_shopify_domain(@store_id)
     # @store = Shop.first
-    # @shopify_token=@store.shopify_token
+    @shopify_token=@store.shopify_token
     # shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
     shop_url = "https://#{ShopifyApp.configuration.api_key}:#{@shopify_token}@#{@store_id}/admin"
     ShopifyAPI::Base.site = shop_url
