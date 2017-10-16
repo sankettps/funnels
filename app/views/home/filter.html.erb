@@ -1,7 +1,7 @@
 <div class="add_form">
   <h4>Add New Funnel</h4> 
       <%= form_tag "create", :method => :post, :class => "form-horizontal",name: 'options_form',id: "add_funnel_form" do %>
-      <input type="hidden" name="products_list" class="products_list">
+      <input type="hidden" name="trigger-products" class="trigger-products">
       <div class="shop-url hide"><%= @shop_url %></div>
       <div class="store-id hide"><%= @store_id %></div>
       <div class="product-titles hide"><%= @product_titles %></div>
@@ -19,10 +19,6 @@
                 <input type="text" name="funnel[name]" id="funnelName" class="form-control small-width" placeholder="Enter Funnel Name">
             </div>
         </div>
-      <!-- 
-        <div class="form-group">
-          <h4>Product Filter</h4>
-        </div> -->
         <div class="panel panel-default">
             <div class="panel-heading">
                 Product Filter*
@@ -135,7 +131,7 @@
         </div>
 
 
-        <button type="submit" class="btn btn-danger offer_submit">Submit</button>
+        <button type="submit" class="btn btn-danger funnel-submit">Submit</button>
       </div>
     <% end %>   
   </div>
