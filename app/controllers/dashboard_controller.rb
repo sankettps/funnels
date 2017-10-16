@@ -2,9 +2,10 @@ class DashboardController < ShopifyApp::AuthenticatedController
 # class DashboardController < ApplicationController
 	before_action :set_current_shop
 	def dashboard
+		@funnels = @shop.funnels
 		# check_shop_details
 		#start cloning products of shop if not clonned
-  	CloneProductsJob.perform_later @shop unless @shop.is_products_cloned || @shop.is_products_clonning
+		CloneProductsJob.perform_later @shop unless @shop.is_products_cloned || @shop.is_products_clonning
 	end
 
 	def product_sync_status

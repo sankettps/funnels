@@ -5824,7 +5824,7 @@ button:focus {
     position: absolute !important;
     margin-top: 0; }
     .navbar .dropdown-menu a {
-      font-size: 0.9375rem;
+      font-size: 14px;
       font-weight: 300;
       padding: 10px;
       color: #000 !important; }
@@ -7398,48 +7398,3 @@ ul.instagram-photos {
 .list-group a:hover {
   -webkit-transition: 0.5s;
   transition: 0.5s; }
-
-table th {
-  font-size: 0.9rem;
-  font-weight: 400; }
-
-table td {
-  font-size: 0.9rem;
-  font-weight: 300; }
-
-table.table thead th {
-  border-top: none; }
-
-table.table th,
-table.table td {
-  padding-top: 1.1rem;
-  padding-bottom: 1rem; }
-
-table.table a {
-  margin: 0;
-  color: #212529; }
-
-table.table .label-table {
-  margin: 0;
-  padding: 0;
-  line-height: 15px;
-  height: 15px; }
-
-table.table .btn-table {
-  margin: 0px 1px;
-  padding: 3px 7px; }
-  table.table .btn-table .fa {
-    font-size: 11px; }
-
-table.table-hover tbody tr:hover {
-  background-color: rgba(0, 0, 0, 0.075);
-  -webkit-transition: 0.5s;
-  transition: 0.5s; }
-
-table .th-lg {
-  min-width: 9rem; }
-
-table.table-sm th,
-table.table-sm td {
-  padding-top: 0.6rem;
-  padding-bottom: 0.6rem; }

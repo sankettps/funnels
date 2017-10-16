@@ -18,12 +18,12 @@ class Shop < ActiveRecord::Base
 	    $.getScript("//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js", function(){
 	    	$.ajax({
 		      url: \''+ENV["hf_domain"]+'/frontend/get_upsell_detail\',
-		      data: {shop_id: "{{shop.permanent_domain}}",product_id: {{product.id}}},
+		      data: {shop_id: "{{shop.permanent_domain}}",product_id: "{{product.id}}"},
 		    })
 		    .done(function(data) {
 		      console.log("success funnel");
 		      jQuery("head").append(\'<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" id="bt-removable-css">\');
-		      $("#hfUpsell").html(data);
+		      $("#hfUpsell").html(data.data);
 		    })
 		    .fail(function() {
 		      console.log("error");
