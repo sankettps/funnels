@@ -10,7 +10,7 @@ class HomeController < ShopifyApp::AuthenticatedController
 	  # ShopifyAPI::Base.site = @shop_url
     @store_id = ShopifyAPI::Shop.current.myshopify_domain 
     @store = Shop.find_by_shopify_domain(@store_id)
-    @store = Shop.first
+    # @store = Shop.first
     @store_id = Shop.first.shopify_domain
     @currency_symbol = @store.currency_symbol
     @currency = @store.currency
@@ -39,4 +39,6 @@ class HomeController < ShopifyApp::AuthenticatedController
     
     @funnel = Funnel.first
   end
+
+  
 end

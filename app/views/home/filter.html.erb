@@ -1,7 +1,9 @@
 <div class="add_form">
   <h4>Add New Funnel</h4> 
-      <%= form_tag "create", :method => :post, :class => "form-horizontal",name: 'options_form',id: "add_funnel_form" do %>
-      <input type="hidden" name="trigger-products" class="trigger-products">
+      <%= form_tag "create", :method => :post, :class => "form-horizontal",name: 'funnel_form',id: "add_funnel_form" do %>
+      <input type="hidden" name="funnel[trigger-products]" class="trigger-products">
+      <input type="hidden" name="funnel[up_product_id]" class="up_product_id">
+      <input type="hidden" name="funnel[down_product_id]" class="down_product_id">
       <div class="shop-url hide"><%= @shop_url %></div>
       <div class="store-id hide"><%= @store_id %></div>
       <div class="product-titles hide"><%= @product_titles %></div>
@@ -103,11 +105,11 @@
                 Upsell Product*
             </div>
             <div class="panel-body">
-            <button type="button" class="btn btn-default" id="btnDownsellProduct">Select Product</button>
+            <button type="button" class="btn btn-default" id="btnUpsellProduct">Select Product</button>
              <div id="initialProducts">
                 <ul>
                   <li>
-                    4-Blade Ninja Shuriken Fidget Spinner
+                    No upsell product selected.
                   </li>
                 </ul>
               </div>
@@ -123,7 +125,7 @@
                 <div id="downsellProduct">
                 <ul>
                   <li>
-                    4-Blade Ninja Shuriken Fidget Spinner
+                    No downsell product selected.
                   </li>
                 </ul>
               </div>
