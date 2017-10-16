@@ -1,6 +1,8 @@
-<div class="sync_product">
-  we are syncronising products...
-</div>
+<% if @shop.is_products_cloned || @shop.is_products_clonning %>
+  <div class="sync_product">
+    we are syncronising products...
+  </div>
+<% end %>
 
   <div class="row">
     <div class="col-lg-12">
@@ -53,20 +55,22 @@
       $('#dataTables-example').DataTable({
           responsive: true
       });
-    var set_loader = setInterval(function(){
-      $.ajax({
-        type:'GET',
-        url: '/dashboard/product_sync_status',
-        success:function(data){
-          console.log("inside success-->",data);
-          if(data == "synced"){
-            console.log("inside if");
-            $(".sync_product").html('');
-            clearInterval(set_loader);
+    <% if @shop.is_products_cloned || @shop.is_products_clonning %>
+      var set_loader = setInterval(function(){
+        $.ajax({
+          type:'GET',
+          url: '/dashboard/product_sync_status',
+          success:function(data){
+            console.log("inside success-->",data);
+            if(data == "synced"){
+              console.log("inside if");
+              $(".sync_product").html('');
+              clearInterval(set_loader);
+            }
           }
-        }
-      })
-    },10000);
+        })
+      },10000);
+    <% end %>
     
   });
 
