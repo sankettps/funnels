@@ -10,8 +10,8 @@ class HomeController < ShopifyApp::AuthenticatedController
 	  # ShopifyAPI::Base.site = @shop_url
     @store_id = ShopifyAPI::Shop.current.myshopify_domain 
     @store = Shop.find_by_shopify_domain(@store_id)
-    # @store = Shop.first
-    # @store_id = Shop.first.shopify_domain
+    @store = Shop.first
+    @store_id = Shop.first.shopify_domain
     @currency_symbol = @store.currency_symbol
     @currency = @store.currency
     @shop_url="https://#{@store_id}/admin/products/"
@@ -29,8 +29,8 @@ class HomeController < ShopifyApp::AuthenticatedController
   end
 
   def test_modal
-    # @shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
-    # ShopifyAPI::Base.site = @shop_url
+    @shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
+    ShopifyAPI::Base.site = @shop_url
     @up_product = ShopifyAPI::Product.find(10945801676)
     @up_variant = @up_product.variants.first
 
