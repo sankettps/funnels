@@ -236,6 +236,9 @@
 .add-product{
   padding: 5px 25px;
 }
+.remove-product{
+  padding: 5px 20px;
+}
 table.dataTable.no-footer {
      border-bottom: 1px solid #ddd !important; 
 }
