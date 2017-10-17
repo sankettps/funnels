@@ -2,7 +2,7 @@
 <div class="add_form">
   <h4>Add New Funnel</h4> 
       <%= form_tag "create", :method => :post, :class => "form-horizontal",name: 'funnel_form',id: "add_funnel_form" do %>
-      <input type="hidden" name="funnel[funnel_product_ids]" class="trigger-products" value="2222,4444,6666">
+      <input type="hidden" name="funnel[funnel_product_ids]" class="trigger-products">
       <input type="hidden" name="funnel[up_product_id]" class="up_product_id" value="123">
       <input type="hidden" name="funnel[down_product_id]" class="down_product_id" value="456">
       <div class="shop-url hide"><%= @shop_url %></div>

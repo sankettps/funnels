@@ -19,19 +19,14 @@ class FunnelsController < ShopifyApp::AuthenticatedController
     @funnel = Funnel.new
     # @shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
     # ShopifyAPI::Base.site = @shop_url
-    @store_id = ShopifyAPI::Shop.current.myshopify_domain 
-    @store = Shop.find_by_shopify_domain(@store_id)
-    # @store = Shop.first
-    # @store_id = Shop.first.shopify_domain
-    @currency_symbol = @store.currency_symbol
-    @currency = @store.currency
+    @store_id = @current_shop.myshopify_domain 
+    @currency_symbol = @shop.currency_symbol
+    @currency = @shop.currency
     @shop_url="https://#{@store_id}/admin/products/"
     @collection_array=[]
-    @products = @store.filter_shop_products
-    @product_attributes = @store.filter_shop_attributes
+    @products = @shop.filter_shop_products
+    @product_attributes = @shop.filter_shop_attributes
     @product_titles = @products.collect(&:title).join(",")
-    puts "=========================================Titles=============================="
-    puts @product_titles
     @product_types = @product_attributes.where(detail_type: 'type').collect(&:detail_value).join(",")
     @product_vendors = @product_attributes.where(detail_type: 'vendor').collect(&:detail_value).join(",")
     @product_tags = @product_attributes.where(detail_type: 'tag').collect(&:detail_value).join(",")
@@ -101,6 +96,7 @@ class FunnelsController < ShopifyApp::AuthenticatedController
       @current_shop = ShopifyAPI::Shop.current
       @shop = Shop.find_by_shopify_domain(@current_shop.myshopify_domain)
     # @shop = Shop.first
+    # @store_id = Shop.first.shopify_domain
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
