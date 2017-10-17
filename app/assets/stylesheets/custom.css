@@ -133,7 +133,7 @@
   width: 10% !important;
 }
 .selected_products tr th:nth-child(2),.non_selected_products tr th:nth-child(2){
-  width: 70% !important;
+  width: 45% !important;
 }
 .selected_products tr th:nth-child(3),.non_selected_products tr th:nth-child(3){
   width: 20% !important;
