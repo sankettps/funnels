@@ -19,7 +19,7 @@ class FunnelsController < ShopifyApp::AuthenticatedController
     @funnel = Funnel.new
     # @shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
     # ShopifyAPI::Base.site = @shop_url
-    @store_id = @current_shop.myshopify_domain 
+    @store_id = @current_shop.shopify_domain 
     @currency_symbol = @shop.currency_symbol
     @currency = @shop.currency
     @shop_url="https://#{@store_id}/admin/products/"
@@ -36,6 +36,25 @@ class FunnelsController < ShopifyApp::AuthenticatedController
 
   # GET /funnels/1/edit
   def edit
+    @shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
+    ShopifyAPI::Base.site = @shop_url
+    @store_id = @current_shop.shopify_domain 
+    @currency_symbol = @shop.currency_symbol
+    @currency = @shop.currency
+    @shop_url="https://#{@store_id}/admin/products/"
+    @collection_array=[]
+    @products = @shop.filter_shop_products
+    @product_attributes = @shop.filter_shop_attributes
+    @product_titles = @products.collect(&:title).join(",")
+    @product_types = @product_attributes.where(detail_type: 'type').collect(&:detail_value).join(",")
+    @product_vendors = @product_attributes.where(detail_type: 'vendor').collect(&:detail_value).join(",")
+    @product_tags = @product_attributes.where(detail_type: 'tag').collect(&:detail_value).join(",")
+    @product_custom_collections=ShopifyAPI::CustomCollection.find(:all).collect(&:title).join(",")
+    @product_smart_collections=ShopifyAPI::SmartCollection.find(:all).collect(&:title).join(",")
+
+    @upsell_product_name = FilterShopProduct.find(@funnel.up_product_id).title
+    @downsell_product_name = FilterShopProduct.find(@funnel.down_product_id).title
+
   end
 
   # POST /funnels
@@ -65,9 +84,20 @@ class FunnelsController < ShopifyApp::AuthenticatedController
   # PATCH/PUT /funnels/1
   # PATCH/PUT /funnels/1.json
   def update
+    params[:funnel][:up_product_id] = FilterShopProduct.find_by(product_id: params[:funnel][:up_product_id]).try(:id)
+    params[:funnel][:down_product_id] = FilterShopProduct.find_by(product_id: params[:funnel][:down_product_id]).try(:id)
+    if @funnel.present?
+      # FunnelProduct.where(funnel_id: params[:id]).destroy_all if FunnelProduct.where(funnel_id: params[:id]).present?
+      funnel_product_ids = FilterShopProduct.where(product_id: params[:funnel][:funnel_product_ids].split(',')).ids
+      @funnel.filter_shop_product_ids = funnel_product_ids if funnel_product_ids.present?
+      # Funnel.first.filter_shop_product_ids = [1, 2, 3, 4, 5]
+      # params[funnel][funnel_product_ids]
+    end
+    # render json: funnel_params and return
     respond_to do |format|
+      puts "INNNNNNNN"
       if @funnel.update(funnel_params)
-        format.html { redirect_to @funnel, notice: 'Funnel was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Funnel was successfully updated.' }
         format.json { render :show, status: :ok, location: @funnel }
       else
         format.html { render :edit }
@@ -81,7 +111,7 @@ class FunnelsController < ShopifyApp::AuthenticatedController
   def destroy
     @funnel.destroy
     respond_to do |format|
-      format.html { redirect_to funnels_url, notice: 'Funnel was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Funnel was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -95,8 +125,8 @@ class FunnelsController < ShopifyApp::AuthenticatedController
     def set_current_shop
       @current_shop = ShopifyAPI::Shop.current
       @shop = Shop.find_by_shopify_domain(@current_shop.myshopify_domain)
-    # @shop = Shop.first
-    # @store_id = Shop.first.shopify_domain
+      # @current_shop = Shop.first
+      # @shop = Shop.first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -10,14 +10,15 @@ class DashboardController < ShopifyApp::AuthenticatedController
 
 	def product_sync_status
 		@sync_status = @shop.is_products_cloned ? 'synced' : 'unsynced'
-    render plain: @sync_status
+    	render plain: @sync_status
 	end
 
 	private
 		def set_current_shop
 			@current_shop = ShopifyAPI::Shop.current
-  		@shop = Shop.find_by_shopify_domain(@current_shop.myshopify_domain)
-  	# @shop = Shop.first
+  			@shop = Shop.find_by_shopify_domain(@current_shop.myshopify_domain)
+  			# @current_shop = Shop.first
+  			# @shop = Shop.first
 		end
 
 		# add detail of shop only if not exist
