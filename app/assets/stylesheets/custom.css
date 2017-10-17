@@ -210,7 +210,7 @@
 .selected_products{
   border-bottom: 1px solid #dbe1e8;
   margin-bottom: 0px;
-  margin-top: 44px !important;
+  margin-top: 40px !important;
 }
 /* filter css end */
 .sweet-alert h2{
@@ -324,4 +324,7 @@ table tbody td:nth-child(3){
 }
 .switch-input:checked + .switch-label .toggle--off {
   display: none;
+}
+.add_form h4:first{
+  padding: 10px 15px;
 }
