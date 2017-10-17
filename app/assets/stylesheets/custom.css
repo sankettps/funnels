@@ -248,7 +248,7 @@ table.dataTable.no-footer {
 .center{
   text-align: center;
 }
-.fa{
+.glyphicon{
   font-size: 20px;
 }
 .dataTables_wrapper .dataTables_filter input{
