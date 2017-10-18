@@ -95,12 +95,13 @@ class FunnelsController < ShopifyApp::AuthenticatedController
     end
     # render json: funnel_params and return
     respond_to do |format|
-      puts "INNNNNNNN"
+      puts "INNNNNNNN==============#{funnel_params}"
       if @funnel.update(funnel_params)
         format.html { redirect_to root_path, notice: 'Funnel was successfully updated.' }
         format.json { render :show, status: :ok, location: @funnel }
       else
-        # format.html { render :edit }
+        puts "<===============#{@funnel.errors.inspect}=================>"
+        format.html { render :edit }
         format.json { render json: @funnel.errors, status: :unprocessable_entity }
       end
     end

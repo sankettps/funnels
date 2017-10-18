@@ -1,4 +1,4 @@
-<% if @shop.is_products_cloned || @shop.is_products_clonning %>
+<% unless @shop.is_products_cloned %>
   <div class="sync_product">
     we are synchronising products...
   </div>
@@ -55,7 +55,7 @@
       $('#dataTables-example').DataTable({
           responsive: true
       });
-    <% if @shop.is_products_cloned || @shop.is_products_clonning %>
+    <% unless @shop.is_products_cloned %>
       var set_loader = setInterval(function(){
         $.ajax({
           type:'GET',

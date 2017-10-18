@@ -3,8 +3,8 @@
   <h4>Edit Funnel</h4> 
       <%= form_tag "/funnels/update", :method => :post, :class => "form-horizontal",name: 'funnel_form',id: "add_funnel_form" do %>
       <input type="hidden" name="funnel[funnel_product_ids]" class="trigger-products" value="">
-      <input type="hidden" name="funnel[up_product_id]" class="up_product_id" value="<%= @funnel.up_product_id %>">
-      <input type="hidden" name="funnel[down_product_id]" class="down_product_id" value="<%= @funnel.down_product_id %>">
+      <input type="hidden" name="funnel[up_product_id]" class="up_product_id" value="<%= @funnel.up_product.product_id %>">
+      <input type="hidden" name="funnel[down_product_id]" class="down_product_id" value="<%= @funnel.down_product.product_id %>">
       <input type="hidden" name="id" value="<%= @funnel.id %>">
       <div class="shop-url hide"><%= @shop_url %></div>
       <div class="store-id hide"><%= @store_id %></div>
