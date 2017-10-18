@@ -100,7 +100,7 @@ class FunnelsController < ShopifyApp::AuthenticatedController
         format.html { redirect_to root_path, notice: 'Funnel was successfully updated.' }
         format.json { render :show, status: :ok, location: @funnel }
       else
-        format.html { render :edit }
+        # format.html { render :edit }
         format.json { render json: @funnel.errors, status: :unprocessable_entity }
       end
     end
