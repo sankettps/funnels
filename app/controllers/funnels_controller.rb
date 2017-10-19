@@ -1,7 +1,7 @@
 class FunnelsController < ShopifyApp::AuthenticatedController
 # class FunnelsController < ApplicationController
   before_action :set_current_shop
-  before_action :set_funnel, only: [:show, :edit, :update, :destroy]
+  before_action :set_funnel, only: [:show, :edit, :update, :destroy, :change_status]
 
   # GET /funnels
   # GET /funnels.json
@@ -115,6 +115,12 @@ class FunnelsController < ShopifyApp::AuthenticatedController
       format.html { redirect_to root_path, notice: 'Funnel was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def change_status
+    puts "<=======#{@funnel.inspect}=========>"
+    @funnel.update(is_active: !@funnel.is_active)
+    respond_to :js
   end
 
   private

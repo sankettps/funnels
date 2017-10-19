@@ -35,7 +35,7 @@
                     <a data-confirm="Are you sure you want to delete?" rel="nofollow" data-method="delete" href="/funnels/<%= funnel.id %>"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></a>
                   </td>
                   <td class="center">
-                    <input type="checkbox" id="fid<%= funnel.id %>" name="set-name" class="switch-input">
+                    <input type="checkbox" id="fid<%= funnel.id %>" name="set-name" class="switch-input funnel_status" data-id="<%= funnel.id %>" <%= funnel.is_active ? 'checked' : '' %>>
                   <label for="fid<%= funnel.id %>" class="switch-label"></label>
                   </td>
                 </tr>
@@ -50,11 +50,12 @@
     </div>
       <!-- /.col-lg-12 -->
   </div>
+  <div class="cover" id="cover"></div>
 <script type="text/javascript">
   $(document).ready(function() {
-      $('#dataTables-example').DataTable({
-          responsive: true
-      });
+    $('#dataTables-example').DataTable({
+        responsive: true
+    });
     <% unless @shop.is_products_cloned %>
       var set_loader = setInterval(function(){
         $.ajax({
@@ -71,6 +72,28 @@
         })
       },10000);
     <% end %>
+
+    $(document).on('change', '.funnel_status', function(event) {
+      console.log("tesstttt",$(this).data('id'));
+      $("#cover").show();
+      $.ajax({
+        url: '/funnels/change_status',
+        dataType: 'script',
+        data: {id: $(this).data('id')},
+      })
+      .done(function() {
+        console.log("success");
+      })
+      .fail(function() {
+        console.log("error");
+      })
+      .always(function() {
+        $("#cover").hide();
+      });
+      
+      event.preventDefault();
+      /* Act on the event */
+    });
     
   });
 
