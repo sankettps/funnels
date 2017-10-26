@@ -18,8 +18,8 @@ class FrontendController < ApplicationController
 		 		@down_product = ShopifyAPI::Product.find(@funnel.down_product.product_id)
     		@down_variant = @down_product.variants.first
 		 		puts "<======test product========#{@up_product.inspect}===============>"
-		 		modal_html
-		 		# @html = modal_html
+		 		# modal_html
+		 		@html = modal_html
 		 		# @funnel
 		 		@response = {data: @html}
 		 	else
