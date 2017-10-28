@@ -339,3 +339,13 @@ table tbody td:nth-child(3){
 .add_form h4:first{
   padding: 10px 15px;
 }
+
+/*--------loader on dashboard---------*/
+.sync_product{
+  width: 320px;
+  margin: 0 auto;
+}
+.sync_product img{
+  height: 30px;
+}
+/*-----------------------------------*/
