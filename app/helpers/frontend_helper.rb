@@ -33,29 +33,29 @@ module FrontendHelper
       <div id=\"hfUpsellBody\">
 	      <div class=\"modal-body\">
 	      	<form action=\"/cart/add\" method=\"post\" enctype=\"multipart/form-data\" id=\"addToCartForm-product-template\">
-		  <div class=\"product-single__variants\">
-		    <select name=\"id\" id=\"herofunnelProduct\" class=\"product-single__variants\">
-		          <option selected=\"selected\" data-sku=\"5571428-1\" value=\"40960031180\">Yellow - $13.95 USD</option>
-		          <option data-sku=\"5571428-10\" value=\"40960031372\">Blue - $13.95 USD</option>
-		          <option data-sku=\"5571428-11\" value=\"40960031564\">Red - $13.95 USD</option>
-		          <option data-sku=\"5571428-12\" value=\"40960031820\">Light Blue - $13.95 USD</option>
-		          <option data-sku=\"5571428-13\" value=\"40960032012\">Red Blue - $13.95 USD</option>
-		          <option data-sku=\"5571428-2\" value=\"40960032140\">Pink - $13.95 USD</option>
-		          <option data-sku=\"5571428-3\" value=\"40960032332\">Dark Red - $13.95 USD</option>
-		          <option data-sku=\"5571428-4\" value=\"40960032716\">Green - $13.95 USD</option>
-		          <option data-sku=\"5571428-5\" value=\"40960032972\">Dark Blue - $13.95 USD</option>
-		          <option data-sku=\"5571428-6\" value=\"40960033228\">Light Red - $13.95 USD</option>
-		          <option data-sku=\"5571428-7\" value=\"40960033484\">Brown - $13.95 USD</option>
-		          <option data-sku=\"5571428-8\" value=\"40960033740\">Dark Pink - $13.95 USD</option>
-		          <option data-sku=\"5571428-9\" value=\"40960033932\">Black - $13.95 USD</option>
-		    </select>
-		  </div>
-		  <div class=\"grid--uniform product-single__addtocart\">
-		    <button type=\"submit\" name=\"add\" id=\"addToCart-product-template\" class=\"btn btn--large btn--full\">
-		      <span class=\"add-to-cart-text\">Add to Cart</span>
-		    </button>
-		  </div>
-		</form>
+			  <div class=\"product-single__variants\">
+			    <select name=\"id\" id=\"herofunnelProduct\" class=\"product-single__variants\">
+			          <option selected=\"selected\" data-sku=\"5571428-1\" value=\"40960031180\">Yellow - $13.95 USD</option>
+			          <option data-sku=\"5571428-10\" value=\"40960031372\">Blue - $13.95 USD</option>
+			          <option data-sku=\"5571428-11\" value=\"40960031564\">Red - $13.95 USD</option>
+			          <option data-sku=\"5571428-12\" value=\"40960031820\">Light Blue - $13.95 USD</option>
+			          <option data-sku=\"5571428-13\" value=\"40960032012\">Red Blue - $13.95 USD</option>
+			          <option data-sku=\"5571428-2\" value=\"40960032140\">Pink - $13.95 USD</option>
+			          <option data-sku=\"5571428-3\" value=\"40960032332\">Dark Red - $13.95 USD</option>
+			          <option data-sku=\"5571428-4\" value=\"40960032716\">Green - $13.95 USD</option>
+			          <option data-sku=\"5571428-5\" value=\"40960032972\">Dark Blue - $13.95 USD</option>
+			          <option data-sku=\"5571428-6\" value=\"40960033228\">Light Red - $13.95 USD</option>
+			          <option data-sku=\"5571428-7\" value=\"40960033484\">Brown - $13.95 USD</option>
+			          <option data-sku=\"5571428-8\" value=\"40960033740\">Dark Pink - $13.95 USD</option>
+			          <option data-sku=\"5571428-9\" value=\"40960033932\">Black - $13.95 USD</option>
+			    </select>
+			  </div>
+			  <div class=\"grid--uniform product-single__addtocart\">
+			    <button type=\"submit\" name=\"add\" id=\"addToCart-product-template\" class=\"btn btn--large btn--full\">
+			      <span class=\"add-to-cart-text\">Add to Cart</span>
+			    </button>
+			  </div>
+			</form>
 	       <div>
       </div>
       <div id=\"hfDownsellBody\" style=\"display:none;\">
@@ -98,6 +98,13 @@ module FrontendHelper
 
   </div>
 </div>
+<script>
+	this.optionSelector = new Shopify.OptionSelectors('herofunnelProduct', {
+        product: #{@up_product},
+        onVariantSelected: selectCallback,
+        enableHistoryState: this.enableHistoryState
+      });
+</script>
 <style type=\"text/css\">
 	.hf-upsell .hf-pro-img{
 		width: 100%;
