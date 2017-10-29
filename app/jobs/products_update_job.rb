@@ -1,7 +1,7 @@
 class ProductsUpdateJob < ActiveJob::Base
   def perform(shop_domain:, webhook:)
     @shop = Shop.find_by(shopify_domain: shop_domain)
-
+ 
     # Webhook for Product Filter
     @shop.with_shopify_session do
       @product = webhook
@@ -13,7 +13,7 @@ class ProductsUpdateJob < ActiveJob::Base
       @product_tags = @product['tags'].try(:strip).try(:html_safe) 
       @published = @product['published_at']
       if @published.present?
-      puts "========in update========================="
+        puts "========in update========================="
 
         @tag_array = []
         @query = @shop.filter_shop_products.find_or_create_by(:product_id => @product_id,:title => @product_title,handle: @product_handle,vendor: @product_vendor,product_type: @product_type,tags: @product_tags)
@@ -35,8 +35,7 @@ class ProductsUpdateJob < ActiveJob::Base
         if @pdelete.present?
           @pdelete.destroy
         end
-      end        
+      end
     end
-    
   end
 end
