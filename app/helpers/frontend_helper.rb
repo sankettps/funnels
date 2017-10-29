@@ -99,14 +99,14 @@ module FrontendHelper
   </div>
 </div>
 <script>
-	var selectCallback = function(variant, selector) {
+	var selectUpsellCallback = function(variant, selector) {
         console.log(variant);
         alert('piyush');
      };
 
 	this.optionSelector = new Shopify.OptionSelectors('herofunnelProduct', {
         product: #{@up_product.to_json},
-        onVariantSelected: selectCallback,
+        onVariantSelected: selectUpsellCallback,
         enableHistoryState: this.enableHistoryState
       });
 </script>
