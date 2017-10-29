@@ -3,8 +3,8 @@ class CloneProductsJob < ApplicationJob
 
   def perform(shop)
   	shop.update(is_products_clonning: true)
-		# @shop_url ="https://#{ShopifyApp.configuration.api_key}:#{shop.shopify_token}@#{shop.shopify_domain}/admin/"
-		@shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
+		@shop_url ="https://#{ShopifyApp.configuration.api_key}:#{shop.shopify_token}@#{shop.shopify_domain}/admin/"
+		# @shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
 		ShopifyAPI::Base.site = @shop_url
 		puts "inside job"
 		puts"<==================inside job============#{@shop_url}==============>"
