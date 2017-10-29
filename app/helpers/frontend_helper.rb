@@ -32,6 +32,31 @@ module FrontendHelper
       </div>
       <div id=\"hfUpsellBody\">
 	      <div class=\"modal-body\">
+	      <div class=\"row\">
+	      		<div class=\"col-xs-6\">
+	      			<img src=\"#{@up_product.image.src}\" class=\"hf-pro-img\">
+	      		</div>
+	      		<div class=\"col-xs-6\">
+	      			<div class=\"row\">
+	      				<div class=\"col-xs-12\">
+	      					<h4> #{@up_product.title} </h4>
+	      				</div>
+	      			</div>
+	      			<div class=\"row\">
+	      				<div class=\"col-xs-12\">
+	      					<p class=\"pro-price\">$ #{@up_variant.price}</p>
+	      					<input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
+	      				</div>
+	      			</div>
+	      			<div class=\"row\">
+	      				<div class=\"col-xs-12\">
+		      				<div class=\"hf-pro-desc\">
+		      					#{@up_product.body_html.html_safe}
+		      				</div>
+	      				</div>
+	      			</div>
+	      		</div>
+	      	</div>
 	      <input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
 			  <div class=\"product-single__variants\">
 			    <select name=\"id\" id=\"herofunnelProduct\" class=\"product-single__variants\">"
@@ -39,11 +64,6 @@ module FrontendHelper
 			    	@html += "<option data-sku='#{variant.sku}' value='#{variant.id}'>#{variant.title}</option>"
 			 	end
 			    @html += "</select>
-			  </div>
-			  <div class=\"grid--uniform product-single__addtocart\">
-			    <button type=\"submit\" name=\"add\" id=\"addToCart-product-template\" class=\"btn btn--large btn--full\">
-			      <span class=\"add-to-cart-text\">Add to Cart</span>
-			    </button>
 			  </div>
 	       <div>
       </div>
@@ -101,8 +121,6 @@ module FrontendHelper
         onVariantSelected: selectUpsellCallback,
         enableHistoryState: this.enableHistoryState
       });
-
-      
 </script>
 <style type=\"text/css\">
 	.hf-upsell .hf-pro-img{
