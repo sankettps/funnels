@@ -32,7 +32,7 @@ module FrontendHelper
       </div>
       <div id=\"hfUpsellBody\">
 	      <div class=\"modal-body\">
-	      	<form action=\"/cart/add\" method=\"post\" enctype=\"multipart/form-data\" id=\"addToCartForm-product-template\">
+	      <input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
 			  <div class=\"product-single__variants\">
 			    <select name=\"id\" id=\"herofunnelProduct\" class=\"product-single__variants\">
 			          <option selected=\"selected\" data-sku=\"5571428-1\" value=\"40960031180\">Yellow - $13.95 USD</option>
@@ -55,7 +55,6 @@ module FrontendHelper
 			      <span class=\"add-to-cart-text\">Add to Cart</span>
 			    </button>
 			  </div>
-			</form>
 	       <div>
       </div>
       <div id=\"hfDownsellBody\" style=\"display:none;\">
@@ -95,13 +94,17 @@ module FrontendHelper
 	      </div>
       </div>
     </div>
-
+    <div class=\"modal-footer\">
+	    <button type=\"button\" class=\"btn btn-success\" id=\"hfUpsellBuy\">Buy Now</button>
+	    <button type=\"button\" class=\"btn btn-default\" id=\"hfUpsellCancel\">Cancel</button>
+	</div>
   </div>
 </div>
 <script>
 	var selectUpsellCallback = function(variant, selector) {
         console.log(variant);
         alert('piyush');
+        $('#herofunnelProduct').val(variant.id);
      };
 
 	this.optionSelector = new Shopify.OptionSelectors('herofunnelProduct', {
@@ -109,6 +112,8 @@ module FrontendHelper
         onVariantSelected: selectUpsellCallback,
         enableHistoryState: this.enableHistoryState
       });
+
+      
 </script>
 <style type=\"text/css\">
 	.hf-upsell .hf-pro-img{
