@@ -45,6 +45,8 @@ class FrontendController < ApplicationController
   	ShopifyAPI::Base.site = @shop_url
 	 	puts "<======funnel========#{@funnel.inspect}===============>"
 	 	@up_product = ShopifyAPI::Product.find(10941215180)
+	 	puts "******************************"
+	 	puts @up_product.to_json
 	 	@images = @up_product.images
 	 	@img_array = {}
 	 	@variants_array = {}
