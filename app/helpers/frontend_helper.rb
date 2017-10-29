@@ -34,21 +34,12 @@ module FrontendHelper
 	      <div class=\"modal-body\">
 	      <input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
 			  <div class=\"product-single__variants\">
-			    <select name=\"id\" id=\"herofunnelProduct\" class=\"product-single__variants\">
-			          <option selected=\"selected\" data-sku=\"5571428-1\" value=\"40960031180\">Yellow - $13.95 USD</option>
-			          <option data-sku=\"5571428-10\" value=\"40960031372\">Blue - $13.95 USD</option>
-			          <option data-sku=\"5571428-11\" value=\"40960031564\">Red - $13.95 USD</option>
-			          <option data-sku=\"5571428-12\" value=\"40960031820\">Light Blue - $13.95 USD</option>
-			          <option data-sku=\"5571428-13\" value=\"40960032012\">Red Blue - $13.95 USD</option>
-			          <option data-sku=\"5571428-2\" value=\"40960032140\">Pink - $13.95 USD</option>
-			          <option data-sku=\"5571428-3\" value=\"40960032332\">Dark Red - $13.95 USD</option>
-			          <option data-sku=\"5571428-4\" value=\"40960032716\">Green - $13.95 USD</option>
-			          <option data-sku=\"5571428-5\" value=\"40960032972\">Dark Blue - $13.95 USD</option>
-			          <option data-sku=\"5571428-6\" value=\"40960033228\">Light Red - $13.95 USD</option>
-			          <option data-sku=\"5571428-7\" value=\"40960033484\">Brown - $13.95 USD</option>
-			          <option data-sku=\"5571428-8\" value=\"40960033740\">Dark Pink - $13.95 USD</option>
-			          <option data-sku=\"5571428-9\" value=\"40960033932\">Black - $13.95 USD</option>
-			    </select>
+			    <select name=\"id\" id=\"herofunnelProduct\" class=\"product-single__variants\">"
+			    @up_product.variants.each do |variant|
+			    	@html += "<option data-sku='#{variant.sku}' value='#{variant.id}'>#{variant.title}</option>"
+			 		@variants_array[variant.title] = [variant.id,variant.price,@img_array[variant.id]]
+			 	end
+			    @html += "</select>
 			  </div>
 			  <div class=\"grid--uniform product-single__addtocart\">
 			    <button type=\"submit\" name=\"add\" id=\"addToCart-product-template\" class=\"btn btn--large btn--full\">
@@ -103,7 +94,6 @@ module FrontendHelper
 <script>
 	var selectUpsellCallback = function(variant, selector) {
         console.log(variant);
-        alert('piyush');
         $('#hfUpsellVariant').val(variant.id);
      };
 
