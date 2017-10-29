@@ -37,7 +37,6 @@ module FrontendHelper
 			    <select name=\"id\" id=\"herofunnelProduct\" class=\"product-single__variants\">"
 			    @up_product.variants.each do |variant|
 			    	@html += "<option data-sku='#{variant.sku}' value='#{variant.id}'>#{variant.title}</option>"
-			 		@variants_array[variant.title] = [variant.id,variant.price,@img_array[variant.id]]
 			 	end
 			    @html += "</select>
 			  </div>
