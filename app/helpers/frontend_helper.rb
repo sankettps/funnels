@@ -104,7 +104,7 @@ module FrontendHelper
 	var selectUpsellCallback = function(variant, selector) {
         console.log(variant);
         alert('piyush');
-        $('#herofunnelProduct').val(variant.id);
+        $('#hfUpsellVariant').val(variant.id);
      };
 
 	this.optionSelector = new Shopify.OptionSelectors('herofunnelProduct', {
