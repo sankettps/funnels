@@ -111,16 +111,7 @@ module FrontendHelper
 		  </div>
 		</div>
 		<script>
-			var selectUpsellCallback = function(variant, selector) {
-		        console.log(variant);
-		        $('#hfUpsellVariant').val(variant.id);
-		     };
-
-			this.optionSelector = new Shopify.OptionSelectors('herofunnelProduct', {
-		        product: product,
-		        onVariantSelected: selectUpsellCallback,
-		        enableHistoryState: this.enableHistoryState
-		      });
+			
 		</script>
 		<style type=\"text/css\">
 			.hf-upsell .hf-pro-img{
