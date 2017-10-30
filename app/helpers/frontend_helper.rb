@@ -115,25 +115,12 @@ module FrontendHelper
 		        console.log(variant);
 		        $('#hfUpsellVariant').val(variant.id);
 		     };
-		     var settings = {
-			  \"async\": true,
-			  \"crossDomain\": true,
-			  \"url\": \"https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/products/10941480780.json\",
-			  \"method\": \"GET\",
-			  \"headers\": {
-			    \"cache-control\": \"no-cache\",
-			    \"postman-token\": \"054ed345-ad86-e46f-4683-2e034ac83725\"
-			  }
-			}
 
-			$.ajax(settings).done(function (response) {
-			  this.optionSelector = new Shopify.OptionSelectors('herofunnelProduct', {
-		        product: response,
+			this.optionSelector = new Shopify.OptionSelectors('herofunnelProduct', {
+		        product: JSON.stringify(#{@up_product.to_json}),
 		        onVariantSelected: selectUpsellCallback,
 		        enableHistoryState: this.enableHistoryState
 		      });
-			});
-			
 		</script>
 		<style type=\"text/css\">
 			.hf-upsell .hf-pro-img{
