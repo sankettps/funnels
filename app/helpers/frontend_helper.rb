@@ -117,7 +117,7 @@ module FrontendHelper
 		     };
 
 			this.optionSelector = new Shopify.OptionSelectors('herofunnelProduct', {
-		        product: JSON.stringify(#{@up_product.to_json}),
+		        product: JSON.parse(#{@up_product.to_json}),
 		        onVariantSelected: selectUpsellCallback,
 		        enableHistoryState: this.enableHistoryState
 		      });
