@@ -73,4 +73,15 @@ class FrontendController < ApplicationController
 	 	end
 	 		render html: @html.html_safe and return
 	end
+
+	def getupsellproduct
+	 	@shop = Shop.first
+
+			# @shop_url ="https://#{ShopifyApp.configuration.api_key}:#{@shop.shopify_token}@#{@shop.shopify_domain}/admin/"
+  	# 	puts @shop_url
+  		@shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
+    	ShopifyAPI::Base.site = @shop_url
+		 	@up_product = ShopifyAPI::Product.find(10945801356)
+		 	render json: @up_product
+	end
 end
