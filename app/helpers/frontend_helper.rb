@@ -49,23 +49,24 @@ module FrontendHelper
 			      				</div>
 			      			</div>
 			      			<input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
-						  <div class=\"product-single__variants\">
-						    <select name=\"id\" id=\"herofunnelProduct\" class=\"product-single__variants\">"
-						    @up_product.variants.each do |variant|
-						    	@html += "<option data-sku='#{variant.sku}' value='#{variant.id}'>#{variant.title}</option>"
-						 	end
-						    @html += "</select>
-						  </div>
-				       <div>
-			      			<div class=\"row\">
+							<div class=\"product-single__variants\">
+							<select name=\"id\" id=\"herofunnelProduct\" class=\"product-single__variants\">"
+							@up_product.variants.each do |variant|
+								@html += "<option data-sku='#{variant.sku}' value='#{variant.id}'>#{variant.title}</option>"
+								end
+							@html += "</select>
+							</div>
+					     <div>
+			      			
+			      		</div>
+			      	</div>
+			      	<div class=\"row\">
 			      				<div class=\"col-xs-12\">
 				      				<div class=\"hf-pro-desc\">
 				      					#{@up_product.body_html.html_safe}
 				      				</div>
 			      				</div>
 			      			</div>
-			      		</div>
-			      	</div>
 			      
 		      </div>
 		      <div id=\"hfDownsellBody\" style=\"display:none;\">
