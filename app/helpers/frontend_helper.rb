@@ -125,11 +125,7 @@ module FrontendHelper
 				}
 		     };
 
-			this.optionSelector = new Shopify.OptionSelectors('herofunnelUpProduct', {
-		        product: #{@up_product.to_json},
-		        onVariantSelected: selectUpsellCallback,
-		        enableHistoryState: this.enableHistoryState
-		      });
+			
 
 		   var selectDownsellCallback = function(variant, selector) {
 		        $('.hf-upsell .pro-price').html(#{@shop.currency_symbol} $('#herofunnelDownProduct').find(':selected').attr('data-price'));
@@ -138,11 +134,7 @@ module FrontendHelper
 				}
 		     };
 
-			this.optionSelector = new Shopify.OptionSelectors('selectDownsellCallback', {
-		        product: #{@up_product.to_json},
-		        onVariantSelected: selectUpsellCallback,
-		        enableHistoryState: this.enableHistoryState
-		      });
+			
 		</script>
 		<style type=\"text/css\">
 			.hf-upsell .hf-pro-img{
