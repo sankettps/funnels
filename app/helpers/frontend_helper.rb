@@ -117,9 +117,7 @@ module FrontendHelper
 		        console.log(variant);
 		        $('#hfUpsellVariant').val(variant.id);
 		        $('.hf-upsell .pro-price').html(#{@shop.currency_symbol} variant.price);
-		        if(variant.featured_image.src != ''){
-		        	$('.hf-upsell img').attr('src',variant.featured_image.src);
-		        }
+		        console.log(variant.featured_image);
 		     };
 
 			this.optionSelector = new Shopify.OptionSelectors('herofunnelProduct', {
