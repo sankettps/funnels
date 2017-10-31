@@ -8,9 +8,13 @@ class FrontendController < ApplicationController
 	 		@funnel = @filter_product.funnels.find_by(is_active: true) if @filter_product
 
 	 		@shop_url ="https://#{ShopifyApp.configuration.api_key}:#{@shop.shopify_token}@#{@shop.shopify_domain}/admin/"
+<<<<<<< HEAD
+=======
+  		
+>>>>>>> 94366132fc913097850930cd66b2d504e7545a21
   		# @shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
     	ShopifyAPI::Base.site = @shop_url
-		 		puts "<======funnel========#{@funnel.inspect}===============>"
+			puts "<======funnel========#{@funnel.inspect}===============>"
     	if @funnel
 		 		@up_product = ShopifyAPI::Product.find(@funnel.up_product.product_id)
     		@up_variant = @up_product.variants.first
@@ -19,7 +23,7 @@ class FrontendController < ApplicationController
     		@down_variant = @down_product.variants.first
 		 		puts "<======test product========#{@up_product.inspect}===============>"
 		 		# modal_html
-		 		@html = modal_html
+		 		@html = modal_html2
 		 		# @funnel
 		 		@response = {data: @html}
 		 	else
@@ -46,5 +50,48 @@ class FrontendController < ApplicationController
 		funnel_products.each do |funnel_product|
 			
 		end
+	def test
+		@shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
+  	ShopifyAPI::Base.site = @shop_url
+	 	puts "<======funnel========#{@funnel.inspect}===============>"
+	 	@up_product = ShopifyAPI::Product.find(10941215180)
+	 	puts "******************************"
+	 	puts @up_product.to_json
+	 	@images = @up_product.images
+	 	@img_array = {}
+	 	@variants_array = {}
+	 				# render json: @up_product.variants and return
+
+	 	@up_product.images.each do |img|
+	 		if img.variant_ids.present?
+	 			img.variant_ids.each do |vid|
+	 				@img_array[vid] = img.src
+	 			end
+	 		end
+	 	end
+	 	@up_product.variants.each do |variant|
+	 		@variants_array[variant.title] = [variant.id,variant.price,@img_array[variant.id]]
+	 	end
+	 	render json: @variants_array and return
+	 	@html = '';
+	 	@up_product.options.each do |option|
+	 		@html += "<label>#{option.name}</label><select>" 
+	 		option.values.each do |oval|
+	 			@html += "<option value='#{oval}'>#{oval}</option>";
+	 		end
+	 		@html += "</select>";
+	 	end
+	 		render html: @html.html_safe and return
+	end
+
+	def getupsellproduct
+	 	@shop = Shop.first
+
+			# @shop_url ="https://#{ShopifyApp.configuration.api_key}:#{@shop.shopify_token}@#{@shop.shopify_domain}/admin/"
+  	# 	puts @shop_url
+  		@shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
+    	ShopifyAPI::Base.site = @shop_url
+		 	@up_product = ShopifyAPI::Product.find(10945801356)
+		 	render json: @up_product
 	end
 end
