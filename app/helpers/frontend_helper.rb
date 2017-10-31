@@ -50,7 +50,7 @@ module FrontendHelper
 			      			</div>
 			      			<input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
 									<div class=\"product-single__variants\">
-										<select name=\"id\" id=\"herofunnelProduct\" class=\"product-single__variants\">"
+										<select name=\"id\" id=\"herofunnelUpProduct\" class=\"product-single__variants\">"
 										@up_product.variants.each do |variant|
 											@html += "<option data-sku='#{variant.sku}' value='#{variant.id}' data-price='#{variant.price}' data-image='#{@up_product_img_array[variant.id]}'>#{variant.title}</option>"
 											end
@@ -58,16 +58,17 @@ module FrontendHelper
 									</div>
 					     <div>
 			      </div>
-			      <div class=\"row\">
-	    				<div class=\"col-xs-12\">
-	      				<div class=\"hf-pro-desc\">
-	      					#{@up_product.body_html.html_safe}
-	      				</div>
-	    			</div>
-    			</div>
 			     </div>
 		      </div>
-		      
+		      <div class=\"row\">
+    				<div class=\"col-xs-12\">
+      				<div class=\"hf-pro-desc\">
+      					#{@up_product.body_html.html_safe}
+      				</div>
+    				</div>
+    			</div>
+
+
 		      <div id=\"hfDownsellBody\" style=\"display:none;\">
 			      <div class=\"modal-body\">
 			      	<div class=\"row\">
@@ -113,13 +114,13 @@ module FrontendHelper
 		</div>
 		<script>
 			var selectUpsellCallback = function(variant, selector) {
-		        $('.hf-upsell .pro-price').html(#{@shop.currency_symbol} $('#herofunnelProduct').find(':selected').attr('data-price'));
-		        if($('#herofunnelProduct').find(':selected').attr('data-image')){
-					$('.hf-upsell .hf-pro-img').attr('src',$('#herofunnelProduct').find(':selected').attr('data-image'));
+		        $('.hf-upsell .pro-price').html(#{@shop.currency_symbol} $('#herofunnelUpProduct').find(':selected').attr('data-price'));
+		        if($('#herofunnelUpProduct').find(':selected').attr('data-image')){
+					$('.hf-upsell .hf-pro-img').attr('src',$('#herofunnelUpProduct').find(':selected').attr('data-image'));
 				}
 		     };
 
-			this.optionSelector = new Shopify.OptionSelectors('herofunnelProduct', {
+			this.optionSelector = new Shopify.OptionSelectors('herofunnelUpProduct', {
 		        product: #{@up_product.to_json},
 		        onVariantSelected: selectUpsellCallback,
 		        enableHistoryState: this.enableHistoryState
