@@ -8,10 +8,6 @@ class FrontendController < ApplicationController
 	 		@funnel = @filter_product.funnels.find_by(is_active: true) if @filter_product
 
 	 		@shop_url ="https://#{ShopifyApp.configuration.api_key}:#{@shop.shopify_token}@#{@shop.shopify_domain}/admin/"
-<<<<<<< HEAD
-=======
-  		
->>>>>>> 94366132fc913097850930cd66b2d504e7545a21
   		# @shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
     	ShopifyAPI::Base.site = @shop_url
 			puts "<======funnel========#{@funnel.inspect}===============>"
@@ -25,7 +21,7 @@ class FrontendController < ApplicationController
 		 		# modal_html
 		 		@html = modal_html2
 		 		# @funnel
-		 		@response = {data: @html}
+		 		@response = {data: @html,product: @up_product}
 		 	else
 		 		puts "no funnel=========================="
 	 			@response = {data: ''}
