@@ -115,8 +115,7 @@ module FrontendHelper
 		</div>
 		<script>
 			var selectUpsellCallback = function(variant, selector) {
-		        $('.hf-upsell .pro-price').html( $('#herofunnelProduct').find(':selected').attr('data-price'));
-		        console.log($('#herofunnelProduct').find(':selected').attr('data-price'));
+		        $('.hf-upsell .pro-price').html(#{@shop.currency_symbol} $('#herofunnelProduct').find(':selected').attr('data-price'));
 		        if($('#herofunnelProduct').find(':selected').attr('data-image')){
 					$('.hf-upsell .hf-pro-img').attr('src',$('#herofunnelProduct').find(':selected').attr('data-image'));
 				}
