@@ -44,7 +44,7 @@ module FrontendHelper
 			      			</div>
 			      			<div class=\"row\">
 			      				<div class=\"col-xs-12\">
-			      					<p class=\"pro-price\">$ #{@up_variant.price}</p>
+			      					<p class=\"pro-price\">#{@shop.currency_symbol} #{@up_variant.price}</p>
 			      					<input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
 			      				</div>
 			      			</div>
@@ -116,6 +116,10 @@ module FrontendHelper
 			var selectUpsellCallback = function(variant, selector) {
 		        console.log(variant);
 		        $('#hfUpsellVariant').val(variant.id);
+		        $('.hf-upsell .pro-price').html(#{shop.currency_symbol} variant.price);
+		        if(variant.featured_image.src != ''){
+		        	$('.hf-upsell img').attr('src',variant.featured_image.src);
+		        }
 		     };
 
 			this.optionSelector = new Shopify.OptionSelectors('herofunnelProduct', {
