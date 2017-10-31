@@ -13,15 +13,18 @@ class FrontendController < ApplicationController
 			puts "<======funnel========#{@funnel.inspect}===============>"
     	if @funnel
 		 		@up_product = ShopifyAPI::Product.find(@funnel.up_product.product_id)
+		 		arr_options = []
+				@up_product.options.each {|option| arr_options << option.name}
+				@up_product.options = arr_options
     		@up_variant = @up_product.variants.first
 		 		
 		 		@down_product = ShopifyAPI::Product.find(@funnel.down_product.product_id)
     		@down_variant = @down_product.variants.first
 		 		puts "<======test product========#{@up_product.inspect}===============>"
 		 		# modal_html
-		 		@html = modal_html
+		 		@html = modal_html2
 		 		# @funnel
-		 		@response = {data: @html,product: @up_product}
+		 		@response = {data: @html}
 		 	else
 		 		puts "no funnel=========================="
 	 			@response = {data: ''}
