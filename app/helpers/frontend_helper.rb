@@ -116,7 +116,7 @@ module FrontendHelper
 			var selectUpsellCallback = function(variant, selector) {
 		        console.log(variant);
 		        $('#hfUpsellVariant').val(variant.id);
-		        $('.hf-upsell .pro-price').html(#{shop.currency_symbol} variant.price);
+		        $('.hf-upsell .pro-price').html(#{@shop.currency_symbol} variant.price);
 		        if(variant.featured_image.src != ''){
 		        	$('.hf-upsell img').attr('src',variant.featured_image.src);
 		        }
