@@ -60,15 +60,16 @@ module FrontendHelper
 			      			
 			      		</div>
 			      	</div>
-			      	<div class=\"row\">
+			      	
+			      
+		      </div>
+		      <div class=\"row\">
 			      				<div class=\"col-xs-12\">
 				      				<div class=\"hf-pro-desc\">
 				      					#{@up_product.body_html.html_safe}
 				      				</div>
 			      				</div>
 			      			</div>
-			      
-		      </div>
 		      <div id=\"hfDownsellBody\" style=\"display:none;\">
 			      <div class=\"modal-body\">
 			      	<div class=\"row\">
@@ -117,7 +118,7 @@ module FrontendHelper
 		        console.log(variant);
 		        $('#hfUpsellVariant').val(variant.id);
 		        $('.hf-upsell .pro-price').html(#{@shop.currency_symbol} variant.price);
-		        console.log(variant.featured_image);
+		        console.log(variant.id);
 		     };
 
 			this.optionSelector = new Shopify.OptionSelectors('herofunnelProduct', {
