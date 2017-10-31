@@ -114,11 +114,12 @@ module FrontendHelper
 		  </div>
 		</div>
 		<script>
+		$(document).on('change', 'select[name=id]', function() {
+			$('.hf-upsell .pro-price').html(#{@shop.currency_symbol} $(this).find(':selected').attr('data-price'));
+			$('.hf-upsell img').attr('src',$(this).find(':selected').attr('data-image'));
+		});
 			var selectUpsellCallback = function(variant, selector) {
-		        console.log(variant);
-		        $('#hfUpsellVariant').val(variant.id);
-		        $('.hf-upsell .pro-price').html(#{@shop.currency_symbol} variant.price);
-		        console.log(variant.id);
+		        
 		     };
 
 			this.optionSelector = new Shopify.OptionSelectors('herofunnelProduct', {
