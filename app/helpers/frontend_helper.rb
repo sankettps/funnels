@@ -104,11 +104,11 @@ module FrontendHelper
 			      </div>
 		      </div>
 		    </div>
-		    <div class=\"modal-footer\">
+		  </div>
+		  <div class=\"modal-footer\">
 			    <button type=\"button\" class=\"btn btn-success\" id=\"hfUpsellBuy\">Buy Now</button>
 			    <button type=\"button\" class=\"btn btn-default\" id=\"hfUpsellCancel\">Cancel</button>
-			</div>
-		  </div>
+				</div>
 		</div>
 		<script>
 			var selectUpsellCallback = function(variant, selector) {
