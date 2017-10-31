@@ -32,33 +32,33 @@ module FrontendHelper
 		      </div>
 		      <div id=\"hfUpsellBody\">
 			      <div class=\"modal-body\">
-			      <div class=\"row\">
-			      		<div class=\"col-xs-6\">
-			      			<img src=\"#{@up_product.image.src}\" class=\"hf-pro-img\">
-			      		</div>
-			      		<div class=\"col-xs-6\">
-			      			<div class=\"row\">
-			      				<div class=\"col-xs-12\">
-			      					<h4> #{@up_product.title} </h4>
-			      				</div>
-			      			</div>
-			      			<div class=\"row\">
-			      				<div class=\"col-xs-12\">
-			      					<p class=\"pro-price\">#{@shop.currency_symbol} #{@up_variant.price}</p>
-			      					<input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
-			      				</div>
-			      			</div>
-			      			<input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
-									<div class=\"product-single__variants\">
-										<select name=\"id\" id=\"herofunnelUpProduct\" class=\"product-single__variants\">"
-										@up_product.variants.each do |variant|
-											@html += "<option data-sku='#{variant.sku}' value='#{variant.id}' data-price='#{variant.price}' data-image='#{@up_product_img_array[variant.id]}'>#{variant.title}</option>"
-											end
-										@html += "</select>
-									</div>
-					     <div>
-			      </div>
-			     </div>
+				      <div class=\"row\">
+				      		<div class=\"col-xs-6\">
+				      			<img src=\"#{@up_product.image.src}\" class=\"hf-pro-img\">
+				      		</div>
+				      		<div class=\"col-xs-6\">
+				      			<div class=\"row\">
+				      				<div class=\"col-xs-12\">
+				      					<h4> #{@up_product.title} </h4>
+				      				</div>
+				      			</div>
+				      			<div class=\"row\">
+				      				<div class=\"col-xs-12\">
+				      					<p class=\"pro-price\">#{@shop.currency_symbol} #{@up_variant.price}</p>
+				      					<input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
+				      				</div>
+				      			</div>
+				      			<input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
+										<div class=\"product-single__variants\">
+											<select name=\"id\" id=\"herofunnelUpProduct\" class=\"product-single__variants\">"
+											@up_product.variants.each do |variant|
+												@html += "<option data-sku='#{variant.sku}' value='#{variant.id}' data-price='#{variant.price}' data-image='#{@up_product_img_array[variant.id]}'>#{variant.title}</option>"
+												end
+											@html += "</select>
+										</div>
+						     <div>
+				      </div>
+				    </div>
 		      </div>
 		      <div class=\"row\">
     				<div class=\"col-xs-12\">
@@ -71,35 +71,33 @@ module FrontendHelper
 
 		      <div id=\"hfDownsellBody\" style=\"display:none;\">
 			      <div class=\"modal-body\">
-			      	<div class=\"row\">
-			      		<div class=\"col-xs-6\">
-			      			<img src=\" #{@down_product.image.src}\" class=\"hf-pro-img\">
-			      		</div>
-			      		<div class=\"col-xs-6\">
-			      			<div class=\"row\">
-			      				<div class=\"col-xs-12\">
-			      					<h4> #{@down_product.title}</h4>
-			      				</div>
-			      			</div>
-			      			<div class=\"row\">
-			      				<div class=\"col-xs-12\">
-			      					<p class=\"pro-price\">$ #{@down_variant.price}</p>
-			      					<input type=\"hidden\" name=\"\" id=\"hfDownsellVariant\" value=\"#{@down_variant.id}\">
-			      				</div>
-			      			</div>
-			      			<div class=\"row\">
-			      				<div class=\"col-xs-12\">
-				      				<div class=\"hf-pro-desc\">
-			      					  #{@down_product.body_html.html_safe}
+				      <div class=\"row\">
+				      		<div class=\"col-xs-6\">
+				      			<img src=\"#{@down_product.image.src}\" class=\"hf-pro-img\">
+				      		</div>
+				      		<div class=\"col-xs-6\">
+				      			<div class=\"row\">
+				      				<div class=\"col-xs-12\">
+				      					<h4> #{@down_product.title} </h4>
 				      				</div>
-			      				</div>
-			      			</div>
-			      		</div>
-			      	</div>
-			        <div>
-			        	
-			        </div>
-			      </div>
+				      			</div>
+				      			<div class=\"row\">
+				      				<div class=\"col-xs-12\">
+				      					<p class=\"pro-price\">#{@shop.currency_symbol} #{@up_variant.price}</p>
+				      					<input type=\"hidden\" name=\"\" id=\"hfDownsellVariant\" value=\"#{@down_variant.id}\">
+				      				</div>
+				      			</div>
+				      			<input type=\"hidden\" name=\"\" id=\"hfDownsellVariant\" value=\"#{@up_variant.id}\">
+										<div class=\"product-single__variants\">
+											<select name=\"id\" id=\"herofunnelDownProduct\" class=\"product-single__variants\">"
+											@down_product.variants.each do |variant|
+												@html += "<option data-sku='#{variant.sku}' value='#{variant.id}' data-price='#{variant.price}' data-image='#{@down_product_img_array[variant.id]}'>#{variant.title}</option>"
+												end
+											@html += "</select>
+										</div>
+						     <div>
+				      </div>
+				    </div>
 			      <div class=\"modal-footer\">
 			        <button type=\"button\" class=\"btn btn-success\" id=\"hfDownsellBuy\">Buy Now</button>
 			        <button type=\"button\" class=\"btn btn-default\" id=\"hfDownsellCancel\">Cancel</button>
@@ -121,6 +119,19 @@ module FrontendHelper
 		     };
 
 			this.optionSelector = new Shopify.OptionSelectors('herofunnelUpProduct', {
+		        product: #{@up_product.to_json},
+		        onVariantSelected: selectUpsellCallback,
+		        enableHistoryState: this.enableHistoryState
+		      });
+
+		   var selectDownsellCallback = function(variant, selector) {
+		        $('.hf-upsell .pro-price').html(#{@shop.currency_symbol} $('#herofunnelDownProduct').find(':selected').attr('data-price'));
+		        if($('#herofunnelDownProduct').find(':selected').attr('data-image')){
+					$('.hf-upsell .hf-pro-img').attr('src',$('#herofunnelDownProduct').find(':selected').attr('data-image'));
+				}
+		     };
+
+			this.optionSelector = new Shopify.OptionSelectors('selectDownsellCallback', {
 		        product: #{@up_product.to_json},
 		        onVariantSelected: selectUpsellCallback,
 		        enableHistoryState: this.enableHistoryState
