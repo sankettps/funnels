@@ -152,10 +152,10 @@ module FrontendHelper
 		    <!-- Modal content-->
 		    <div class=\"modal-content\">
 		      <div class=\"modal-header\">
-		        <h4 class=\"modal-title\">#{@funnel.name}</h4>
 		        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
 		          <span aria-hidden=\"true\">&times;</span>
 		        </button>
+		        <h4 class=\"modal-title\">#{@funnel.name}</h4>
 		      </div>
 		      <div id=\"hfUpsellBody\">
 			      <div class=\"modal-body\">
@@ -185,14 +185,13 @@ module FrontendHelper
 			      		</div>
 			      	</div>
 			        <div>
-			        	
-			        </div>
-			      </div>
+			       </div>
+			  		</div>
 			      <div class=\"modal-footer\">
 			        <button type=\"button\" class=\"btn btn-success\" id=\"hfUpsellBuy\">Buy Now</button>
 			        <button type=\"button\" class=\"btn btn-default\" id=\"hfUpsellCancel\">Cancel</button>
 			      </div>
-		      </div>
+		     	</div>
 		      <div id=\"hfDownsellBody\" style=\"display:none;\">
 			      <div class=\"modal-body\">
 			      	<div class=\"row\">

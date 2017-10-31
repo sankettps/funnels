@@ -19,16 +19,25 @@ class FrontendController < ApplicationController
 				@up_product.options = arr_options
     		@up_variant = @up_product.variants.first
 		 		@up_product.images.each do |img|
-		 		if img.variant_ids.present?
-		 			img.variant_ids.each do |vid|
-		 				@up_product_img_array[vid] = img.src
-		 			end
-		 		end
-		 	end
+			 		if img.variant_ids.present?
+			 			img.variant_ids.each do |vid|
+			 				@up_product_img_array[vid] = img.src
+			 			end
+			 		end
+			 	end
+    		@down_product_img_array = {}
 		 		@down_product = ShopifyAPI::Product.find(@funnel.down_product.product_id)
-    		@down_variant = @down_product.variants.first
-		 		puts "<======test product========#{@up_product.inspect}===============>"
-		 		# modal_html
+    		arr_options = []
+				@down_product.options.each {|option| arr_options << option.name}
+				@down_product.options = arr_options
+    		@down_variant = @up_product.variants.first
+		 		@down_product.images.each do |img|
+			 		if img.variant_ids.present?
+			 			img.variant_ids.each do |vid|
+			 				@down_product_img_array[vid] = img.src
+			 			end
+			 		end
+			 	end
 		 		@html = modal_html2
 		 		# @funnel
 		 		@response = {data: @html}
