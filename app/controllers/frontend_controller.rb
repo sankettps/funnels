@@ -12,12 +12,19 @@ class FrontendController < ApplicationController
     	ShopifyAPI::Base.site = @shop_url
 			puts "<======funnel========#{@funnel.inspect}===============>"
     	if @funnel
+    		@up_product_img_array = {}
 		 		@up_product = ShopifyAPI::Product.find(@funnel.up_product.product_id)
 		 		arr_options = []
 				@up_product.options.each {|option| arr_options << option.name}
 				@up_product.options = arr_options
     		@up_variant = @up_product.variants.first
-		 		
+		 		@up_product.images.each do |img|
+		 		if img.variant_ids.present?
+		 			img.variant_ids.each do |vid|
+		 				@up_product_img_array[vid] = img.src
+		 			end
+		 		end
+		 	end
 		 		@down_product = ShopifyAPI::Product.find(@funnel.down_product.product_id)
     		@down_variant = @down_product.variants.first
 		 		puts "<======test product========#{@up_product.inspect}===============>"
