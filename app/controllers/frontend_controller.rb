@@ -19,7 +19,7 @@ class FrontendController < ApplicationController
     		@down_variant = @down_product.variants.first
 		 		puts "<======test product========#{@up_product.inspect}===============>"
 		 		# modal_html
-		 		@html = modal_html2
+		 		@html = modal_html
 		 		# @funnel
 		 		@response = {data: @html,product: @up_product}
 		 	else
