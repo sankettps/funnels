@@ -23,6 +23,16 @@
 .w-20{
   width: 20%;
 }
+.m-l-15{
+  margin-left: 15px;
+}
+.input-error{
+  border-bottom-color: red !important;
+  color: red !important;
+}
+input[type=text]:focus.input-error{
+  border-bottom: none;
+}
 .select_products_section{
   margin-top: 0px;
   padding: 10px;

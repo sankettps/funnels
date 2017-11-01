@@ -635,6 +635,7 @@ $(document).ready(function(){
         $("#downsellProduct ul").html("<li>" + selectedProduct[0].title + "</li>")
         $('.down_product_id').val(selectedProduct[0].id);
         // useSelectedProducts(selectedProducts);
+        console.log("-------------->",selectedProduct[0])
       }
 
       if (data.errors) {

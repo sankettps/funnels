@@ -11,13 +11,15 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.validate.min
 //= require rails-ujs
 //= require bootstrap
 //= require metisMenu
 //= require sb-admin-2
 //= require sweetalert
 //= require jquery-ui
-//= require dataTables/jquery.dataTables   
+//= require dataTables/jquery.dataTables  
+//= require funnels 
 
 $(document).ready(function(){
 	$('.glyphicon.glyphicon-question-sign').closest( "a" ).click(function(ev){
