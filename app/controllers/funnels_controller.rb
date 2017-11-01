@@ -60,6 +60,7 @@ class FunnelsController < ShopifyApp::AuthenticatedController
   # POST /funnels
   # POST /funnels.json
   def create
+    exit
     @funnel = Funnel.new(funnel_params)
     params[:funnel][:up_product_id] = FilterShopProduct.find_by(product_id: params[:funnel][:up_product_id]).try(:id)
     params[:funnel][:down_product_id] = FilterShopProduct.find_by(product_id: params[:funnel][:down_product_id]).try(:id)

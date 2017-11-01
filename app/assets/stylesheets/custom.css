@@ -349,3 +349,10 @@ table tbody td:nth-child(3){
   height: 30px;
 }
 /*-----------------------------------*/
+.panel-heading{
+  font-weight: bold;
+  font-size: 17px;
+}
+.funnel-form .form-group label{
+  font-weight: normal;
+}

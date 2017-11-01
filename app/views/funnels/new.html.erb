@@ -1,7 +1,7 @@
 
 <div class="add_form">
   <h4>Add New Funnel</h4> 
-      <%= form_tag "create", :method => :post, :class => "form-horizontal",name: 'funnel_form',id: "add_funnel_form" do %>
+      <%= form_tag "/funnels", :method => :post, :class => "form-horizontal funnel-form",name: 'funnel_form',id: "add_funnel_form" do %>
       <input type="hidden" name="funnel[funnel_product_ids]" class="trigger-products" >
       <input type="hidden" name="funnel[up_product_id]" class="up_product_id">
       <input type="hidden" name="funnel[down_product_id]" class="down_product_id">
@@ -16,20 +16,44 @@
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                Funnel Name*
+                Funnel Detail
             </div>
             <div class="panel-body">
-              <div class="col-sm-6">
-                <input type="text" name="funnel[name]" id="funnelName" class="form-control small-width" placeholder="Enter Funnel Name">
+              <div class="form-group">
+                <div class="col-sm-6">
+                  <label for="productTitle">Funnel Name</label>
+                  <input type="text" name="funnel[name]" id="funnelName" class="form-control" placeholder="Enter Funnel Name">
+                </div>
+                <div class="col-sm-6">
+                  <label for="productTitle">Funnel Popup Title</label>
+                  <input type="text" name="funnel[title]" id="funnelTitle" class="form-control" placeholder="Enter Funnel Title">
+                </div>
               </div>
-              <div class="col-sm-6">
-                <input type="text" name="funnel[title]" id="funnelTitle" class="form-control small-width" placeholder="Enter Funnel Title">
+              <div class="form-group">
+                <div class="col-sm-6">
+                  <label for="productTitle">Redirect Page (After adding product to cart from funnel popup)</label>
+                  <div class="radio">
+                    <label><input type="radio" name="funnel[redirect_page]" value="checkout">Checkout</label>
+                  </div>
+                  <div class="radio">
+                    <label><input type="radio" name="funnel[redirect_page]" value="cart">Cart</label>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <label for="productTitle">Display Description in funnel popup</label>
+                  <div class="radio">
+                    <label><input type="radio" name="funnel[is_display_desc]" value="true" checked>Yes</label>
+                  </div>
+                  <div class="radio">
+                    <label><input type="radio" name="funnel[is_display_desc]" value="false">No</label>
+                  </div>
+                </div>
               </div>
             </div>
         </div>
         <div class="panel panel-default product-filter">
             <div class="panel-heading">
-                Product Filter*
+                Product Filter
             </div>
             <div class="panel-body">
                 <div class="form-group">
@@ -108,7 +132,7 @@
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                Upsell Product*
+                Upsell Product
             </div>
             <div class="panel-body">
             <button type="button" class="btn btn-default" id="btnUpsellProduct">Select Product</button>
@@ -124,7 +148,7 @@
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                Downsell Product*
+                Downsell Product
             </div>
             <div class="panel-body">
                 <button type="button" class="btn btn-default" id="btnDownsellProduct">Select Product</button>

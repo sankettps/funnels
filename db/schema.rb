@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171016154832) do
+ActiveRecord::Schema.define(version: 20171101022104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(version: 20171016154832) do
     t.string "currency_symbol"
     t.string "currency"
     t.boolean "is_products_clonning", default: false
+    t.boolean "is_display_desc"
+    t.string "redirect_page"
     t.index ["shopify_domain"], name: "index_shops_on_shopify_domain", unique: true
   end
 
