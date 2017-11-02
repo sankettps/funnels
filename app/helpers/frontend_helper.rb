@@ -140,7 +140,7 @@ module FrontendHelper
 				}
 		     };
 
-			this.optionSelector = new Shopify.OptionSelectors('selectDownsellCallback', {
+			this.optionSelector = new Shopify.OptionSelectors('herofunnelDownProduct', {
 		        product: #{@down_product.to_json},
 		        onVariantSelected: selectDownsellCallback,
 		        enableHistoryState: this.enableHistoryState
