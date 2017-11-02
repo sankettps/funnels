@@ -58,15 +58,20 @@ module FrontendHelper
 										</div>
 						     </div>
 				      </div>
+				      <div class=\"row upSellDes\">
+		    				<div class=\"col-xs-12\">
+		      				<div class=\"hf-pro-desc\">
+		      					#{@up_product.body_html.html_safe}
+		      				</div>
+		    				</div>
+    					</div>
 				    </div>
+				    <div class=\"modal-footer\">
+					    <button type=\"button\" class=\"btn btn-success\" id=\"hfUpsellBuy\">Buy Now</button>
+					    <button type=\"button\" class=\"btn btn-default\" id=\"hfUpsellCancel\">Cancel</button>
+						</div>
 		      </div>
-		      <div class=\"row upSellDes\">
-    				<div class=\"col-xs-12\">
-      				<div class=\"hf-pro-desc\">
-      					#{@up_product.body_html.html_safe}
-      				</div>
-    				</div>
-    			</div>
+		     
 		      <div id=\"hfDownsellBody\" style=\"display:none;\">
 			      <div class=\"modal-body\">
 				      <div class=\"row\">
@@ -95,26 +100,24 @@ module FrontendHelper
 										</div>
 						     </div>
 				      </div>
+				      <div class=\"row downSellDes\">
+		    				<div class=\"col-xs-12\">
+		      				<div class=\"hf-pro-desc\">
+		      					#{@down_product.body_html.html_safe}
+		      				</div>
+		    				</div>
+		    			</div>
+		    			<div class=\"modal-footer\">
+				        <button type=\"button\" class=\"btn btn-success\" id=\"hfDownsellBuy\">Buy Now</button>
+				        <button type=\"button\" class=\"btn btn-default\" id=\"hfDownsellCancel\">Cancel</button>
+				      </div>
 				    </div>
-			      <div class=\"modal-footer\">
-			        <button type=\"button\" class=\"btn btn-success\" id=\"hfDownsellBuy\">Buy Now</button>
-			        <button type=\"button\" class=\"btn btn-default\" id=\"hfDownsellCancel\">Cancel</button>
-			      </div>
 		      </div>
 
-		      <div class=\"row downSellDes\">
-    				<div class=\"col-xs-12\">
-      				<div class=\"hf-pro-desc\">
-      					#{@down_product.body_html.html_safe}
-      				</div>
-    				</div>
-    			</div>
+		      
 		    </div>
 		  </div>
-		  <div class=\"modal-footer\">
-			    <button type=\"button\" class=\"btn btn-success\" id=\"hfUpsellBuy\">Buy Now</button>
-			    <button type=\"button\" class=\"btn btn-default\" id=\"hfUpsellCancel\">Cancel</button>
-			</div>
+		  
 		</div>
 		
 		<script>
