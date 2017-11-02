@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # get "dashboard/dashboard"
+  get "dashboard/dashboard"
   # root :to => 'home#index'
   root :to => 'dashboard#dashboard'
 
