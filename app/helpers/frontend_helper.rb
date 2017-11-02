@@ -94,7 +94,7 @@ module FrontendHelper
 												end
 											@html += "</select>
 										</div>
-						     <div>
+						     	<div>
 				      </div>
 				      <div class=\"downSellDes\">
 		    				<div class=\"col-xs-12\">
@@ -126,11 +126,7 @@ module FrontendHelper
 				}
 		     };
 
-			this.optionSelector = new Shopify.OptionSelectors('herofunnelUpProduct', {
-		        product: #{@up_product.to_json},
-		        onVariantSelected: selectUpsellCallback,
-		        enableHistoryState: this.enableHistoryState
-		      });
+			
 
 		   var selectDownsellCallback = function(variant, selector) {
 		   	$('#hfDownsellVariant').val($('#herofunnelDownProduct').val());
