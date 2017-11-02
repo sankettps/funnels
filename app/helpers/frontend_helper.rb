@@ -131,7 +131,8 @@ module FrontendHelper
 			this.optionSelector = new Shopify.OptionSelectors('herofunnelUpProduct', {
 		        product: #{@up_product.to_json},
 		        onVariantSelected: selectUpsellCallback,
-		        ena
+		        enableHistoryState: this.enableHistoryState
+		      });
 			var selectUpsellCallback = function(variant, selector) {
 						$('#hfUpsellVariant').val($('#herofunnelUpProduct').val());
 		        $('.hf-upsell .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelUpProduct').find(':selected').attr('data-price'));
@@ -143,7 +144,8 @@ module FrontendHelper
 			this.optionSelector = new Shopify.OptionSelectors('herofunnelDownProduct', {
 		        product: #{@up_product.to_json},
 		        onVariantSelected: selectUpsellCallback,
-		        ena
+		        enableHistoryState: this.enableHistoryState
+		      });
 
 		   var selectDownsellCallback = function(variant, selector) {
 		   	$('#hfDownsellVariant').val($('#herofunnelDownProduct').val());
