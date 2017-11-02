@@ -96,10 +96,6 @@ module FrontendHelper
 						     <div>
 				      </div>
 				    </div>
-			      <div class=\"modal-footer\">
-			        <button type=\"button\" class=\"btn btn-success\" id=\"hfDownsellBuy\">Buy Now</button>
-			        <button type=\"button\" class=\"btn btn-default\" id=\"hfDownsellCancel\">Cancel</button>
-			      </div>
 		      </div>
 
 		      <div class=\"row downSellDes\">
@@ -111,9 +107,13 @@ module FrontendHelper
     			</div>
 		    </div>
 		  </div>
-		  <div class=\"modal-footer\">
+		  <div class=\"modal-footer UpsellFooter\">
 			    <button type=\"button\" class=\"btn btn-success\" id=\"hfUpsellBuy\">Buy Now</button>
 			    <button type=\"button\" class=\"btn btn-default\" id=\"hfUpsellCancel\">Cancel</button>
+			</div>
+			<div class=\"modal-footer DownsellFooter\">
+			        <button type=\"button\" class=\"btn btn-success\" id=\"hfDownsellBuy\">Buy Now</button>
+			        <button type=\"button\" class=\"btn btn-default\" id=\"hfDownsellCancel\">Cancel</button>
 			</div>
 		</div>
 		
@@ -126,11 +126,7 @@ module FrontendHelper
 				}
 		     };
 
-			this.optionSelector = new Shopify.OptionSelectors('herofunnelUpProduct', {
-		        product: #{@up_product.to_json},
-		        onVariantSelected: selectUpsellCallback,
-		        enableHistoryState: this.enableHistoryState
-		      });
+			
 
 		   var selectDownsellCallback = function(variant, selector) {
 		   	$('#hfDownsellVariant').val($('#herofunnelDownProduct').val());
@@ -140,11 +136,7 @@ module FrontendHelper
 				}
 		     };
 
-			this.optionSelector = new Shopify.OptionSelectors('selectDownsellCallback', {
-		        product: #{@up_product.to_json},
-		        onVariantSelected: selectUpsellCallback,
-		        enableHistoryState: this.enableHistoryState
-		      });
+			
 		</script>
 		<style type=\"text/css\">
 			.hf-upsell .hf-pro-img{
