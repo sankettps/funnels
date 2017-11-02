@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get "frontend/get_upsell_detail"
   get "frontend/test"
   get "frontend/getupsellproduct"
+  get "shop/filter_products"
+
   # post "frontend/getupsellproduct"
   mount ShopifyApp::Engine, at: '/'
   # match ':controller(/:action(/:id(.:format)))' => 'offers#list', via: [:get, :post]
