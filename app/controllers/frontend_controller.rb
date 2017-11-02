@@ -12,6 +12,7 @@ class FrontendController < ApplicationController
     	ShopifyAPI::Base.site = @shop_url
 			puts "<======funnel========#{@funnel.inspect}===============>"
     	if @funnel
+    		puts "Innnnnnnnnnnnnnnnn"
     		@up_product_img_array = {}
 		 		@up_product = ShopifyAPI::Product.find(@funnel.up_product.product_id)
 		 		arr_options = []
@@ -39,6 +40,7 @@ class FrontendController < ApplicationController
 			 		end
 			 	end
 		 		@html = modal_html2
+		 		render html: @html and return
 		 		# @funnel
 		 		@response = {data: @html}
 		 	else
@@ -71,33 +73,56 @@ class FrontendController < ApplicationController
   	ShopifyAPI::Base.site = @shop_url
 	 	puts "<======funnel========#{@funnel.inspect}===============>"
 	 	@up_product = ShopifyAPI::Product.find(10941215180)
-	 	puts "******************************"
-	 	puts @up_product.to_json
-	 	@images = @up_product.images
-	 	@img_array = {}
-	 	@variants_array = {}
-	 				# render json: @up_product.variants and return
+		 @shop = Shop.first
+	 	if @shop.present?
+	 		# @funnel = @shop.funnels.find_by(is_active: true)
+	 		#@filter_product = FilterShopProduct.find_by(product_id: params[:product_id])
+	 		#@funnel = @filter_product.funnels.find_by(is_active: true) if @filter_product
 
-	 	@up_product.images.each do |img|
-	 		if img.variant_ids.present?
-	 			img.variant_ids.each do |vid|
-	 				@img_array[vid] = img.src
-	 			end
-	 		end
+	 		# @shop_url ="https://#{ShopifyApp.configuration.api_key}:#{@shop.shopify_token}@#{@shop.shopify_domain}/admin/"
+  		@shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
+    	ShopifyAPI::Base.site = @shop_url
+			puts "<======funnel========#{@funnel.inspect}===============>"
+    	# if @funnel
+    		@up_product_img_array = {}
+		 		@up_product = ShopifyAPI::Product.find(10945801356)
+		 		arr_options = []
+				@up_product.options.each {|option| arr_options << option.name}
+				@up_product.options = arr_options
+    		@up_variant = @up_product.variants.first
+		 		@up_product.images.each do |img|
+			 		if img.variant_ids.present?
+			 			img.variant_ids.each do |vid|
+			 				@up_product_img_array[vid] = img.src
+			 			end
+			 		end
+			 	end
+    		@down_product_img_array = {}
+		 		@down_product = ShopifyAPI::Product.find(10941481228)
+    		arr_options = []
+				@down_product.options.each {|option| arr_options << option.name}
+				@down_product.options = arr_options
+    		@down_variant = @up_product.variants.first
+		 		@down_product.images.each do |img|
+			 		if img.variant_ids.present?
+			 			img.variant_ids.each do |vid|
+			 				@down_product_img_array[vid] = img.src
+			 			end
+			 		end
+			 	end
+		 		@html = modal_html2
+		 		render html: @html and return
+		 		# @funnel
+		 		@response = {data: @html}
+		 	# else
+		 	# 	puts "no funnel=========================="
+	 		# 	@response = {data: ''}
+		 	# end
+	 	else
+		 		puts "no shop=========================="
+	 		@response = {data: ''}
 	 	end
-	 	@up_product.variants.each do |variant|
-	 		@variants_array[variant.title] = [variant.id,variant.price,@img_array[variant.id]]
-	 	end
-	 	render json: @variants_array and return
-	 	@html = '';
-	 	@up_product.options.each do |option|
-	 		@html += "<label>#{option.name}</label><select>" 
-	 		option.values.each do |oval|
-	 			@html += "<option value='#{oval}'>#{oval}</option>";
-	 		end
-	 		@html += "</select>";
-	 	end
-	 		render html: @html.html_safe and return
+	 	render json: @response
 	end
 
 	def getupsellproduct
