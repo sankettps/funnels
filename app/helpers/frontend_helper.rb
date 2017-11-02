@@ -113,11 +113,8 @@ module FrontendHelper
 				      </div>
 				    </div>
 		      </div>
-
-		      
 		    </div>
 		  </div>
-		  
 		</div>
 		
 		<script>
@@ -144,8 +141,8 @@ module FrontendHelper
 		     };
 
 			this.optionSelector = new Shopify.OptionSelectors('selectDownsellCallback', {
-		        product: #{@up_product.to_json},
-		        onVariantSelected: selectUpsellCallback,
+		        product: #{@down_product.to_json},
+		        onVariantSelected: selectDownsellCallback,
 		        enableHistoryState: this.enableHistoryState
 		      });
 		</script>
