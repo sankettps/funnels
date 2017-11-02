@@ -132,7 +132,7 @@ module FrontendHelper
 		      });
 
 		   var selectDownsellCallback = function(variant, selector) {
-		        $('.hf-upsell .pro-price').html(#{@shop.currency_symbol} $('#herofunnelDownProduct').find(':selected').attr('data-price'));
+		        $('.hf-upsell .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelDownProduct').find(':selected').attr('data-price'));
 		        if($('#herofunnelDownProduct').find(':selected').attr('data-image')){
 					$('.hf-upsell .hf-pro-img').attr('src',$('#herofunnelDownProduct').find(':selected').attr('data-image'));
 				}
