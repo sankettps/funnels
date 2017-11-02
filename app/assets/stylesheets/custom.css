@@ -66,8 +66,8 @@ input[type=text]:focus.input-error{
 .loader,.submit-loader{
   width: 50px;
   position: absolute;
-  left: 46%;
-  top: 55%;
+  left: 49%;
+  top: 90%;
 }
 .sweet-alert h2{
   padding: 50px;
