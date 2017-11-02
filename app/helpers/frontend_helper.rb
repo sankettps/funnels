@@ -126,7 +126,11 @@ module FrontendHelper
 				}
 		     };
 
-			
+			this.optionSelector = new Shopify.OptionSelectors('herofunnelUpProduct', {
+		        product: #{@up_product.to_json},
+		        onVariantSelected: selectUpsellCallback,
+		        enableHistoryState: this.enableHistoryState
+		      });
 
 		   var selectDownsellCallback = function(variant, selector) {
 		   	$('#hfDownsellVariant').val($('#herofunnelDownProduct').val());
@@ -136,7 +140,6 @@ module FrontendHelper
 				}
 		     };
 
-			
 		</script>
 		<style type=\"text/css\">
 			.hf-upsell .hf-pro-img{
