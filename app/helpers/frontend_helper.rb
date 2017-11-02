@@ -60,18 +60,18 @@ module FrontendHelper
 												</div>
 				      				</div>
 				      			</div>
-				      			
 						     <div>
 				      </div>
-				      <div class=\"upSellDes\">
+				    </div>
+		      </div>
+
+		      <div class=\"upSellDes\">
 		    				<div class=\"col-xs-12\">
 		      				<div class=\"hf-pro-desc\">
 		      					#{@up_product.body_html.html_safe}
 		      				</div>
 		    				</div>
 		    			</div>
-				    </div>
-		      </div>
 		      
 		      <div id=\"hfDownsellBody\" style=\"display:none;\">
 			      <div class=\"modal-body\">
