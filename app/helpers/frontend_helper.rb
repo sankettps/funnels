@@ -120,9 +120,9 @@ module FrontendHelper
 		<script>
 			var selectUpsellCallback = function(variant, selector) {
 						$('#hfUpsellVariant').val($('#herofunnelUpProduct').val());
-		        $('#hfDownsellBody .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelUpProduct').find(':selected').attr('data-price'));
+		        $('#hfUpsellBody .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelUpProduct').find(':selected').attr('data-price'));
 		        if($('#herofunnelUpProduct').find(':selected').attr('data-image')){
-					$('#hfDownsellBody .hf-pro-img').attr('src',$('#herofunnelUpProduct').find(':selected').attr('data-image'));
+					$('#hfUpsellBody .hf-pro-img').attr('src',$('#herofunnelUpProduct').find(':selected').attr('data-image'));
 				}
 		     };
 
@@ -133,10 +133,10 @@ module FrontendHelper
 		      });
 
 		   var selectDownsellCallback = function(variant, selector) {
-		   	$('#hfDownsellVariant').val($('#herofunnelDownProduct').val());
-		        $('#hfUpsellBody .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelDownProduct').find(':selected').attr('data-price'));
+		   		$('#hfDownsellVariant').val($('#herofunnelDownProduct').val());
+		        $('#hfDownsellBody .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelDownProduct').find(':selected').attr('data-price'));
 		        if($('#herofunnelDownProduct').find(':selected').attr('data-image')){
-					$('#hfUpsellBody .hf-pro-img').attr('src',$('#herofunnelDownProduct').find(':selected').attr('data-image'));
+					$('#hfDownsellBody .hf-pro-img').attr('src',$('#herofunnelDownProduct').find(':selected').attr('data-image'));
 				}
 		     };
 
