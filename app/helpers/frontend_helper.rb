@@ -65,7 +65,7 @@ module FrontendHelper
 				    </div>
 		      </div>
 
-		      <div class=\"upSellDes\">
+		      <div class=\"row upSellDes\">
 		    				<div class=\"col-xs-12\">
 		      				<div class=\"hf-pro-desc\">
 		      					#{@up_product.body_html.html_safe}
@@ -91,17 +91,22 @@ module FrontendHelper
 				      					<input type=\"hidden\" name=\"\" id=\"hfDownsellVariant\" value=\"#{@down_variant.id}\">
 				      				</div>
 				      			</div>
-				      			<input type=\"hidden\" name=\"\" id=\"hfDownsellVariant\" value=\"#{@up_variant.id}\">
-										<div class=\"product-single__variants\">
-											<select name=\"id\" id=\"herofunnelDownProduct\" class=\"product-single__variants\">"
-											@down_product.variants.each do |variant|
-												@html += "<option data-sku='#{variant.sku}' value='#{variant.id}' data-price='#{variant.price}' data-image='#{@down_product_img_array[variant.id]}'>#{variant.title}</option>"
-												end
-											@html += "</select>
-										</div>
+				      			<div class=\"row\">
+				      				<div class=\"col-xs-12\">
+				      					<input type=\"hidden\" name=\"\" id=\"hfDownsellVariant\" value=\"#{@up_variant.id}\">
+												<div class=\"product-single__variants\">
+													<select name=\"id\" id=\"herofunnelDownProduct\" class=\"product-single__variants\">"
+													@down_product.variants.each do |variant|
+														@html += "<option data-sku='#{variant.sku}' value='#{variant.id}' data-price='#{variant.price}' data-image='#{@down_product_img_array[variant.id]}'>#{variant.title}</option>"
+														end
+													@html += "</select>
+												</div>
+				      				</div>
+				      			</div>
+				      			
 						     	<div>
 				      </div>
-				      <div class=\"downSellDes\">
+				      <div class=\"row downSellDes\">
 		    				<div class=\"col-xs-12\">
 		      				<div class=\"hf-pro-desc\">
 		      					#{@down_product.body_html.html_safe}
@@ -123,6 +128,10 @@ module FrontendHelper
 		</div>
 		
 		<script>
+			this.optionSelector = new Shopify.OptionSelectors('herofunnelUpProduct', {
+		        product: #{@up_product.to_json},
+		        onVariantSelected: selectUpsellCallback,
+		        ena
 			var selectUpsellCallback = function(variant, selector) {
 						$('#hfUpsellVariant').val($('#herofunnelUpProduct').val());
 		        $('.hf-upsell .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelUpProduct').find(':selected').attr('data-price'));
@@ -131,7 +140,10 @@ module FrontendHelper
 				}
 		     };
 
-			
+			this.optionSelector = new Shopify.OptionSelectors('herofunnelDownProduct', {
+		        product: #{@up_product.to_json},
+		        onVariantSelected: selectUpsellCallback,
+		        ena
 
 		   var selectDownsellCallback = function(variant, selector) {
 		   	$('#hfDownsellVariant').val($('#herofunnelDownProduct').val());
