@@ -87,8 +87,14 @@ class ShopController < ApplicationController
 
     @qa=@qa.join(" #{@and_or} ")
     if @qa.present?
+      puts "Before===#{@query}"
       @query="#{@query}#{@qa}"
-      @query = @query.gsub("\'","'")
+      @query = @query.gsub("'",'"')
+      puts "middle===#{@query}"
+
+      @query = @query.gsub('\"','"')
+      puts "after===#{@query}"
+
       # render json: @query and return
       @products = @store.filter_shop_products.where(@query)
       # render json: @products and return
