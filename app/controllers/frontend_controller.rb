@@ -60,13 +60,14 @@ class FrontendController < ApplicationController
 	end
 
 	def funnel_product_purchased
-		funnel_products = params[:funnel_products].split(',')
-		upsell_products = params[:upsell_products].split(',')
-		downsell_products = params[:downsell_products].split(',')
-		funnel_products.each do |funnel_product|
-			
-		end
+		@shop = Shop.find_by_shopify_domain(params[:shop_id])
+		# funnel_product = FilterShopProduct.find_by(product_id: params[:funnel_product])
+		# upsell_product = FilterShopProduct.find_by(product_id: params[:upsell_product]) if params[:upsell_product].present?
+		# downsell_product = FilterShopProduct.find_by(product_id: params[:downsell_product]) if params[:downsell_product].present?
+		@shop.funnel_reports.create(product_id: params[:funnel_product],up_product_id: params[:upsell_product]) if params[:upsell_product].present?
+		@shop.funnel_reports.create(product_id: params[:funnel_product],down_product_id: params[:downsell_product]) if params[:downsell_product].present?
 	end
+
 	def test
 		@shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
   	ShopifyAPI::Base.site = @shop_url
