@@ -397,7 +397,7 @@ $(document).ready(function(){
         var selectedProduct = data.products;
         console.log("upsell-->",selectedProduct[0])
         $("#upsellProduct #upProducTitle").html(selectedProduct[0].title);
-        $("#upsellProduct #upProductImg").attr('src', 'value').show();
+        $("#upsellProduct #upProductImg").attr('src', selectedProduct[0].image.src).show();
         $('.up_product_id').val(selectedProduct[0].id);
       }
       if (data.errors) {
@@ -419,7 +419,7 @@ $(document).ready(function(){
         var selectedProduct = data.products;
         // console.log("downsell-->",selectedProduct[0]);
         $("#downsellProduct #downProducTitle").html(selectedProduct[0].title);
-        $("#downsellProduct #downProductImg").attr('src', 'value');
+        $("#downsellProduct #downProductImg").attr('src', selectedProduct[0].image.src);
         $('.down_product_id').val(selectedProduct[0].id);
         console.log("-------------->",selectedProduct[0])
       }
