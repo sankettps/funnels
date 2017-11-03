@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171101022104) do
+ActiveRecord::Schema.define(version: 20171103165810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,16 @@ ActiveRecord::Schema.define(version: 20171101022104) do
     t.index ["funnel_id"], name: "index_funnel_products_on_funnel_id"
   end
 
+  create_table "funnel_reports", force: :cascade do |t|
+    t.string "product_id"
+    t.string "up_product_id"
+    t.string "down_product_id"
+    t.bigint "shop_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shop_id"], name: "index_funnel_reports_on_shop_id"
+  end
+
   create_table "funnels", force: :cascade do |t|
     t.string "name"
     t.string "up_product_id"
@@ -79,5 +89,6 @@ ActiveRecord::Schema.define(version: 20171101022104) do
   add_foreign_key "filter_shop_products", "shops"
   add_foreign_key "funnel_products", "filter_shop_products"
   add_foreign_key "funnel_products", "funnels"
+  add_foreign_key "funnel_reports", "shops"
   add_foreign_key "funnels", "shops"
 end

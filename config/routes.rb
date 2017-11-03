@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "frontend/get_upsell_detail"
   get "frontend/test"
   get "frontend/getupsellproduct"
+  get "frontend/funnel_product_purchased"
   post "shop/filter_products"
 
   # post "frontend/getupsellproduct"
