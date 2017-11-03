@@ -61,6 +61,5 @@ gem 'jquery-ui-rails'
 gem 'jquery-datatables-rails', '~> 3.4'
 gem 'rack-cors', :require => 'rack/cors'
 # gem 'whenever', :require => false
-gem "font-awesome-rails"
 # get currency symbol from currency code
 gem 'currencies'
