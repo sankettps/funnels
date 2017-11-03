@@ -607,8 +607,9 @@ $(document).ready(function(){
 
       if (data.products.length > 0) {
         var selectedProduct = data.products;
-        // console.log("upsell-->",selectedProduct[0].title)
-        $("#upsellProduct ul").html("<li>" + selectedProduct[0].title + "</li>")
+        console.log("upsell-->",selectedProduct[0])
+        $("#upsellProduct #upProducTitle").html(selectedProduct[0].title);
+        $("#upsellProduct #upProductImg").attr('src', 'value').show();
         $('.up_product_id').val(selectedProduct[0].id);
         
         // useSelectedProducts(selectedProducts);
@@ -631,8 +632,9 @@ $(document).ready(function(){
 
       if (data.products.length > 0) {
         var selectedProduct = data.products;
-        // console.log("downsell-->",selectedProduct[0].title)
-        $("#downsellProduct ul").html("<li>" + selectedProduct[0].title + "</li>")
+        // console.log("downsell-->",selectedProduct[0]);
+        $("#downsellProduct #downProducTitle").html(selectedProduct[0].title);
+        $("#downsellProduct #downProductImg").attr('src', 'value');
         $('.down_product_id').val(selectedProduct[0].id);
         // useSelectedProducts(selectedProducts);
         console.log("-------------->",selectedProduct[0])

@@ -366,3 +366,12 @@ table tbody td:nth-child(3){
 .funnel-form .form-group label{
   font-weight: normal;
 }
+.single-product{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.single-product button{
+  /*position: relative;*/
+  /*right: -310%;*/
+}

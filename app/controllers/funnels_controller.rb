@@ -52,8 +52,8 @@ class FunnelsController < ShopifyApp::AuthenticatedController
     @product_custom_collections=ShopifyAPI::CustomCollection.find(:all).collect(&:title).join(",")
     @product_smart_collections=ShopifyAPI::SmartCollection.find(:all).collect(&:title).join(",")
 
-    @upsell_product_name = FilterShopProduct.find(@funnel.up_product_id).title
-    @downsell_product_name = FilterShopProduct.find(@funnel.down_product_id).title
+    # @upsell_product_name = FilterShopProduct.find(@funnel.up_product_id).title
+    # @downsell_product_name = FilterShopProduct.find(@funnel.down_product_id).title
 
   end
 
