@@ -56,17 +56,22 @@ module FrontendHelper
 												end
 											@html += "</select>
 										</div>
-						     <div>
+						     </div>
 				      </div>
+				      <div class=\"row upSellDes\">
+		    				<div class=\"col-xs-12\">
+		      				<div class=\"hf-pro-desc\">
+		      					#{@up_product.body_html.html_safe}
+		      				</div>
+		    				</div>
+    					</div>
 				    </div>
+				    <div class=\"modal-footer\">
+					    <button type=\"button\" class=\"btn btn-success\" id=\"hfUpsellBuy\">Buy Now</button>
+					    <button type=\"button\" class=\"btn btn-default\" id=\"hfUpsellCancel\">Cancel</button>
+						</div>
 		      </div>
-		      <div class=\"row upSellDes\">
-    				<div class=\"col-xs-12\">
-      				<div class=\"hf-pro-desc\">
-      					#{@up_product.body_html.html_safe}
-      				</div>
-    				</div>
-    			</div>
+		     
 		      <div id=\"hfDownsellBody\" style=\"display:none;\">
 			      <div class=\"modal-body\">
 				      <div class=\"row\">
@@ -93,35 +98,31 @@ module FrontendHelper
 												end
 											@html += "</select>
 										</div>
-						     <div>
+						     </div>
+				      </div>
+				      <div class=\"row downSellDes\">
+		    				<div class=\"col-xs-12\">
+		      				<div class=\"hf-pro-desc\">
+		      					#{@down_product.body_html.html_safe}
+		      				</div>
+		    				</div>
+		    			</div>
+		    			<div class=\"modal-footer\">
+				        <button type=\"button\" class=\"btn btn-success\" id=\"hfDownsellBuy\">Buy Now</button>
+				        <button type=\"button\" class=\"btn btn-default\" id=\"hfDownsellCancel\">Cancel</button>
 				      </div>
 				    </div>
-			      <div class=\"modal-footer\">
-			        <button type=\"button\" class=\"btn btn-success\" id=\"hfDownsellBuy\">Buy Now</button>
-			        <button type=\"button\" class=\"btn btn-default\" id=\"hfDownsellCancel\">Cancel</button>
-			      </div>
 		      </div>
-
-		      <div class=\"row downSellDes\">
-    				<div class=\"col-xs-12\">
-      				<div class=\"hf-pro-desc\">
-      					#{@down_product.body_html.html_safe}
-      				</div>
-    				</div>
-    			</div>
 		    </div>
 		  </div>
-		  <div class=\"modal-footer\">
-			    <button type=\"button\" class=\"btn btn-success\" id=\"hfUpsellBuy\">Buy Now</button>
-			    <button type=\"button\" class=\"btn btn-default\" id=\"hfUpsellCancel\">Cancel</button>
-			</div>
 		</div>
 		
 		<script>
 			var selectUpsellCallback = function(variant, selector) {
-		        $('.hf-upsell .pro-price').html(#{@shop.currency_symbol} $('#herofunnelUpProduct').find(':selected').attr('data-price'));
+						$('#hfUpsellVariant').val($('#herofunnelUpProduct').val());
+		        $('#hfUpsellBody .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelUpProduct').find(':selected').attr('data-price'));
 		        if($('#herofunnelUpProduct').find(':selected').attr('data-image')){
-					$('.hf-upsell .hf-pro-img').attr('src',$('#herofunnelUpProduct').find(':selected').attr('data-image'));
+					$('#hfUpsellBody .hf-pro-img').attr('src',$('#herofunnelUpProduct').find(':selected').attr('data-image'));
 				}
 		     };
 
@@ -132,15 +133,16 @@ module FrontendHelper
 		      });
 
 		   var selectDownsellCallback = function(variant, selector) {
-		        $('.hf-upsell .pro-price').html(#{@shop.currency_symbol} $('#herofunnelDownProduct').find(':selected').attr('data-price'));
+		   		$('#hfDownsellVariant').val($('#herofunnelDownProduct').val());
+		        $('#hfDownsellBody .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelDownProduct').find(':selected').attr('data-price'));
 		        if($('#herofunnelDownProduct').find(':selected').attr('data-image')){
-					$('.hf-upsell .hf-pro-img').attr('src',$('#herofunnelDownProduct').find(':selected').attr('data-image'));
+					$('#hfDownsellBody .hf-pro-img').attr('src',$('#herofunnelDownProduct').find(':selected').attr('data-image'));
 				}
 		     };
 
-			this.optionSelector = new Shopify.OptionSelectors('selectDownsellCallback', {
-		        product: #{@up_product.to_json},
-		        onVariantSelected: selectUpsellCallback,
+			this.optionSelector = new Shopify.OptionSelectors('herofunnelDownProduct', {
+		        product: #{@down_product.to_json},
+		        onVariantSelected: selectDownsellCallback,
 		        enableHistoryState: this.enableHistoryState
 		      });
 		</script>

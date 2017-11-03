@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # get "dashboard/dashboard"
+  get "dashboard/dashboard"
   # root :to => 'home#index'
   root :to => 'dashboard#dashboard'
 
@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get "frontend/get_upsell_detail"
   get "frontend/test"
   get "frontend/getupsellproduct"
+  post "shop/filter_products"
+
   # post "frontend/getupsellproduct"
   mount ShopifyApp::Engine, at: '/'
   # match ':controller(/:action(/:id(.:format)))' => 'offers#list', via: [:get, :post]
