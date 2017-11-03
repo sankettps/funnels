@@ -96,7 +96,7 @@
             <button class="btn btn-danger filter-reset" type="reset">Reset</button>
           </div> 
         </div>   
-        <div class="panel panel-default product-filter">
+        <div class="panel panel-default product-filter" id="funnelProducts">
           <div class="panel-heading">
               Funnel Products
           </div>
@@ -142,13 +142,12 @@
                 Upsell Product
             </div>
             <div class="panel-body">
-            <button type="button" class="btn btn-default" id="btnUpsellProduct">Select Product</button>
-             <div id="upsellProduct">
-                <ul>
-                  <li>
-                    No upsell product selected.
-                  </li>
-                </ul>
+              <div id="upsellProduct">
+                <img src="" width="30" height="30" id="upProductImg" style="display: none;" />
+                <span class="m-l-15" id="upProducTitle">
+                  No upsell product selected.
+                </span>
+                <button type="button" class="btn btn-small btn-success pull-right" id="btnUpsellProduct">Select Product</button>
               </div>
             </div>
         </div>
@@ -158,13 +157,12 @@
                 Downsell Product
             </div>
             <div class="panel-body">
-                <button type="button" class="btn btn-default" id="btnDownsellProduct">Select Product</button>
-                <div id="downsellProduct">
-                <ul>
-                  <li>
-                    No downsell product selected.
-                  </li>
-                </ul>
+              <div id="downsellProduct">
+                <img src="" width="30" height="30" id="downProductImg" style="display: none;" />
+                <span class="m-l-15" id="downProducTitle">
+                  No downsell product selected.
+                </span>
+                <button type="button" class="btn btn-small btn-success pull-right" id="btnDownsellProduct">Select Product</button>
               </div>
             </div>
         </div>

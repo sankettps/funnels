@@ -395,7 +395,9 @@ $(document).ready(function(){
 
       if (data.products.length > 0) {
         var selectedProduct = data.products;
-        $("#upsellProduct ul").html("<li>" + selectedProduct[0].title + "</li>")
+        console.log("upsell-->",selectedProduct[0])
+        $("#upsellProduct #upProducTitle").html(selectedProduct[0].title);
+        $("#upsellProduct #upProductImg").attr('src', selectedProduct[0].image.src).show();
         $('.up_product_id').val(selectedProduct[0].id);
       }
       if (data.errors) {
@@ -415,7 +417,9 @@ $(document).ready(function(){
 
       if (data.products.length > 0) {
         var selectedProduct = data.products;
-        $("#downsellProduct ul").html("<li>" + selectedProduct[0].title + "</li>")
+        // console.log("downsell-->",selectedProduct[0]);
+        $("#downsellProduct #downProducTitle").html(selectedProduct[0].title);
+        $("#downsellProduct #downProductImg").attr('src', selectedProduct[0].image.src);
         $('.down_product_id').val(selectedProduct[0].id);
         console.log("-------------->",selectedProduct[0])
       }
