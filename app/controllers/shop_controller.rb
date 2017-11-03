@@ -92,7 +92,7 @@ class ShopController < ApplicationController
       @query = @query.gsub("'",'"')
       puts "middle===#{@query}"
 
-      @query = @query.gsub('\"','"')
+      @query = @query.gsub('\"',"'")
       puts "after===#{@query}"
 
       # render json: @query and return
