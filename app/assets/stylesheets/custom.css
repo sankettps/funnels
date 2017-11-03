@@ -378,3 +378,9 @@ table tbody td:nth-child(3){
 .dropdown-toggle span{
   padding-left: 6px;
 }
+.app-wrapper .navbar{
+  box-shadow: none;
+}
+.app-wrapper .navbar .glyphicon{
+  font-size: 16px;
+}
