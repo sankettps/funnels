@@ -119,7 +119,7 @@ class ShopController < ApplicationController
       @p_image = 
       @shop_url="https://#{@store_id}/admin/products/#{product[0]}"
 
-      @html = "<tr class='single_product #{product[0]}'><td>#{product[0]}</td><td><img src='#{product[2]}' width='30' height='30' /></td><td data-pid='#{product[0]}' data-ptitle='#{product[0]}' data-pimage='#{product[2]}' class='product_data'>#{product[1]}</td><td><button type='button' class='btn btn-small btn-success add-product'>Add</button></td></tr>"
+      @html = "<tr class='single_product #{product[0]}'><td>#{product[0]}</td><td><img src='#{product[2]}' width='30' height='30' /></td><td data-pid='#{product[0]}' data-ptitle='#{product[1]}' data-pimage='#{product[2]}' class='product_data'>#{product[1]}</td><td><button type='button' class='btn btn-small btn-success add-product'>Add</button></td></tr>"
 
 
       @table_html = @table_html + @html
