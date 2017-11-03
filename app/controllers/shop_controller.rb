@@ -35,7 +35,7 @@ class ShopController < ApplicationController
 
     @all_products_array = []
     if params[:ptitle].present?
-      params[:ptitle] = params[:ptitle].gsub("'", %q(\\\'))
+      params[:ptitle] = params[:ptitle].gsub("'","\'")
       @qa.push("title = '#{params[:ptitle]}'")
     end
 
@@ -87,14 +87,7 @@ class ShopController < ApplicationController
 
     @qa=@qa.join(" #{@and_or} ")
     if @qa.present?
-      puts "Before===#{@query}"
       @query="#{@query}#{@qa}"
-      @query = @query.gsub("'",'"')
-      puts "middle===#{@query}"
-
-      @query = @query.gsub('\"',"'")
-      puts "after===#{@query}"
-
       # render json: @query and return
       @products = @store.filter_shop_products.where(@query)
       # render json: @products and return
@@ -126,7 +119,7 @@ class ShopController < ApplicationController
       @p_image = 
       @shop_url="https://#{@store_id}/admin/products/#{product[0]}"
 
-      @html = "<tr class='single_product #{product[0]}'><td>#{product[0]}</td><td><img src='#{product[2]}' width='30' height='30' /></td><td data-pid='#{product[0]}' data-ptitle='#{product[0]}' data-pimage='#{product[2]}' class='product_data'>#{product[1]}</td><td><button type='button' class='btn btn-small btn-success add-product'>Add</button></td></tr>"
+      @html = "<tr class='single_product #{product[0]}'><td>#{product[0]}</td><td><img src='#{product[2]}' width='30' height='30' /></td><td data-pid='#{product[0]}' data-ptitle='#{product[1]}' data-pimage='#{product[2]}' class='product_data'>#{product[1]}</td><td><button type='button' class='btn btn-small btn-success add-product'>Add</button></td></tr>"
 
 
       @table_html = @table_html + @html
