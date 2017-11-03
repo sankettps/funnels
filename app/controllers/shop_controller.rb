@@ -35,7 +35,7 @@ class ShopController < ApplicationController
 
     @all_products_array = []
     if params[:ptitle].present?
-      params[:ptitle] = params[:ptitle].gsub("'","\'")
+      params[:ptitle] = params[:ptitle].gsub("'", %q(\\\'))
       @qa.push("title = '#{params[:ptitle]}'")
     end
 
