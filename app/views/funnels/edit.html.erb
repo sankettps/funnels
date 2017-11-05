@@ -13,164 +13,166 @@
     <div class="product-custom-collections hide"><%= @product_custom_collections %></div> 
     <div class="product-smart-collections hide"><%= @product_smart_collections %></div>
     <div class="product-tags hide"><%= @product_tags %></div>
-    <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-12">
 
-      <div class="panel panel-default" id="funnelDetail">
+        <div class="panel panel-default" id="funnelDetail">
+            <div class="panel-heading">
+                Funnel Detail
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <div class="col-sm-6">
+                  <label for="productTitle">Funnel Name</label>
+                  <input type="text" name="funnel[name]" id="funnelName" class="form-control" placeholder="Enter Funnel Name" value="<%= @funnel.name %>"> 
+                </div>
+                <div class="col-sm-6">
+                  <label for="productTitle">Funnel Popup Title</label>
+                  <input type="text" name="funnel[title]" id="funnelTitle" class="form-control" placeholder="Enter Funnel Title" value="<%= @funnel.title %>">
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
           <div class="panel-heading">
-              Funnel Detail
+            Product Filter
           </div>
           <div class="panel-body">
             <div class="form-group">
               <div class="col-sm-6">
-                <label for="productTitle">Funnel Name</label>
-                <input type="text" name="funnel[name]" id="funnelName" class="form-control" placeholder="Enter Funnel Name" value="<%= @funnel.name %>"> 
+                <label for="productTitle">Product Title</label>
+                <input type="text" id="productTitle" class="form-control" placeholder="Enter Product Title">
               </div>
               <div class="col-sm-6">
-                <label for="productTitle">Funnel Popup Title</label>
-                <input type="text" name="funnel[title]" id="funnelTitle" class="form-control" placeholder="Enter Funnel Title" value="<%= @funnel.title %>">
+                <label for="productType">Product Type</label>
+                <input type="text" id="productType" class="form-control" placeholder="Enter Product Type">
               </div>
             </div>
-          </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          Product Filter
-        </div>
-        <div class="panel-body">
-          <div class="form-group">
-            <div class="col-sm-6">
-              <label for="productTitle">Product Title</label>
-              <input type="text" id="productTitle" class="form-control" placeholder="Enter Product Title">
-            </div>
-            <div class="col-sm-6">
-              <label for="productType">Product Type</label>
-              <input type="text" id="productType" class="form-control" placeholder="Enter Product Type">
-            </div>
-          </div>
 
-          <div class="form-group">
-            <div class="col-sm-6">
-              <label for="customCollection">Custom Collection</label>
-              <input type="text" id="customCollection" class="form-control" placeholder="Enter Custom Collection">
-            </div>
-            <div class="col-sm-6">
-              <label for="smallCollection">Smart Collection</label>
-              <input type="text" id="smallCollection" class="form-control" placeholder="Enter Smart Collection">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-sm-6">
-              <label for="productTag">Product Tag</label>
-              <input type="text" id="productTag" class="form-control" placeholder="Enter Product Tag">
-            </div>
-            <div class="col-sm-6">
-              <label for="andOrCondition">Select Condition</label>
-              <select class="form-control" id="andOrCondition">
-                <option value="OR">OR</option>
-                <option value="AND">AND</option>
-              </select>
-            </div>
-          </div>
-
-          <button class="btn btn-primary filter-submit" type="button">Apply Filter</button>
-          <button class="btn btn-danger filter-reset" type="reset">Reset</button>
-        </div>
-      </div>
-
-      <div class="panel panel-default product-filter" id="funnelProducts">
-        <div class="panel-heading">
-            Funnel Products
-        </div>
-        <div class="panel-body">
-          <div class="form-group">
-            <div class="select_products_section">              
+            <div class="form-group">
               <div class="col-sm-6">
-                <div class="row clearfix table_top_portion_left">
-                </div>
-                <div id="products">
-                  <%= render 'getproducts' %>
-                </div>
-              </div>  
+                <label for="customCollection">Custom Collection</label>
+                <input type="text" id="customCollection" class="form-control" placeholder="Enter Custom Collection">
+              </div>
               <div class="col-sm-6">
-                <div class="row table_top_portion_right">
-                </div>
-                <div class="right_table">
-                  <table class="table selected_products table-striped">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th class="col-md-10"><h4>Selected Products</h4></th>
-                            <th class="col-md-2"><button type="button" class="btn btn-danger remove-all">Remove All</button></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <% @funnel.funnel_products.each do |fproduct| %>
-                    <% @filter_product = FilterShopProduct.find(fproduct.filter_shop_product_id) %>
-                    	<tr class="single_product <%= @filter_product.product_id %>"><td><img src="<%= @filter_product.image %>" width="30" height="30"></td><td data-pid="<%= @filter_product.product_id %>" data-ptitle="<%= @filter_product.title %>" fidget="" spinner="" class="product_data"><%= @filter_product.title %></td><td><button type="button" class="btn btn-small btn-danger remove-product">Remove</button></td></tr>
-                    <% end %>
-
-                      
-                    </tbody>
-                  </table>
-                </div>
-                <div class="selected_products_count">Showing 0 entries</div>
-
+                <label for="smallCollection">Smart Collection</label>
+                <input type="text" id="smallCollection" class="form-control" placeholder="Enter Smart Collection">
               </div>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="panel panel-default" id="upSellPanel">
-        <div class="panel-heading">
-          Upsell Product
-        </div>
-        <div class="panel-body">
-          <!-- <button type="button" class="btn btn-default" id="btnUpsellProduct">Select Product</button> -->
-           <!-- <div id="upsellProduct">
-              <ul>
-                <li>
-                  <%= @upsell_product_name %>
-                </li>
-              </ul>
+            <div class="form-group">
+              <div class="col-sm-6">
+                <label for="productTag">Product Tag</label>
+                <input type="text" id="productTag" class="form-control" placeholder="Enter Product Tag">
+              </div>
+              <div class="col-sm-6">
+                <label for="andOrCondition">Select Condition</label>
+                <select class="form-control" id="andOrCondition">
+                  <option value="OR">OR</option>
+                  <option value="AND">AND</option>
+                </select>
+              </div>
             </div>
-          </div> -->
-          <div id="upsellProduct">
-            <img src="<%= @funnel.up_product.image %>" width="30" height="30" id="upProductImg" />
-            <span class="m-l-15" id="upProducTitle">
-              <%= @funnel.up_product.title %>
-            </span>
-            <button type="button" class="btn btn-small btn-success pull-right" id="btnUpsellProduct">Select Product</button>
+
+            <button class="btn btn-primary filter-submit" type="button">Apply Filter</button>
+            <button class="btn btn-danger filter-reset" type="reset">Reset</button>
           </div>
         </div>
-      </div>
 
-      <div class="panel panel-default" id="downSellPanel">
+        <div class="panel panel-default product-filter" id="funnelProducts">
           <div class="panel-heading">
-              Downsell Product
+              Funnel Products
           </div>
           <div class="panel-body">
-              <!-- <button type="button" class="btn btn-default" id="btnDownsellProduct">Select Product</button>
-              <div id="downsellProduct">
-              <ul>
-                <li>
-                  <%= @downsell_product_name %>
-                </li>
-              </ul>
-            </div> -->
-            <div id="downsellProduct">
-              <img src="<%= @funnel.down_product.image %>" width="30" height="30" id="downProductImg" />
-              <span class="m-l-15" id="downProducTitle">
-                <%= @funnel.down_product.title %>
-              </span>
-              <button type="button" class="btn btn-small btn-success pull-right" id="btnDownsellProduct">Select Product</button>
+            <div class="form-group">
+              <div class="select_products_section">              
+                <div class="col-sm-6">
+                  <div class="row clearfix table_top_portion_left">
+                  </div>
+                  <div id="products">
+                    <%= render 'getproducts' %>
+                  </div>
+                </div>  
+                <div class="col-sm-6">
+                  <div class="row table_top_portion_right">
+                  </div>
+                  <div class="right_table">
+                    <table class="table selected_products table-striped">
+                      <thead>
+                          <tr>
+                              <th></th>
+                              <th class="col-md-10"><h4>Selected Products</h4></th>
+                              <th class="col-md-2"><button type="button" class="btn btn-danger remove-all">Remove All</button></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                      <% @funnel.funnel_products.each do |fproduct| %>
+                      <% @filter_product = FilterShopProduct.find(fproduct.filter_shop_product_id) %>
+                      	<tr class="single_product <%= @filter_product.product_id %>"><td><img src="<%= @filter_product.image %>" width="30" height="30"></td><td data-pid="<%= @filter_product.product_id %>" data-ptitle="<%= @filter_product.title %>" fidget="" spinner="" class="product_data"><%= @filter_product.title %></td><td><button type="button" class="btn btn-small btn-danger remove-product">Remove</button></td></tr>
+                      <% end %>
+
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="selected_products_count">Showing 0 entries</div>
+
+                </div>
+              </div>
             </div>
           </div>
+        </div>
+
+        <div class="panel panel-default" id="upSellPanel">
+          <div class="panel-heading">
+            Upsell Product
+          </div>
+          <div class="panel-body">
+            <!-- <button type="button" class="btn btn-default" id="btnUpsellProduct">Select Product</button> -->
+             <!-- <div id="upsellProduct">
+                <ul>
+                  <li>
+                    <%= @upsell_product_name %>
+                  </li>
+                </ul>
+              </div>
+            </div> -->
+            <div id="upsellProduct">
+              <img src="<%= @funnel.up_product.image %>" width="30" height="30" id="upProductImg" />
+              <span class="m-l-15" id="upProducTitle">
+                <%= @funnel.up_product.title %>
+              </span>
+              <button type="button" class="btn btn-small btn-success pull-right" id="btnUpsellProduct">Select Product</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-default" id="downSellPanel">
+            <div class="panel-heading">
+                Downsell Product
+            </div>
+            <div class="panel-body">
+                <!-- <button type="button" class="btn btn-default" id="btnDownsellProduct">Select Product</button>
+                <div id="downsellProduct">
+                <ul>
+                  <li>
+                    <%= @downsell_product_name %>
+                  </li>
+                </ul>
+              </div> -->
+              <div id="downsellProduct">
+                <img src="<%= @funnel.down_product.image %>" width="30" height="30" id="downProductImg" />
+                <span class="m-l-15" id="downProducTitle">
+                  <%= @funnel.down_product.title %>
+                </span>
+                <button type="button" class="btn btn-small btn-success pull-right" id="btnDownsellProduct">Select Product</button>
+              </div>
+            </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-danger funnel-submit">Submit</button>
       </div>
-
-
-      <button type="submit" class="btn btn-danger funnel-submit">Submit</button>
     </div>
   <% end %>   
 </div>

@@ -12,163 +12,165 @@
       <div class="product-custom-collections hide"><%= @product_custom_collections %></div> 
       <div class="product-smart-collections hide"><%= @product_smart_collections %></div>
       <div class="product-tags hide"><%= @product_tags %></div>
-      <div class="col-sm-12">
+      <div class="row>"
+        <div class="col-sm-12">
 
-        <div class="panel panel-default" id="funnelDetail">
+          <div class="panel panel-default" id="funnelDetail">
+              <div class="panel-heading">
+                  Funnel Detail
+              </div>
+              <div class="panel-body">
+                <div class="form-group">
+                  <div class="col-sm-6">
+                    <label for="productTitle">Funnel Name</label>
+                    <input type="text" name="funnel[name]" id="funnelName" class="form-control" placeholder="Enter Funnel Name" required>
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="productTitle">Funnel Popup Title</label>
+                    <input type="text" name="funnel[title]" id="funnelTitle" class="form-control" placeholder="Enter Funnel Title">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-6">
+                    <label for="productTitle">Redirect Page (After adding product to cart from funnel popup)</label>
+                    <div class="radio">
+                      <label><input type="radio" name="funnel[redirect_page]" value="checkout">Checkout</label>
+                    </div>
+                    <div class="radio">
+                      <label><input type="radio" name="funnel[redirect_page]" value="cart" checked>Cart</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="productTitle">Display Description in funnel popup</label>
+                    <div class="radio">
+                      <label><input type="radio" name="funnel[is_display_desc]" value="true" checked>Yes</label>
+                    </div>
+                    <div class="radio">
+                      <label><input type="radio" name="funnel[is_display_desc]" value="false">No</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="panel panel-default product-filter">
             <div class="panel-heading">
-                Funnel Detail
+                Product Filter
             </div>
             <div class="panel-body">
               <div class="form-group">
                 <div class="col-sm-6">
-                  <label for="productTitle">Funnel Name</label>
-                  <input type="text" name="funnel[name]" id="funnelName" class="form-control" placeholder="Enter Funnel Name" required>
+                  <label for="productTitle">Product Title</label>
+                  <input type="text" id="productTitle" class="form-control" placeholder="Enter Product Title">
                 </div>
                 <div class="col-sm-6">
-                  <label for="productTitle">Funnel Popup Title</label>
-                  <input type="text" name="funnel[title]" id="funnelTitle" class="form-control" placeholder="Enter Funnel Title">
+                  <label for="productType">Product Type</label>
+                  <input type="text" id="productType" class="form-control" placeholder="Enter Product Type">
                 </div>
               </div>
+
               <div class="form-group">
                 <div class="col-sm-6">
-                  <label for="productTitle">Redirect Page (After adding product to cart from funnel popup)</label>
-                  <div class="radio">
-                    <label><input type="radio" name="funnel[redirect_page]" value="checkout">Checkout</label>
-                  </div>
-                  <div class="radio">
-                    <label><input type="radio" name="funnel[redirect_page]" value="cart" checked>Cart</label>
-                  </div>
+                  <label for="customCollection">Custom Collection</label>
+                  <input type="text" id="customCollection" class="form-control" placeholder="Enter Custom Collection">
                 </div>
                 <div class="col-sm-6">
-                  <label for="productTitle">Display Description in funnel popup</label>
-                  <div class="radio">
-                    <label><input type="radio" name="funnel[is_display_desc]" value="true" checked>Yes</label>
-                  </div>
-                  <div class="radio">
-                    <label><input type="radio" name="funnel[is_display_desc]" value="false">No</label>
-                  </div>
+                  <label for="smallCollection">Smart Collection</label>
+                  <input type="text" id="smallCollection" class="form-control" placeholder="Enter Smart Collection">
                 </div>
               </div>
-            </div>
-        </div>
-        <div class="panel panel-default product-filter">
-          <div class="panel-heading">
-              Product Filter
-          </div>
-          <div class="panel-body">
-            <div class="form-group">
-              <div class="col-sm-6">
-                <label for="productTitle">Product Title</label>
-                <input type="text" id="productTitle" class="form-control" placeholder="Enter Product Title">
-              </div>
-              <div class="col-sm-6">
-                <label for="productType">Product Type</label>
-                <input type="text" id="productType" class="form-control" placeholder="Enter Product Type">
-              </div>
-            </div>
 
-            <div class="form-group">
-              <div class="col-sm-6">
-                <label for="customCollection">Custom Collection</label>
-                <input type="text" id="customCollection" class="form-control" placeholder="Enter Custom Collection">
-              </div>
-              <div class="col-sm-6">
-                <label for="smallCollection">Smart Collection</label>
-                <input type="text" id="smallCollection" class="form-control" placeholder="Enter Smart Collection">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-sm-6">
-                <label for="productTag">Product Tag</label>
-                <input type="text" id="productTag" class="form-control" placeholder="Enter Product Tag">
-              </div>
-              <div class="col-sm-6">
-                <label for="andOrCondition">Select Condition</label>
-                <select class="form-control" id="andOrCondition">
-                  <option value="OR">OR</option>
-                  <option value="AND">AND</option>
-                </select>
-              </div>
-            </div>
-
-            <button class="btn btn-primary filter-submit" type="button">Apply Filter</button>
-            <button class="btn btn-danger filter-reset" type="reset">Reset</button>
-          </div> 
-        </div>   
-        <div class="panel panel-default product-filter" id="funnelProducts">
-          <div class="panel-heading">
-              Funnel Products
-          </div>
-          <div class="panel-body">
-            <div class="form-group">
-              <div class="select_products_section">              
+              <div class="form-group">
                 <div class="col-sm-6">
-                  <div class="row clearfix table_top_portion_left">
-                  </div>
-                  <div id="products">
-                    <%= render 'getproducts' %>
-                  </div>
-                </div>  
+                  <label for="productTag">Product Tag</label>
+                  <input type="text" id="productTag" class="form-control" placeholder="Enter Product Tag">
+                </div>
                 <div class="col-sm-6">
-                  <div class="row table_top_portion_right">
-                  </div>
-                  <div class="right_table">
-                    <table class="table selected_products table-striped">
-                      <thead>
-                          <tr>
-                              <th></th>
-                              <th class="col-md-10"><h4>Selected Products</h4></th>
-                              <th class="col-md-2"><button type="button" class="btn btn-danger remove-all">Remove All</button></th>
+                  <label for="andOrCondition">Select Condition</label>
+                  <select class="form-control" id="andOrCondition">
+                    <option value="OR">OR</option>
+                    <option value="AND">AND</option>
+                  </select>
+                </div>
+              </div>
+
+              <button class="btn btn-primary filter-submit" type="button">Apply Filter</button>
+              <button class="btn btn-danger filter-reset" type="reset">Reset</button>
+            </div> 
+          </div>   
+          <div class="panel panel-default product-filter" id="funnelProducts">
+            <div class="panel-heading">
+                Funnel Products
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <div class="select_products_section">              
+                  <div class="col-sm-6">
+                    <div class="row clearfix table_top_portion_left">
+                    </div>
+                    <div id="products">
+                      <%= render 'getproducts' %>
+                    </div>
+                  </div>  
+                  <div class="col-sm-6">
+                    <div class="row table_top_portion_right">
+                    </div>
+                    <div class="right_table">
+                      <table class="table selected_products table-striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="col-md-10"><h4>Selected Products</h4></th>
+                                <th class="col-md-2"><button type="button" class="btn btn-danger remove-all">Remove All</button></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="no_products">
+                              <td colspan="3" class="dataTables_empty">No products selected</td>
                           </tr>
-                      </thead>
-                      <tbody>
-                        <tr class="no_products">
-                            <td colspan="3" class="dataTables_empty">No products selected</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="selected_products_count">Showing 0 entries</div>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="selected_products_count">Showing 0 entries</div>
 
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="panel panel-default" id="upSellPanel">
-            <div class="panel-heading">
-                Upsell Product
-            </div>
-            <div class="panel-body">
-              <div id="upsellProduct">
-                <img src="" width="30" height="30" id="upProductImg" style="display: none;" />
-                <span class="m-l-15" id="upProducTitle">
-                  No upsell product selected.
-                </span>
-                <button type="button" class="btn btn-small btn-success pull-right" id="btnUpsellProduct">Select Product</button>
+          <div class="panel panel-default" id="upSellPanel">
+              <div class="panel-heading">
+                  Upsell Product
               </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default" id="downSellPanel">
-            <div class="panel-heading">
-                Downsell Product
-            </div>
-            <div class="panel-body">
-              <div id="downsellProduct">
-                <img src="" width="30" height="30" id="downProductImg" style="display: none;" />
-                <span class="m-l-15" id="downProducTitle">
-                  No downsell product selected.
-                </span>
-                <button type="button" class="btn btn-small btn-success pull-right" id="btnDownsellProduct">Select Product</button>
+              <div class="panel-body">
+                <div id="upsellProduct">
+                  <img src="" width="30" height="30" id="upProductImg" style="display: none;" />
+                  <span class="m-l-15" id="upProducTitle">
+                    No upsell product selected.
+                  </span>
+                  <button type="button" class="btn btn-small btn-success pull-right" id="btnUpsellProduct">Select Product</button>
+                </div>
               </div>
-            </div>
+          </div>
+
+          <div class="panel panel-default" id="downSellPanel">
+              <div class="panel-heading">
+                  Downsell Product
+              </div>
+              <div class="panel-body">
+                <div id="downsellProduct">
+                  <img src="" width="30" height="30" id="downProductImg" style="display: none;" />
+                  <span class="m-l-15" id="downProducTitle">
+                    No downsell product selected.
+                  </span>
+                  <button type="button" class="btn btn-small btn-success pull-right" id="btnDownsellProduct">Select Product</button>
+                </div>
+              </div>
+          </div>
+
+
+          <button type="submit" class="btn btn-danger funnel-submit">Submit</button>
         </div>
-
-
-        <button type="submit" class="btn btn-danger funnel-submit">Submit</button>
       </div>
     <% end %>   
   </div>
