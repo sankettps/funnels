@@ -64,8 +64,8 @@ class FrontendController < ApplicationController
 		# funnel_product = FilterShopProduct.find_by(product_id: params[:funnel_product])
 		# upsell_product = FilterShopProduct.find_by(product_id: params[:upsell_product]) if params[:upsell_product].present?
 		# downsell_product = FilterShopProduct.find_by(product_id: params[:downsell_product]) if params[:downsell_product].present?
-		@shop.funnel_reports.create(product_id: params[:funnel_product],up_product_id: params[:upsell_product]) if params[:upsell_product].present?
-		@shop.funnel_reports.create(product_id: params[:funnel_product],down_product_id: params[:downsell_product]) if params[:downsell_product].present?
+		@shop.funnel_reports.create(product_id: params[:product_id],up_product_id: params[:upsell_product]) if params[:upsell_product].present?
+		@shop.funnel_reports.create(product_id: params[:product_id],down_product_id: params[:downsell_product]) if params[:downsell_product].present?
 	end
 
 	def test
