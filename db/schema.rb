@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 20171103165810) do
     t.string "product_id"
     t.string "up_product_id"
     t.string "down_product_id"
+    t.string "action"
+    t.float "price"
     t.bigint "shop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -15,6 +15,8 @@
 //= require rails-ujs
 //= require bootstrap
 //= require metisMenu
+//= require raphael
+//= require morris
 //= require sb-admin-2
 //= require sweetalert
 //= require jquery-ui
