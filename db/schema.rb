@@ -68,6 +68,8 @@ ActiveRecord::Schema.define(version: 20171103165810) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "title"
+    t.boolean "is_display_desc"
+    t.string "redirect_page"
     t.index ["shop_id"], name: "index_funnels_on_shop_id"
   end
 
@@ -82,8 +84,6 @@ ActiveRecord::Schema.define(version: 20171103165810) do
     t.string "currency_symbol"
     t.string "currency"
     t.boolean "is_products_clonning", default: false
-    t.boolean "is_display_desc"
-    t.string "redirect_page"
     t.index ["shopify_domain"], name: "index_shops_on_shopify_domain", unique: true
   end
 

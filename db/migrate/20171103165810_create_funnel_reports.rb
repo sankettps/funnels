@@ -6,6 +6,7 @@ class CreateFunnelReports < ActiveRecord::Migration[5.1]
       t.string :down_product_id
       t.string :hf_action
       t.float :price
+      t.datetime :temp_date
       t.references :shop, foreign_key: true
 
       t.timestamps
