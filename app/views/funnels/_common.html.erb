@@ -430,6 +430,10 @@ $(document).ready(function(){
       }
     })
   });
+
+   $(document).on('click', '.product-filter .panel-heading', function(event) {
+    $(".product-filter .panel-body").slideToggle();
+  });
   
 });
   

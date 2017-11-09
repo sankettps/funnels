@@ -138,6 +138,6 @@ class FunnelsController < ShopifyApp::AuthenticatedController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def funnel_params
-      params.require(:funnel).permit(:name, :title, :up_product_id, :down_product_id, :is_active, :shop_id,:is_display_desc, :redirect_page)
+      params.require(:funnel).permit(:name, :title, :up_product_id, :down_product_id, :is_active, :shop_id, :is_display_desc, :redirect_page)
     end
 end
