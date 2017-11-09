@@ -39,7 +39,7 @@ class FrontendController < ApplicationController
 			 			end
 			 		end
 			 	end
-		 		@html = modal_html2
+		 		@html = modal_html
 		 		# @funnel
 		 		@response = {data: @html}
 		 	else
