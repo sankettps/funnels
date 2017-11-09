@@ -14,7 +14,7 @@
     <div class="product-custom-collections hide"><%= @product_custom_collections %></div> 
     <div class="product-smart-collections hide"><%= @product_smart_collections %></div>
     <div class="product-tags hide"><%= @product_tags %></div>
-    <div class="row">
+    <div class="row m-0">
       <div class="col-sm-12">
 
         <div class="panel panel-default" id="funnelDetail">
@@ -36,19 +36,19 @@
                   <div class="col-sm-6">
                     <label for="productTitle">Redirect Page (After adding product to cart from funnel popup)</label>
                     <div class="radio">
-                      <label><input type="radio" name="funnel[redirect_page]" value="checkout">Checkout</label>
+                      <label><input type="radio" name="funnel[redirect_page]" value="checkout" <%= @funnel.redirect_page == 'checkout' ? 'checked' : '' %> >Checkout</label>
                     </div>
                     <div class="radio">
-                      <label><input type="radio" name="funnel[redirect_page]" value="cart" checked>Cart</label>
+                      <label><input type="radio" name="funnel[redirect_page]" value="cart" <%= @funnel.redirect_page == 'cart' ? 'checked' : '' %>>Cart</label>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <label for="productTitle">Display Description in funnel popup</label>
                     <div class="radio">
-                      <label><input type="radio" name="funnel[is_display_desc]" value="true" checked>Yes</label>
+                      <label><input type="radio" name="funnel[is_display_desc]" value="true" <%= @funnel.is_display_desc ? 'checked' : '' %> >Yes</label>
                     </div>
                     <div class="radio">
-                      <label><input type="radio" name="funnel[is_display_desc]" value="false">No</label>
+                      <label><input type="radio" name="funnel[is_display_desc]" value="false" <%= @funnel.is_display_desc ? '' : 'checked' %> >No</label>
                     </div>
                   </div>
                 </div>
@@ -144,51 +144,57 @@
           </div>
         </div>
 
-        <div class="panel panel-default" id="upSellPanel">
-          <div class="panel-heading">
-            Upsell Product
-          </div>
-          <div class="panel-body">
-            <!-- <button type="button" class="btn btn-default" id="btnUpsellProduct">Select Product</button> -->
-             <!-- <div id="upsellProduct">
-                <ul>
-                  <li>
-                    <%= @upsell_product_name %>
-                  </li>
-                </ul>
+        <div class="row">
+          <div class="col-xs-6">
+            <div class="panel panel-default" id="upSellPanel">
+              <div class="panel-heading">
+                Upsell Product
               </div>
-            </div> -->
-            <div id="upsellProduct">
-              <img src="<%= @funnel.up_product.image %>" width="30" height="30" id="upProductImg" />
-              <span class="m-l-15" id="upProducTitle">
-                <%= @funnel.up_product.title %>
-              </span>
-              <button type="button" class="btn btn-small btn-success pull-right" id="btnUpsellProduct">Select Product</button>
+              <div class="panel-body">
+                <!-- <button type="button" class="btn btn-default" id="btnUpsellProduct">Select Product</button> -->
+                 <!-- <div id="upsellProduct">
+                    <ul>
+                      <li>
+                        <%= @upsell_product_name %>
+                      </li>
+                    </ul>
+                  </div>
+                </div> -->
+                <div id="upsellProduct">
+                  <img src="<%= @funnel.up_product.image %>" width="30" height="30" id="upProductImg" />
+                  <span class="m-l-15" id="upProducTitle">
+                    <%= @funnel.up_product.title %>
+                  </span>
+                  <button type="button" class="btn btn-small btn-success pull-right" id="btnUpsellProduct">Select Product</button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="panel panel-default" id="downSellPanel">
-            <div class="panel-heading">
-                Downsell Product
-            </div>
-            <div class="panel-body">
-                <!-- <button type="button" class="btn btn-default" id="btnDownsellProduct">Select Product</button>
+          <div class="col-xs-6">
+            <div class="panel panel-default" id="downSellPanel">
+              <div class="panel-heading">
+                  Downsell Product
+              </div>
+              <div class="panel-body">
+                  <!-- <button type="button" class="btn btn-default" id="btnDownsellProduct">Select Product</button>
+                  <div id="downsellProduct">
+                  <ul>
+                    <li>
+                      <%= @downsell_product_name %>
+                    </li>
+                  </ul>
+                </div> -->
                 <div id="downsellProduct">
-                <ul>
-                  <li>
-                    <%= @downsell_product_name %>
-                  </li>
-                </ul>
-              </div> -->
-              <div id="downsellProduct">
-                <img src="<%= @funnel.down_product.image %>" width="30" height="30" id="downProductImg" />
-                <span class="m-l-15" id="downProducTitle">
-                  <%= @funnel.down_product.title %>
-                </span>
-                <button type="button" class="btn btn-small btn-success pull-right" id="btnDownsellProduct">Select Product</button>
+                  <img src="<%= @funnel.down_product.image %>" width="30" height="30" id="downProductImg" />
+                  <span class="m-l-15" id="downProducTitle">
+                    <%= @funnel.down_product.title %>
+                  </span>
+                  <button type="button" class="btn btn-small btn-success pull-right" id="btnDownsellProduct">Select Product</button>
+                </div>
               </div>
             </div>
+          </div>
         </div>
 
 

@@ -40,5 +40,13 @@ class HomeController < ShopifyApp::AuthenticatedController
     @funnel = Funnel.first
   end
 
+  def contact_us
+    
+  end
+
+  def contact_us_send_mail
+    
+  end
+
   
 end

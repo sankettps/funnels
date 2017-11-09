@@ -26,6 +26,9 @@
 .m-l-15{
   margin-left: 15px;
 }
+.m-0{
+  margin: 0 !important
+}
 .input-error{
   border-bottom-color: red !important;
   color: red !important;

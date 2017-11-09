@@ -1,0 +1,40 @@
+<%= form_tag({controller: "home", action: "contact_us_send_mail"}, method: "post",id: "add_funnel_form",class: "form-horizontal") do %>
+  <div class="row m-0">
+    <div class="col-sm-12">
+      <div class="panel panel-default" id="funnelDetail">
+        <div class="panel-heading">
+          Contact Us
+        </div>
+        <div class="panel-body">
+          <div class="form-group">
+            <div class="col-sm-6">
+              <label for="productTitle">Email</label>
+              <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email" required>
+            </div>
+            <div class="col-sm-6">
+              <label for="productTitle">Subject</label>
+              <input type="text" name="subject" id="subject" class="form-control" placeholder="Enter Subject">
+            </div>
+          </div>
+          <div class="col-sm-12">
+          	<div class="form-group">
+              <label>Message</label>
+              <textarea class="form-control" rows="5" name="message"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    	<button type="submit" class="btn btn-danger funnel-submit">Submit</button>
+    </div>
+  </div>
+<% end %>
+<script type="text/javascript">
+	$("#add_funnel_form").validate({
+		errorClass: "input-error",
+	  rules: {
+	    "email": {required: true},
+	    "subject": {required: true},
+	    "message": {required: true},
+	  }
+	});
+</script>
