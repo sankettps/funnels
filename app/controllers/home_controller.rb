@@ -45,7 +45,11 @@ class HomeController < ShopifyApp::AuthenticatedController
   end
 
   def contact_us_send_mail
-    
+    # exit
+    @email = params[:email]
+    @subject = params[:subject]
+    @message = params[:message]
+    HeroFunnelMailer.contact_us(params[:email],params[:subject],params[:message]).deliver_now
   end
 
   
