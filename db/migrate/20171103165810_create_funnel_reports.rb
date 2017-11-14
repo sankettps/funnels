@@ -5,6 +5,7 @@ class CreateFunnelReports < ActiveRecord::Migration[5.1]
       t.string :up_product_id
       t.string :down_product_id
       t.string :hf_action
+      t.string :cart_token
       t.float :price
       t.datetime :temp_date
       t.references :shop, foreign_key: true
