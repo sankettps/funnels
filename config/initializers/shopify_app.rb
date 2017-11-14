@@ -19,6 +19,7 @@ ShopifyApp.configure do |config|
   config.after_authenticate_job = false
   config.session_repository = Shop
   config.webhooks = [
+    {topic: 'orders/create', address:  ENV["hf_domain"]+'/webhooks/orders_create', format: 'json'},
     {topic: 'shop/update', address: ENV["hf_domain"]+'/webhooks/shop_update', format: 'json'},
     {topic: 'app/uninstalled', address: ENV["hf_domain"]+'/webhooks/shop_uninstall', format: 'json'},
     {topic: 'products/update', address: ENV["hf_domain"]+'/webhooks/products_update', format: 'json'},
