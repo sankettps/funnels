@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171103165810) do
+ActiveRecord::Schema.define(version: 20171116145956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "downsell_products", force: :cascade do |t|
+    t.bigint "funnel_id"
+    t.bigint "filter_shop_product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["filter_shop_product_id"], name: "index_downsell_products_on_filter_shop_product_id"
+    t.index ["funnel_id"], name: "index_downsell_products_on_funnel_id"
+  end
 
   create_table "filter_shop_attributes", force: :cascade do |t|
     t.bigint "shop_id"
@@ -63,15 +72,17 @@ ActiveRecord::Schema.define(version: 20171103165810) do
 
   create_table "funnels", force: :cascade do |t|
     t.string "name"
-    t.string "up_product_id"
-    t.string "down_product_id"
+    t.string "up_sell_title"
+    t.string "down_sell_title"
+    t.integer "down_sell_time_out"
+    t.integer "down_sell_interval"
+    t.boolean "is_display_desc"
+    t.string "redirect_page"
     t.boolean "is_active"
     t.bigint "shop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "title"
-    t.boolean "is_display_desc"
-    t.string "redirect_page"
     t.index ["shop_id"], name: "index_funnels_on_shop_id"
   end
 
@@ -89,10 +100,23 @@ ActiveRecord::Schema.define(version: 20171103165810) do
     t.index ["shopify_domain"], name: "index_shops_on_shopify_domain", unique: true
   end
 
+  create_table "upsell_products", force: :cascade do |t|
+    t.bigint "funnel_id"
+    t.bigint "filter_shop_product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["filter_shop_product_id"], name: "index_upsell_products_on_filter_shop_product_id"
+    t.index ["funnel_id"], name: "index_upsell_products_on_funnel_id"
+  end
+
+  add_foreign_key "downsell_products", "filter_shop_products"
+  add_foreign_key "downsell_products", "funnels"
   add_foreign_key "filter_shop_attributes", "shops"
   add_foreign_key "filter_shop_products", "shops"
   add_foreign_key "funnel_products", "filter_shop_products"
   add_foreign_key "funnel_products", "funnels"
   add_foreign_key "funnel_reports", "shops"
   add_foreign_key "funnels", "shops"
+  add_foreign_key "upsell_products", "filter_shop_products"
+  add_foreign_key "upsell_products", "funnels"
 end

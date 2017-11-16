@@ -3,8 +3,8 @@
   <h4 class="m-l-15">Add New Funnel</h4> 
       <%= form_tag "/funnels", :method => :post, :class => "form-horizontal funnel-form",name: 'funnel_form',id: "add_funnel_form" do %>
       <input type="hidden" name="funnel[funnel_product_ids]" class="trigger-products" >
-      <input type="hidden" name="funnel[up_product_id]" class="up_product_id">
-      <input type="hidden" name="funnel[down_product_id]" class="down_product_id">
+      <input type="hidden" name="funnel[upsell_product_ids]" id="up_product_ids">
+      <input type="hidden" name="funnel[downsell_product_ids]" id="down_product_ids">
       <div class="shop-url hide"><%= @shop_url %></div>
       <div class="store-id hide"><%= @store_id %></div>
       <div class="product-titles hide"><%= @product_titles %></div>
@@ -22,15 +22,19 @@
               <div class="panel-body">
                 <div class="form-group">
                   <div class="col-sm-6">
-                    <label for="productTitle">Funnel Name</label>
+                    <label for="funnelName">Funnel Name</label>
                     <input type="text" name="funnel[name]" id="funnelName" class="form-control" placeholder="Enter Funnel Name" required>
                   </div>
                   <div class="col-sm-6">
-                    <label for="productTitle">Funnel Popup Title</label>
-                    <input type="text" name="funnel[title]" id="funnelTitle" class="form-control" placeholder="Enter Funnel Title">
+                    <label for="upsellTitle">Upsell Popup Title</label>
+                    <input type="text" name="funnel[up_sell_title]" id="upsellTitle" class="form-control" placeholder="Enter Upsell Popup Title">
                   </div>
                 </div>
                 <div class="form-group">
+                  <div class="col-sm-6">
+                    <label for="downsellTitle">Downsell Popup Title</label>
+                    <input type="text" name="funnel[down_sell_title]" id="downsellTitle" class="form-control" placeholder="Enter Downsell Popup Title">
+                  </div>
                   <div class="col-sm-6">
                     <label for="productTitle">Redirect Page (After adding product to cart from funnel popup)</label>
                     <div class="radio">
@@ -40,6 +44,9 @@
                       <label><input type="radio" name="funnel[redirect_page]" value="cart" checked>Cart</label>
                     </div>
                   </div>
+                </div>
+                <div class="form-group">
+                  
                   <div class="col-sm-6">
                     <label for="productTitle">Display Description in funnel popup</label>
                     <div class="radio">
@@ -48,6 +55,8 @@
                     <div class="radio">
                       <label><input type="radio" name="funnel[is_display_desc]" value="false">No</label>
                     </div>
+                  </div>
+                  <div class="col-sm-6">
                   </div>
                 </div>
               </div>
