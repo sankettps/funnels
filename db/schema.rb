@@ -82,7 +82,6 @@ ActiveRecord::Schema.define(version: 20171116145956) do
     t.bigint "shop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "title"
     t.index ["shop_id"], name: "index_funnels_on_shop_id"
   end
 

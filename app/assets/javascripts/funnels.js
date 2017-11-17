@@ -8,6 +8,7 @@ $(document).ready(function(){
 	// 	}
 	//   event.preventDefault();
 	// });
+	$(".colorpicker").minicolors({control: 'wheel',theme: 'bootstrap'});
 	$(".funnel-form").validate({
 		errorClass: "input-error",
 	  rules: {

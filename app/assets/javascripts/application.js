@@ -14,6 +14,7 @@
 //= require jquery.validate.min
 //= require rails-ujs
 //= require bootstrap
+//= require jquery.minicolors
 //= require metisMenu
 //= require raphael
 //= require morris

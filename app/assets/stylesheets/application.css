@@ -12,6 +12,7 @@
  *
  *= require bootstrap
  *= require mdb
+ *= require jquery.minicolors
  *= require metisMenu
  *= require morris
  *= require sb-admin-2

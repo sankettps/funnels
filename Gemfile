@@ -63,3 +63,4 @@ gem 'rack-cors', :require => 'rack/cors'
 # gem 'whenever', :require => false
 # get currency symbol from currency code
 gem 'currencies'
+gem 'jquery-minicolors-rails'
