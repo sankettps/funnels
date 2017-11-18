@@ -170,21 +170,16 @@ module FrontendHelper
 		</div>
 		
 		<style type=\"text/css\">
-			.hf-upsell .hf-pro-img{
-				width: 100%;
+			.hf-downsell .modal-title{
+				color: #{@funnel.downsell_css["title_text_color"]};
 			}
-			.hf-pro-desc{
-			  /*white-space: nowrap;*/
-			  overflow: hidden;
-			  text-overflow: ellipsis;
-			  max-width: 100%;
-			  max-height: 180px;
+			.hf-downsell .buy-button{
+				color: #{@funnel.downsell_css["buy_text_color"]} !important;
+				background-color: #{@funnel.downsell_css["buy_bg_color"]} !important;
 			}
-			.hf-upsell .pro-price{
-				float: left;
-		    font-size: 30px;
-		    color: #4aae4e;
-		    margin-right: 15px;
+			.hf-downsell .cancel-button{
+				color: #{@funnel.downsell_css["cancel_text_color"]} !important;
+				background-color: #{@funnel.downsell_css["cancel_bg_color"]} !important;
 			}
 		</style>"
 	end
@@ -195,32 +190,32 @@ module FrontendHelper
 			down_product.filter_shop_product
 
 			@downsell_body += "<div id=\"downProduct#{index}\" style='display: #{index == 0 ? "block" : "none"};'>
-			      <div class=\"modal-body\">
-				      <div class=\"row\">
-				      		<div class=\"col-xs-6\">
-				      			<img src=\"#{down_product.filter_shop_product.image}\" class=\"hf-pro-img\">
-				      		</div>
-				      		<div class=\"col-xs-6\">
-				      			<div class=\"row\">
-				      				<div class=\"col-xs-12\">
-				      					<h4> #{down_product.filter_shop_product.product_id} </h4>
-				      				</div>
-				      			</div>
-						     </div>
-				      </div>
-				      <div class=\"row downSellDes\">
-		    				<div class=\"col-xs-12\">
-		      				<div class=\"hf-pro-desc\">
-		      					Lorem Ipsum downnnnnnnnn
+	      <div class=\"modal-body\">
+		      <div class=\"row\">
+		      		<div class=\"col-xs-6\">
+		      			<img src=\"#{down_product.filter_shop_product.image}\" class=\"hf-pro-img\">
+		      		</div>
+		      		<div class=\"col-xs-6\">
+		      			<div class=\"row\">
+		      				<div class=\"col-xs-12\">
+		      					<h4> #{down_product.filter_shop_product.product_id} </h4>
 		      				</div>
-		    				</div>
-    					</div>
-				    </div>
-				    <div class=\"modal-footer text-center\">
-					    <button type=\"button\" class=\"btn btn-success\" id=\"hfUpsellBuy\">Buy Now</button>
-					    <button type=\"button\" data-next=\"downProduct#{index+1}\" data-current=\"downProduct#{index}\" class=\"btn btn-default downsell-cancel\" id=\"hfUpsellCancel\">No, thanks</button>
-						</div>
-		      </div>"
+		      			</div>
+				     </div>
+		      </div>
+		      <div class=\"row downSellDes\">
+    				<div class=\"col-xs-12\">
+      				<div class=\"hf-pro-desc\">
+      					Lorem Ipsum downnnnnnnnn
+      				</div>
+    				</div>
+					</div>
+		    </div>
+		    <div class=\"modal-footer text-center\">
+			    <button type=\"button\" class=\"btn btn-success buy-button\" id=\"hfUpsellBuy\">Buy Now</button>
+			    <button type=\"button\" data-next=\"downProduct#{index+1}\" data-current=\"downProduct#{index}\" class=\"btn btn-default downsell-cancel cancel-button\" id=\"hfUpsellCancel\">No, thanks</button>
+				</div>
+      </div>"
 		end
 	end
 end
