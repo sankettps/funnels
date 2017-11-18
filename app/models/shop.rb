@@ -65,6 +65,51 @@ class Shop < ActiveRecord::Base
 			$(document).on(\'click\', \'#hfDownsellCancel\', function(event) {
 				$("#hfUpsellModal").modal(\'hide\');
 			});
+
+			$.ajax({
+	      url: \''+ENV["hf_domain"]+'/frontend/get_downsell_detail\',
+		    data: {shop_id: window.herofunnels.store_id,product_id: window.herofunnels.product_id},
+		  })
+		  .done(function(data) {
+		    console.log("success funnel down",data);
+		    if(localStorage.getItem("hfDownTrack")){
+		  	}
+		    else
+		    {
+					localStorage.setItem("hfDownTrack",'0');
+		    } 
+		    	if (localStorage.getItem("hfDownTrack") == data.track_id){
+
+		    	}
+		    	else{
+		    		$(".hfDownsellModal1").html(data.data);
+		    		console.log(hf_device)
+		    		if(hf_device == \'mobile\'){
+		    			setTimeout(function(){
+								localStorage.setItem("hfDownTrack",data.track_id);
+								$("#hfDownsellModal").modal(\'show\');
+		    			},data.hf_time_out)
+		    		}
+		    		else{
+		    			$(document.documentElement).on(\'mouseleave\',function(e){
+		            if(e.clientY < 20){
+		            console.log(e.clientY)
+		            if (localStorage.getItem("hfDownTrack") == data.track_id){
+
+		    				}
+		    				else{
+									localStorage.setItem("hfDownTrack",data.track_id);
+									$("#hfDownsellModal").modal(\'show\');
+		    				}
+		            }
+		          });
+		    		}
+		    	}
+		    
+		  })
+		  .fail(function() {
+		    console.log("error");
+		  })
     ', :theme_id => @theme.id)
 
   end

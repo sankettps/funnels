@@ -31,11 +31,11 @@ class HomeController < ShopifyApp::AuthenticatedController
   def test_modal
     @shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
     ShopifyAPI::Base.site = @shop_url
-    @up_product = ShopifyAPI::Product.find(10945801676)
-    @up_variant = @up_product.variants.first
+    # @up_product = ShopifyAPI::Product.find(10927523532)
+    # @up_variant = @up_product.variants.first
 
-    @down_product = ShopifyAPI::Product.find(10945801676)
-    @down_variant = @down_product.variants.first
+    # @down_product = ShopifyAPI::Product.find(10927523532)
+    # @down_variant = @down_product.variants.first
     
     @funnel = Funnel.first
   end

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post 'home/contact_us_send_mail'
   
   get "frontend/get_upsell_detail"
+  get "frontend/get_downsell_detail"
   get "frontend/test"
   get "frontend/getupsellproduct"
   get "frontend/funnel_product_purchased"

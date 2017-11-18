@@ -151,8 +151,8 @@ module FrontendHelper
 	end
 
 	def downsell_modal_html
-		modal_body_html
-		@html = "<div id=\"hfUpsellModal\" class=\"modal fade hf-upsell\" role=\"dialog\">
+		down_body_html
+		@html = "<div id=\"hfDownsellModal\" class=\"modal fade hf-downsell\" role=\"dialog\">
 		  <div class=\"modal-dialog\">
 		    <!-- Modal content-->
 		    <div class=\"modal-content\">
@@ -160,7 +160,7 @@ module FrontendHelper
 		        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
 		          <span aria-hidden=\"true\">&times;</span>
 		        </button>
-		        <h4 class=\"modal-title text-center\">#{@funnel.name}</h4>
+		        <h4 class=\"modal-title text-center\">#{@funnel.down_sell_title}</h4>
 		      </div>
 		      
 		     #{@downsell_body}
@@ -169,35 +169,6 @@ module FrontendHelper
 		  </div>
 		</div>
 		
-		<script>
-			var selectUpsellCallback = function(variant, selector) {
-						$('#hfUpsellVariant').val($('#herofunnelUpProduct').val());
-		        $('#hfUpsellBody .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelUpProduct').find(':selected').attr('data-price'));
-		        if($('#herofunnelUpProduct').find(':selected').attr('data-image')){
-					$('#hfUpsellBody .hf-pro-img').attr('src',$('#herofunnelUpProduct').find(':selected').attr('data-image'));
-				}
-		     };
-
-			this.optionSelector = new Shopify.OptionSelectors('herofunnelUpProduct', {
-		        product: #{@up_product.to_json},
-		        onVariantSelected: selectUpsellCallback,
-		        enableHistoryState: this.enableHistoryState
-		      });
-
-		   var selectDownsellCallback = function(variant, selector) {
-		   		$('#hfDownsellVariant').val($('#herofunnelDownProduct').val());
-		        $('#hfDownsellBody .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelDownProduct').find(':selected').attr('data-price'));
-		        if($('#herofunnelDownProduct').find(':selected').attr('data-image')){
-					$('#hfDownsellBody .hf-pro-img').attr('src',$('#herofunnelDownProduct').find(':selected').attr('data-image'));
-				}
-		     };
-
-			this.optionSelector = new Shopify.OptionSelectors('herofunnelDownProduct', {
-		        product: #{@down_product.to_json},
-		        onVariantSelected: selectDownsellCallback,
-		        enableHistoryState: this.enableHistoryState
-		      });
-		</script>
 		<style type=\"text/css\">
 			.hf-upsell .hf-pro-img{
 				width: 100%;
@@ -218,52 +189,36 @@ module FrontendHelper
 		</style>"
 	end
 	
-	def modal_body_html
+	def down_body_html
 		@downsell_body = ''
 		@funnel.downsell_products.each_with_index do |down_product,index|
 			down_product.filter_shop_product
 
-			@downsell_body += "<div id=\"downDroduct#{index}\">
+			@downsell_body += "<div id=\"downProduct#{index}\" style='display: #{index == 0 ? "block" : "none"};'>
 			      <div class=\"modal-body\">
 				      <div class=\"row\">
 				      		<div class=\"col-xs-6\">
-				      			<img src=\"#{@up_product.image.src}\" class=\"hf-pro-img\">
+				      			<img src=\"#{down_product.filter_shop_product.image}\" class=\"hf-pro-img\">
 				      		</div>
 				      		<div class=\"col-xs-6\">
 				      			<div class=\"row\">
 				      				<div class=\"col-xs-12\">
-				      					<h4> #{@up_product.title} </h4>
+				      					<h4> #{down_product.filter_shop_product.product_id} </h4>
 				      				</div>
 				      			</div>
-				      			<div class=\"row\">
-				      				<div class=\"col-xs-12\">
-				      					<p class=\"pro-price\">#{@shop.currency_symbol} #{@up_variant.price}</p>
-				      					<input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
-				      					<input type=\"hidden\" name=\"\" id=\"hfUpsellProduct\" value=\"#{@up_product.id}\">
-				      					<input type=\"hidden\" name=\"\" id=\"hfProduct\" value=\"#{@filter_product.product_id}\">
-				      				</div>
-				      			</div>
-				      			<input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
-										<div class=\"product-single__variants\">
-											<select name=\"id\" id=\"herofunnelUpProduct\" class=\"product-single__variants\">"
-											@up_product.variants.each do |variant|
-												@html += "<option data-sku='#{variant.sku}' value='#{variant.id}' data-price='#{variant.price}' data-image='#{@up_product_img_array[variant.id]}'>#{variant.title}</option>"
-												end
-											@html += "</select>
-										</div>
 						     </div>
 				      </div>
-				      <div class=\"row upSellDes\">
+				      <div class=\"row downSellDes\">
 		    				<div class=\"col-xs-12\">
 		      				<div class=\"hf-pro-desc\">
-		      					#{@up_product.body_html.html_safe}
+		      					Lorem Ipsum downnnnnnnnn
 		      				</div>
 		    				</div>
     					</div>
 				    </div>
 				    <div class=\"modal-footer text-center\">
 					    <button type=\"button\" class=\"btn btn-success\" id=\"hfUpsellBuy\">Buy Now</button>
-					    <button type=\"button\" class=\"btn btn-default\" id=\"hfUpsellCancel\">No, thanks</button>
+					    <button type=\"button\" data-next=\"downProduct#{index+1}\" data-current=\"downProduct#{index}\" class=\"btn btn-default downsell-cancel\" id=\"hfUpsellCancel\">No, thanks</button>
 						</div>
 		      </div>"
 		end

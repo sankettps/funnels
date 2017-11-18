@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 20171116145956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "downsell_products", force: :cascade do |t|
     t.bigint "funnel_id"
@@ -74,6 +75,8 @@ ActiveRecord::Schema.define(version: 20171116145956) do
     t.string "name"
     t.string "up_sell_title"
     t.string "down_sell_title"
+    t.hstore "downsell_css"
+    t.hstore "upsell_css"
     t.integer "down_sell_time_out"
     t.integer "down_sell_interval"
     t.boolean "is_display_desc"

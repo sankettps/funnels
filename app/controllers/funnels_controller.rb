@@ -60,13 +60,19 @@ class FunnelsController < ShopifyApp::AuthenticatedController
   # POST /funnels
   # POST /funnels.json
   def create
-    @funnel = Funnel.new(funnel_params)
-    params[:funnel][:up_product_id] = FilterShopProduct.find_by(product_id: params[:funnel][:up_product_id]).try(:id)
-    params[:funnel][:down_product_id] = FilterShopProduct.find_by(product_id: params[:funnel][:down_product_id]).try(:id)
+    # @funnel = Funnel.new(funnel_params)
+    # params[:funnel][:up_product_id] = FilterShopProduct.find_by(product_id: params[:funnel][:up_product_id]).try(:id)
+    # params[:funnel][:down_product_id] = FilterShopProduct.find_by(product_id: params[:funnel][:down_product_id]).try(:id)
+    params[:funnel][:upsell_product_ids] = "10941480908,10941215180,10927523532"
+    params[:funnel][:downsell_product_ids] = "10941481228,10941480780,10945801164"
     @funnel = @shop.funnels.create(funnel_params)
     if @funnel.present?
       funnel_product_ids = FilterShopProduct.where(product_id: params[:funnel][:funnel_product_ids].split(',')).ids
+      upsell_product_ids = FilterShopProduct.where(product_id: params[:funnel][:upsell_product_ids].split(',')).ids
+      downsell_product_ids = FilterShopProduct.where(product_id: params[:funnel][:downsell_product_ids].split(',')).ids
       @funnel.filter_shop_product_ids = funnel_product_ids if funnel_product_ids.present?
+      @funnel.upsell_filter_product_ids = upsell_product_ids if upsell_product_ids.present?
+      @funnel.downsell_filter_product_ids = downsell_product_ids if downsell_product_ids.present?
       # Funnel.first.filter_shop_product_ids = [1, 2, 3, 4, 5]
       # params[funnel][funnel_product_ids]
     end
@@ -138,6 +144,6 @@ class FunnelsController < ShopifyApp::AuthenticatedController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def funnel_params
-      params.require(:funnel).permit(:name, :title, :up_product_id, :down_product_id, :is_active, :shop_id, :is_display_desc, :redirect_page)
+      params.require(:funnel).permit(:name, :up_sell_title, :down_sell_title, {downsell_css: {}}, {upsell_css: {}}, :down_sell_time_out, :down_sell_interval, :is_active, :shop_id, :is_display_desc, :redirect_page)
     end
 end

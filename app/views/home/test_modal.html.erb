@@ -13,24 +13,24 @@
 	      <div class="modal-body">
 	      	<div class="row">
 	      		<div class="col-xs-6">
-	      			<img src="<%= @up_product.image.src %>" class="hf-pro-img">
+	      			<img src="<%#= @up_product.image.src %>" class="hf-pro-img">
 	      		</div>
 	      		<div class="col-xs-6">
 	      			<div class="row">
 	      				<div class="col-xs-12">
-	      					<h4><%= @up_product.title %></h4>
+	      					<h4><%#= @up_product.title %></h4>
 	      				</div>
 	      			</div>
 	      			<div class="row">
 	      				<div class="col-xs-12">
-	      					<p class="pro-price">$<%= @up_variant.price %></p>
-	      					<input type="hidden" name="" id="hfUpsellVariant" value="<%= @up_variant.id %>">
+	      					<p class="pro-price">$<%#= @up_variant.price %></p>
+	      					<input type="hidden" name="" id="hfUpsellVariant" value="<%#= @up_variant.id %>">
 	      				</div>
 	      			</div>
 	      			<div class="row">
 	      				<div class="col-xs-12">
 		      				<div class="hf-pro-desc">
-		      					<%= @up_product.body_html.html_safe %>
+		      					<%#= @up_product.body_html.html_safe %>
 		      				</div>
 	      				</div>
 	      			</div>
@@ -49,24 +49,24 @@
 	      <div class="modal-body">
 	      	<div class="row">
 	      		<div class="col-xs-6">
-	      			<img src="<%= @down_product.image.src %>" class="hf-pro-img">
+	      			<img src="<%#= @down_product.image.src %>" class="hf-pro-img">
 	      		</div>
 	      		<div class="col-xs-6">
 	      			<div class="row">
 	      				<div class="col-xs-12">
-	      					<h4><%= @down_product.title %></h4>
+	      					<h4><%#= @down_product.title %></h4>
 	      				</div>
 	      			</div>
 	      			<div class="row">
 	      				<div class="col-xs-12">
-	      					<p class="pro-price">$<%= @down_variant.price %></p>
-	      					<input type="hidden" name="" id="hfDownsellVariant" value="<%= @down_variant.id %>">
+	      					<p class="pro-price">$<%#= @down_variant.price %></p>
+	      					<input type="hidden" name="" id="hfDownsellVariant" value="<%#= @down_variant.id %>">
 	      				</div>
 	      			</div>
 	      			<div class="row">
 	      				<div class="col-xs-12">
 		      				<div class="hf-pro-desc">
-		      					<%= @down_product.body_html.html_safe %>
+		      					<%#= @down_product.body_html.html_safe %>
 		      				</div>
 	      				</div>
 	      			</div>
@@ -85,6 +85,10 @@
 
   </div>
 </div>
+<div class="hfDownsellModal1">
+	
+</div>
+<button type="button" class="btn btn-info btn-lg" id="test">Open down sell</button>
 <style type="text/css">
 	.hf-upsell .hf-pro-img{
 		width: 100%;
@@ -122,4 +126,72 @@
 	$(document).on('click', '#hfDownsellCancel', function(event) {
 		$("#hfUpsellModal").modal('hide');
 	});
+	var isMobile = window.matchMedia("only screen and (max-width: 760px)");
+  var hf_device = 'mobile';
+  if (isMobile.matches) {
+    hf_device = 'mobile';
+  }
+	$.ajax({
+    url: '/frontend/get_downsell_detail',
+    data: {shop_id: "welovedrones.myshopify.com",product_id: "10927523532"},
+  })
+  .done(function(data) {
+    console.log("success funnel",data);
+    // jQuery("head").append('<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" id="bt-removable-css">');
+    if(localStorage.getItem("hfDownTrack")){
+  	}
+    else
+    {
+			localStorage.setItem("hfDownTrack",'0');
+    } 
+    	if (localStorage.getItem("hfDownTrack") == data.track_id){
+
+    	}
+    	else{
+    		$(".hfDownsellModal1").html(data.data);
+    		console.log(hf_device)
+    		if(hf_device == 'mobile'){
+    			setTimeout(function(){
+						localStorage.setItem("hfDownTrack",data.track_id);
+						$("#hfDownsellModal").modal('show');
+    			},data.hf_time_out)
+    		}
+    		else{
+    			$(document.documentElement).on('mouseleave',function(e){
+            if(e.clientY < 20){
+            console.log(e.clientY)
+            if (localStorage.getItem("hfDownTrack") == data.track_id){
+
+    				}
+    				else{
+							localStorage.setItem("hfDownTrack",data.track_id);
+							$("#hfDownsellModal").modal('show');
+    				}
+            }
+          });
+    		}
+    	}
+    
+  })
+  .fail(function() {
+    console.log("error");
+  })
+    $(document).on('click', '#test', function(event) {
+				$("#hfDownsellModal").modal('show');
+				// $("#hfUpsellBody").hide();
+			});
+    $(document).on('click', '.downsell-cancel', function(event) {
+				console.log($(this).data('next'))
+				if($('#'+$(this).data('next')).length){
+					console.log("yesssssssss")
+					$('#'+$(this).data('current')).hide();
+					$('#'+$(this).data('next')).show();
+				}
+				else{
+					$("#hfDownsellModal").modal('hide');
+				}
+				// $("#hfUpsellBody").hide();
+		});
+    
+    
 </script>

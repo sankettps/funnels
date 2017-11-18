@@ -59,6 +59,35 @@ class FrontendController < ApplicationController
   # 	})
 	end
 
+	def get_downsell_detail
+		# 10927523532
+	 	@shop = Shop.find_by_shopify_domain(params[:shop_id])
+	 	if @shop.present?
+	 		# @funnel = @shop.funnels.find_by(is_active: true)
+	 		@filter_product = FilterShopProduct.find_by(product_id: params[:product_id])
+	 		@funnel = @filter_product.funnels.find_by(is_active: true) if @filter_product
+
+	 		@shop_url ="https://#{ShopifyApp.configuration.api_key}:#{@shop.shopify_token}@#{@shop.shopify_domain}/admin/"
+  		# @shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
+    	ShopifyAPI::Base.site = @shop_url
+			puts "<======funnel========#{@funnel.inspect}===============>"
+    	if @funnel
+    		puts "Innnnnnnnnnnnnnnnn"
+    		
+		 		@html = downsell_modal_html
+		 		# @funnel
+		 		@response = {data: @html,hf_time_out:(@funnel.down_sell_time_out * 1000),track_id: @funnel.id}
+		 	else
+		 		puts "no funnel=========================="
+	 			@response = {data: ''}
+		 	end
+	 	else
+		 		puts "no shop=========================="
+	 		@response = {data: ''}
+	 	end
+	 	render json: @response
+	end
+
 	def funnel_product_purchased
 		@shop = Shop.find_by_shopify_domain(params[:shop_id])
 		# funnel_product = FilterShopProduct.find_by(product_id: params[:funnel_product])
