@@ -66,27 +66,49 @@ class Shop < ActiveRecord::Base
 				$("#hfUpsellModal").modal(\'hide\');
 			});
 
+			
+		  var hfIsMobile = window.matchMedia("only screen and (max-width: 760px)");
+		  var hf_device = \desktop\;
+		  var hfDownTrack;
+		  function hfStorageSave(key, jsonData, expirationMin){
+				var expirationMS = expirationMin * 60 * 1000;
+				var record = {value: JSON.stringify(jsonData), timestamp: new Date().getTime() + expirationMS}
+				localStorage.setItem(key, JSON.stringify(record));
+				return jsonData;
+			}
+			function hfStorageRead(key){
+				var record = JSON.parse(localStorage.getItem(key));
+				if (!record){return false;}
+				return (new Date().getTime() < record.timestamp && JSON.parse(record.value));
+			}
+		  if (hfIsMobile.matches) {
+		    hf_device = \'mobile\';
+		  }
 			$.ajax({
-	      url: \''+ENV["hf_domain"]+'/frontend/get_downsell_detail\',
+		    url: \''+ENV["hf_domain"]+'/frontend/get_downsell_detail\',
 		    data: {shop_id: window.herofunnels.store_id,product_id: window.herofunnels.product_id},
 		  })
 		  .done(function(data) {
-		    console.log("success funnel down",data);
-		    if(localStorage.getItem("hfDownTrack")){
+		    console.log("success funnel",data);
+		    // jQuery("head").append(\'<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" id="bt-removable-css">\');
+		    if(hfStorageRead("hfDownTrack")){
+		    	
 		  	}
 		    else
 		    {
-					localStorage.setItem("hfDownTrack",\'0\');
+					// localStorage.setItem("hfDownTrack",JSON.stringify(\'hfDown\': \'0\',\'timestamp\': (new Date().getTime() + 86400000));
+					hfStorageSave("hfDownTrack",{hfDown: \'0\'},1);
 		    } 
-		    	if (localStorage.getItem("hfDownTrack") == data.track_id){
-
+		    	if (hfStorageRead("hfDownTrack").hfDown == data.track_id){
+		    		console.log("no html")
 		    	}
 		    	else{
 		    		$(".hfDownsellModal1").html(data.data);
 		    		console.log(hf_device)
 		    		if(hf_device == \'mobile\'){
 		    			setTimeout(function(){
-								localStorage.setItem("hfDownTrack",data.track_id);
+								// localStorage.setItem("hfDownTrack",data.track_id);
+								hfStorageSave("hfDownTrack",{hfDown: data.track_id},1);
 								$("#hfDownsellModal").modal(\'show\');
 		    			},data.hf_time_out)
 		    		}
@@ -94,11 +116,12 @@ class Shop < ActiveRecord::Base
 		    			$(document.documentElement).on(\'mouseleave\',function(e){
 		            if(e.clientY < 20){
 		            console.log(e.clientY)
-		            if (localStorage.getItem("hfDownTrack") == data.track_id){
+		            if (hfStorageRead("hfDownTrack").hfDown == data.track_id){
 
 		    				}
 		    				else{
-									localStorage.setItem("hfDownTrack",data.track_id);
+									hfStorageSave("hfDownTrack",{hfDown: data.track_id},1);
+									// localStorage.setItem("hfDownTrack",data.track_id);
 									$("#hfDownsellModal").modal(\'show\');
 		    				}
 		            }
@@ -110,6 +133,22 @@ class Shop < ActiveRecord::Base
 		  .fail(function() {
 		    console.log("error");
 		  })
+	    $(document).on(\'click\', \'#test\', function(event) {
+				$("#hfDownsellModal").modal(\'show\');
+				// $("#hfUpsellBody").hide();
+				});
+	    $(document).on(\'click\', \'.downsell-cancel\', function(event) {
+				console.log($(this).data(\'next\'))
+				if($(\'#\'+$(this).data(\'next\')).length){
+					console.log("yesssssssss")
+					$(\'#\'+$(this).data(\'current\')).hide();
+					$(\'#\'+$(this).data(\'next\')).show();
+				}
+				else{
+					$("#hfDownsellModal").modal(\'hide\');
+				}
+				// $("#hfUpsellBody").hide();
+			});
     ', :theme_id => @theme.id)
 
   end
