@@ -76,7 +76,7 @@ class Shop < ActiveRecord::Base
 		  	}
 		    else
 		    {
-					localStorage.setItem("hfDownTrack",'0');
+					localStorage.setItem("hfDownTrack",\'0\');
 		    } 
 		    	if (localStorage.getItem("hfDownTrack") == data.track_id){
 
