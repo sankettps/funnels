@@ -1,5 +1,5 @@
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#hfUpsellModal">Open Modal</button>
-<div id="hfUpsellModal" class="modal fade hf-upsell" role="dialog">
+<div id="hfUpsellModal1" class="modal fade hf-upsell" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
@@ -88,6 +88,7 @@
 <div class="hfDownsellModal1">
 	
 </div>
+<div id='hfUpsell'></div>
 <button type="button" class="btn btn-info btn-lg" id="test">Open down sell</button>
 <style type="text/css">
 	.hf-upsell .hf-pro-img{
@@ -143,55 +144,55 @@
   if (hfIsMobile.matches) {
     hf_device = 'mobile';
   }
-	$.ajax({
-    url: '/frontend/get_downsell_detail',
-    data: {shop_id: "welovedrones.myshopify.com",product_id: "10927523532"},
-  })
-  .done(function(data) {
-    console.log("success funnel",data);
-    // jQuery("head").append('<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" id="bt-removable-css">');
-    if(hfStorageRead("hfDownTrack")){
+	// $.ajax({
+ //    url: '/frontend/get_downsell_detail',
+ //    data: {shop_id: "welovedrones.myshopify.com",product_id: "10927523532"},
+ //  })
+ //  .done(function(data) {
+ //    console.log("success funnel",data);
+ //    // jQuery("head").append('<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" id="bt-removable-css">');
+ //    if(hfStorageRead("hfDownTrack")){
     	
-  	}
-    else
-    {
-			// localStorage.setItem("hfDownTrack",JSON.stringify('hfDown': '0','timestamp': (new Date().getTime() + 86400000));
-			hfStorageSave("hfDownTrack",{hfDown: '0'},1);
-    } 
-    	if (hfStorageRead("hfDownTrack").hfDown == data.track_id){
-    		console.log("no html")
-    	}
-    	else{
-    		$(".hfDownsellModal1").html(data.data);
-    		console.log(hf_device)
-    		if(hf_device == 'mobile'){
-    			setTimeout(function(){
-						// localStorage.setItem("hfDownTrack",data.track_id);
-						hfStorageSave("hfDownTrack",{hfDown: data.track_id},1);
-						$("#hfDownsellModal").modal('show');
-    			},data.hf_time_out)
-    		}
-    		else{
-    			$(document.documentElement).on('mouseleave',function(e){
-            if(e.clientY < 20){
-            console.log(e.clientY)
-            if (hfStorageRead("hfDownTrack").hfDown == data.track_id){
+ //  	}
+ //    else
+ //    {
+	// 		// localStorage.setItem("hfDownTrack",JSON.stringify('hfDown': '0','timestamp': (new Date().getTime() + 86400000));
+	// 		hfStorageSave("hfDownTrack",{hfDown: '0'},1);
+ //    } 
+ //    	if (hfStorageRead("hfDownTrack").hfDown == data.track_id){
+ //    		console.log("no html")
+ //    	}
+ //    	else{
+ //    		$(".hfDownsellModal1").html(data.data);
+ //    		console.log(hf_device)
+ //    		if(hf_device == 'mobile'){
+ //    			setTimeout(function(){
+	// 					// localStorage.setItem("hfDownTrack",data.track_id);
+	// 					hfStorageSave("hfDownTrack",{hfDown: data.track_id},1);
+	// 					$("#hfDownsellModal").modal('show');
+ //    			},data.hf_time_out)
+ //    		}
+ //    		else{
+ //    			$(document.documentElement).on('mouseleave',function(e){
+ //            if(e.clientY < 20){
+ //            console.log(e.clientY)
+ //            if (hfStorageRead("hfDownTrack").hfDown == data.track_id){
 
-    				}
-    				else{
-							hfStorageSave("hfDownTrack",{hfDown: data.track_id},1);
-							// localStorage.setItem("hfDownTrack",data.track_id);
-							$("#hfDownsellModal").modal('show');
-    				}
-            }
-          });
-    		}
-    	}
+ //    				}
+ //    				else{
+	// 						hfStorageSave("hfDownTrack",{hfDown: data.track_id},1);
+	// 						// localStorage.setItem("hfDownTrack",data.track_id);
+	// 						$("#hfDownsellModal").modal('show');
+ //    				}
+ //            }
+ //          });
+ //    		}
+ //    	}
     
-  })
-  .fail(function() {
-    console.log("error");
-  })
+ //  })
+ //  .fail(function() {
+ //    console.log("error");
+ //  })
     $(document).on('click', '#test', function(event) {
 				$("#hfDownsellModal").modal('show');
 				// $("#hfUpsellBody").hide();
@@ -208,6 +209,69 @@
 				}
 				// $("#hfUpsellBody").hide();
 		});
+
+
+	$.ajax({
+    url: '/frontend/get_upsell_detail',
+    data: {shop_id: "welovedrones.myshopify.com",product_id: "10927523532"},
+  })
+  .done(function(data) {
+    console.log("success funnel",data);
+    // jQuery("head").append('<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" id="bt-removable-css">');
+    if(hfStorageRead("hfUpTrack")){
+    	
+  	}
+    else
+    {
+			// localStorage.setItem("hfDownTrack",JSON.stringify('hfDown': '0','timestamp': (new Date().getTime() + 86400000));
+			hfStorageSave("hfUpTrack",{hfUp: '0'},1);
+    } 
+    	if (hfStorageRead("hfUpTrack").hfUp == data.track_id){
+    		console.log("no html")
+    	}
+    	else{
+    		$("#hfUpsell").html(data.data);
+    		console.log(hf_device)
+    		if(hf_device == 'mobile'){
+    			setTimeout(function(){
+						// localStorage.setItem("hfDownTrack",data.track_id);
+						hfStorageSave("hfUpTrack",{hfUp: data.track_id},1);
+						$("#hfUpsellModal").modal('show');
+    			},data.hf_time_out)
+    		}
+    		else{
+    			$(document.documentElement).on('mouseleave',function(e){
+            if(e.clientY < 20){
+            console.log(e.clientY)
+            if (hfStorageRead("hfUpTrack").hfUp == data.track_id){
+
+    				}
+    				else{
+							hfStorageSave("hfUpTrack",{hfUp: data.track_id},1);
+							// localStorage.setItem("hfDownTrack",data.track_id);
+							$("#hfUpsellModal").modal('show');
+    				}
+            }
+          });
+    		}
+    	}
     
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  $(document).on('click', '.upsell-cancel', function(event) {
+		console.log($(this).data('next'))
+		if($('#'+$(this).data('next')).length){
+			console.log("yesssssssss")
+			$('#'+$(this).data('current')).hide();
+			$('#'+$(this).data('next')).show();
+		}
+		else{
+			$("#hfUpsellModal").modal('hide');
+		}
+		// $("#hfUpsellBody").hide();
+	});
+  
     
 </script>

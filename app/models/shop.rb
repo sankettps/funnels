@@ -13,18 +13,28 @@ class Shop < ActiveRecord::Base
     @theme = ShopifyAPI::Theme.find(:all).where(role: 'main').first
     @asset = ShopifyAPI::Asset.find('layout/theme.liquid', :params => { :theme_id => @theme.id})
     @asset_value = @asset.value
-    @asset.update_attributes(value: @asset_value.gsub('</body>',"<div id='hfUpsell'></div>{{ 'hf_common.js' | asset_url | script_tag }}</body>")) unless @asset_value.include?("<div id='hfUpsell'>")
+    @asset.update_attributes(value: @asset_value.gsub('</body>',"<div id='hfUpsell'></div><div id='hfDownsell'></div>{{ 'hf_common.js' | asset_url | script_tag }}</body>")) unless @asset_value.include?("<div id='hfUpsell'>")
     
     @asset = ShopifyAPI::Asset.create(:key => 'assets/hf_common.js', value: '
 	    $.getScript("//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js", function(){
 	    	$.ajax({
 		      url: \''+ENV["hf_domain"]+'/frontend/get_upsell_detail\',
-		      data: {shop_id: "{{shop.permanent_domain}}",product_id: "{{product.id}}"},
+		      data: {shop_id: window.herofunnels.store_id,product_id: window.herofunnels.product_id},
 		    })
 		    .done(function(data) {
 		      console.log("success funnel");
-		      jQuery("head").append(\'<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" id="bt-removable-css">\');
-		      $("#hfUpsell").html(data.data);
+		      if(hfStorageRead("hfUpTrack")){}
+			    else
+			    {
+						hfStorageSave("hfUpTrack",{hfUp: \'0\'},1);
+			    } 
+			  	if(hfStorageRead("hfUpTrack").hfUp == data.track_id){
+			  		console.log("no html")
+			  	}
+			  	else{
+		      	jQuery("head").append(\'<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" id="bt-removable-css">\');
+			  		$("#hfUpsell").html(data.data);
+			  	}
 		    })
 		    .fail(function() {
 		      console.log("error");
@@ -32,15 +42,14 @@ class Shop < ActiveRecord::Base
 		    $.getScript( "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", function( ) {
 			    jQuery(\'form[action="/cart/add"]\').submit(function(e) {
 				    e.preventDefault();
-				    $("#hfDownsellBody").hide();
-						$("#hfUpsellBody").show();
 				    $("#hfUpsellModal").modal();
+						hfStorageSave("hfUpTrack",{hfUp: data.track_id},1);
 				  });
 				});
 		    $.getScript("https://cdnjs.cloudflare.com/ajax/libs/shopify-cartjs/0.4.1/cart.min.js", function( ) {
 		    	$.getScript("https://cdnjs.cloudflare.com/ajax/libs/shopify-cartjs/0.4.1/rivets-cart.min.js", function( ) {
 						jQuery(function() {
-				      CartJS.init({{ cart | json }});
+				      // CartJS.init({{ cart | json }});
 				    });
 				  }); 
 			  });      
@@ -51,9 +60,17 @@ class Shop < ActiveRecord::Base
 				$("#hfUpsellModal").modal(\'hide\');
 			});
 			
-			$(document).on(\'click\', \'#hfUpsellCancel\', function(event) {
-				$("#hfDownsellBody").show();
-				$("#hfUpsellBody").hide();
+			$(document).on(\'click\', \'.upsell-cancel\', function(event) {
+				console.log($(this).data(\'next\'))
+				if($(\'#\'+$(this).data(\'next\')).length){
+					console.log("yesssssssss up")
+					$(\'#\'+$(this).data(\'current\')).hide();
+					$(\'#\'+$(this).data(\'next\')).show();
+				}
+				else{
+					$("#hfUpsellModal").modal(\'hide\');
+				}
+				// $("#hfUpsellBody").hide();
 			});
 
 			$(document).on(\'click\', \'#hfDownsellBuy\', function(event) {
@@ -103,7 +120,7 @@ class Shop < ActiveRecord::Base
 		    		console.log("no html")
 		    	}
 		    	else{
-		    		$(".hfDownsellModal1").html(data.data);
+		    		$("#hfDownsell").html(data.data);
 		    		console.log(hf_device)
 		    		if(hf_device == \'mobile\'){
 		    			setTimeout(function(){
