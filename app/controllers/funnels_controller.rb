@@ -36,6 +36,7 @@ class FunnelsController < ShopifyApp::AuthenticatedController
 
   # GET /funnels/1/edit
   def edit
+    @funnel = Funnel.find(params[:id])
     # @shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
     # ShopifyAPI::Base.site = @shop_url
     @store_id = @current_shop.myshopify_domain 
@@ -63,8 +64,8 @@ class FunnelsController < ShopifyApp::AuthenticatedController
     # @funnel = Funnel.new(funnel_params)
     # params[:funnel][:up_product_id] = FilterShopProduct.find_by(product_id: params[:funnel][:up_product_id]).try(:id)
     # params[:funnel][:down_product_id] = FilterShopProduct.find_by(product_id: params[:funnel][:down_product_id]).try(:id)
-    params[:funnel][:upsell_product_ids] = "10941480908,10941215180,10927523532"
-    params[:funnel][:downsell_product_ids] = "10941481228,10941480780,10945801164"
+    # params[:funnel][:upsell_product_ids] = "10941480908,10941215180,10927523532"
+    # params[:funnel][:downsell_product_ids] = "10941481228,10941480780,10945801164"
     @funnel = @shop.funnels.create(funnel_params)
     if @funnel.present?
       funnel_product_ids = FilterShopProduct.where(product_id: params[:funnel][:funnel_product_ids].split(',')).ids

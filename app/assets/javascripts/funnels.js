@@ -33,7 +33,7 @@ $(document).ready(function(){
 	  	// }else{
 				// $("#downSellPanel").removeClass('panel-danger').addClass('panel-default');
 	  	// }
-	  	if ($(".trigger-products").val().trim().length == 0) {
+	  	if ($("#trigger-products").val().trim().length == 0) {
 				$("#funnelProducts").removeClass('panel-default').addClass('panel-danger');
 				$(".no_products td").text('Please select product').addClass('input-error');
 	  		hFlag = false;

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root :to => 'dashboard#dashboard'
 
   get 'funnels/change_status'
+  post 'funnels/create'
   resources :funnels
   get 'home/test_modal'
   get 'home/contact_us'

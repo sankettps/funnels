@@ -18,8 +18,8 @@
             <thead>
               <tr>
                 <th>Funnel Name</th>
-                <th>Up Sell Product</th>
-                <th>Down Sell Product</th>
+                <th>Upsell Popup Title</th>
+                <th>Downsell Popup Title</th>
                 <th>Actions</th>
                 <th>Status</th>
               </tr>
@@ -28,8 +28,8 @@
               <% @funnels.each do |funnel| %>
                 <tr>
                   <td><%= funnel.name %></td>
-                  <td><%#= funnel.up_product.title %></td>
-                  <td><%#= funnel.down_product.title %></td>
+                  <td><%= funnel.up_sell_title %></td>
+                  <td><%= funnel.down_sell_title %></td>
                   <td class="center">
                     <%= link_to '<i class="glyphicon glyphicon-pencil" aria-hidden="true"></i>'.html_safe,edit_funnel_path(funnel.id) %>
                     <%#= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe,"#" %>

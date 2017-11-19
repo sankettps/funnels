@@ -1,8 +1,8 @@
 
 <div class="add_form">
   <h4 class="m-l-15">Add New Funnel</h4> 
-      <%= form_tag "/funnels", :method => :post, :class => "form-horizontal funnel-form",name: 'funnel_form',id: "add_funnel_form" do %>
-      <input type="hidden" name="funnel[funnel_product_ids]" class="trigger-products" >
+      <%= form_tag "/funnels/create", :method => :post, :class => "form-horizontal funnel-form",name: 'funnel_form',id: "add_funnel_form" do %>
+      <input type="hidden" name="funnel[funnel_product_ids]" id="trigger-products">
       <input type="hidden" name="funnel[upsell_product_ids]" id="up_product_ids">
       <input type="hidden" name="funnel[downsell_product_ids]" id="down_product_ids">
       <div class="shop-url hide"><%= @shop_url %></div>
@@ -170,7 +170,17 @@
                     <div class="row clearfix table_top_portion_left">
                     </div>
                     <div id="products">
+                      <table class="table non_selected_products table-striped" id="before_selected_products">
+                        <thead>
+                            <tr>
+                                <th>Product Id</th>
+                                <th></th>
+                                <th><h4>Results</h4></th>
+                                <th class="col-sm-2"><button type="button" class="btn btn-small btn-primary select-all">Select All</button></th>
+                            </tr>
+                        </thead>
                       <%= render 'getproducts' %>
+                      </table>
                     </div>
                   </div>  
                   <div class="col-sm-6">
@@ -200,7 +210,111 @@
             </div>
           </div>
 
-          <div class="row">
+          <div class="panel panel-default product-filter" id="funnelProducts">
+            <div class="panel-heading">
+                Upsell Products
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <div class="select_products_section">              
+                  <div class="col-sm-6">
+                    <div class="row clearfix table_top_portion_left">
+                    </div>
+                    <div id="products">
+                     <table class="table non_selected_products table-striped" id="before_selected_upsell_products">
+                        <thead>
+                            <tr>
+                                <th>Product Id</th>
+                                <th></th>
+                                <th><h4>Results</h4></th>
+                                <th class="col-sm-2"></th>
+                            </tr>
+                        </thead>
+                      <%= render 'getproducts' %>
+                      </table>
+                    </div>
+                  </div>  
+                  <div class="col-sm-6">
+                    <div class="row table_top_portion_right">
+                    </div>
+                    <div class="right_table">
+                      <table class="table selected_upsell_products table-striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="col-md-10"><h4>Selected Products</h4></th>
+                                <th class="col-md-2"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="no_products">
+                              <td colspan="3" class="dataTables_empty">No products selected</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="selected_upsell_products_count">Showing 0 entries</div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+           <div class="panel panel-default product-filter" id="funnelProducts">
+            <div class="panel-heading">
+                Downsell Products
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <div class="select_products_section">              
+                  <div class="col-sm-6">
+                    <div class="row clearfix table_top_portion_left">
+                    </div>
+                    <div id="products">
+                     <table class="table non_selected_products table-striped" id="before_selected_downsell_products">
+                        <thead>
+                            <tr>
+                                <th>Product Id</th>
+                                <th></th>
+                                <th><h4>Results</h4></th>
+                                <th class="col-sm-2"></th>
+                            </tr>
+                        </thead>
+                      <%= render 'getproducts' %>
+                      </table>
+                    </div>
+                  </div>  
+                  <div class="col-sm-6">
+                    <div class="row table_top_portion_right">
+                    </div>
+                    <div class="right_table">
+                      <table class="table selected_downsell_products table-striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="col-md-10"><h4>Selected Products</h4></th>
+                                <th class="col-md-2"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="no_products">
+                              <td colspan="3" class="dataTables_empty">No products selected</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="selected_downsell_products_count">Showing 0 entries</div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- <div class="row">
             <div class="col-xs-6">
               <div class="panel panel-default" id="upSellPanel">
                   <div class="panel-heading">
@@ -234,7 +348,7 @@
                   </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
 
           <button type="submit" class="btn btn-danger funnel-submit">Submit</button>
