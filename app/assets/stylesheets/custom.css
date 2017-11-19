@@ -128,8 +128,7 @@ input[type=text]:focus.input-error{
   border-radius: 5px;
   width: 200px;
 }
-#before_selected_products tbody .single_product td,.selected_products tbody .single_product td,#before_selected_upsell_products tbody .single_product td,.selected_upsell_products tbody .single_product td,#before_selected_downsell_products tbody .single_product td,.selected_downsell_products tbody .single_product td
-
+#before_selected_products tbody .single_product td,.selected_products tbody .single_product td,#before_selected_upsell_products tbody .single_product td,.selected_upsell_products tbody .single_product td,#before_selected_downsell_products tbody .single_product td,.selected_downsell_products tbody .single_product td{
   font-size: 15px;
   padding: 10px !important;
 }
