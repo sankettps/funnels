@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery.validate.min
-//= require rails-ujs
+//= require jquery-ui
 //= require bootstrap
 //= require jquery.minicolors
 //= require metisMenu
@@ -20,7 +20,6 @@
 //= require morris
 //= require sb-admin-2
 //= require sweetalert
-//= require jquery-ui
 //= require dataTables/jquery.dataTables  
 //= require funnels 
 
