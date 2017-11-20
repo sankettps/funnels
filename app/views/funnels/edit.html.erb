@@ -1,10 +1,11 @@
 
 <div class="add_form">
-  <h4 class="m-l-15">Add New Funnel</h4> 
-      <%= form_tag "/funnels/create", :method => :post, :class => "form-horizontal funnel-form",name: 'funnel_form',id: "add_funnel_form" do %>
+  <h4 class="m-l-15">Edit Funnel</h4> 
+      <%= form_tag "/funnels/update", :method => :post, :class => "form-horizontal funnel-form",name: 'funnel_form',id: "add_funnel_form" do %>
       <input type="hidden" name="funnel[funnel_product_ids]" id="trigger-products">
       <input type="hidden" name="funnel[upsell_product_ids]" id="up_product_ids">
       <input type="hidden" name="funnel[downsell_product_ids]" id="down_product_ids">
+      <input type="hidden" name="id" value="<%= @funnel.id %>">
       <div class="shop-url hide"><%= @shop_url %></div>
       <div class="store-id hide"><%= @store_id %></div>
       <div class="product-titles hide"><%= @product_titles %></div>
@@ -47,47 +48,47 @@
                   </div>
                   <div class="col-sm-6">
                     <label for="uBuyBgColor">Upsell buy button background color</label>
-                    <input type="text" name="funnel[upsell_css][buy_bg_color]" id="uBuyBgColor" class="form-control colorpicker w-93" required value="<%= @funnel.upsell_css %>">
+                    <input type="text" name="funnel[upsell_css][buy_bg_color]" id="uBuyBgColor" class="form-control colorpicker w-93" required value="<%= @funnel.upsell_css['buy_bg_color'] %>">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="col-sm-6">
                     <label for="uBuyTextColor">Upsell buy button text color</label>
-                    <input type="text" name="funnel[upsell_css][buy_text_color]" id="uBuyTextColor" class="form-control colorpicker w-93"  required value="<%= @funnel.down_sell_title %>">
+                    <input type="text" name="funnel[upsell_css][buy_text_color]" id="uBuyTextColor" class="form-control colorpicker w-93"  required value="<%= @funnel.upsell_css['buy_text_color'] %>">
                   </div>
                   <div class="col-sm-6">
                     <label for="uCancelBgColor">Upsell cancel button background color</label>
-                    <input type="text" name="funnel[upsell_css][cancel_bg_color]" id="uCancelBgColor" class="form-control colorpicker w-93"  required value="<%= @funnel.down_sell_title %>">
+                    <input type="text" name="funnel[upsell_css][cancel_bg_color]" id="uCancelBgColor" class="form-control colorpicker w-93"  required value="<%= @funnel.upsell_css['cancel_bg_color'] %>">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="col-sm-6">
                     <label for="uCancelTextColor">Upsell cancel button text color</label>
-                    <input type="text" name="funnel[upsell_css][cancel_text_color]" id="uCancelTextColor" class="form-control colorpicker w-93"  required value="<%= @funnel.down_sell_title %>">
+                    <input type="text" name="funnel[upsell_css][cancel_text_color]" id="uCancelTextColor" class="form-control colorpicker w-93"  required value="<%= @funnel.upsell_css['cancel_text_color'] %>">
                   </div>
                   <div class="col-sm-6">
                     <label for="dTitleTextColor">Downsell title text color</label>
-                    <input type="text" name="funnel[downsell_css][title_text_color]" id="dTitleTextColor" class="form-control colorpicker w-93"  required value="<%= @funnel.down_sell_title %>">
+                    <input type="text" name="funnel[downsell_css][title_text_color]" id="dTitleTextColor" class="form-control colorpicker w-93"  required value="<%= @funnel.downsell_css['title_text_color'] %>">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="col-sm-6">
                     <label for="dBuyBgColor">Downsell buy button background color</label>
-                    <input type="text" name="funnel[downsell_css][buy_bg_color]" id="dBuyBgColor" class="form-control colorpicker w-93"  required value="<%= @funnel.down_sell_title %>">
+                    <input type="text" name="funnel[downsell_css][buy_bg_color]" id="dBuyBgColor" class="form-control colorpicker w-93"  required value="<%= @funnel.downsell_css['buy_bg_color'] %>">
                   </div>
                   <div class="col-sm-6">
                     <label for="dBuyTextColor">Downsell buy button text color</label>
-                    <input type="text" name="funnel[downsell_css][buy_text_color]" id="dBuyTextColor" class="form-control colorpicker w-93"  required value="<%= @funnel.down_sell_title %>"
+                    <input type="text" name="funnel[downsell_css][buy_text_color]" id="dBuyTextColor" class="form-control colorpicker w-93" required value="<%= @funnel.downsell_css['buy_text_color'] %>">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="col-sm-6">
                     <label for="dCancelBgColor">Downsell cancel button background color</label>
-                    <input type="text" name="funnel[downsell_css][cancel_bg_color]" id="dCancelBgColor" class="form-control colorpicker w-93"  required value="<%= @funnel.down_sell_title %>">
+                    <input type="text" name="funnel[downsell_css][cancel_bg_color]" id="dCancelBgColor" class="form-control colorpicker w-93"  required value="<%= @funnel.downsell_css['cancel_bg_color'] %>">
                   </div>
                   <div class="col-sm-6">
                     <label for="dCancelTextColor">Downsell cancel button text color</label>
-                    <input type="text" name="funnel[downsell_css][cancel_text_color]" id="dCancelTextColor" class="form-control colorpicker w-93"  required value="<%= @funnel.down_sell_title %>">
+                    <input type="text" name="funnel[downsell_css][cancel_text_color]" id="dCancelTextColor" class="form-control colorpicker w-93"  required value="<%= @funnel.downsell_css['cancel_text_color'] %>">
                   </div>
                   
                 </div>
@@ -95,19 +96,19 @@
                   <div class="col-sm-6">
                     <label for="productTitle">Redirect Page (After adding product to cart from funnel popup)</label>
                     <div class="radio">
-                      <label><input type="radio" name="funnel[redirect_page]" value="checkout">Checkout</label>
+                      <label><input type="radio" name="funnel[redirect_page]" value="checkout" <%= (@funnel.redirect_page == 'checkout') ? 'checked':'' %>>Checkout</label>
                     </div>
                     <div class="radio">
-                      <label><input type="radio" name="funnel[redirect_page]" value="cart" checked>Cart</label>
+                      <label><input type="radio" name="funnel[redirect_page]" value="cart" <%= (@funnel.redirect_page == 'cart') ? 'checked':'' %>>Cart</label>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <label for="productTitle">Display Description in funnel popup</label>
                     <div class="radio">
-                      <label><input type="radio" name="funnel[is_display_desc]" value="true" checked>Yes</label>
+                      <label><input type="radio" name="funnel[is_display_desc]" value="true" <%= (@funnel.is_display_desc == true) ? 'checked':'' %>>Yes</label>
                     </div>
                     <div class="radio">
-                      <label><input type="radio" name="funnel[is_display_desc]" value="false">No</label>
+                      <label><input type="radio" name="funnel[is_display_desc]" value="false" <%= (!@funnel.is_display_desc) ? 'checked':'' %>>No</label>
                     </div>
                   </div>
                   
@@ -196,15 +197,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                          <tr class="no_products">
-                              <td colspan="3" class="dataTables_empty">No products selected</td>
-                          </tr>
+                              <%= @selected_products_html.html_safe %>
                         </tbody>
                       </table>
                     </div>
-                    <div class="selected_products_count">Showing 0 entries</div>
+                    <div class="selected_products_count">Showing <%= @selected_products_count %> entries</div>
 
-                  </div>
+                   </div>
                 </div>
               </div>
             </div>
@@ -247,13 +246,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                          <tr class="no_products">
-                              <td colspan="3" class="dataTables_empty">No products selected</td>
-                          </tr>
+                          <%= @selected_upsell_products_html.html_safe %>
                         </tbody>
                       </table>
                     </div>
-                    <div class="selected_upsell_products_count">Showing 0 entries</div>
+                    <div class="selected_upsell_products_count">Showing <%= @selected_upsell_products_count %> entries</div>
 
                   </div>
                 </div>
@@ -298,13 +295,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                          <tr class="no_products">
-                              <td colspan="3" class="dataTables_empty">No products selected</td>
-                          </tr>
+                          <%= @selected_downsell_products_html.html_safe %>
                         </tbody>
                       </table>
                     </div>
-                    <div class="selected_downsell_products_count">Showing 0 entries</div>
+                    <div class="selected_downsell_products_count">Showing <%= @selected_downsell_products_count %> entries</div>
 
                   </div>
                 </div>

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   get 'funnels/change_status'
   post 'funnels/create'
+  post 'funnels/update'
   resources :funnels
   get 'home/test_modal'
   get 'home/contact_us'
