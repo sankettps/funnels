@@ -49,7 +49,7 @@ class Shop < ActiveRecord::Base
 		    $.getScript("https://cdnjs.cloudflare.com/ajax/libs/shopify-cartjs/0.4.1/cart.min.js", function( ) {
 		    	$.getScript("https://cdnjs.cloudflare.com/ajax/libs/shopify-cartjs/0.4.1/rivets-cart.min.js", function( ) {
 						jQuery(function() {
-				      // CartJS.init({{ cart | json }});
+				      CartJS.init(window.herofunnels.cart);
 				    });
 				  }); 
 			  });      
@@ -167,6 +167,34 @@ class Shop < ActiveRecord::Base
 				// $("#hfUpsellBody").hide();
 			});
     ', :theme_id => @theme.id)
+
+	@asset = ShopifyAPI::Asset.create(:key => 'snippets/hf_common.liquid', value: '<script>
+	  if (typeof window.herofunnels_config != "object") {
+	    window.herofunnels_config = {}
+	  }
+
+	  {% assign herofunnels_page_type = '' %}
+	    window.herofunnels = {
+	      shop_slug: "{{shop.permanent_domain | remove: \'.myshopify.com\' }}",
+	      store_id: "{{shop.permanent_domain}}",
+	      money_format: "{{shop.money_format | replace: '"', "'"}}",
+	      product_id: null,
+	      cart: null
+	    }
+	   {% if cart %}
+	      window.herofunnels.cart = {{cart | json}}
+	      if (typeof window.herofunnels.cart.items == "object") {
+	        for (var i=0; i<window.herofunnels.cart.items.length; i++) {
+	          ["sku", "grams", "vendor", "url", "image", "handle", "requires_shipping", "product_type", "product_description"].map(function(a) {
+	            delete window.herofunnels.cart.items[i][a]
+	          })
+	        }
+	      }
+	  {% endif %}
+	  {% if template contains \'product\' %}
+	  	window.herofunnels.product_id = {{ product.id }};
+	  {% endif %}
+	</script>', :theme_id => @theme.id)
 
   end
 end
