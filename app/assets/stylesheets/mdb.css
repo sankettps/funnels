@@ -7201,7 +7201,7 @@ textarea.md-textarea {
       box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.08) !important;
       border-bottom: 0; }
 
-.form-control {
+/*.form-control {
   padding: 0;
   padding-bottom: 0.6rem;
   padding-top: 0.5rem;
@@ -7211,7 +7211,7 @@ textarea.md-textarea {
   background-image: none;
   border-radius: 0;
   margin-top: 0.2rem;
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem; }*/
   .form-control:focus {
     background: transparent; }
   .form-control:disabled, .form-control[readonly] {
