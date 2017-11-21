@@ -17,7 +17,7 @@ $(document).ready(function(){
     $('#up_product_ids').val($.unique( all_upsell_products_array ).join(','));
 
     var all_downsell_products_array=[];
-    $('.selected_products tbody tr').each(function(){
+    $('.selected_downsell_products tbody tr').each(function(){
         var pid=$(this).find('.product_data').data('pid');
         all_downsell_products_array.push(pid);
     });

@@ -90,6 +90,7 @@ class FrontendController < ApplicationController
 
 	def get_upsell_detail
 		# 10927523532
+		params[:shop_id] = 'welovedrones.myshopify.com'
 	 	@shop = Shop.find_by_shopify_domain(params[:shop_id])
 	 	if @shop.present?
 	 		# @funnel = @shop.funnels.find_by(is_active: true)

@@ -155,6 +155,7 @@ class FunnelsController < ShopifyApp::AuthenticatedController
   # DELETE /funnels/1
   # DELETE /funnels/1.json
   def destroy
+    @funnel = Funnel.find(params[:id])
     @funnel.destroy
     respond_to do |format|
       format.html { redirect_to root_path, notice: 'Funnel was successfully destroyed.' }

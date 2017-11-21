@@ -85,7 +85,7 @@ class Shop < ActiveRecord::Base
 
 			
 		  var hfIsMobile = window.matchMedia("only screen and (max-width: 760px)");
-		  var hf_device = \desktop\;
+		  var hf_device = \'desktop\';
 		  var hfDownTrack;
 		  function hfStorageSave(key, jsonData, expirationMin){
 				var expirationMS = expirationMin * 60 * 1000;
