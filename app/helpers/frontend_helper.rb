@@ -305,7 +305,7 @@ module FrontendHelper
 			 			end
 			 		end
 			 	end
-				@upsell_body += "<div id=\"upProduct#{index}\" style='display: #{index == 0 ? "block" : "none"};'>
+				@upsell_body += "<div id=\"upProduct#{index}\" style='display: #{index == 0 ? "block" : "none"};' class = #{index == 0 ? "active_upsell" : ""};'>
 		     	<div class=\"modal-body\">
 			      <div class=\"row\">
 		      		<div class=\"col-xs-6\">
@@ -320,14 +320,12 @@ module FrontendHelper
 			      			<div class=\"row\">
 			      				<div class=\"col-xs-12\">
 			      					<p class=\"pro-price\">#{@shop.currency_symbol} #{@up_variant.price}</p>
-			      					<input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
+			      					#{index == 0 ? "<input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
 			      					<input type=\"hidden\" name=\"\" id=\"hfUpsellProduct\" value=\"#{@up_product.id}\">
-			      					<input type=\"hidden\" name=\"\" id=\"hfProduct\" value=\"#{@filter_product.product_id}\">
-			      				</div>
+			      					<input type=\"hidden\" name=\"\" id=\"hfProduct\" value=\"#{@filter_product.product_id}\">" : ""} </div>
 			      			</div>
-			      			<input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
 							<div class=\"product-single__variants\">
-								<select name=\"id\" id=\"herofunnelUpProduct\" class=\"product-single__variants\">"
+								<select name=\"id\" id=\"herofunnelUpProduct#{index}\" class=\"product-single__variants\">"
 								@up_product.variants.each do |variant|
 									@upsell_body += "<option data-sku='#{variant.sku}' value='#{variant.id}' data-price='#{variant.price}' data-image='#{@up_product_img_array[variant.id]}'>#{variant.title}</option>"
 									end
@@ -367,32 +365,19 @@ module FrontendHelper
 		</div>
 		<script>
 			var selectUpsellCallback = function(variant, selector) {
-						$('#hfUpsellVariant').val($('#herofunnelUpProduct').val());
-		        $('#hfUpsellBody .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelUpProduct').find(':selected').attr('data-price'));
-		        if($('#herofunnelUpProduct').find(':selected').attr('data-image')){
-					$('#hfUpsellBody .hf-pro-img').attr('src',$('#herofunnelUpProduct').find(':selected').attr('data-image'));
+						$('#hfUpsellVariant').val($('#herofunnelUpProduct#{index}').val());
+		        $('#hfUpsellBody .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelUpProduct#{index}').find(':selected').attr('data-price'));
+		        if($('#herofunnelUpProduct#{index}').find(':selected').attr('data-image')){
+					$('#hfUpsellBody .hf-pro-img').attr('src',$('#herofunnelUpProduct#{index}').find(':selected').attr('data-image'));
 				}
 		     };
 
-			this.optionSelector = new Shopify.OptionSelectors('herofunnelUpProduct', {
+			this.optionSelector = new Shopify.OptionSelectors('herofunnelUpProduct#{index}', {
 		        product: #{@up_product.to_json},
 		        onVariantSelected: selectUpsellCallback,
 		        enableHistoryState: this.enableHistoryState
 		      });
 
-		   var selectDownsellCallback = function(variant, selector) {
-		   		$('#hfDownsellVariant').val($('#herofunnelDownProduct').val());
-		        $('#hfDownsellBody .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelDownProduct').find(':selected').attr('data-price'));
-		        if($('#herofunnelDownProduct').find(':selected').attr('data-image')){
-					$('#hfDownsellBody .hf-pro-img').attr('src',$('#herofunnelDownProduct').find(':selected').attr('data-image'));
-				}
-		     };
-
-			this.optionSelector = new Shopify.OptionSelectors('herofunnelDownProduct', {
-		        product: #{@down_product.to_json},
-		        onVariantSelected: selectDownsellCallback,
-		        enableHistoryState: this.enableHistoryState
-		      });
 		</script>
 		<style type=\"text/css\">
 
@@ -412,7 +397,7 @@ module FrontendHelper
 		    color: #4aae4e;
 		    margin-right: 15px;
 			}
-			
+
 			.hf-upsell .modal-title{
 				color: #{@funnel.upsell_css["title_text_color"]};
 			}
