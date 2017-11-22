@@ -131,6 +131,11 @@ class FrontendController < ApplicationController
 	end
 
 	def test
+		@aa= 'piyush'
+		@bb = "$('#piyush#{@aa}')"
+		render plain: @bb and return
+
+
 		@shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
   		ShopifyAPI::Base.site = @shop_url
 	 	puts "<======funnel========#{@funnel.inspect}===============>"
@@ -187,6 +192,9 @@ class FrontendController < ApplicationController
 	 	render json: @response
 	end
 
+	def test2
+
+	end
 	def getupsellproduct
 	 	@shop = Shop.first
 

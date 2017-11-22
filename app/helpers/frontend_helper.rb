@@ -345,7 +345,23 @@ module FrontendHelper
 					  <button type=\"button\" class=\"btn btn-success buy-button\" id=\"hfUpsellBuy\">Buy Now</button>
 					  <button type=\"button\" data-next=\"upProduct#{index+1}\" data-current=\"upProduct#{index}\" class=\"btn btn-default upsell-cancel cancel-button\" id=\"hfUpsellCancel\">No, thanks</button>
 					</div>
-	      </div>"
+	      </div>
+	      <script>
+				var selectUpsellCallback = function(variant, selector) {
+							$('#hfUpsellVariant').val($('#herofunnelUpProduct#{index}').val());
+			        $('#hfUpsellBody .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelUpProduct#{index}').find(':selected').attr('data-price'));
+			        if($('#herofunnelUpProduct#{index}').find(':selected').attr('data-image')){
+						$('#hfUpsellBody .hf-pro-img').attr('src',$('#herofunnelUpProduct#{index}').find(':selected').attr('data-image'));
+					}
+			     };
+
+				this.optionSelector = new Shopify.OptionSelectors('herofunnelUpProduct#{index}', {
+			        product: #{@up_product.to_json},
+			        onVariantSelected: selectUpsellCallback,
+			        enableHistoryState: this.enableHistoryState
+			      });
+
+			</script>"
 	  		end
 	  		@html = "<div id=\"hfUpsellModal\" class=\"modal fade hf-upsell\" role=\"dialog\">
 		  <div class=\"modal-dialog\">
@@ -363,22 +379,7 @@ module FrontendHelper
 		    </div>
 		  </div>
 		</div>
-		<script>
-			var selectUpsellCallback = function(variant, selector) {
-						$('#hfUpsellVariant').val($('#herofunnelUpProduct'+#{index}).val());
-		        $('#hfUpsellBody .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelUpProduct'+#{index}).find(':selected').attr('data-price'));
-		        if($('#herofunnelUpProduct'+#{index}).find(':selected').attr('data-image')){
-					$('#hfUpsellBody .hf-pro-img').attr('src',$('#herofunnelUpProduct'+#{index}).find(':selected').attr('data-image'));
-				}
-		     };
-
-			this.optionSelector = new Shopify.OptionSelectors('herofunnelUpProduct#{index}', {
-		        product: #{@up_product.to_json},
-		        onVariantSelected: selectUpsellCallback,
-		        enableHistoryState: this.enableHistoryState
-		      });
-
-		</script>
+		
 		<style type=\"text/css\">
 
 			.hf-upsell .hf-pro-img{
