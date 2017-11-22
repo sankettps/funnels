@@ -347,7 +347,7 @@ module FrontendHelper
 					</div>
 	      </div>
 	      <script>
-				var selectUpsellCallback = function(variant, selector) {
+				var selectUpsellCallback#{index} = function(variant, selector) {
 							$('#hfUpsellVariant').val($('#herofunnelUpProduct#{index}').val());
 			        $('#hfUpsellBody .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelUpProduct#{index}').find(':selected').attr('data-price'));
 			        if($('#herofunnelUpProduct#{index}').find(':selected').attr('data-image')){
@@ -357,7 +357,7 @@ module FrontendHelper
 
 				this.optionSelector = new Shopify.OptionSelectors('herofunnelUpProduct#{index}', {
 			        product: #{@up_product.to_json},
-			        onVariantSelected: selectUpsellCallback,
+			        onVariantSelected: selectUpsellCallback#{index},
 			        enableHistoryState: this.enableHistoryState
 			      });
 
