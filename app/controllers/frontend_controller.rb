@@ -25,7 +25,7 @@ class FrontendController < ApplicationController
 			 				@up_product_img_array[vid] = img.src
 			 			end
 			 		end
-			 	end
+			 	end 
     		@down_product_img_array = {}
 		 		@down_product = ShopifyAPI::Product.find(@funnel.down_product.product_id)
     		arr_options = []
