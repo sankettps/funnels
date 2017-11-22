@@ -32,14 +32,14 @@ module FrontendHelper
 				      				</div>
 				      			</div>
 				      			<input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
-								<div class=\"product-single__variants\">
-									<select name=\"id\" id=\"herofunnelUpProduct\" class=\"product-single__variants\">"
-									@up_product.variants.each do |variant|
-										@html += "<option data-sku='#{variant.sku}' value='#{variant.id}' data-price='#{variant.price}' data-image='#{@up_product_img_array[variant.id]}'>#{variant.title}</option>"
-										end
-									@html += "</select>
-								</div>
-				   			</div>
+										<div class=\"product-single__variants\">
+											<select name=\"id\" id=\"herofunnelUpProduct\" class=\"product-single__variants\">"
+											@up_product.variants.each do |variant|
+												@html += "<option data-sku='#{variant.sku}' value='#{variant.id}' data-price='#{variant.price}' data-image='#{@up_product_img_array[variant.id]}'>#{variant.title}</option>"
+												end
+											@html += "</select>
+										</div>
+						     </div>
 				      </div>
 				      <div class=\"row upSellDes\">
 		    				<div class=\"col-xs-12\">
@@ -53,7 +53,7 @@ module FrontendHelper
 					    <button type=\"button\" class=\"btn btn-success\" id=\"hfUpsellBuy\">Buy Now</button>
 					    <button type=\"button\" class=\"btn btn-default\" id=\"hfUpsellCancel\">No, thanks</button>
 						</div>
-		      		</div>
+		      </div>
 		     
 		      <div id=\"hfDownsellBody\" style=\"display:none;\">
 			      <div class=\"modal-body\">
@@ -256,9 +256,8 @@ module FrontendHelper
 	def up_body_html
 		@upsell_body = ''
 		@funnel.upsell_products.each_with_index do |up_product,index|
-			# up_product.filter_shop_product
-			@up_product = ShopifyAPI::Product.find(up_product.filter_shop_product.product_id)
-			puts "UP PRoduct=====================#{@up_product.inspect}"
+			up_product.filter_shop_product
+
 			@upsell_body += "<div id=\"upProduct#{index}\" style='display: #{index == 0 ? "block" : "none"};'>
 	      <div class=\"modal-body\">
 		      <div class=\"row\">
@@ -272,29 +271,6 @@ module FrontendHelper
 		      				</div>
 		      			</div>
 				     </div>
-				     <div class=\"col-xs-6\">
-				      			<div class=\"row\">
-				      				<div class=\"col-xs-12\">
-				      					<h4> #{@up_product.title} </h4>
-				      				</div>
-				      			</div>
-				      			<div class=\"row\">
-				      				<div class=\"col-xs-12\">
-				      					<p class=\"pro-price\">#{@shop.currency_symbol} #{@up_variant.price}</p>
-				      					<input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
-				      					<input type=\"hidden\" name=\"\" id=\"hfUpsellProduct\" value=\"#{@up_product.id}\">
-				      					<input type=\"hidden\" name=\"\" id=\"hfProduct\" value=\"#{@filter_product.product_id}\">
-				      				</div>
-				      			</div>
-				      			<input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
-								<div class=\"product-single__variants\">
-									<select name=\"id\" id=\"herofunnelUpProduct\" class=\"product-single__variants\">"
-									@up_product.variants.each do |variant|
-										@html += "<option data-sku='#{variant.sku}' value='#{variant.id}' data-price='#{variant.price}' data-image='#{@up_product_img_array[variant.id]}'>#{variant.title}</option>"
-										end
-									@html += "</select>
-								</div>
-				   			</div>
 		      </div>
 		      <div class=\"row up-sell-des\">
     				<div class=\"col-xs-12\">
@@ -310,5 +286,103 @@ module FrontendHelper
 				</div>
       </div>"
 		end
+		@html = "<div id=\"hfUpsellModal\" class=\"modal fade hf-upsell\" role=\"dialog\">
+		  <div class=\"modal-dialog\">
+		    <!-- Modal content-->
+		    <div class=\"modal-content\">
+		      <div class=\"modal-header\">
+		        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
+		          <span aria-hidden=\"true\">&times;</span>
+		        </button>
+		        <h4 class=\"modal-title text-center\">#{@funnel.up_sell_title}</h4>
+		      </div>
+		     	#{@upsell_body}
+		    </div>
+		  </div>
+		</div>
+		
+		<style type=\"text/css\">
+			.hf-upsell .modal-title{
+				color: #{@funnel.upsell_css["title_text_color"]};
+			}
+			.hf-upsell .buy-button{
+				color: #{@funnel.upsell_css["buy_text_color"]} !important;
+				background-color: #{@funnel.upsell_css["buy_bg_color"]} !important;
+			}
+			.hf-upsell .cancel-button{
+				color: #{@funnel.upsell_css["cancel_text_color"]} !important;
+				background-color: #{@funnel.upsell_css["cancel_bg_color"]} !important;
+			}
+		</style>"
 	end
+
+	def upsell_modal_html_piyush
+		@funnel.upsell_products.each_with_index do |up_product,index|
+				# up_product.filter_shop_product
+    		@up_product_img_array = {}
+				@up_product = ShopifyAPI::Product.find(up_product.filter_shop_product.product_id)
+		 		arr_options = []
+				@up_product.options.each {|option| arr_options << option.name}
+				@up_product.options = arr_options
+    		@up_variant = @up_product.variants.first
+		 		@up_product.images.each do |img|
+			 		if img.variant_ids.present?
+			 			img.variant_ids.each do |vid|
+			 				@up_product_img_array[vid] = img.src
+			 			end
+			 		end
+			 	end
+				@upsell_body += "<div id=\"upProduct#{index}\" style='display: #{index == 0 ? "block" : "none"};'>
+		     	<div class=\"modal-body\">
+			      <div class=\"row\">
+		      		<div class=\"col-xs-6\">
+		      			<img src=\"#{up_product.filter_shop_product.image}\" class=\"hf-pro-img\">
+		      		</div>
+		      		<div class=\"col-xs-6\">
+			      			<div class=\"row\">
+			      				<div class=\"col-xs-12\">
+			      					<h4> #{up_product.filter_shop_product.product_id} </h4>
+			      				</div>
+			      			</div>
+					    </div>
+					    <div class=\"col-xs-6\">
+			      			<div class=\"row\">
+			      				<div class=\"col-xs-12\">
+			      					<h4> #{@up_product.title} </h4>
+			      				</div>
+			      			</div>
+			      			<div class=\"row\">
+			      				<div class=\"col-xs-12\">
+			      					<p class=\"pro-price\">#{@shop.currency_symbol} #{@up_variant.price}</p>
+			      					<input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
+			      					<input type=\"hidden\" name=\"\" id=\"hfUpsellProduct\" value=\"#{@up_product.id}\">
+			      					<input type=\"hidden\" name=\"\" id=\"hfProduct\" value=\"#{@filter_product.product_id}\">
+			      				</div>
+			      			</div>
+			      			<input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
+							<div class=\"product-single__variants\">
+								<select name=\"id\" id=\"herofunnelUpProduct\" class=\"product-single__variants\">"
+								@up_product.variants.each do |variant|
+									@upsell_body += "<option data-sku='#{variant.sku}' value='#{variant.id}' data-price='#{variant.price}' data-image='#{@up_product_img_array[variant.id]}'>#{variant.title}</option>"
+									end
+								@upsell_body += "</select>
+							</div>
+			   			</div>
+			      </div>
+			      <div class=\"row up-sell-des\">
+	    				<div class=\"col-xs-12\">
+	      				<div class=\"hf-pro-desc\">
+	      					Lorem Ipsum downnnnnnnnn
+	      				</div>
+	    				</div>
+						</div>
+			    </div>
+				  <div class=\"modal-footer text-center\">
+					  <button type=\"button\" class=\"btn btn-success buy-button\" id=\"hfUpsellBuy\">Buy Now</button>
+					  <button type=\"button\" data-next=\"upProduct#{index+1}\" data-current=\"upProduct#{index}\" class=\"btn btn-default upsell-cancel cancel-button\" id=\"hfUpsellCancel\">No, thanks</button>
+					</div>
+	      </div>"
+	  		end
+	end
+
 end
