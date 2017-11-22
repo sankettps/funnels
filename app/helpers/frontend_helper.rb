@@ -349,9 +349,9 @@ module FrontendHelper
 	      <script>
 				var selectUpsellCallback#{index} = function(variant, selector) {
 							$('#hfUpsellVariant').val($('#herofunnelUpProduct#{index}').val());
-			        $('#hfUpsellBody .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelUpProduct#{index}').find(':selected').attr('data-price'));
+			        $('#upProduct#{index} .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelUpProduct#{index}').find(':selected').attr('data-price'));
 			        if($('#herofunnelUpProduct#{index}').find(':selected').attr('data-image')){
-						$('#hfUpsellBody .hf-pro-img').attr('src',$('#herofunnelUpProduct#{index}').find(':selected').attr('data-image'));
+						$('#upProduct#{index} .hf-pro-img').attr('src',$('#herofunnelUpProduct#{index}').find(':selected').attr('data-image'));
 					}
 			     };
 
