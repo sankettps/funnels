@@ -311,13 +311,6 @@ module FrontendHelper
 		      		<div class=\"col-xs-6\">
 		      			<img src=\"#{up_product.filter_shop_product.image}\" class=\"hf-pro-img\">
 		      		</div>
-		      		<div class=\"col-xs-6\">
-			      			<div class=\"row\">
-			      				<div class=\"col-xs-12\">
-			      					<h4> #{up_product.filter_shop_product.product_id} </h4>
-			      				</div>
-			      			</div>
-					    </div>
 					    <div class=\"col-xs-6\">
 			      			<div class=\"row\">
 			      				<div class=\"col-xs-12\">
@@ -345,7 +338,7 @@ module FrontendHelper
 			      <div class=\"row up-sell-des\">
 	    				<div class=\"col-xs-12\">
 	      				<div class=\"hf-pro-desc\">
-	      					Lorem Ipsum downnnnnnnnn
+	      					#{@up_product.body_html.html_safe}
 	      				</div>
 	    				</div>
 						</div>
@@ -372,8 +365,54 @@ module FrontendHelper
 		    </div>
 		  </div>
 		</div>
-		
+		<script>
+			var selectUpsellCallback = function(variant, selector) {
+						$('#hfUpsellVariant').val($('#herofunnelUpProduct').val());
+		        $('#hfUpsellBody .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelUpProduct').find(':selected').attr('data-price'));
+		        if($('#herofunnelUpProduct').find(':selected').attr('data-image')){
+					$('#hfUpsellBody .hf-pro-img').attr('src',$('#herofunnelUpProduct').find(':selected').attr('data-image'));
+				}
+		     };
+
+			this.optionSelector = new Shopify.OptionSelectors('herofunnelUpProduct', {
+		        product: #{@up_product.to_json},
+		        onVariantSelected: selectUpsellCallback,
+		        enableHistoryState: this.enableHistoryState
+		      });
+
+		   var selectDownsellCallback = function(variant, selector) {
+		   		$('#hfDownsellVariant').val($('#herofunnelDownProduct').val());
+		        $('#hfDownsellBody .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelDownProduct').find(':selected').attr('data-price'));
+		        if($('#herofunnelDownProduct').find(':selected').attr('data-image')){
+					$('#hfDownsellBody .hf-pro-img').attr('src',$('#herofunnelDownProduct').find(':selected').attr('data-image'));
+				}
+		     };
+
+			this.optionSelector = new Shopify.OptionSelectors('herofunnelDownProduct', {
+		        product: #{@down_product.to_json},
+		        onVariantSelected: selectDownsellCallback,
+		        enableHistoryState: this.enableHistoryState
+		      });
+		</script>
 		<style type=\"text/css\">
+
+			.hf-upsell .hf-pro-img{
+				width: 100%;
+			}
+			.hf-pro-desc{
+			  /*white-space: nowrap;*/
+			  overflow: hidden;
+			  text-overflow: ellipsis;
+			  max-width: 100%;
+			  max-height: 180px;
+			}
+			.hf-upsell .pro-price{
+				float: left;
+		    font-size: 30px;
+		    color: #4aae4e;
+		    margin-right: 15px;
+			}
+			
 			.hf-upsell .modal-title{
 				color: #{@funnel.upsell_css["title_text_color"]};
 			}
