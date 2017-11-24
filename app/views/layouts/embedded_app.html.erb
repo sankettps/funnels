@@ -59,6 +59,11 @@
         debug: <%= Rails.env.development? ? 'true' : 'false' %>,
         forceRedirect: <%= Rails.env.development? ? 'false' : 'true' %>
       });
+      ShopifyApp.ready(function(){
+        ShopifyApp.Bar.initialize({
+          
+        })
+      })
     </script>
 
     <% if content_for?(:javascript) %>
