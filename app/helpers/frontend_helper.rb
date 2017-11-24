@@ -34,7 +34,7 @@ module FrontendHelper
 				      			</div>
 				      			<input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
 										<div>
-											<select name=\"id\" id=\"herofunnelUpProduct\">"
+											<select  id=\"herofunnelUpProduct\">"
 											@up_product.variants.each do |variant|
 												@html += "<option data-sku='#{variant.sku}' value='#{variant.id}' data-price='#{variant.price}' data-image='#{@up_product_img_array[variant.id]}'>#{variant.title}</option>"
 												end
@@ -77,7 +77,7 @@ module FrontendHelper
 				      			</div>
 				      			<input type=\"hidden\" name=\"\" id=\"hfDownsellVariant\" value=\"#{@up_variant.id}\">
 										<div class=\"product-single__variants\">
-											<select name=\"id\" id=\"herofunnelDownProduct\" class=\"product-single__variants\">"
+											<select  id=\"herofunnelDownProduct\" class=\"product-single__variants\">"
 											@down_product.variants.each do |variant|
 												@html += "<option data-sku='#{variant.sku}' value='#{variant.id}' data-price='#{variant.price}' data-image='#{@down_product_img_array[variant.id]}'>#{variant.title}</option>"
 												end
@@ -326,7 +326,7 @@ module FrontendHelper
 			      					<input type=\"hidden\" name=\"\" id=\"hfProduct\" value=\"#{@filter_product.product_id}\">" : ""} </div>
 			      			</div>
 							<div>
-								<select name=\"id\" id=\"herofunnelUpProduct#{index}\">"
+								<select  id=\"herofunnelUpProduct#{index}\">"
 								@up_product.variants.each do |variant|
 									@upsell_body += "<option data-sku='#{variant.sku}' value='#{variant.id}' data-price='#{variant.price}' data-image='#{@up_product_img_array[variant.id]}'>#{variant.title}</option>"
 									end
@@ -463,7 +463,7 @@ module FrontendHelper
 			      					<input type=\"hidden\" name=\"\" id=\"hfProduct\" value=\"#{@filter_product.product_id}\">" : ""} </div>
 			      			</div>
 							<div>
-								<select name=\"id\" id=\"herofunnelDownProduct#{index}\">"
+								<select id=\"herofunnelDownProduct#{index}\">"
 								puts @down_product.inspect
 								@down_product.variants.each do |variant|
 									@downsell_body += "<option data-sku='#{variant.sku}' value='#{variant.id}' data-price='#{variant.price}' data-image='#{@down_product_img_array[variant.id]}'>#{variant.title}</option>"
@@ -490,6 +490,8 @@ module FrontendHelper
 	      <script>
 				var selectDownsellCallback#{index} = function(variant, selector) {
 					//console.log(variant);
+					alert($('#herofunnelDownProduct#{index}').val());
+					console.log($('#herofunnelDownProduct#{index}').val());
 							$('#hfDownsellVariant').val($('#herofunnelDownProduct#{index}').val());
 			        $('#downProduct#{index} .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelDownProduct#{index}').find(':selected').attr('data-price'));
 			        if($('#herofunnelDownProduct#{index}').find(':selected').attr('data-image')){
