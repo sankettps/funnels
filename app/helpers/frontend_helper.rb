@@ -443,7 +443,7 @@ module FrontendHelper
 			 		end
 			 	end
 			 	puts "Downselllllllllllllllll body"
-				@downsell_body += "<div id=\"downProduct#{index}\" style='display: #{index == 0 ? "block" : "none"};' class = #{index == 0 ? "active_downsell" : ""}>
+				@downsell_body += "<div id=\"downProduct#{index}\" style='display: #{index == 0 ? "block" : "none"};'>
 		     	<div class=\"modal-body\">
 			      <div class=\"row\">
 		      		<div class=\"col-xs-6\">
