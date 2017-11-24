@@ -333,15 +333,17 @@ module FrontendHelper
 								@upsell_body += "</select>
 							</div>
 			   			</div>
-			      </div>
-			      <div class=\"row up-sell-des\">
-	    				<div class=\"col-xs-12\">
-	      				<div class=\"hf-pro-desc\">
-	      					#{@up_product.body_html.html_safe}
-	      				</div>
-	    				</div>
-						</div>
-			    </div>
+			      </div>"
+			      if @funnel.is_display_desc
+				      @upsell_body += "<div class=\"row up-sell-des\">
+		    				<div class=\"col-xs-12\">
+		      				<div class=\"hf-pro-desc\">
+		      					#{@up_product.body_html.html_safe}
+		      				</div>
+		    				</div>
+							</div>"
+						end
+			    @upsell_body += "</div>
 				  <div class=\"modal-footer text-center\">
 					  <button type=\"button\" class=\"btn btn-success buy-button\" id=\"hfUpsellBuy\">Buy Now</button>
 					  <button type=\"button\" data-next=\"upProduct#{index+1}\" data-current=\"upProduct#{index}\" class=\"btn btn-default upsell-cancel cancel-button\" id=\"hfUpsellCancel\">No, thanks</button>
@@ -413,6 +415,140 @@ module FrontendHelper
 			.hf-upsell .cancel-button{
 				color: #{@funnel.upsell_css["cancel_text_color"]} !important;
 				background-color: #{@funnel.upsell_css["cancel_bg_color"]} !important;
+			}
+			.selector-wrapper{
+				display:block;
+			}
+			.selector-wrapper label{
+				width: 100%;
+			}
+		</style>"
+	end
+
+	def downsell_modal_html_piyush
+		@funnel.downsell_products.each_with_index do |down_product,index|
+				# down_product.filter_shop_product
+    		@down_product_img_array = {}
+				@down_product = ShopifyAPI::Product.find(down_product.filter_shop_product.product_id)
+		 		arr_options = []
+				@down_product.options.each {|option| arr_options << option.name}
+				@down_product.options = arr_options
+    		@down_variant = @down_product.variants.first
+		 		@down_product.images.each do |img|
+			 		if img.variant_ids.present?
+			 			img.variant_ids.each do |vid|
+			 				@down_product_img_array[vid] = img.src
+			 			end
+			 		end
+			 	end
+				@downsell_body += "<div id=\"downProduct#{index}\" style='display: #{index == 0 ? "block" : "none"};' class = #{index == 0 ? "active_downsell" : ""}>
+		     	<div class=\"modal-body\">
+			      <div class=\"row\">
+		      		<div class=\"col-xs-6\">
+		      			<img src=\"#{down_product.filter_shop_product.image}\" class=\"hf-pro-img\">
+		      		</div>
+					    <div class=\"col-xs-6\">
+			      			<div class=\"row\">
+			      				<div class=\"col-xs-12\">
+			      					<h4> #{@down_product.title} </h4>
+			      				</div>
+			      			</div>
+			      			<div class=\"row\">
+			      				<div class=\"col-xs-12\">
+			      					<p class=\"pro-price\">#{@shop.currency_symbol} #{@down_variant.price}</p>
+			      					#{index == 0 ? "<input type=\"hidden\" name=\"\" id=\"hfdownsellVariant\" value=\"#{@down_variant.id}\">
+			      					<input type=\"hidden\" name=\"\" id=\"hfDownsellProduct\" value=\"#{@down_product.id}\">
+			      					<input type=\"hidden\" name=\"\" id=\"hfProduct\" value=\"#{@filter_product.product_id}\">" : ""} </div>
+			      			</div>
+							<div>
+								<select name=\"id\" id=\"herofunnelDownProduct#{index}\">"
+								@down_product.variants.each do |variant|
+									@downsell_body += "<option data-sku='#{variant.sku}' value='#{variant.id}' data-price='#{variant.price}' data-image='#{@down_product_img_array[variant.id]}'>#{variant.title}</option>"
+									end
+								@downsell_body += "</select>
+							</div>
+			   			</div>
+			      </div>"
+			      if @funnel.is_display_desc
+				      @downsell_body +="<div class=\"row down-sell-des\">
+		    				<div class=\"col-xs-12\">
+		      				<div class=\"hf-pro-desc\">
+		      					#{@down_product.body_html.html_safe}
+		      				</div>
+		    				</div>
+							</div>"
+						end
+			     @downsell_body +="</div>
+				  <div class=\"modal-footer text-center\">
+					  <button type=\"button\" class=\"btn btn-success buy-button\" id=\"hfDownsellBuy\">Buy Now</button>
+					  <button type=\"button\" data-next=\"downProduct#{index+1}\" data-current=\"downProduct#{index}\" class=\"btn btn-default downsell-cancel cancel-button\" id=\"hfDownsellCancel\">No, thanks</button>
+					</div>
+	      </div>
+	      <script>
+				var selectDownsellCallback#{index} = function(variant, selector) {
+					//console.log(variant);
+							$('#hfDownsellVariant').val($('#herofunnelDownProduct#{index}').val());
+			        $('#downProduct#{index} .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelDownProduct#{index}').find(':selected').attr('data-price'));
+			        if($('#herofunnelDownProduct#{index}').find(':selected').attr('data-image')){
+						$('#downProduct#{index} .hf-pro-img').attr('src',$('#herofunnelDownProduct#{index}').find(':selected').attr('data-image'));
+					}
+			     };
+
+				this.optionSelector = new Shopify.OptionSelectors('herofunnelDownProduct#{index}', {
+			        product: #{@down_product.to_json},
+			        onVariantSelected: selectDownsellCallback#{index},
+			        enableHistoryState: this.enableHistoryState
+			      });
+
+			</script>"
+	  		end
+	  		@html = "<div id=\"hfDownsellModal\" class=\"modal fade hf-downsell\" role=\"dialog\">
+		  <div class=\"modal-dialog\">
+		    <!-- Modal content-->
+		    <div class=\"modal-content\">
+		      <div class=\"modal-header\">
+		        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
+		          <span aria-hidden=\"true\">&times;</span>
+		        </button>
+		        <h4 class=\"modal-title text-center\">#{@funnel.down_sell_title}</h4>
+		      </div>
+		      
+		     #{@downsell_body}
+		      
+		    </div>
+		  </div>
+		</div>
+		
+		<style type=\"text/css\">
+
+			.hf-downsell .hf-pro-img{
+				width: 100%;
+			}
+			.hf-pro-desc{
+				padding: 10px 0px;
+			  /*white-space: nowrap;*/
+			  overflow: hidden;
+			  text-overflow: ellipsis;
+			  max-width: 100%;
+			  max-height: 180px;
+			}
+			.hf-downsell .pro-price{
+				float: left;
+		    font-size: 30px;
+		    color: #4aae4e;
+		    margin-right: 15px;
+			}
+
+			.hf-downsell .modal-title{
+				color: #{@funnel.downsell_css["title_text_color"]};
+			}
+			.hf-downsell .buy-button{
+				color: #{@funnel.downsell_css["buy_text_color"]} !important;
+				background-color: #{@funnel.downsell_css["buy_bg_color"]} !important;
+			}
+			.hf-downsell .cancel-button{
+				color: #{@funnel.downsell_css["cancel_text_color"]} !important;
+				background-color: #{@funnel.downsell_css["cancel_bg_color"]} !important;
 			}
 			.selector-wrapper{
 				display:block;
