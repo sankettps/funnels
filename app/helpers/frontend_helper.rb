@@ -430,6 +430,7 @@ module FrontendHelper
 				# down_product.filter_shop_product
     		@down_product_img_array = {}
 				@down_product = ShopifyAPI::Product.find(down_product.filter_shop_product.product_id)
+				puts "Down Product Id===#{@down_product}"
 		 		arr_options = []
 				@down_product.options.each {|option| arr_options << option.name}
 				@down_product.options = arr_options
@@ -441,6 +442,7 @@ module FrontendHelper
 			 			end
 			 		end
 			 	end
+			 	puts "Downselllllllllllllllll body"
 				@downsell_body += "<div id=\"downProduct#{index}\" style='display: #{index == 0 ? "block" : "none"};' class = #{index == 0 ? "active_downsell" : ""}>
 		     	<div class=\"modal-body\">
 			      <div class=\"row\">
@@ -462,9 +464,10 @@ module FrontendHelper
 			      			</div>
 							<div>
 								<select name=\"id\" id=\"herofunnelDownProduct#{index}\">"
+								puts @down_product.inspect
 								@down_product.variants.each do |variant|
 									@downsell_body += "<option data-sku='#{variant.sku}' value='#{variant.id}' data-price='#{variant.price}' data-image='#{@down_product_img_array[variant.id]}'>#{variant.title}</option>"
-									end
+								end
 								@downsell_body += "</select>
 							</div>
 			   			</div>
