@@ -11,6 +11,7 @@ module FrontendHelper
 		        </button>
 		        <h4 class=\"modal-title text-center\">#{@funnel.name}</h4>
 		      </div>
+		      <input type='hidden' value='#{@upsell.redirect_page}' class='redirect_page'>
 		      <div id=\"hfUpsellBody\">
 			      <div class=\"modal-body\">
 				      <div class=\"row\">

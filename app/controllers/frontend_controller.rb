@@ -109,10 +109,10 @@ class FrontendController < ApplicationController
 			
 		 		@html = upsell_modal_html_piyush
 		 		# @funnel
-		 		@response = {data: @html,track_id: @funnel.id}
+		 		@response = {data: @html,track_id: @funnel.id,redirect_page: @funnel.redirect_page}
 		 	else
 		 		puts "no funnel=========================="
-	 			@response = {data: ''}
+	 			@response = {data: '',redirect_page: '/checkout'}
 		 	end
 	 	else
 		 		puts "no shop=========================="
