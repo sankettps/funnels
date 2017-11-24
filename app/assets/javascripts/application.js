@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require rails-ujs
 //= require jquery.validate.min
 //= require jquery-ui
 //= require bootstrap
