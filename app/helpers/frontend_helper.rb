@@ -458,7 +458,7 @@ module FrontendHelper
 			      			<div class=\"row\">
 			      				<div class=\"col-xs-12\">
 			      					<p class=\"pro-price\">#{@shop.currency_symbol} #{@down_variant.price}</p>
-			      					#{index == 0 ? "<input type=\"hidden\" name=\"\" id=\"hfdownsellVariant\" value=\"#{@down_variant.id}\">
+			      					#{index == 0 ? "<input type=\"hidden\" name=\"\" id=\"hfDownsellVariant\" value=\"#{@down_variant.id}\">
 			      					<input type=\"hidden\" name=\"\" id=\"hfDownsellProduct\" value=\"#{@down_product.id}\">
 			      					<input type=\"hidden\" name=\"\" id=\"hfProduct\" value=\"#{@filter_product.product_id}\">" : ""} </div>
 			      			</div>
@@ -490,7 +490,7 @@ module FrontendHelper
 	      <script>
 				var selectDownsellCallback#{index} = function(variant, selector) {
 					//console.log(variant);
-					alert($('#herofunnelDownProduct#{index}').val());
+					//alert($('#herofunnelDownProduct#{index}').val());
 					console.log($('#herofunnelDownProduct#{index}').val());
 							$('#hfDownsellVariant').val($('#herofunnelDownProduct#{index}').val());
 			        $('#downProduct#{index} .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelDownProduct#{index}').find(':selected').attr('data-price'));
