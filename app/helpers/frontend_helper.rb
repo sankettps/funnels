@@ -333,17 +333,15 @@ module FrontendHelper
 								@upsell_body += "</select>
 							</div>
 			   			</div>
-			      </div>"
-			      if @funnel.is_display_desc
-				      @upsell_body += "<div class=\"row up-sell-des\">
-		    				<div class=\"col-xs-12\">
-		      				<div class=\"hf-pro-desc\">
-		      					#{@up_product.body_html.html_safe}
-		      				</div>
-		    				</div>
-							</div>"
-						end
-			    @upsell_body += "</div>
+			      </div>
+			      <div class=\"row up-sell-des\">
+	    				<div class=\"col-xs-12\">
+	      				<div class=\"hf-pro-desc\">
+	      					#{@up_product.body_html.html_safe}
+	      				</div>
+	    				</div>
+						</div>
+			    </div>
 				  <div class=\"modal-footer text-center\">
 					  <button type=\"button\" class=\"btn btn-success buy-button\" id=\"hfUpsellBuy\">Buy Now</button>
 					  <button type=\"button\" data-next=\"upProduct#{index+1}\" data-current=\"upProduct#{index}\" class=\"btn btn-default upsell-cancel cancel-button\" id=\"hfUpsellCancel\">No, thanks</button>
@@ -468,17 +466,15 @@ module FrontendHelper
 								@downsell_body += "</select>
 							</div>
 			   			</div>
-			      </div>"
-			      if @funnel.is_display_desc
-				      @downsell_body +="<div class=\"row down-sell-des\">
-		    				<div class=\"col-xs-12\">
-		      				<div class=\"hf-pro-desc\">
-		      					#{@down_product.body_html.html_safe}
-		      				</div>
-		    				</div>
-							</div>"
-						end
-			     @downsell_body +="</div>
+			      </div>
+			      <div class=\"row down-sell-des\">
+	    				<div class=\"col-xs-12\">
+	      				<div class=\"hf-pro-desc\">
+	      					#{@down_product.body_html.html_safe}
+	      				</div>
+	    				</div>
+						</div>
+			    </div>
 				  <div class=\"modal-footer text-center\">
 					  <button type=\"button\" class=\"btn btn-success buy-button\" id=\"hfDownsellBuy\">Buy Now</button>
 					  <button type=\"button\" data-next=\"downProduct#{index+1}\" data-current=\"downProduct#{index}\" class=\"btn btn-default downsell-cancel cancel-button\" id=\"hfDownsellCancel\">No, thanks</button>
