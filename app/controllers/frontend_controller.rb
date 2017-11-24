@@ -74,7 +74,7 @@ class FrontendController < ApplicationController
     	if @funnel
     		puts "Innnnnnnnnnnnnnnnn"
     		
-		 		@html = downsell_modal_html
+		 		@html = downsell_modal_html_piyush #downsell_modal_html
 		 		# @funnel
 		 		@response = {data: @html,hf_time_out:(@funnel.down_sell_time_out * 1000),track_id: @funnel.id}
 		 	else
