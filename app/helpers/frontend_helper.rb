@@ -350,7 +350,7 @@ module FrontendHelper
 	      <script>
 				var selectUpsellCallback#{index} = function(variant, selector) {
 					//alert('upsell callback');
-					console.log(variant);
+					//console.log(variant);
 							$('#hfUpsellVariant').val($('#herofunnelUpProduct#{index}').val());
 			        $('#upProduct#{index} .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelUpProduct#{index}').find(':selected').attr('data-price'));
 			        if($('#herofunnelUpProduct#{index}').find(':selected').attr('data-image')){
