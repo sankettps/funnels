@@ -32,8 +32,8 @@ module FrontendHelper
 				      				</div>
 				      			</div>
 				      			<input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
-										<div class=\"product-single__variants\">
-											<select name=\"id\" id=\"herofunnelUpProduct\" class=\"product-single__variants\">"
+										<div>
+											<select name=\"id\" id=\"herofunnelUpProduct\">"
 											@up_product.variants.each do |variant|
 												@html += "<option data-sku='#{variant.sku}' value='#{variant.id}' data-price='#{variant.price}' data-image='#{@up_product_img_array[variant.id]}'>#{variant.title}</option>"
 												end
