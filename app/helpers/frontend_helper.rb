@@ -305,7 +305,7 @@ module FrontendHelper
 			 			end
 			 		end
 			 	end
-				@upsell_body += "<div id=\"upProduct#{index}\" style='display: #{index == 0 ? "block" : "none"};' class = #{index == 0 ? "active_upsell" : ""};'>
+				@upsell_body += "<div id=\"upProduct#{index}\" style='display: #{index == 0 ? "block" : "none"};' class = #{index == 0 ? "active_upsell" : ""}>
 		     	<div class=\"modal-body\">
 			      <div class=\"row\">
 		      		<div class=\"col-xs-6\">
@@ -325,7 +325,7 @@ module FrontendHelper
 			      					<input type=\"hidden\" name=\"\" id=\"hfProduct\" value=\"#{@filter_product.product_id}\">" : ""} </div>
 			      			</div>
 							<div class=\"product-single__variants\">
-								<select name=\"id\" id=\"herofunnelUpProduct#{index}\" class=\"product-single__variants\">"
+								<select name=\"id\" id=\"herofunnelUpProduct#{index}\">"
 								@up_product.variants.each do |variant|
 									@upsell_body += "<option data-sku='#{variant.sku}' value='#{variant.id}' data-price='#{variant.price}' data-image='#{@up_product_img_array[variant.id]}'>#{variant.title}</option>"
 									end
