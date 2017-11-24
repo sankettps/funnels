@@ -348,7 +348,7 @@ module FrontendHelper
 	      </div>
 	      <script>
 				var selectUpsellCallback#{index} = function(variant, selector) {
-					alert('upsell callback');
+					//alert('upsell callback');
 					console.log(variant);
 							$('#hfUpsellVariant').val($('#herofunnelUpProduct#{index}').val());
 			        $('#upProduct#{index} .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelUpProduct#{index}').find(':selected').attr('data-price'));
