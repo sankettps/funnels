@@ -348,6 +348,8 @@ module FrontendHelper
 	      </div>
 	      <script>
 				var selectUpsellCallback#{index} = function(variant, selector) {
+					alert('upsell callback');
+					console.log(variant);
 							$('#hfUpsellVariant').val($('#herofunnelUpProduct#{index}').val());
 			        $('#upProduct#{index} .pro-price').html('#{@shop.currency_symbol}'+$('#herofunnelUpProduct#{index}').find(':selected').attr('data-price'));
 			        if($('#herofunnelUpProduct#{index}').find(':selected').attr('data-image')){
@@ -386,6 +388,7 @@ module FrontendHelper
 				width: 100%;
 			}
 			.hf-pro-desc{
+				padding: 10px 0px;
 			  /*white-space: nowrap;*/
 			  overflow: hidden;
 			  text-overflow: ellipsis;
@@ -409,6 +412,12 @@ module FrontendHelper
 			.hf-upsell .cancel-button{
 				color: #{@funnel.upsell_css["cancel_text_color"]} !important;
 				background-color: #{@funnel.upsell_css["cancel_bg_color"]} !important;
+			}
+			.selector-wrapper{
+				display:block;
+			}
+			.selector-wrapper label{
+				width: 100%;
 			}
 		</style>"
 	end
