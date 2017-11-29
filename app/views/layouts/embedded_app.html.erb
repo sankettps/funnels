@@ -12,29 +12,20 @@
   <body>
     <div class="app-wrapper">
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
+       <!--  <div class="navbar-header">
             <a class="navbar-brand" href="index.html">HeroFunnels</a>
-        </div>
-        <ul class="nav navbar-top-links navbar-right">
+        </div> -->
+        <ul class="nav navbar-top-links">
             <li class="dropdown">
-                <a href="/dashboard/dashboard">
-                    <i class="glyphicon glyphicon-home"></i><span>DashBoard</span>
-                </a>
-                
-            </li>
-            <li class="dropdown">
-                <a href="/dashboard/dashboard">
-                    <i class="glyphicon glyphicon-list"></i><span>Funnels</span>
+                <a href="/dashboard/dashboard" class="active"><span>Funnels</span>
                 </a>
             </li>
             <li class="dropdown">
-                <a href="<%= reports_upsell_report_path %>">
-                    <i class="glyphicon glyphicon-list"></i><span>Reports</span>
+                <a href="<%= reports_upsell_report_path %>"><span>Reports</span>
                 </a>
             </li>
             <li class="dropdown">
-                <a href="<%= home_contact_us_path %>">
-                    <i class="glyphicon glyphicon-list"></i><span>Contact Us</span>
+                <a href="<%= home_contact_us_path %>"><span>Contact Us</span>
                 </a>
             </li>
             

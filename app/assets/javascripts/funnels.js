@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	$('#loading').hide();
+	$('.funnel_form').show();
 	// $(".funnel-form").submit(function( event ) {
 	// 	var fDetailError = false
 	// 	if ($("#funnelName").val().trim().length == 0) {
