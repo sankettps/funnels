@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20171116145956) do
     t.string "cart_token"
     t.float "price"
     t.boolean "is_purchased"
+    t.integer "funnel_id"
     t.datetime "temp_date"
     t.bigint "shop_id"
     t.datetime "created_at", null: false
