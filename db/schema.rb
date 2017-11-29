@@ -59,11 +59,10 @@ ActiveRecord::Schema.define(version: 20171116145956) do
 
   create_table "funnel_reports", force: :cascade do |t|
     t.string "product_id"
-    t.string "up_product_id"
-    t.string "down_product_id"
-    t.string "hf_action"
+    t.string "hf_type"
     t.string "cart_token"
     t.float "price"
+    t.boolean "is_purchased"
     t.datetime "temp_date"
     t.bigint "shop_id"
     t.datetime "created_at", null: false
@@ -85,7 +84,6 @@ ActiveRecord::Schema.define(version: 20171116145956) do
     t.bigint "shop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "title"
     t.index ["shop_id"], name: "index_funnels_on_shop_id"
   end
 
