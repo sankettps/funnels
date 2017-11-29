@@ -121,13 +121,27 @@ class FrontendController < ApplicationController
 	 	render json: @response
 	end
 
-	def funnel_product_purchased
+	def funnel_product_viewed
 		@shop = Shop.find_by_shopify_domain(params[:shop_id])
-		# funnel_product = FilterShopProduct.find_by(product_id: params[:funnel_product])
-		# upsell_product = FilterShopProduct.find_by(product_id: params[:upsell_product]) if params[:upsell_product].present?
-		# downsell_product = FilterShopProduct.find_by(product_id: params[:downsell_product]) if params[:downsell_product].present?
-		@shop.funnel_reports.create(product_id: params[:product_id],up_product_id: params[:upsell_product],price: params[:price],hf_action: params[:hf_action],cart_token: params[:cart_token]) if params[:upsell_product].present?
-		@shop.funnel_reports.create(product_id: params[:product_id],down_product_id: params[:downsell_product],price: params[:price],hf_action: params[:hf_action],cart_token: params[:cart_token]) if params[:downsell_product].present?
+				puts "<========viewd====shop found==#{@shop.inspect}==>"
+		if @shop.present?
+			@report = @shop.funnel_reports.create(hf_type: params[:hf_type],cart_token: params[:cart_token],funnel_id: params[:track_id])
+				puts "<========viewd====report created==#{@@report.inspect}==>"
+		end
+	end
+	
+	def funnel_product_added
+		@shop = Shop.find_by_shopify_domain(params[:shop_id])
+		if @shop.present?
+			# @shop.funnel_reports.create(product_id: params[:product_id],up_product_id: params[:upsell_product],price: params[:price],hf_action: params[:hf_action],cart_token: params[:cart_token]) if params[:upsell_product].present?
+			# @shop.funnel_reports.create(product_id: params[:product_id],down_product_id: params[:downsell_product],price: params[:price],hf_action: params[:hf_action],cart_token: params[:cart_token]) if params[:downsell_product].present?
+				puts "<========added====shop found==#{@shop.inspect}==>"
+			@hf_report = @shop.funnel_reports.find_by(hf_type: params[:hf_type],cart_token: params[:cart_token])
+			if @hf_report.present?
+				puts "<========added====report found==#{@hf_report.inspect}==>"
+				@hf_report.update(product_id: params[:variant_id])
+			end
+		end
 	end
 
 	def test
