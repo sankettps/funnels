@@ -1,5 +1,5 @@
-
-<div class="add_form">
+<div id="loading"><img src="/assets/loader1.gif"></div>
+<div class="add_form funnel_form">
   <h4 class="m-l-15">Edit Funnel</h4> 
       <%= form_tag "/funnels/update", :method => :post, :class => "form-horizontal funnel-form",name: 'funnel_form',id: "add_funnel_form" do %>
       <input type="hidden" name="funnel[funnel_product_ids]" id="trigger-products">
@@ -160,6 +160,15 @@
               <button class="btn btn-danger filter-reset" type="reset">Reset</button>
             </div> 
           </div>   
+
+
+
+
+
+
+
+
+
           <div class="panel panel-default" id="funnelProducts">
             <div class="panel-heading">
                 Funnel Products
@@ -170,37 +179,58 @@
                   <div class="col-sm-6">
                     <div class="row clearfix table_top_portion_left">
                     </div>
-                    <div id="products">
-                      <table class="table non_selected_products table-striped" id="before_selected_products">
-                        <thead>
-                            <tr>
-                                <th>Product Id</th>
-                                <th></th>
-                                <th><h4>Results</h4></th>
-                                <th class="col-sm-2"><button type="button" class="btn btn-small btn-primary select-all">Select All</button></th>
-                            </tr>
-                        </thead>
-                      <%= render 'getproducts' %>
-                      </table>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading funnel-heading">
+                            Results
+                            <button type="button" class="btn btn-small btn-primary select-all">Select All</button>
+                        </div>
+                        <div class="panel-body">
+                            <div id="products">
+                              <table class="table non_selected_products table-striped" id="before_selected_products">
+                                <thead>
+                                    <tr>
+                                        <th>Product Id</th>
+                                        <th></th>
+                                        <th><h4></h4></th>
+                                        <th class="col-sm-2"><button type="button" class="btn btn-small btn-primary select-all">Select All</button></th>
+                                    </tr>
+                                </thead>
+                              <%= render 'getproducts' %>
+                              </table>
+                            </div>
+                        </div>
                     </div>
                   </div>  
                   <div class="col-sm-6">
                     <div class="row table_top_portion_right">
                     </div>
-                    <div class="right_table">
-                      <table class="table selected_products table-striped">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th class="col-md-10"><h4>Selected Products</h4></th>
-                                <th class="col-md-2"><button type="button" class="btn btn-danger remove-all">Remove All</button></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                              <%= @selected_products_html.html_safe %>
-                        </tbody>
-                      </table>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading funnel-heading">
+                            Selected Products
+                            <button type="button" class="btn btn-danger remove-all">Remove All</button>
+                        </div>
+                        <div class="panel-body">
+                            <div class="right_table">
+                              <table class="table selected_products table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th class="col-md-10"><h4>Selected Products</h4></th>
+                                        <th class="col-md-2"><button type="button" class="btn btn-danger remove-all">Remove All</button></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                      <%= @selected_products_html.html_safe %>
+                                </tbody>
+                              </table>
+                            </div>
+                        </div>
                     </div>
+
+
+                    
                     <div class="selected_products_count">Showing <%= @selected_products_count %> entries</div>
 
                    </div>
@@ -219,37 +249,57 @@
                   <div class="col-sm-6">
                     <div class="row clearfix table_top_portion_left">
                     </div>
-                    <div id="products">
-                     <table class="table non_selected_products table-striped" id="before_selected_upsell_products">
-                        <thead>
-                            <tr>
-                                <th>Product Id</th>
-                                <th></th>
-                                <th><h4>Results</h4></th>
-                                <th class="col-sm-2"></th>
-                            </tr>
-                        </thead>
-                      <%= render 'getproducts' %>
-                      </table>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading funnel-heading">
+                            Results
+                        </div>
+                        <div class="panel-body">
+                            <div id="products">
+                              <table class="table non_selected_products table-striped" id="before_selected_upsell_products">
+                                <thead>
+                                    <tr>
+                                        <th>Product Id</th>
+                                        <th></th>
+                                        <th><h4></h4></th>
+                                        <th class="col-sm-2"><button type="button" class="btn btn-small btn-primary select-all">Select All</button></th>
+                                    </tr>
+                                </thead>
+                              <%= render 'getproducts' %>
+                              </table>
+                            </div>
+                        </div>
                     </div>
-                  </div>  
+                  </div>
+
                   <div class="col-sm-6">
                     <div class="row table_top_portion_right">
                     </div>
-                    <div class="right_table">
-                      <table class="table selected_upsell_products table-striped">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th class="col-md-10"><h4>Selected Products</h4></th>
-                                <th class="col-md-2"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                          <%= @selected_upsell_products_html.html_safe %>
-                        </tbody>
-                      </table>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading funnel-heading">
+                            Selected Products
+                        </div>
+                        <div class="panel-body">
+                            <div class="right_table">
+                              <table class="table selected_upsell_products table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th class="col-md-10"><h4>Selected Products</h4></th>
+                                        <th class="col-md-2"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  <%= @selected_upsell_products_html.html_safe %>
+                                </tbody>
+                              </table>
+                            </div>
+                        </div>
                     </div>
+
+
+                    
                     <div class="selected_upsell_products_count">Showing <%= @selected_upsell_products_count %> entries</div>
 
                   </div>
@@ -268,37 +318,54 @@
                   <div class="col-sm-6">
                     <div class="row clearfix table_top_portion_left">
                     </div>
-                    <div id="products">
-                     <table class="table non_selected_products table-striped" id="before_selected_downsell_products">
-                        <thead>
-                            <tr>
-                                <th>Product Id</th>
-                                <th></th>
-                                <th><h4>Results</h4></th>
-                                <th class="col-sm-2"></th>
-                            </tr>
-                        </thead>
-                      <%= render 'getproducts' %>
-                      </table>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading funnel-heading">
+                            Results
+                        </div>
+                        <div class="panel-body">
+                            <div id="products">
+                              <table class="table non_selected_products table-striped" id="before_selected_downsell_products">
+                                <thead>
+                                    <tr>
+                                        <th>Product Id</th>
+                                        <th></th>
+                                        <th><h4></h4></th>
+                                        <th class="col-sm-2"><button type="button" class="btn btn-small btn-primary select-all">Select All</button></th>
+                                    </tr>
+                                </thead>
+                              <%= render 'getproducts' %>
+                              </table>
+                            </div>
+                        </div>
                     </div>
                   </div>  
                   <div class="col-sm-6">
                     <div class="row table_top_portion_right">
                     </div>
-                    <div class="right_table">
-                      <table class="table selected_downsell_products table-striped">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th class="col-md-10"><h4>Selected Products</h4></th>
-                                <th class="col-md-2"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                          <%= @selected_downsell_products_html.html_safe %>
-                        </tbody>
-                      </table>
+                    <div class="panel panel-default">
+                        <div class="panel-heading funnel-heading">
+                            Selected Products
+                        </div>
+                        <div class="panel-body">
+                            <div class="right_table">
+                              <table class="table selected_downsell_products table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th class="col-md-10"><h4>Selected Products</h4></th>
+                                        <th class="col-md-2"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  <%= @selected_downsell_products_html.html_safe %>
+                                </tbody>
+                              </table>
+                            </div>
+                        </div>
                     </div>
+
+                    
                     <div class="selected_downsell_products_count">Showing <%= @selected_downsell_products_count %> entries</div>
 
                   </div>

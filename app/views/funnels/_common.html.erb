@@ -249,7 +249,8 @@ $(document).ready(function(){
     "bLengthChange": false,
     "ordering": false,
     responsive: true,
-    "oLanguage": {
+      "oLanguage": { 
+        "sSearch": "" ,
         "sEmptyTable": "No products selected",
         "sLoadingRecords": "Please wait - loading...",
         "oPaginate": {
@@ -263,6 +264,9 @@ $(document).ready(function(){
     check_tickmark();
     }
   });
+  $('.dataTables_filter input').attr('placeholder', 'Search..');
+  
+
 
   table_upsell = $('#before_selected_upsell_products').DataTable({
     "columnDefs": [
@@ -275,7 +279,8 @@ $(document).ready(function(){
     "bLengthChange": false,
     "ordering": false,
     responsive: true,
-    "oLanguage": {
+      "oLanguage": { 
+        "sSearch": "" ,
         "sEmptyTable": "No products selected",
         "sLoadingRecords": "Please wait - loading...",
         "oPaginate": {
@@ -289,7 +294,7 @@ $(document).ready(function(){
     check_tickmark_upsell();
     }
   });
-
+  $('.dataTables_filter input').attr('placeholder', 'Search..');
   table_downsell = $('#before_selected_downsell_products').DataTable({
     "columnDefs": [
             {
@@ -301,7 +306,8 @@ $(document).ready(function(){
     "bLengthChange": false,
     "ordering": false,
     responsive: true,
-    "oLanguage": {
+      "oLanguage": { 
+        "sSearch": "" ,
         "sEmptyTable": "No products selected",
         "sLoadingRecords": "Please wait - loading...",
         "oPaginate": {
@@ -315,7 +321,7 @@ $(document).ready(function(){
     check_tickmark_downsell();
     }
   });
-
+  $('.dataTables_filter input').attr('placeholder', 'Search..');
 
   $("body").on('click', '.select-all', function() { 
     $('.no_products_error').remove();
@@ -460,8 +466,10 @@ $(document).ready(function(){
             "bLengthChange": false,
             "ordering": false,
             responsive: true,
-            "oLanguage": {
+              "oLanguage": { 
+                "sSearch": "" ,
                 "sEmptyTable": "No products selected",
+                "sSearch": "",
                 "sLoadingRecords": "Please wait - loading...",
                 "oPaginate": {
                     "sFirst": "First",
@@ -475,6 +483,7 @@ $(document).ready(function(){
                 swal.close();
             }
         });
+        $('.dataTables_filter input').attr('placeholder', 'Search..');
     });
   });
 
@@ -502,10 +511,6 @@ $(document).ready(function(){
         $('#before_selected_products tbody').html(response).append('<input type="text" name="test">');
         
         table = $('#before_selected_products').DataTable({
-
-            language: {
-                searchPlaceholder: "Search records"
-            },
             "columnDefs": [{
                 "targets": [0],
                 "visible": false,
@@ -514,7 +519,8 @@ $(document).ready(function(){
             "bLengthChange": false,
             "ordering": false,
             responsive: true,
-            "oLanguage": {
+              "oLanguage": { 
+                "sSearch": "" ,
                 "sEmptyTable": "No products selected",
                 "sLoadingRecords": "Please wait - loading...",
                 "oPaginate": {
@@ -529,7 +535,7 @@ $(document).ready(function(){
                 swal.close();
             }
         });
-        $('.dataTables_filter input').attr('placeholder', 'Search Text');
+        $('.dataTables_filter input').attr('placeholder', 'Search..');
     });
   });
   var singleProductOptions = {

@@ -218,7 +218,9 @@ input[type=text]:focus.input-error{
   vertical-align: middle;
 }
 .dataTables_paginate.paging_simple_numbers, #before_selected_products_info{
-  margin-top: 10px;
+  padding: 5px;
+  width: 100%;
+  text-align: left;
 }
 .no_products .dataTables_empty{
   text-align: center !important;
@@ -276,7 +278,10 @@ table.dataTable.no-footer {
   font-size: 20px;
 }
 .dataTables_wrapper .dataTables_filter input{
-  border-radius: 0px !important;
+  width: 250px;
+  margin-top: 5px;
+  border-radius: 5px; 
+  border: 1px solid #66616187;
 }
 .product-filter{
   position: relative;
@@ -296,7 +301,7 @@ table tbody td:nth-child(3){
 }
 .switch-label {
   position: relative;
-  right: 20px;
+  /*right: 20px;*/
 }
 .switch-label:before, .switch-label:after {
   content: "";
@@ -394,4 +399,140 @@ table tbody td:nth-child(3){
 }
 .app-wrapper .navbar .glyphicon{
   font-size: 16px;
+}
+#mydiv {
+  height: 400px;
+  position: relative;
+  background-color: gray; /* for demonstration */
+}
+.ajax-loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -32px; /* -1 * image width / 2 */
+  margin-top: -32px; /* -1 * image height / 2 */
+}
+
+
+#loading {
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  
+}
+#loading img{
+  width: 100px;
+  height: 100px;
+}
+
+#before_selected_products, #before_selected_upsell_products, #before_selected_downsell_products,.selected_products,.selected_upsell_products,.selected_downsell_products{
+  /*border: 1px solid #ddd;*/
+  border: none !important;
+}
+
+table.dataTable.no-footer {
+    border: 1px solid #ddd !important;
+    border-radius: 5px;
+}
+.funnel-body{
+  padding: 0;
+  background: #f5f5f5;
+  margin: 0 40px;
+}
+.funnels-list tbody tr td {
+  padding: 10px 18px;
+}
+.funnels-list thead tr {
+  background: #fff !important;
+}
+.panel-heading{
+  border: none !important;
+}
+.nav > li > a:hover, .nav > li > a:focus{
+  background: #f8f8f8;
+}
+.active{
+  border-bottom: 2px solid #48bfed;
+  color: #48bfed !important;
+  font-weight: 900;
+}
+.navbar{
+  border-bottom: 0 none;
+}
+.dropdown a{
+  color: #000;
+}
+.paginate_button.previous,.paginate_button.next{
+  padding: 7px !important;
+}
+
+.select-all,.remove-all{
+  position: absolute;
+  right: 25px;
+  top: 5px; 
+}
+.funnel-heading{
+  padding: 15px !important;
+  background: #676161 !important;
+
+}
+#before_selected_products thead,#before_selected_upsell_products thead,#before_selected_downsell_products thead,.selected_upsell_products thead,.selected_downsell_products thead,.selected_products thead{
+  display: none;
+}
+.panel-default > .panel-heading{
+  color: #fff;
+  background-color: #48bfed;
+}
+.select_products_section .panel-body{
+  padding: 0px;
+}
+.dataTables_wrapper .dataTables_filter input{
+  margin-right: 8px;
+  width: 95%;
+}
+.dataTables_wrapper .dataTables_info{
+  border-top: 1px solid #dedede;
+  padding: 5px;
+  width: 100%;
+  margin: 0
+}
+.dataTables_filter,.dataTables_filter label{
+  width: 100%;
+}
+
+.funnels-list{
+  width: 100%;
+}
+.funnels-list .table{
+  /*width: 90%;*/
+  /*margin: 5px 50px;*/
+  border-collapse: unset;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  background: #fff;
+  border-spacing: 1px;
+
+}
+.clear{
+  clear: both;
+}
+.add_new{
+  background: #48bfed;
+}
+.funnel-header{
+  margin-bottom: 10px;
+  /*margin: 10px 50px;*/
+}
+.funnel-header h4{
+  margin-top: 15px;
+}
+.funnels{
+  margin: 20px 50px;
 }
