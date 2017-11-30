@@ -126,7 +126,7 @@ class FrontendController < ApplicationController
 				puts "<========viewd====shop found==#{@shop.inspect}==>"
 		if @shop.present?
 			@report = @shop.funnel_reports.create(hf_type: params[:hf_type],cart_token: params[:cart_token],funnel_id: params[:track_id])
-				puts "<========viewd====report created==#{@@report.inspect}==>"
+				puts "<========viewd====report created==#{@report.inspect}==>"
 		end
 	end
 	
@@ -136,9 +136,11 @@ class FrontendController < ApplicationController
 			# @shop.funnel_reports.create(product_id: params[:product_id],up_product_id: params[:upsell_product],price: params[:price],hf_action: params[:hf_action],cart_token: params[:cart_token]) if params[:upsell_product].present?
 			# @shop.funnel_reports.create(product_id: params[:product_id],down_product_id: params[:downsell_product],price: params[:price],hf_action: params[:hf_action],cart_token: params[:cart_token]) if params[:downsell_product].present?
 				puts "<========added====shop found==#{@shop.inspect}==>"
-			@hf_report = @shop.funnel_reports.find_by(hf_type: params[:hf_type],cart_token: params[:cart_token])
+			@hf_report = @shop.funnel_reports.find_by(hf_type: params[:hf_type],cart_token: params[:cart_token],product_id: nil)
 			if @hf_report.present?
 				puts "<========added====report found==#{@hf_report.inspect}==>"
+				# @shop_url ="https://#{ShopifyApp.configuration.api_key}:#{self.shopify_token}@#{self.shopify_domain}/admin/"
+    # 		ShopifyAPI::Base.site = @shop_url
 				@hf_report.update(product_id: params[:variant_id])
 			end
 		end
