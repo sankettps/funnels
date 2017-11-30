@@ -10,7 +10,7 @@ class OrdersCreateJob < ActiveJob::Base
     		# webhook['line_items']any? {|h| h[:variant_id] == report.product_id}
     		puts "report found----->#{report.inspect}"
     		line_items = webhook['line_items'].group_by { |x| x["variant_id"] }
-				line_item = line_items[report.product_id]
+				line_item = line_items[report.product_id.to_i]
     		puts "line item there----->#{line_item.inspect}"
     		report.update(price: line_item[0]["price"],is_purchased: true) if line_item.present?
     	end
