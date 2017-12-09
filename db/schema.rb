@@ -10,11 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171116145956) do
+ActiveRecord::Schema.define(version: 20171209033846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
+
+  create_table "advance_settings", force: :cascade do |t|
+    t.hstore "downsell_css"
+    t.hstore "upsell_css"
+    t.bigint "shop_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shop_id"], name: "index_advance_settings_on_shop_id"
+  end
 
   create_table "downsell_products", force: :cascade do |t|
     t.bigint "funnel_id"
@@ -111,6 +120,7 @@ ActiveRecord::Schema.define(version: 20171116145956) do
     t.index ["funnel_id"], name: "index_upsell_products_on_funnel_id"
   end
 
+  add_foreign_key "advance_settings", "shops"
   add_foreign_key "downsell_products", "filter_shop_products"
   add_foreign_key "downsell_products", "funnels"
   add_foreign_key "filter_shop_attributes", "shops"

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Downsell css:</strong>
+  <%= @advance_setting.downsell_css %>
+</p>
+
+<p>
+  <strong>Upsell css:</strong>
+  <%= @advance_setting.upsell_css %>
+</p>
+
+<p>
+  <strong>Shop:</strong>
+  <%= @advance_setting.shop %>
+</p>
+
+<%= link_to 'Edit', edit_advance_setting_path(@advance_setting) %> |
+<%= link_to 'Back', advance_settings_path %>

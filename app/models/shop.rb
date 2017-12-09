@@ -3,7 +3,8 @@ class Shop < ActiveRecord::Base
   has_many :filter_shop_attributes, dependent: :destroy # shops tags/vendors/types
   has_many :filter_shop_products, dependent: :destroy # products of shop from shopify 
   has_many :funnels, dependent: :destroy # funnels of shops 
-  has_many :funnel_reports, dependent: :destroy # funnels of shops 
+  has_one :advance_setting, dependent: :destroy # advance settings of shop
+  has_many :funnel_reports, dependent: :destroy # funnels of shop
   after_create :set_configuration
   after_update :set_configuration, if: ->(obj){ obj.shopify_token_changed? }
   

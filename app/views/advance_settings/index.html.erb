@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Advance Settings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Downsell css</th>
+      <th>Upsell css</th>
+      <th>Shop</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @advance_settings.each do |advance_setting| %>
+      <tr>
+        <td><%= advance_setting.downsell_css %></td>
+        <td><%= advance_setting.upsell_css %></td>
+        <td><%= advance_setting.shop %></td>
+        <td><%= link_to 'Show', advance_setting %></td>
+        <td><%= link_to 'Edit', edit_advance_setting_path(advance_setting) %></td>
+        <td><%= link_to 'Destroy', advance_setting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Advance Setting', new_advance_setting_path %>
