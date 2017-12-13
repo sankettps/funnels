@@ -536,3 +536,53 @@ table.dataTable.no-footer {
 .funnels{
   margin: 20px 50px;
 }
+
+
+
+
+/*======custom with uptown css======*/
+body{
+  background-color: #f4f6f8;
+}
+.material-form input[type=text]{
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #BDBDC0;
+  border-radius: 0;
+  outline: none;
+  height: 2.1rem;
+  width: 100%;
+  font-size: 14px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.card-title{
+  font-weight: 800;
+}
+.funnel-card{
+  border-radius: 3px;
+  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 1px rgba(63, 63, 68, 0.05), 0 1px 3px 0 rgba(63, 63, 68, 0.15);
+  padding: 2rem;
+  line-height: 3rem;
+}
+.funnel-page{
+  padding: 3.2rem;
+  margin: 0 auto;
+  max-width: 103.6rem;
+}
+.annotation-section{
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 30.625em){
+  .Polaris-Page {
+    padding: 0 2rem;
+  }
+}
+

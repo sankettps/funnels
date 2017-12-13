@@ -9,58 +9,34 @@
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
-    <div class="app-wrapper">
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-       <!--  <div class="navbar-header">
-            <a class="navbar-brand" href="index.html">HeroFunnels</a>
-        </div> -->
-        <ul class="nav navbar-top-links">
-            <li class="dropdown">
-                <a href="/dashboard/dashboard" class="active"><span>Funnels</span>
-                </a>
-            </li>
-            <li class="dropdown">
-                <a href="<%= reports_upsell_report_path %>"><span>Reports</span>
-                </a>
-            </li>
-            <li class="dropdown">
-                <a href="<%= home_contact_us_path %>"><span>Contact Us</span>
-                </a>
-            </li>
-            
-            
-        </ul>
-    </nav>
-      <div class="app-content">
-        <main role="main">
-          <%= yield %>
-        </main>
-      </div>
-    </div>
+<body>
+    
+  <div class="container">
+    <%= yield %>
+  </div>
+  
+  <%= render 'layouts/flash_messages' %>
 
-    <%= render 'layouts/flash_messages' %>
+  <script src="https://cdn.shopify.com/s/assets/external/app.js?<%= Time.now.strftime('%Y%m%d%H') %>"></script>
 
-    <script src="https://cdn.shopify.com/s/assets/external/app.js?<%= Time.now.strftime('%Y%m%d%H') %>"></script>
-
-    <script type="text/javascript">
-      ShopifyApp.init({
-        apiKey: "<%= ShopifyApp.configuration.api_key %>",
-        shopOrigin: "<%= "https://#{ @shop_session.url }" if @shop_session %>",
-        debug: <%= Rails.env.development? ? 'true' : 'false' %>,
-        forceRedirect: <%= Rails.env.development? ? 'false' : 'true' %>
-      });
-      ShopifyApp.ready(function(){
-        ShopifyApp.Bar.initialize({
-          
-        })
+  <script type="text/javascript">
+    ShopifyApp.init({
+      apiKey: "<%= ShopifyApp.configuration.api_key %>",
+      shopOrigin: "<%= "https://#{ @shop_session.url }" if @shop_session %>",
+      debug: <%= Rails.env.development? ? 'true' : 'false' %>,
+      forceRedirect: <%= Rails.env.development? ? 'false' : 'true' %>
+    });
+    ShopifyApp.ready(function(){
+      ShopifyApp.Bar.initialize({
+        
       })
-    </script>
+    })
+  </script>
 
-    <% if content_for?(:javascript) %>
-      <div id="ContentForJavascript" data-turbolinks-temporary>
-        <%= yield :javascript %>
-      </div>
-    <% end %>
-  </body>
+  <% if content_for?(:javascript) %>
+    <div id="ContentForJavascript" data-turbolinks-temporary>
+      <%= yield :javascript %>
+    </div>
+  <% end %>
+</body>
 </html>
