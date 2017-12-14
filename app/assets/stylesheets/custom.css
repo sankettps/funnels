@@ -552,6 +552,7 @@ body{
   outline: none;
   height: 2.1rem;
   width: 100%;
+  padding: 6px 0;
   font-size: 14px;
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -560,8 +561,13 @@ body{
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-.card-title{
-  font-weight: 800;
+.funnel-page{
+  padding: 3.2rem;
+  margin: 0 auto;
+  max-width: 103.6rem;
+}
+.annotation-section{
+  margin-bottom: 2rem;
 }
 .funnel-card{
   border-radius: 3px;
@@ -571,13 +577,36 @@ body{
   padding: 2rem;
   line-height: 3rem;
 }
-.funnel-page{
-  padding: 3.2rem;
-  margin: 0 auto;
-  max-width: 103.6rem;
+.card-item{
+  margin-bottom: 10px;
 }
-.annotation-section{
-  margin-bottom: 2rem;
+.card-title{
+  font-weight: 800;
+}
+.switch-label{
+  padding-left: 40px;
+}
+.material-form .btn-funnel{
+  border-radius: unset;
+  background-color: #50248F;
+  color: #fff;
+  padding: 6px 20px;
+}
+
+.material-form .btn-funnel:hover{
+  background-color: #380f73;
+}
+.annoted-heading {
+    font-size: 1.7rem;
+    font-weight: 600;
+    line-height: 2.4rem;
+    margin: 0;
+}
+
+@media (min-width: 40em){
+  .annoted-heading {
+    font-size: 1.6rem;
+  }
 }
 
 @media (min-width: 30.625em){
