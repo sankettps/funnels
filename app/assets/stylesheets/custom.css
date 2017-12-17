@@ -544,6 +544,9 @@ table.dataTable.no-footer {
 body{
   background-color: #f4f6f8;
 }
+.navbar-default{
+  background-color: #fff;
+}
 .material-form input[type=text],.material-form input[type=email],.material-form textarea{
   background-color: transparent;
   border: none;
