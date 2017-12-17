@@ -10,8 +10,22 @@
   </head>
 
 <body>
-    
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Hero Funnels</a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a href="#">Dashboard</a></li>
+        <li><a href="#">Funnels</a></li>
+        <li><a href="#">Reports</a></li>
+        <li><a href="#">Training</a></li>
+        <li><a href="#">Support</a></li>
+      </ul>
+    </div>
+  </nav>
   <div class="container">
+    <%#= render :partial => "layouts/shared/header" %>
     <%= yield %>
   </div>
   

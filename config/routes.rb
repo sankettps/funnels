@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'funnels/change_status'
   post 'funnels/create'
   post 'funnels/update'
+  get 'funnels/design_test'
   resources :funnels
   get 'home/test_modal'
   get 'home/contact_us'

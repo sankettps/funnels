@@ -17,8 +17,8 @@ $(document).ready(function(){
 	    "funnel[name]": {required: true},
 	    "funnel[title]": {required: true},
 	  },
-	  submitHandler: function(form, event) { 
-	  	var hFlag = true;
+	  // submitHandler: function(form, event) { 
+	  	// var hFlag = true;
 	  	// if ($(".up_product_id").val().trim().length == 0) {
 				// $("#upSellPanel").removeClass('panel-default').addClass('panel-danger')
 				// $("#upSellPanel li").text('Please select product').addClass('input-error');
@@ -35,18 +35,18 @@ $(document).ready(function(){
 	  	// }else{
 				// $("#downSellPanel").removeClass('panel-danger').addClass('panel-default');
 	  	// }
-	  	if ($("#trigger-products").val().trim().length == 0) {
-				$("#funnelProducts").removeClass('panel-default').addClass('panel-danger');
-				$(".no_products td").text('Please select product').addClass('input-error');
-	  		hFlag = false;
-	  		event.preventDefault(); 
-	  	}else{
-				$("#funnelProducts").removeClass('panel-danger').addClass('panel-default');
-	  	}
-	  	if (hFlag) {
-	  		form.submit();
-	  	}
-	  }
+	  	// if ($("#trigger-products").val().trim().length == 0) {
+				// $("#funnelProducts").removeClass('panel-default').addClass('panel-danger');
+				// $(".no_products td").text('Please select product').addClass('input-error');
+	  	// 	hFlag = false;
+	  	// 	event.preventDefault(); 
+	  	// }else{
+				// $("#funnelProducts").removeClass('panel-danger').addClass('panel-default');
+	  	// }
+	  	// if (hFlag) {
+	  	// 	form.submit();
+	  	// }
+	  // }
 	});
 });
 // $("#myform").validate({

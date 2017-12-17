@@ -50,10 +50,10 @@ ActiveRecord::Schema.define(version: 20171209033846) do
     t.string "handle"
     t.string "vendor"
     t.string "product_type"
+    t.string "image"
     t.text "tags"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image"
     t.index ["shop_id"], name: "index_filter_shop_products_on_shop_id"
   end
 
@@ -84,13 +84,12 @@ ActiveRecord::Schema.define(version: 20171209033846) do
     t.string "name"
     t.string "up_sell_title"
     t.string "down_sell_title"
-    t.hstore "downsell_css"
-    t.hstore "upsell_css"
     t.integer "down_sell_time_out"
     t.integer "down_sell_interval"
     t.boolean "is_display_desc"
-    t.string "redirect_page"
+    t.string "is_skip_cart"
     t.boolean "is_active"
+    t.boolean "is_advance_colors"
     t.bigint "shop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

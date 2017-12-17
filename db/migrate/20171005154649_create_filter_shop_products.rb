@@ -7,6 +7,7 @@ class CreateFilterShopProducts < ActiveRecord::Migration[5.1]
       t.string :handle
       t.string :vendor
       t.string :product_type
+      t.string :image
       t.text :tags
 
       t.timestamps

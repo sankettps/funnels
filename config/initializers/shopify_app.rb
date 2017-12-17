@@ -1,12 +1,12 @@
 ShopifyApp.configure do |config|
   config.application_name = "Hero Funnels App"
   # ==================live========================
-  config.api_key = "60ff38e2475924fba4e5589bc06d0e3c"
-  config.secret = "51f813288b86402879469e22f5381bda"
+  # config.api_key = "60ff38e2475924fba4e5589bc06d0e3c"
+  # config.secret = "51f813288b86402879469e22f5381bda"
 
   # ==================local sank========================
-  # config.api_key = "ecd5c0c1818ab329ee117ee64d3f31c9"
-  # config.secret = "18ff7a10afa5d2ebf245611e44dd8099"
+  config.api_key = "ecd5c0c1818ab329ee117ee64d3f31c9"
+  config.secret = "18ff7a10afa5d2ebf245611e44dd8099"
 
   # ==================local piyush========================
   # config.api_key = "5aca797625f9a802944fa037f87a13ef"
