@@ -31,7 +31,7 @@ class AdvanceSettingsController < ShopifyApp::AuthenticatedController
 
     respond_to do |format|
       if @advance_setting.save
-        format.html { redirect_to @advance_setting, notice: 'Advance setting was successfully created.' }
+        format.html { redirect_to new_advance_setting_path, notice: 'Advance setting was successfully created.' }
         format.json { render :show, status: :created, location: @advance_setting }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class AdvanceSettingsController < ShopifyApp::AuthenticatedController
   def update
     respond_to do |format|
       if @advance_setting.update(advance_setting_params)
-        format.html { redirect_to @advance_setting, notice: 'Advance setting was successfully updated.' }
+        format.html { redirect_to new_advance_setting_path, notice: 'Advance setting was successfully updated.' }
         format.json { render :show, status: :ok, location: @advance_setting }
       else
         format.html { render :edit }

@@ -515,7 +515,7 @@ table.dataTable.no-footer {
   /*margin: 5px 50px;*/
   border-collapse: unset;
   border: 1px solid #fff;
-  border-radius: 8px;
+  /*border-radius: 8px;*/
   background: #fff;
   border-spacing: 1px;
 
@@ -544,7 +544,7 @@ table.dataTable.no-footer {
 body{
   background-color: #f4f6f8;
 }
-.material-form input[type=text]{
+.material-form input[type=text],.material-form input[type=email],.material-form textarea{
   background-color: transparent;
   border: none;
   border-bottom: 1px solid #BDBDC0;
@@ -561,6 +561,9 @@ body{
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
+input[type=text].colorpicker{
+  padding-left: 44px;
+}
 .funnel-page{
   padding: 3.2rem;
   margin: 0 auto;
@@ -571,7 +574,7 @@ body{
 }
 .funnel-card{
   border-radius: 3px;
-  overflow: hidden;
+  /*overflow: hidden;*/
   background-color: #ffffff;
   box-shadow: 0 0 0 1px rgba(63, 63, 68, 0.05), 0 1px 3px 0 rgba(63, 63, 68, 0.15);
   padding: 2rem;

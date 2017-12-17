@@ -12,5 +12,6 @@
  *
  *= require bootstrap
  *= require custom
+ *= require jquery.minicolors
  *= require_self
  */ 

@@ -1,112 +1,108 @@
 <div id="loading"><img src="/assets/loader1.gif"></div>
-<div class="add_form funnel_form">
-  <h4 class="m-l-15">Edit Funnel</h4> 
-      <%= form_tag "/funnels/update", :method => :post, :class => "form-horizontal funnel-form",name: 'funnel_form',id: "add_funnel_form" do %>
-      <input type="hidden" name="funnel[funnel_product_ids]" id="trigger-products">
-      <input type="hidden" name="funnel[upsell_product_ids]" id="up_product_ids">
-      <input type="hidden" name="funnel[downsell_product_ids]" id="down_product_ids">
-      <input type="hidden" name="id" value="<%= @funnel.id %>">
-      <div class="shop-url hide"><%= @shop_url %></div>
-      <div class="store-id hide"><%= @store_id %></div>
-      <div class="product-titles hide"><%= @product_titles %></div>
-      <div class="product-types hide"><%= @product_types %></div>
-      <div class="product-custom-collections hide"><%= @product_custom_collections %></div> 
-      <div class="product-smart-collections hide"><%= @product_smart_collections %></div>
-      <div class="product-tags hide"><%= @product_tags %></div>
-      <div class="funnel-page material-form">
-        <div class="row annotation-section">
-          <div class="col-xs-12 col-sm-4">
-            <div class="annoted-heading">Name Your Funnel</div>
-          </div>
-          <div class="col-xs-12 col-sm-8 funnel-card">
-            <div class="card-item">
-              <div class="card-title">Funnel Name</div>
-              <input type="text" name="funnel[name]" id="funnelName" value="<%= @funnel.name %>" placeholder="Enter Funnel Name" required>
-            </div>
-          </div>
-        </div>
-        <div class="row annotation-section">
-          <div class="col-xs-12 col-sm-4">
-            <div class="annoted-heading">Funnel Pop-Up Titles</div>
-          </div>
-          <div class="col-xs-12 col-sm-8 funnel-card">
-            <div class="card-item">
-              <div class="card-title">Upsell Popup Title</div>
-              <input type="text" name="funnel[up_sell_title]" id="upsellTitle" placeholder="Enter Upsell Popup Title" value="<%= @funnel.up_sell_title %>" required>
-            </div>
-            <div class="card-item">
-              <div class="card-title">Downsell Popup Title</div>
-              <input type="text" name="funnel[down_sell_title]" id="downsellTitle" class="form-control" placeholder="Enter Downsell Popup Title" value="<%= @funnel.down_sell_title %>" required>
-            </div>
-          </div>
-        </div>
-        <div class="row annotation-section">
-          <div class="col-xs-12 col-sm-4">
-            <div class="annoted-heading">Personalizations</div>
-          </div>
-          <div class="col-xs-12 col-sm-8 funnel-card">
-            <div class="card">
-              <input type="checkbox" id="colors" name="funnel[is_advance_colors]" class="switch-input funnel_status" <%= @funnel.is_advance_colors ? "checked" : '' %>>
-              <label for="colors" class="switch-label">Advanced Pop-Up Colors</label>
-            </div>
-            <div class="card">
-              <input type="checkbox" id="redirect" name="funnel[is_skip_cart]" class="switch-input funnel_status" <%= @funnel.is_skip_cart ? "checked" : '' %>>
-              <label for="redirect" class="switch-label">Re-direct to Checkout(Skip Cart Page)</label>
-            </div>
-            <div class="card">
-              <input type="checkbox" id="display_disc" name="funnel[is_display_desc]" class="switch-input funnel_status" <%= @funnel.is_display_desc ? "checked" : '' %>>
-              <label for="display_disc" class="switch-label">Display Product Descriptions</label>
-            </div>
-            <div class="card-item">
-              <div class="card-title">Downsell Pop-Up Delay-Seconds(Mobile)</div>
-              <input type="number" name="funnel[down_sell_time_out]" id="downSellTimeOut" value="<%= @funnel.down_sell_time_out %>" placeholder="0" required>
-            </div>
-          </div>
-        </div>
-        <div class="row annotation-section">
-          <div class="col-xs-12 col-sm-4">
-            <div class="annoted-heading">Create Your Sales Funnel</div class="annoted-heading">
-          </div>
-          <div class="col-xs-12 col-sm-8 funnel-card">
-            <div class="card">
-              <div class="row">
-                <div class="col-xs-7">
-                  <label>Select Funnel Products</label>
-                </div>
-                <div class="col-xs-5 text-right">
-                  <button type="button" class="btn btn-funnel">Select</button>
-                </div>
-              </div>
-            </div>
-             <div class="card">
-              <div class="row">
-                <div class="col-xs-7">
-                  <label>Create Upsells</label>
-                </div>
-                <div class="col-xs-5 text-right">
-                  <button type="button" class="btn btn-funnel">Select</button>
-                </div>
-              </div>
-            </div>
-             <div class="card">
-              <div class="row">
-                <div class="col-xs-7">
-                  <label>Create Downsells</label>
-                </div>
-                <div class="col-xs-5 text-right">
-                  <button type="button" class="btn btn-funnel">Select</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row text-right">
-          
-        <%= submit_tag("Submit", :id=>"button", :class=>"btn btn-funnel", :name=>"Update") %>
+<%= form_tag "/funnels/update", :method => :post, :class => "form-horizontal funnel-form",name: 'funnel_form',id: "add_funnel_form" do %>
+  <input type="hidden" name="funnel[funnel_product_ids]" id="trigger-products">
+  <input type="hidden" name="funnel[upsell_product_ids]" id="up_product_ids">
+  <input type="hidden" name="funnel[downsell_product_ids]" id="down_product_ids">
+  <input type="hidden" name="id" value="<%= @funnel.id %>">
+  <div class="shop-url hide"><%= @shop_url %></div>
+  <div class="store-id hide"><%= @store_id %></div>
+  <div class="product-titles hide"><%= @product_titles %></div>
+  <div class="product-types hide"><%= @product_types %></div>
+  <div class="product-custom-collections hide"><%= @product_custom_collections %></div> 
+  <div class="product-smart-collections hide"><%= @product_smart_collections %></div>
+  <div class="product-tags hide"><%= @product_tags %></div>
+  <div class="funnel-page material-form">
+    <div class="row annotation-section">
+      <div class="col-xs-12 col-sm-4">
+        <div class="annoted-heading">Name Your Funnel</div>
+      </div>
+      <div class="col-xs-12 col-sm-8 funnel-card">
+        <div class="card-item">
+          <div class="card-title">Funnel Name</div>
+          <input type="text" name="funnel[name]" id="funnelName" value="<%= @funnel.name %>" placeholder="Enter Funnel Name" required>
         </div>
       </div>
-    <% end %>   
+    </div>
+    <div class="row annotation-section">
+      <div class="col-xs-12 col-sm-4">
+        <div class="annoted-heading">Funnel Pop-Up Titles</div>
+      </div>
+      <div class="col-xs-12 col-sm-8 funnel-card">
+        <div class="card-item">
+          <div class="card-title">Upsell Popup Title</div>
+          <input type="text" name="funnel[up_sell_title]" id="upsellTitle" placeholder="Enter Upsell Popup Title" value="<%= @funnel.up_sell_title %>" required>
+        </div>
+        <div class="card-item">
+          <div class="card-title">Downsell Popup Title</div>
+          <input type="text" name="funnel[down_sell_title]" id="downsellTitle" class="form-control" placeholder="Enter Downsell Popup Title" value="<%= @funnel.down_sell_title %>" required>
+        </div>
+      </div>
+    </div>
+    <div class="row annotation-section">
+      <div class="col-xs-12 col-sm-4">
+        <div class="annoted-heading">Personalizations</div>
+      </div>
+      <div class="col-xs-12 col-sm-8 funnel-card">
+        <div class="card">
+          <input type="checkbox" id="colors" name="funnel[is_advance_colors]" class="switch-input funnel_status" <%= @funnel.is_advance_colors ? "checked" : '' %>>
+          <label for="colors" class="switch-label">Advanced Pop-Up Colors</label>
+        </div>
+        <div class="card">
+          <input type="checkbox" id="redirect" name="funnel[is_skip_cart]" class="switch-input funnel_status" <%= @funnel.is_skip_cart ? "checked" : '' %>>
+          <label for="redirect" class="switch-label">Re-direct to Checkout(Skip Cart Page)</label>
+        </div>
+        <div class="card">
+          <input type="checkbox" id="display_disc" name="funnel[is_display_desc]" class="switch-input funnel_status" <%= @funnel.is_display_desc ? "checked" : '' %>>
+          <label for="display_disc" class="switch-label">Display Product Descriptions</label>
+        </div>
+        <div class="card-item">
+          <div class="card-title">Downsell Pop-Up Delay-Seconds(Mobile)</div>
+          <input type="number" name="funnel[down_sell_time_out]" id="downSellTimeOut" value="<%= @funnel.down_sell_time_out %>" placeholder="0" required>
+        </div>
+      </div>
+    </div>
+    <div class="row annotation-section">
+      <div class="col-xs-12 col-sm-4">
+        <div class="annoted-heading">Create Your Sales Funnel</div class="annoted-heading">
+      </div>
+      <div class="col-xs-12 col-sm-8 funnel-card">
+        <div class="card">
+          <div class="row">
+            <div class="col-xs-7">
+              <label>Select Funnel Products</label>
+            </div>
+            <div class="col-xs-5 text-right">
+              <button type="button" class="btn btn-funnel">Select</button>
+            </div>
+          </div>
+        </div>
+         <div class="card">
+          <div class="row">
+            <div class="col-xs-7">
+              <label>Create Upsells</label>
+            </div>
+            <div class="col-xs-5 text-right">
+              <button type="button" class="btn btn-funnel">Select</button>
+            </div>
+          </div>
+        </div>
+         <div class="card">
+          <div class="row">
+            <div class="col-xs-7">
+              <label>Create Downsells</label>
+            </div>
+            <div class="col-xs-5 text-right">
+              <button type="button" class="btn btn-funnel">Select</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row text-right">
+      
+    <%= submit_tag("Submit", :id=>"button", :class=>"btn btn-funnel", :name=>"Update") %>
+    </div>
   </div>
-</div>
+<% end %>   
 
 <%= render 'common' %>

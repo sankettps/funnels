@@ -10,64 +10,67 @@
       </ul>
     </div>
   <% end %>
-  <%= form.fields_for :upsell_css do |u| %>
-    <div class="form-group">
-      <div class="col-sm-6">
-        <%= u.label :title_text_color %>
-        <%= u.text_field :title_text_color, id: :uTitleTextColor,class: "form-control colorpicker w-93",required: true,value: advance_setting["upsell_css"].to_h["title_text_color"]   %>
+  <div class="funnel-page material-form">
+    <div class="row annotation-section">
+      <div class="col-xs-12 col-sm-4">
+        <div class="annoted-heading">Upsell Popup Colors</div>
       </div>
-      <div class="col-sm-6">
-        <%= u.label :buy_bg_color %>
-        <%= u.text_field :buy_bg_color, id: :uBuyBgColor,class: "form-control colorpicker w-93",required: true,value: advance_setting["upsell_css"].to_h["buy_bg_color"]  %>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-6">
-        <%= u.label :buy_text_color %>
-        <%= u.text_field :buy_text_color, id: :uBuyTextColor,class: "form-control colorpicker w-93",required: true,value: advance_setting["upsell_css"].to_h["buy_text_color"]  %>
-      </div>
-      <div class="col-sm-6">
-        <%= u.label :cancel_bg_color %>
-        <%= u.text_field :cancel_bg_color, id: :uCancelBgColor,class: "form-control colorpicker w-93",required: true,value: advance_setting["upsell_css"].to_h["cancel_bg_color"]  %>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-6">
-        <%= u.label :cancel_text_color %>
-        <%= u.text_field :cancel_text_color, id: :uCancelTextColor,class: "form-control colorpicker w-93",required: true,value: advance_setting["upsell_css"].to_h["cancel_text_color"]  %>
-      </div>
-    </div>
-  <% end %>
-  <hr>
-  <br>
-  <%= form.fields_for :downsell_css do |d| %>
-    <div class="form-group">
-      <div class="col-sm-6">
-        <%= d.label :title_text_color %>
-        <%= d.text_field :title_text_color, id: :dTitleTextColor,class: "form-control colorpicker w-93",required: true,value: advance_setting["downsell_css"].to_h["title_text_color"]  %>
-      </div>
-      <div class="col-sm-6">
-        <%= d.label :buy_bg_color %>
-        <%= d.text_field :buy_bg_color, id: :dBuyBgColor,class: "form-control colorpicker w-93",required: true,value: advance_setting["downsell_css"].to_h["buy_bg_color"]  %>
+      <div class="col-xs-12 col-sm-8 funnel-card">
+        <%= form.fields_for :upsell_css do |u| %>
+          <div class="card-item">
+            <div class="card-title">Title Text Color</div>
+            <%= u.text_field :title_text_color, id: :uTitleTextColor,class: "form-control colorpicker w-93",required: true,value: advance_setting["upsell_css"].to_h["title_text_color"]   %>
+          </div>
+          <div class="card-item">
+            <div class="card-title">Buy Background Color</div>
+            <%= u.text_field :buy_bg_color, id: :uBuyBgColor,class: "form-control colorpicker w-93",required: true,value: advance_setting["upsell_css"].to_h["buy_bg_color"]  %>
+          </div>
+          <div class="card-item">
+            <div class="card-title">Buy Text Color</div>
+            <%= u.text_field :buy_text_color, id: :uBuyTextColor,class: "form-control colorpicker w-93",required: true,value: advance_setting["upsell_css"].to_h["buy_text_color"]  %>
+          </div>
+          <div class="card-item">
+            <div class="card-title">Cancel Background Color</div>
+            <%= u.text_field :cancel_bg_color, id: :uCancelBgColor,class: "form-control colorpicker w-93",required: true,value: advance_setting["upsell_css"].to_h["cancel_bg_color"]  %>
+          </div>
+          <div class="card-item">
+            <div class="card-title">Cancel Background Color</div>
+            <%= u.text_field :cancel_text_color, id: :uCancelTextColor,class: "form-control colorpicker w-93",required: true,value: advance_setting["upsell_css"].to_h["cancel_text_color"]  %>
+          </div>
+        <% end %>
       </div>
     </div>
-    <div class="form-group">
-      <div class="col-sm-6">
-        <%= d.label :buy_text_color %>
-        <%= d.text_field :buy_text_color, id: :dBuyTextColor,class: "form-control colorpicker w-93",required: true,value: advance_setting["downsell_css"].to_h["buy_text_color"]  %>
+    <div class="row annotation-section">
+      <div class="col-xs-12 col-sm-4">
+        <div class="annoted-heading">Downsell Popup Colors</div>
       </div>
-      <div class="col-sm-6">
-        <%= d.label :cancel_bg_color %>
-        <%= d.text_field :cancel_bg_color, id: :dCancelBgColor,class: "form-control colorpicker w-93",required: true,value: advance_setting["downsell_css"].to_h["cancel_bg_color"]  %>
+      <div class="col-xs-12 col-sm-8 funnel-card">
+        <%= form.fields_for :downsell_css do |d| %>
+          <div class="card-item">
+            <div class="card-title">Title Text Color</div>
+            <%= d.text_field :title_text_color, id: :dTitleTextColor,class: "form-control colorpicker w-93",required: true,value: advance_setting["downsell_css"].to_h["title_text_color"]   %>
+          </div>
+          <div class="card-item">
+            <div class="card-title">Buy Background Color</div>
+            <%= d.text_field :buy_bg_color, id: :dBuyBgColor,class: "form-control colorpicker w-93",required: true,value: advance_setting["downsell_css"].to_h["buy_bg_color"]  %>
+          </div>
+          <div class="card-item">
+            <div class="card-title">Buy Text Color</div>
+            <%= d.text_field :buy_text_color, id: :dBuyTextColor,class: "form-control colorpicker w-93",required: true,value: advance_setting["downsell_css"].to_h["buy_text_color"]  %>
+          </div>
+          <div class="card-item">
+            <div class="card-title">Cancel Background Color</div>
+            <%= d.text_field :cancel_bg_color, id: :dCancelBgColor,class: "form-control colorpicker w-93",required: true,value: advance_setting["downsell_css"].to_h["cancel_bg_color"]  %>
+          </div>
+          <div class="card-item">
+            <div class="card-title">Cancel Background Color</div>
+            <%= d.text_field :cancel_text_color, id: :dCancelTextColor,class: "form-control colorpicker w-93",required: true,value: advance_setting["downsell_css"].to_h["cancel_text_color"]  %>
+          </div>
+        <% end %>
       </div>
     </div>
-    <div class="form-group">
-      <div class="col-sm-6">
-        <%= d.label :cancel_text_color %>
-        <%= d.text_field :cancel_text_color, id: :dCancelTextColor,class: "form-control colorpicker w-93",required: true,value: advance_setting["downsell_css"].to_h["cancel_text_color"]  %>
-      </div>
+    <div class="row text-right">
+      <button type="submit" class="btn btn-funnel">Submit</button>
     </div>
-  <% end %>
-  <button type="submit" class="btn btn-danger funnel-submit">Submit</button>
-
+  </div> 
 <% end %>
