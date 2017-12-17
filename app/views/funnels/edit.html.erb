@@ -13,407 +13,96 @@
       <div class="product-custom-collections hide"><%= @product_custom_collections %></div> 
       <div class="product-smart-collections hide"><%= @product_smart_collections %></div>
       <div class="product-tags hide"><%= @product_tags %></div>
-      <div class="row m-0">
-        <div class="col-sm-12">
-
-          <div class="panel panel-default" id="funnelDetail">
-              <div class="panel-heading">
-                  Funnel Detail
-              </div>
-              <div class="panel-body">
-                <div class="form-group">
-                  <div class="col-sm-6">
-                    <label for="funnelName">Funnel Name</label>
-                    <input type="text" name="funnel[name]" id="funnelName" class="form-control" placeholder="Enter Funnel Name" required value="<%= @funnel.name %>">
-                  </div>
-                  <div class="col-sm-6">
-                    <label for="upsellTitle">Upsell Popup Title</label>
-                    <input type="text" name="funnel[up_sell_title]" id="upsellTitle" class="form-control" placeholder="Enter Upsell Popup Title" value="<%= @funnel.up_sell_title %>">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="col-sm-6">
-                    <label for="downsellTitle">Downsell Popup Title</label>
-                    <input type="text" name="funnel[down_sell_title]" id="downsellTitle" class="form-control" placeholder="Enter Downsell Popup Title" value="<%= @funnel.down_sell_title %>">
-                  </div>
-                  <div class="col-sm-6">
-                    <label for="dTimeout">Display downsell popup after seconds(in mobile browser)</label>
-                    <input type="number" name="funnel[down_sell_time_out]" id="dTimeout" class="form-control"  required value="<%= @funnel.down_sell_time_out %>">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="col-sm-6">
-                    <label for="uTitleTextColor">Upsell title text color</label>
-                    <input type="text" name="funnel[upsell_css][title_text_color]" id="uTitleTextColor" class="form-control colorpicker w-93" required value="<%= @funnel.upsell_css['title_text_color'] %>">
-                  </div>
-                  <div class="col-sm-6">
-                    <label for="uBuyBgColor">Upsell buy button background color</label>
-                    <input type="text" name="funnel[upsell_css][buy_bg_color]" id="uBuyBgColor" class="form-control colorpicker w-93" required value="<%= @funnel.upsell_css['buy_bg_color'] %>">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="col-sm-6">
-                    <label for="uBuyTextColor">Upsell buy button text color</label>
-                    <input type="text" name="funnel[upsell_css][buy_text_color]" id="uBuyTextColor" class="form-control colorpicker w-93"  required value="<%= @funnel.upsell_css['buy_text_color'] %>">
-                  </div>
-                  <div class="col-sm-6">
-                    <label for="uCancelBgColor">Upsell cancel button background color</label>
-                    <input type="text" name="funnel[upsell_css][cancel_bg_color]" id="uCancelBgColor" class="form-control colorpicker w-93"  required value="<%= @funnel.upsell_css['cancel_bg_color'] %>">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="col-sm-6">
-                    <label for="uCancelTextColor">Upsell cancel button text color</label>
-                    <input type="text" name="funnel[upsell_css][cancel_text_color]" id="uCancelTextColor" class="form-control colorpicker w-93"  required value="<%= @funnel.upsell_css['cancel_text_color'] %>">
-                  </div>
-                  <div class="col-sm-6">
-                    <label for="dTitleTextColor">Downsell title text color</label>
-                    <input type="text" name="funnel[downsell_css][title_text_color]" id="dTitleTextColor" class="form-control colorpicker w-93"  required value="<%= @funnel.downsell_css['title_text_color'] %>">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="col-sm-6">
-                    <label for="dBuyBgColor">Downsell buy button background color</label>
-                    <input type="text" name="funnel[downsell_css][buy_bg_color]" id="dBuyBgColor" class="form-control colorpicker w-93"  required value="<%= @funnel.downsell_css['buy_bg_color'] %>">
-                  </div>
-                  <div class="col-sm-6">
-                    <label for="dBuyTextColor">Downsell buy button text color</label>
-                    <input type="text" name="funnel[downsell_css][buy_text_color]" id="dBuyTextColor" class="form-control colorpicker w-93" required value="<%= @funnel.downsell_css['buy_text_color'] %>">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="col-sm-6">
-                    <label for="dCancelBgColor">Downsell cancel button background color</label>
-                    <input type="text" name="funnel[downsell_css][cancel_bg_color]" id="dCancelBgColor" class="form-control colorpicker w-93"  required value="<%= @funnel.downsell_css['cancel_bg_color'] %>">
-                  </div>
-                  <div class="col-sm-6">
-                    <label for="dCancelTextColor">Downsell cancel button text color</label>
-                    <input type="text" name="funnel[downsell_css][cancel_text_color]" id="dCancelTextColor" class="form-control colorpicker w-93"  required value="<%= @funnel.downsell_css['cancel_text_color'] %>">
-                  </div>
-                  
-                </div>
-                <div class="form-group">
-                  <div class="col-sm-6">
-                    <label for="productTitle">Redirect Page (After adding product to cart from funnel popup)</label>
-                    <div class="radio">
-                      <label><input type="radio" name="funnel[redirect_page]" value="checkout" <%= (@funnel.redirect_page == 'checkout') ? 'checked':'' %>>Checkout</label>
-                    </div>
-                    <div class="radio">
-                      <label><input type="radio" name="funnel[redirect_page]" value="cart" <%= (@funnel.redirect_page == 'cart') ? 'checked':'' %>>Cart</label>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <label for="productTitle">Display Description in funnel popup</label>
-                    <div class="radio">
-                      <label><input type="radio" name="funnel[is_display_desc]" value="true" <%= (@funnel.is_display_desc == true) ? 'checked':'' %>>Yes</label>
-                    </div>
-                    <div class="radio">
-                      <label><input type="radio" name="funnel[is_display_desc]" value="false" <%= (!@funnel.is_display_desc) ? 'checked':'' %>>No</label>
-                    </div>
-                  </div>
-                  
-                </div>
-              </div>
+      <div class="funnel-page material-form">
+        <div class="row annotation-section">
+          <div class="col-xs-12 col-sm-4">
+            <div class="annoted-heading">Name Your Funnel</div>
           </div>
-          <div class="panel panel-default product-filter">
-            <div class="panel-heading">
-                Product Filter(Click Here)
+          <div class="col-xs-12 col-sm-8 funnel-card">
+            <div class="card-item">
+              <div class="card-title">Funnel Name</div>
+              <input type="text" name="funnel[name]" id="funnelName" value="<%= @funnel.name %>" placeholder="Enter Funnel Name" required>
             </div>
-            <div class="panel-body" style="display:none;">
-              <div class="form-group">
-                <div class="col-sm-6">
-                  <label for="productTitle">Product Title</label>
-                  <input type="text" id="productTitle" class="form-control" placeholder="Enter Product Title">
-                </div>
-                <div class="col-sm-6">
-                  <label for="productType">Product Type</label>
-                  <input type="text" id="productType" class="form-control" placeholder="Enter Product Type">
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="col-sm-6">
-                  <label for="customCollection">Custom Collection</label>
-                  <input type="text" id="customCollection" class="form-control" placeholder="Enter Custom Collection">
-                </div>
-                <div class="col-sm-6">
-                  <label for="smallCollection">Smart Collection</label>
-                  <input type="text" id="smallCollection" class="form-control" placeholder="Enter Smart Collection">
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="col-sm-6">
-                  <label for="productTag">Product Tag</label>
-                  <input type="text" id="productTag" class="form-control" placeholder="Enter Product Tag">
-                </div>
-                <div class="col-sm-6">
-                  <label for="andOrCondition">Select Condition</label>
-                  <select class="form-control" id="andOrCondition">
-                    <option value="OR">OR</option>
-                    <option value="AND">AND</option>
-                  </select>
-                </div>
-              </div>
-
-              <button class="btn btn-primary filter-submit" type="button">Apply Filter</button>
-              <button class="btn btn-danger filter-reset" type="reset">Reset</button>
-            </div> 
-          </div>   
-
-
-
-
-
-
-
-
-
-          <div class="panel panel-default" id="funnelProducts">
-            <div class="panel-heading">
-                Funnel Products
+          </div>
+        </div>
+        <div class="row annotation-section">
+          <div class="col-xs-12 col-sm-4">
+            <div class="annoted-heading">Funnel Pop-Up Titles</div>
+          </div>
+          <div class="col-xs-12 col-sm-8 funnel-card">
+            <div class="card-item">
+              <div class="card-title">Upsell Popup Title</div>
+              <input type="text" name="funnel[up_sell_title]" id="upsellTitle" placeholder="Enter Upsell Popup Title" value="<%= @funnel.up_sell_title %>" required>
             </div>
-            <div class="panel-body">
-              <div class="form-group">
-                <div class="select_products_section">              
-                  <div class="col-sm-6">
-                    <div class="row clearfix table_top_portion_left">
-                    </div>
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading funnel-heading">
-                            Results
-                            <button type="button" class="btn btn-small btn-primary select-all">Select All</button>
-                        </div>
-                        <div class="panel-body">
-                            <div id="products">
-                              <table class="table non_selected_products table-striped" id="before_selected_products">
-                                <thead>
-                                    <tr>
-                                        <th>Product Id</th>
-                                        <th></th>
-                                        <th><h4></h4></th>
-                                        <th class="col-sm-2"><button type="button" class="btn btn-small btn-primary select-all">Select All</button></th>
-                                    </tr>
-                                </thead>
-                              <%= render 'getproducts' %>
-                              </table>
-                            </div>
-                        </div>
-                    </div>
-                  </div>  
-                  <div class="col-sm-6">
-                    <div class="row table_top_portion_right">
-                    </div>
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading funnel-heading">
-                            Selected Products
-                            <button type="button" class="btn btn-danger remove-all">Remove All</button>
-                        </div>
-                        <div class="panel-body">
-                            <div class="right_table">
-                              <table class="table selected_products table-striped">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th class="col-md-10"><h4>Selected Products</h4></th>
-                                        <th class="col-md-2"><button type="button" class="btn btn-danger remove-all">Remove All</button></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                      <%= @selected_products_html.html_safe %>
-                                </tbody>
-                              </table>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    
-                    <div class="selected_products_count">Showing <%= @selected_products_count %> entries</div>
-
-                   </div>
+            <div class="card-item">
+              <div class="card-title">Downsell Popup Title</div>
+              <input type="text" name="funnel[down_sell_title]" id="downsellTitle" class="form-control" placeholder="Enter Downsell Popup Title" value="<%= @funnel.down_sell_title %>" required>
+            </div>
+          </div>
+        </div>
+        <div class="row annotation-section">
+          <div class="col-xs-12 col-sm-4">
+            <div class="annoted-heading">Personalizations</div>
+          </div>
+          <div class="col-xs-12 col-sm-8 funnel-card">
+            <div class="card">
+              <input type="checkbox" id="colors" name="funnel[is_advance_colors]" class="switch-input funnel_status" <%= @funnel.is_advance_colors ? "checked" : '' %>>
+              <label for="colors" class="switch-label">Advanced Pop-Up Colors</label>
+            </div>
+            <div class="card">
+              <input type="checkbox" id="redirect" name="funnel[is_skip_cart]" class="switch-input funnel_status" <%= @funnel.is_skip_cart ? "checked" : '' %>>
+              <label for="redirect" class="switch-label">Re-direct to Checkout(Skip Cart Page)</label>
+            </div>
+            <div class="card">
+              <input type="checkbox" id="display_disc" name="funnel[is_display_desc]" class="switch-input funnel_status" <%= @funnel.is_display_desc ? "checked" : '' %>>
+              <label for="display_disc" class="switch-label">Display Product Descriptions</label>
+            </div>
+            <div class="card-item">
+              <div class="card-title">Downsell Pop-Up Delay-Seconds(Mobile)</div>
+              <input type="number" name="funnel[down_sell_time_out]" id="downSellTimeOut" value="<%= @funnel.down_sell_time_out %>" placeholder="0" required>
+            </div>
+          </div>
+        </div>
+        <div class="row annotation-section">
+          <div class="col-xs-12 col-sm-4">
+            <div class="annoted-heading">Create Your Sales Funnel</div class="annoted-heading">
+          </div>
+          <div class="col-xs-12 col-sm-8 funnel-card">
+            <div class="card">
+              <div class="row">
+                <div class="col-xs-7">
+                  <label>Select Funnel Products</label>
+                </div>
+                <div class="col-xs-5 text-right">
+                  <button type="button" class="btn btn-funnel">Select</button>
+                </div>
+              </div>
+            </div>
+             <div class="card">
+              <div class="row">
+                <div class="col-xs-7">
+                  <label>Create Upsells</label>
+                </div>
+                <div class="col-xs-5 text-right">
+                  <button type="button" class="btn btn-funnel">Select</button>
+                </div>
+              </div>
+            </div>
+             <div class="card">
+              <div class="row">
+                <div class="col-xs-7">
+                  <label>Create Downsells</label>
+                </div>
+                <div class="col-xs-5 text-right">
+                  <button type="button" class="btn btn-funnel">Select</button>
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="panel panel-default">
-            <div class="panel-heading">
-                Upsell Products
-            </div>
-            <div class="panel-body">
-              <div class="form-group">
-                <div class="select_products_section">              
-                  <div class="col-sm-6">
-                    <div class="row clearfix table_top_portion_left">
-                    </div>
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading funnel-heading">
-                            Results
-                        </div>
-                        <div class="panel-body">
-                            <div id="products">
-                              <table class="table non_selected_products table-striped" id="before_selected_upsell_products">
-                                <thead>
-                                    <tr>
-                                        <th>Product Id</th>
-                                        <th></th>
-                                        <th><h4></h4></th>
-                                        <th class="col-sm-2"><button type="button" class="btn btn-small btn-primary select-all">Select All</button></th>
-                                    </tr>
-                                </thead>
-                              <%= render 'getproducts' %>
-                              </table>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-
-                  <div class="col-sm-6">
-                    <div class="row table_top_portion_right">
-                    </div>
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading funnel-heading">
-                            Selected Products
-                        </div>
-                        <div class="panel-body">
-                            <div class="right_table">
-                              <table class="table selected_upsell_products table-striped">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th class="col-md-10"><h4>Selected Products</h4></th>
-                                        <th class="col-md-2"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                  <%= @selected_upsell_products_html.html_safe %>
-                                </tbody>
-                              </table>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    
-                    <div class="selected_upsell_products_count">Showing <%= @selected_upsell_products_count %> entries</div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-           <div class="panel panel-default">
-            <div class="panel-heading">
-                Downsell Products
-            </div>
-            <div class="panel-body">
-              <div class="form-group">
-                <div class="select_products_section">              
-                  <div class="col-sm-6">
-                    <div class="row clearfix table_top_portion_left">
-                    </div>
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading funnel-heading">
-                            Results
-                        </div>
-                        <div class="panel-body">
-                            <div id="products">
-                              <table class="table non_selected_products table-striped" id="before_selected_downsell_products">
-                                <thead>
-                                    <tr>
-                                        <th>Product Id</th>
-                                        <th></th>
-                                        <th><h4></h4></th>
-                                        <th class="col-sm-2"><button type="button" class="btn btn-small btn-primary select-all">Select All</button></th>
-                                    </tr>
-                                </thead>
-                              <%= render 'getproducts' %>
-                              </table>
-                            </div>
-                        </div>
-                    </div>
-                  </div>  
-                  <div class="col-sm-6">
-                    <div class="row table_top_portion_right">
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading funnel-heading">
-                            Selected Products
-                        </div>
-                        <div class="panel-body">
-                            <div class="right_table">
-                              <table class="table selected_downsell_products table-striped">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th class="col-md-10"><h4>Selected Products</h4></th>
-                                        <th class="col-md-2"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                  <%= @selected_downsell_products_html.html_safe %>
-                                </tbody>
-                              </table>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                    <div class="selected_downsell_products_count">Showing <%= @selected_downsell_products_count %> entries</div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
-          <!-- <div class="row">
-            <div class="col-xs-6">
-              <div class="panel panel-default" id="upSellPanel">
-                  <div class="panel-heading">
-                      Upsell Product
-                  </div>
-                  <div class="panel-body">
-                    <div id="upsellProduct">
-                      <img src="" width="30" height="30" id="upProductImg" style="display: none;" />
-                      <span class="m-l-15" id="upProducTitle">
-                        No upsell product selected.
-                      </span>
-                      <button type="button" class="btn btn-small btn-success pull-right" id="btnUpsellProduct">Select Product</button>
-                    </div>
-                  </div>
-              </div>
-            </div>
-
-            <div class="col-xs-6">
-              <div class="panel panel-default" id="downSellPanel">
-                  <div class="panel-heading">
-                      Downsell Product
-                  </div>
-                  <div class="panel-body">
-                    <div id="downsellProduct">
-                      <img src="" width="30" height="30" id="downProductImg" style="display: none;" />
-                      <span class="m-l-15" id="downProducTitle">
-                        No downsell product selected.
-                      </span>
-                      <button type="button" class="btn btn-small btn-success pull-right" id="btnDownsellProduct">Select Product</button>
-                    </div>
-                  </div>
-              </div>
-            </div>
-          </div> -->
-
-
-          <button type="submit" class="btn btn-danger funnel-submit">Submit</button>
+        </div>
+        <div class="row text-right">
+          
+        <%= submit_tag("Submit", :id=>"button", :class=>"btn btn-funnel", :name=>"Update") %>
         </div>
       </div>
     <% end %>   
