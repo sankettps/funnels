@@ -176,11 +176,11 @@ class FunnelsController < ShopifyApp::AuthenticatedController
     end
 
     def set_current_shop
-      # @current_shop = ShopifyAPI::Shop.current
-      # @shop = Shop.find_by_shopify_domain(@current_shop.myshopify_domain)
-      @current_shop = Shop.first
+      @current_shop = ShopifyAPI::Shop.current
+      @shop = Shop.find_by_shopify_domain(@current_shop.myshopify_domain)
+      # @current_shop = Shop.first
       # render json: @current_shop and return
-      @shop = Shop.first
+      # @shop = Shop.first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
