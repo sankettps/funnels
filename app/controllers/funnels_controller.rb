@@ -37,53 +37,53 @@ class FunnelsController < ShopifyApp::AuthenticatedController
   # GET /funnels/1/edit
   def edit
     @funnel = Funnel.find(params[:id])
-    # @funnel_products = @funnel.funnel_products.collect(&:filter_shop_product_id)
-    # @selected_products_html = ''
-    # @funnel_products.each do |pid|
-    #   @product = FilterShopProduct.find(pid)
-    #   if @product.present? 
-    #     @pid = @product.product_id
-    #     @selected_products_html = @selected_products_html + "<tr class='single_product #{@pid}''><td><img src='#{@product.image}'' width='30' height='30'></td><td data-pid='#{@pid}' data-ptitle='#{@product.title}' class='product_data'>#{@product.title}</td><td><button type='button' class='btn btn-small btn-danger remove-product'>Remove</button></td></tr>"
-    #   end
-    # end
+    @funnel_products = @funnel.funnel_products.collect(&:filter_shop_product_id)
+    @selected_products_html = ''
+    @funnel_products.each do |pid|
+      @product = FilterShopProduct.find(pid)
+      if @product.present? 
+        @pid = @product.product_id
+        @selected_products_html = @selected_products_html + "<tr class='single_product #{@pid}''><td><img src='#{@product.image}'' width='30' height='30'></td><td data-pid='#{@pid}' data-ptitle='#{@product.title}' class='product_data'>#{@product.title}</td><td><button type='button' class='btn btn-small btn-danger remove-product'>Remove</button></td></tr>"
+      end
+    end
 
-    # @funnel_upsell_products = @funnel.upsell_products.collect(&:filter_shop_product_id)
-    # @selected_upsell_products_html = ''
-    # @funnel_upsell_products.each do |pid|
-    #   @product = FilterShopProduct.find(pid)
-    #   if @product.present? 
-    #     @pid = @product.product_id
-    #     @selected_upsell_products_html = @selected_upsell_products_html + "<tr class='single_product #{@pid}''><td><img src='#{@product.image}'' width='30' height='30'></td><td data-pid='#{@pid}' data-ptitle='#{@product.title}' class='product_data'>#{@product.title}</td><td><button type='button' class='btn btn-small btn-danger remove-product'>Remove</button></td></tr>"
-    #   end
-    # end
+    @funnel_upsell_products = @funnel.upsell_products.collect(&:filter_shop_product_id)
+    @selected_upsell_products_html = ''
+    @funnel_upsell_products.each do |pid|
+      @product = FilterShopProduct.find(pid)
+      if @product.present? 
+        @pid = @product.product_id
+        @selected_upsell_products_html = @selected_upsell_products_html + "<tr class='single_product #{@pid}''><td><img src='#{@product.image}'' width='30' height='30'></td><td data-pid='#{@pid}' data-ptitle='#{@product.title}' class='product_data'>#{@product.title}</td><td><button type='button' class='btn btn-small btn-danger remove-product'>Remove</button></td></tr>"
+      end
+    end
 
-    # @funnel_downsell_products = @funnel.downsell_products.collect(&:filter_shop_product_id)
-    # @selected_downsell_products_html = ''
-    # @funnel_downsell_products.each do |pid|
-    #   @product = FilterShopProduct.find(pid)
-    #   if @product.present? 
-    #     @pid = @product.product_id
-    #     @selected_downsell_products_html = @selected_downsell_products_html + "<tr class='single_product #{@pid}''><td><img src='#{@product.image}'' width='30' height='30'></td><td data-pid='#{@pid}' data-ptitle='#{@product.title}' class='product_data'>#{@product.title}</td><td><button type='button' class='btn btn-small btn-danger remove-product'>Remove</button></td></tr>"
-    #   end
-    # end
+    @funnel_downsell_products = @funnel.downsell_products.collect(&:filter_shop_product_id)
+    @selected_downsell_products_html = ''
+    @funnel_downsell_products.each do |pid|
+      @product = FilterShopProduct.find(pid)
+      if @product.present? 
+        @pid = @product.product_id
+        @selected_downsell_products_html = @selected_downsell_products_html + "<tr class='single_product #{@pid}''><td><img src='#{@product.image}'' width='30' height='30'></td><td data-pid='#{@pid}' data-ptitle='#{@product.title}' class='product_data'>#{@product.title}</td><td><button type='button' class='btn btn-small btn-danger remove-product'>Remove</button></td></tr>"
+      end
+    end
 
-    # @store_id = @current_shop.myshopify_domain 
-    # @currency_symbol = @shop.currency_symbol
-    # @currency = @shop.currency
-    # @shop_url="https://#{@store_id}/admin/products/"
-    # @collection_array=[]
-    # @products = @shop.filter_shop_products
-    # @product_attributes = @shop.filter_shop_attributes
-    # @product_titles = @products.collect(&:title).join(",")
-    # @product_types = @product_attributes.where(detail_type: 'type').collect(&:detail_value).join(",")
-    # @product_vendors = @product_attributes.where(detail_type: 'vendor').collect(&:detail_value).join(",")
-    # @product_tags = @product_attributes.where(detail_type: 'tag').collect(&:detail_value).join(",")
-    # @product_custom_collections=ShopifyAPI::CustomCollection.find(:all).collect(&:title).join(",")
-    # @product_smart_collections=ShopifyAPI::SmartCollection.find(:all).collect(&:title).join(",")
+    @store_id = @current_shop.myshopify_domain 
+    @currency_symbol = @shop.currency_symbol
+    @currency = @shop.currency
+    @shop_url="https://#{@store_id}/admin/products/"
+    @collection_array=[]
+    @products = @shop.filter_shop_products
+    @product_attributes = @shop.filter_shop_attributes
+    @product_titles = @products.collect(&:title).join(",")
+    @product_types = @product_attributes.where(detail_type: 'type').collect(&:detail_value).join(",")
+    @product_vendors = @product_attributes.where(detail_type: 'vendor').collect(&:detail_value).join(",")
+    @product_tags = @product_attributes.where(detail_type: 'tag').collect(&:detail_value).join(",")
+    @product_custom_collections=ShopifyAPI::CustomCollection.find(:all).collect(&:title).join(",")
+    @product_smart_collections=ShopifyAPI::SmartCollection.find(:all).collect(&:title).join(",")
 
-    # @selected_products_count = @funnel_products.count
-    # @selected_upsell_products_count = @funnel_upsell_products.count
-    # @selected_downsell_products_count = @funnel_downsell_products.count
+    @selected_products_count = @funnel_products.count
+    @selected_upsell_products_count = @funnel_upsell_products.count
+    @selected_downsell_products_count = @funnel_downsell_products.count
 
 
   end

@@ -625,7 +625,7 @@ input[type=text].colorpicker{
 
 /* 18-12-2017 */
 .modal-dialog{
-  width: 70% !important;
+  width: 80% !important;
 }
 .dataTables_paginate{
   text-align: left !important;
