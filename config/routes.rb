@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   get "reports/upsell_report"
   post "shop/filter_products"
+  post "shop/get_all_products"
 
   # post "frontend/getupsellproduct"
   mount ShopifyApp::Engine, at: '/'
