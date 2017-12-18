@@ -285,6 +285,7 @@ table.dataTable.no-footer {
 }
 .product-filter{
   position: relative;
+  margin: 11px;
 }
 
 table tbody td:nth-child(3){
@@ -488,7 +489,7 @@ table.dataTable.no-footer {
 }
 .panel-default > .panel-heading{
   color: #fff;
-  background-color: #48bfed;
+  background-color: #4080a5;
 }
 .select_products_section .panel-body{
   padding: 0px;

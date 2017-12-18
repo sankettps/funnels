@@ -19,7 +19,7 @@ class FunnelsController < ShopifyApp::AuthenticatedController
     @funnel = Funnel.new
     # @shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
     # ShopifyAPI::Base.site = @shop_url
-    @store_id = @current_shop.shopify_domain 
+    @store_id = @current_shop.myshopify_domain 
     @currency_symbol = @shop.currency_symbol
     @currency = @shop.currency
     @shop_url="https://#{@store_id}/admin/products/"
@@ -177,7 +177,8 @@ class FunnelsController < ShopifyApp::AuthenticatedController
 
     def set_current_shop
       @current_shop = ShopifyAPI::Shop.current
-      @shop = Shop.find_by_shopify_domain(@current_shop.shopify_domain)
+      # render json: @current_shop and return
+      @shop = Shop.find_by_shopify_domain(@current_shop.myshopify_domain)
       # @current_shop = Shop.first
       # render json: @current_shop and return
       # @shop = Shop.first
