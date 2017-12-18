@@ -2,27 +2,6 @@
 $(document).ready(function(){
   $("body").on('click', '.funnel-submit', function(e) { 
     e.preventDefault();
-    var all_products_array=[];
-    $('.selected_products tbody tr').each(function(){
-        var pid=$(this).find('.product_data').data('pid');
-        all_products_array.push(pid);
-    });
-    $('#trigger-products').val($.unique( all_products_array ).join(','));
-
-    var all_upsell_products_array=[];
-    $('.selected_upsell_products tbody tr').each(function(){
-        var pid=$(this).find('.product_data').data('pid');
-        all_upsell_products_array.push(pid);
-    });
-    $('#up_product_ids').val($.unique( all_upsell_products_array ).join(','));
-
-    var all_downsell_products_array=[];
-    $('.selected_downsell_products tbody tr').each(function(){
-        var pid=$(this).find('.product_data').data('pid');
-        all_downsell_products_array.push(pid);
-    });
-    $('#down_product_ids').val($.unique( all_downsell_products_array ).join(','));
-
     //validation
     var flag=0;
     
@@ -36,6 +15,33 @@ $(document).ready(function(){
       $(this).parents('form').submit();
     }
   });  
+  // Select Products
+  $("body").on('click', '.select-funnel-products', function() {
+    var all_products_array=[];
+    $('.selected_products tbody tr').each(function(){
+        var pid=$(this).find('.product_data').data('pid');
+        all_products_array.push(pid);
+    });
+    $('#trigger-products').val($.unique( all_products_array ).join(','));
+  });
+
+  $("body").on('click', '.select-upsell-products', function() {
+      var all_upsell_products_array=[];
+      $('.selected_upsell_products tbody tr').each(function(){
+          var pid=$(this).find('.product_data').data('pid');
+          all_upsell_products_array.push(pid);
+      });
+      $('#up_product_ids').val($.unique( all_upsell_products_array ).join(','));
+    });
+
+  $("body").on('click', '.select-downsell-products', function() {
+    var all_downsell_products_array=[];
+    $('.selected_downsell_products tbody tr').each(function(){
+        var pid=$(this).find('.product_data').data('pid');
+        all_downsell_products_array.push(pid);
+    });
+    $('#down_product_ids').val($.unique( all_downsell_products_array ).join(','));
+  });
   // Product Filter JS
 
   // add product

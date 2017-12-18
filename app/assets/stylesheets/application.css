@@ -13,5 +13,6 @@
  *= require bootstrap
  *= require custom
  *= require jquery.minicolors
+ *= require dataTables/jquery.dataTables
  *= require_self
  */ 

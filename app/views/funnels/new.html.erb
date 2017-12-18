@@ -3,6 +3,13 @@
   <input type="hidden" name="funnel[funnel_product_ids]" id="trigger-products">
   <input type="hidden" name="funnel[upsell_product_ids]" id="up_product_ids">
   <input type="hidden" name="funnel[downsell_product_ids]" id="down_product_ids">
+  <div class="shop-url hide"><%= @shop_url %></div>
+  <div class="store-id hide"><%= @store_id %></div>
+  <div class="product-titles hide"><%= @product_titles %></div>
+  <div class="product-types hide"><%= @product_types %></div>
+  <div class="product-custom-collections hide"><%= @product_custom_collections %></div> 
+  <div class="product-smart-collections hide"><%= @product_smart_collections %></div>
+  <div class="product-tags hide"><%= @product_tags %></div>
   <div class="funnel-page material-form">
     <div class="row annotation-section">
       <div class="col-xs-12 col-sm-4">
@@ -64,7 +71,7 @@
               <label>Select Funnel Products</label>
             </div>
             <div class="col-xs-5 text-right">
-              <button type="button" class="btn btn-funnel">Select</button>
+              <button type="button" class="btn btn-funnel" data-toggle="modal" data-target="#funnelModal">Select</button>
             </div>
           </div>
         </div>
@@ -74,7 +81,7 @@
               <label>Create Upsells</label>
             </div>
             <div class="col-xs-5 text-right">
-              <button type="button" class="btn btn-funnel">Select</button>
+              <button type="button" class="btn btn-funnel" data-toggle="modal" data-target="#upsellModal">Select</button>
             </div>
           </div>
         </div>
@@ -84,7 +91,8 @@
               <label>Create Downsells</label>
             </div>
             <div class="col-xs-5 text-right">
-              <button type="button" class="btn btn-funnel">Select</button>
+            <button type="button" class="btn btn-funnel" data-toggle="modal" data-target="#downsellModal">Select</button>
+              <!-- <button type="button" class="btn btn-funnel">Select</button> -->
             </div>
           </div>
         </div>
@@ -93,6 +101,272 @@
     <div class="row text-right">
       
     <%= submit_tag("Submit", :id=>"button", :class=>"btn btn-funnel", :name=>"submit") %>
+    </div>
+  </div>
+  <div id="funnelModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Funnel Products</h4>
+        </div>
+        <div class="modal-body">
+          <div class="panel panel-default product-filter">
+            <div class="panel-heading">
+                Product Filter(Click Here)
+            </div>
+            <div class="panel-body" style="display:none;">
+              <div class="form-group">
+                <div class="col-sm-6">
+                  <label for="productTitle">Product Title</label>
+                  <input type="text" id="productTitle" class="form-control" placeholder="Enter Product Title">
+                </div>
+                <div class="col-sm-6">
+                  <label for="productType">Product Type</label>
+                  <input type="text" id="productType" class="form-control" placeholder="Enter Product Type">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-6">
+                  <label for="customCollection">Custom Collection</label>
+                  <input type="text" id="customCollection" class="form-control" placeholder="Enter Custom Collection">
+                </div>
+                <div class="col-sm-6">
+                  <label for="smallCollection">Smart Collection</label>
+                  <input type="text" id="smallCollection" class="form-control" placeholder="Enter Smart Collection">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-6">
+                  <label for="productTag">Product Tag</label>
+                  <input type="text" id="productTag" class="form-control" placeholder="Enter Product Tag">
+                </div>
+                <div class="col-sm-6">
+                  <label for="andOrCondition">Select Condition</label>
+                  <select class="form-control" id="andOrCondition">
+                    <option value="OR">OR</option>
+                    <option value="AND">AND</option>
+                  </select>
+                </div>
+              </div>
+
+              <button class="btn btn-primary filter-submit" type="button">Apply Filter</button>
+              <button class="btn btn-danger filter-reset" type="reset">Reset</button>
+            </div> 
+          </div>  
+          <div class="form-group">
+                <div class="select_products_section">              
+                  <div class="col-md-6 col-sm-12">
+                    <div class="row clearfix table_top_portion_left">
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading funnel-heading">
+                            Results
+                            <button type="button" class="btn btn-small btn-primary select-all">Select All</button>
+                        </div>
+                        <div class="panel-body">
+                            <div id="products">
+                              <table class="table non_selected_products table-striped" id="before_selected_products">
+                                <thead>
+                                    <tr>
+                                        <th>Product Id</th>
+                                        <th></th>
+                                        <th><h4></h4></th>
+                                        <th class="col-sm-2"><button type="button" class="btn btn-small btn-primary select-all">Select All</button></th>
+                                    </tr>
+                                </thead>
+                              <%= render 'getproducts' %>
+                              </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    
+                  </div>  
+                  <div class="col-md-6 col-sm-12">
+                    <div class="row table_top_portion_right">
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading funnel-heading">
+                            Selected Products
+                            <button type="button" class="btn btn-danger remove-all">Remove All</button>
+                        </div>
+                        <div class="panel-body">
+                            <div class="right_table">
+                              <table class="table selected_products table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th class="col-md-10"><!-- <h4>Selected Products</h4> --></th>
+                                        <th class="col-md-2"><button type="button" class="btn btn-danger remove-all">Remove All</button></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  <tr class="no_products">
+                                      <td colspan="3" class="dataTables_empty">No products selected</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="selected_products_count">Showing 0 entries</div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary select-funnel-products" data-dismiss="modal">Select</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="upsellModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">upsell Products</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <div class="select_products_section">              
+              <div class="col-md-6 col-sm-12">
+                <div class="row clearfix table_top_portion_left">
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading funnel-heading">
+                      Results
+                  </div>
+                  <div class="panel-body">
+                    <div id="products">
+                      <table class="table non_selected_products table-striped" id="before_selected_upsell_products">
+                        <thead>
+                            <tr>
+                                <th>Product Id</th>
+                                <th></th>
+                                <th><h4></h4></th>
+                                <th class="col-sm-2"></th>
+                            </tr>
+                        </thead>
+                      <%= render 'getproducts' %>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>  
+              <div class="col-md-6 col-sm-12">
+                <div class="row table_top_portion_right">
+                </div>
+                 <div class="panel panel-default">
+                    <div class="panel-heading funnel-heading">
+                        Selected Products
+                    </div>
+                    <div class="panel-body">
+                      <div class="right_table">
+                        <table class="table selected_upsell_products table-striped">
+                          <thead>
+                              <tr>
+                                  <th></th>
+                                  <th class="col-md-10"><!-- <h4>Selected Products</h4> --></th>
+                                  <th class="col-md-2"></th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                            <tr class="no_products">
+                                <td colspan="3" class="dataTables_empty">No products selected</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                </div>
+                <div class="selected_upsell_products_count">Showing 0 entries</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary select-upsell-products" data-dismiss="modal">Select</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="downsellModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Downsell Products</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <div class="select_products_section">              
+              <div class="col-md-6 col-sm-12">
+                <div class="row clearfix table_top_portion_left">
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading funnel-heading">
+                      Results
+                  </div>
+                  <div class="panel-body">
+                    <div id="products">
+                      <table class="table non_selected_products table-striped" id="before_selected_downsell_products">
+                        <thead>
+                            <tr>
+                                <th>Product Id</th>
+                                <th></th>
+                                <th><h4></h4></th>
+                                <th class="col-sm-2"></th>
+                            </tr>
+                        </thead>
+                      <%= render 'getproducts' %>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>  
+              <div class="col-md-6 col-sm-12">
+                <div class="row table_top_portion_right">
+                </div>
+                 <div class="panel panel-default">
+                    <div class="panel-heading funnel-heading">
+                        Selected Products
+                    </div>
+                    <div class="panel-body">
+                      <div class="right_table">
+                        <table class="table selected_downsell_products table-striped">
+                          <thead>
+                              <tr>
+                                  <th></th>
+                                  <th class="col-md-10"><!-- <h4>Selected Products</h4> --></th>
+                                  <th class="col-md-2"></th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                            <tr class="no_products">
+                                <td colspan="3" class="dataTables_empty">No products selected</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                </div>
+                <div class="selected_downsell_products_count">Showing 0 entries</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary select-downsell-products" data-dismiss="modal">Select</button>
+        </div>
+      </div>
     </div>
   </div>
 <% end %>
@@ -104,4 +378,4 @@
 
 
 
-<%#= render 'common' %>
+<%= render 'common' %>

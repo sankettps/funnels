@@ -233,7 +233,7 @@ input[type=text]:focus.input-error{
 .selected_products,.selected_upsell_products,.selected_downsell_products{
   border-bottom: 1px solid #dbe1e8;
   margin-bottom: 0px;
-  margin-top: 40px !important;
+  /*margin-top: 40px !important;*/
 }
 /* filter css end */
 .sweet-alert h2{
@@ -476,7 +476,7 @@ table.dataTable.no-footer {
 .select-all,.remove-all{
   position: absolute;
   right: 25px;
-  top: 5px; 
+  top: 11px; 
 }
 .funnel-heading{
   padding: 15px !important;
@@ -494,8 +494,8 @@ table.dataTable.no-footer {
   padding: 0px;
 }
 .dataTables_wrapper .dataTables_filter input{
-  margin-right: 8px;
-  width: 95%;
+  margin: 9px 5px 5px 5px;
+  width: 97%;
 }
 .dataTables_wrapper .dataTables_info{
   border-top: 1px solid #dedede;
@@ -619,5 +619,20 @@ input[type=text].colorpicker{
   .Polaris-Page {
     padding: 0 2rem;
   }
+}
+
+
+/* 18-12-2017 */
+.modal-dialog{
+  width: 70% !important;
+}
+.dataTables_paginate{
+  text-align: left !important;
+}
+#downSellTimeOut{
+  padding: 0 5px;
+    border-radius: 5px;
+    box-shadow: none;
+    border: 1px solid #bebec1;
 }
 

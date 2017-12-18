@@ -19,19 +19,19 @@ class FunnelsController < ShopifyApp::AuthenticatedController
     @funnel = Funnel.new
     # @shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
     # ShopifyAPI::Base.site = @shop_url
-    # @store_id = @current_shop.myshopify_domain 
-    # @currency_symbol = @shop.currency_symbol
-    # @currency = @shop.currency
-    # @shop_url="https://#{@store_id}/admin/products/"
-    # @collection_array=[]
-    # @products = @shop.filter_shop_products
-    # @product_attributes = @shop.filter_shop_attributes
-    # @product_titles = @products.collect(&:title).join(",")
-    # @product_types = @product_attributes.where(detail_type: 'type').collect(&:detail_value).join(",")
-    # @product_vendors = @product_attributes.where(detail_type: 'vendor').collect(&:detail_value).join(",")
-    # @product_tags = @product_attributes.where(detail_type: 'tag').collect(&:detail_value).join(",")
-    # @product_custom_collections=ShopifyAPI::CustomCollection.find(:all).collect(&:title).join(",")
-    # @product_smart_collections=ShopifyAPI::SmartCollection.find(:all).collect(&:title).join(",")
+    @store_id = @current_shop.shopify_domain 
+    @currency_symbol = @shop.currency_symbol
+    @currency = @shop.currency
+    @shop_url="https://#{@store_id}/admin/products/"
+    @collection_array=[]
+    @products = @shop.filter_shop_products
+    @product_attributes = @shop.filter_shop_attributes
+    @product_titles = @products.collect(&:title).join(",")
+    @product_types = @product_attributes.where(detail_type: 'type').collect(&:detail_value).join(",")
+    @product_vendors = @product_attributes.where(detail_type: 'vendor').collect(&:detail_value).join(",")
+    @product_tags = @product_attributes.where(detail_type: 'tag').collect(&:detail_value).join(",")
+    @product_custom_collections=ShopifyAPI::CustomCollection.find(:all).collect(&:title).join(",")
+    @product_smart_collections=ShopifyAPI::SmartCollection.find(:all).collect(&:title).join(",")
   end
 
   # GET /funnels/1/edit
@@ -179,6 +179,7 @@ class FunnelsController < ShopifyApp::AuthenticatedController
       # @current_shop = ShopifyAPI::Shop.current
       # @shop = Shop.find_by_shopify_domain(@current_shop.myshopify_domain)
       @current_shop = Shop.first
+      # render json: @current_shop and return
       @shop = Shop.first
     end
 
