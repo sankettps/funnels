@@ -177,7 +177,7 @@ class FunnelsController < ShopifyApp::AuthenticatedController
 
     def set_current_shop
       @current_shop = ShopifyAPI::Shop.current
-      @shop = Shop.find_by_shopify_domain(@current_shop.myshopify_domain)
+      @shop = Shop.find_by_shopify_domain(@current_shop.shopify_domain)
       # @current_shop = Shop.first
       # render json: @current_shop and return
       # @shop = Shop.first
