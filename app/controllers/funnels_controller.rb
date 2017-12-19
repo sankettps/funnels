@@ -84,8 +84,6 @@ class FunnelsController < ShopifyApp::AuthenticatedController
     @selected_products_count = @funnel_products.count
     @selected_upsell_products_count = @funnel_upsell_products.count
     @selected_downsell_products_count = @funnel_downsell_products.count
-
-
   end
 
   # POST /funnels
@@ -167,6 +165,10 @@ class FunnelsController < ShopifyApp::AuthenticatedController
 
   def design_test
     render :layout => false
+  end
+
+  def test
+    render json: request.url and return
   end
 
   private

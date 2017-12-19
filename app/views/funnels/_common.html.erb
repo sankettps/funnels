@@ -4,13 +4,30 @@ $(document).ready(function(){
     e.preventDefault();
     //validation
     var flag=0;
-    
-    var products_list=$('#trigger-products').val();
-      if(products_list==''){
-        $('.no_products_error').remove();
-        $('.selected_products tbody').append("<tr class='no_products_error'><td></td><td class='error'>*Select products first<td></tr>");
-        flag=1;
-      }
+    var trigger_products=$('#trigger-products').val();
+    var up_product_ids=$('#up_product_ids').val();
+    var down_product_ids=$('#down_product_ids').val();
+    if(trigger_products==''){
+      $('.funnel-products-error').addClass('error');
+      flag=1;
+    }else{
+      $('.funnel-products-error').removeClass('error');
+    }
+
+    if(up_product_ids==''){
+      $('.upsell-error').addClass('error');
+      flag=1;
+    }else{
+      $('.upsell-error').removeClass('error');
+    }
+
+    if(down_product_ids==''){
+      $('.downsell-error').addClass('error');
+      flag=1;
+    }else{
+      $('.downsell-error').removeClass('error');
+    }
+
     if(flag==0){
       $(this).parents('form').submit();
     }

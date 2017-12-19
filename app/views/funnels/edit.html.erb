@@ -1,8 +1,8 @@
 <div id="loading"><img src="/assets/loader1.gif"></div>
 <%= form_tag "/funnels/update", :method => :post, :class => "form-horizontal funnel-form",name: 'funnel_form',id: "add_funnel_form" do %>
-  <input type="hidden" name="funnel[funnel_product_ids]" id="trigger-products">
-  <input type="hidden" name="funnel[upsell_product_ids]" id="up_product_ids">
-  <input type="hidden" name="funnel[downsell_product_ids]" id="down_product_ids">
+  <input type="hidden" name="funnel[funnel_product_ids]" id="trigger-products" value="<%= @funnel_products.join(',') %>">
+  <input type="hidden" name="funnel[upsell_product_ids]" id="up_product_ids" value="<%= @funnel_upsell_products.join(',') %>">
+  <input type="hidden" name="funnel[downsell_product_ids]" id="down_product_ids" value="<%= @funnel_downsell_products.join(',') %>">
   <input type="hidden" name="id" value="<%= @funnel.id %>">
   <div class="shop-url hide"><%= @shop_url %></div>
   <div class="store-id hide"><%= @store_id %></div>
@@ -67,7 +67,7 @@
       </div>
       <div class="col-xs-12 col-sm-8 funnel-card">
         <div class="card">
-          <div class="row">
+          <div class="row funnel-products-error">
             <div class="col-xs-7">
               <label>Select Funnel Products</label>
             </div>
@@ -77,7 +77,7 @@
           </div>
         </div>
          <div class="card">
-          <div class="row">
+          <div class="row upsell-error">
             <div class="col-xs-7">
               <label>Create Upsells</label>
             </div>
@@ -87,12 +87,12 @@
           </div>
         </div>
          <div class="card">
-          <div class="row">
+          <div class="row downsell-error">
             <div class="col-xs-7">
               <label>Create Downsells</label>
             </div>
             <div class="col-xs-5 text-right">
-            <button type="button" class="btn btn-funnel" data-toggle="modal" data-target="#downsellModal">Select</button>
+            <button type="button" class="btn btn-funnel funnel-submit" data-toggle="modal" data-target="#downsellModal">Select</button>
               <!-- <button type="button" class="btn btn-funnel">Select</button> -->
             </div>
           </div>
@@ -101,7 +101,7 @@
     </div>
     <div class="row text-right">
       
-    <%= submit_tag("Submit", :id=>"button", :class=>"btn btn-funnel", :name=>"Update") %>
+    <%= submit_tag("Submit", :id=>"button", :class=>"btn btn-funnel funnel-submit", :name=>"Update") %>
     </div>
   </div>
   <div id="funnelModal" class="modal fade" role="dialog">
