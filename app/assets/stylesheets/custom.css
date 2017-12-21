@@ -593,15 +593,27 @@ input[type=text].colorpicker{
 .switch-label{
   padding-left: 40px;
 }
-.material-form .btn-funnel{
+.material-form .btn-funnel,.btn-funnel{
   border-radius: unset;
   background-color: #50248F;
   color: #fff;
   padding: 6px 20px;
 }
 
-.material-form .btn-funnel:hover{
+.btn-danger-funnel{
+  border-radius: unset;
+  background-color: #d9534f;
+  color: #fff;
+  padding: 6px 20px;
+}
+.btn-danger-funnel:hover{
+  background-color: #ac2925;
+  color: #fff;
+}
+
+.material-form .btn-funnel:hover,.btn-funnel:hover{
   background-color: #380f73;
+  color: #fff;
 }
 .annoted-heading {
     font-size: 1.7rem;
@@ -639,4 +651,3 @@ input[type=text].colorpicker{
 .error{
   border: 1px solid red;
 }
-
