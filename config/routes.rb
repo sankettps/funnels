@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get "frontend/funnel_product_viewed"
 
   get "reports/upsell_report"
+  get "reports/statistics"
   post "shop/filter_products"
   post "shop/get_all_products"
 

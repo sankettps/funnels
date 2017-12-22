@@ -20,6 +20,11 @@ class ReportsController < ShopifyApp::AuthenticatedController
 			puts "upsell--->#{@upsell_compare_data}"
 			puts "down sell--->#{@downsell_compare_data}"
 	end
+
+	def statistics
+		
+	end
+	
 	def set_current_shop
     @current_shop = ShopifyAPI::Shop.current
     @shop = Shop.find_by_shopify_domain(@current_shop.myshopify_domain)

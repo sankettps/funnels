@@ -35,6 +35,9 @@
 .m-0{
   margin: 0 !important
 }
+.p-0{
+  padding: 0 !important;
+}
 .input-error{
   border-bottom-color: red !important;
   color: red !important;
@@ -516,7 +519,7 @@ table.dataTable.no-footer {
   /*margin: 5px 50px;*/
   border-collapse: unset;
   border: 1px solid #fff;
-  /*border-radius: 8px;*/
+  border-radius: 3px;
   background: #fff;
   border-spacing: 1px;
 
@@ -584,6 +587,14 @@ input[type=text].colorpicker{
   padding: 2rem;
   line-height: 3rem;
 }
+
+.funnel-card-section + .funnel-card-section {
+  border-top: 1px solid #dfe3e8;
+}
+
+.funnel-card-section {
+    padding: 2rem;
+}
 .card-item{
   margin-bottom: 10px;
 }
@@ -594,14 +605,14 @@ input[type=text].colorpicker{
   padding-left: 40px;
 }
 .material-form .btn-funnel,.btn-funnel{
-  border-radius: unset;
+  border-radius: 4px;
   background-color: #50248F;
   color: #fff;
   padding: 6px 20px;
 }
 
 .btn-danger-funnel{
-  border-radius: unset;
+  border-radius: 4px;
   background-color: #d9534f;
   color: #fff;
   padding: 6px 20px;
@@ -621,7 +632,14 @@ input[type=text].colorpicker{
     line-height: 2.4rem;
     margin: 0;
 }
-
+.stats-wrap{
+  padding-left: 0px;
+  padding-right: 3px;
+}
+.stats-wrap-next{
+  padding-left: 3px;
+  padding-right: 0px;
+}
 @media (min-width: 40em){
   .annoted-heading {
     font-size: 1.6rem;
