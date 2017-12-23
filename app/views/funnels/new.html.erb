@@ -99,8 +99,8 @@
       </div>
     </div>
     <div class="row text-right">
-      
-    <%= submit_tag("Submit", :id=>"button", :class=>"btn btn-funnel funnel-submit", :name=>"submit") %>
+     <button type="button" class="btn btn-funnel funnel-submit">Submit</button> 
+    <%#= submit_tag("Submit", :id=>"button", :class=>"btn btn-funnel funnel-submit", :name=>"submit") %>
     </div>
   </div>
   <div id="funnelModal" class="modal fade" role="dialog">
@@ -152,8 +152,8 @@
                 </div>
               </div>
 
-              <button class="btn filter-submit btn-funnel" type="button">Apply Filter</button>
-              <button class="btn btn-danger-funnel filter-reset" type="reset">Reset</button>
+              <button class="btn btn-primary filter-submit" type="button">Apply Filter</button>
+              <button class="btn btn-danger filter-reset" type="reset">Reset</button>
             </div> 
           </div>  
           <div class="form-group">
@@ -165,7 +165,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading funnel-heading">
                             Results
-                            <button type="button" class="btn btn-small select-all btn-funnel">Select All</button>
+                            <button type="button" class="btn btn-small btn-primary select-all">Select All</button>
                         </div>
                         <div class="panel-body">
                             <div id="products">
@@ -175,7 +175,7 @@
                                         <th>Product Id</th>
                                         <th></th>
                                         <th><h4></h4></th>
-                                        <th class="col-sm-2"><button type="button" class="btn btn-small btn-funnel select-all">Select All</button></th>
+                                        <th class="col-sm-2"><button type="button" class="btn btn-small btn-primary select-all">Select All</button></th>
                                     </tr>
                                 </thead>
                               <%= render 'getproducts' %>
@@ -193,7 +193,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading funnel-heading">
                             Selected Products
-                            <button type="button" class="btn btn-danger-funnel remove-all">Remove All</button>
+                            <button type="button" class="btn btn-danger remove-all">Remove All</button>
                         </div>
                         <div class="panel-body">
                             <div class="right_table">
@@ -220,7 +220,7 @@
               </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-funnel select-funnel-products" data-dismiss="modal">Select</button>
+          <button type="button" class="btn btn-primary select-funnel-products" data-dismiss="modal">Select</button>
         </div>
       </div>
     </div>
@@ -292,7 +292,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-funnel select-upsell-products" data-dismiss="modal">Select</button>
+          <button type="button" class="btn btn-primary select-upsell-products" data-dismiss="modal">Select</button>
         </div>
       </div>
     </div>
@@ -364,7 +364,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-funnel select-downsell-products" data-dismiss="modal">Select</button>
+          <button type="button" class="btn btn-primary select-downsell-products" data-dismiss="modal">Select</button>
         </div>
       </div>
     </div>
