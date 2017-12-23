@@ -11,7 +11,7 @@ class Funnel < ApplicationRecord
 
   has_one :advance_setting, through: :shop
   def upsell_css
-  	if is_advance_colors
+  	if is_advance_colors && advance_setting
   		advance_setting.upsell_css
   	else
   		{
@@ -25,7 +25,7 @@ class Funnel < ApplicationRecord
   end
 
   def downsell_css
-  	if is_advance_colors
+  	if is_advance_colors && advance_setting
   		advance_setting.downsell_css
   	else
   		{
