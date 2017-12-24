@@ -51,7 +51,7 @@ module FrontendHelper
     					</div>
 				    </div>
 				    <div class=\"modal-footer text-center\">
-					    <button type=\"button\" class=\"btn btn-success\" class=\"hfUpsellBuy\">Buy Now</button>
+					    <button type=\"button\" class=\"btn btn-success\" id=\"hfUpsellBuy\">Buy Now</button>
 					    <button type=\"button\" class=\"btn btn-default\" id=\"hfUpsellCancel\">No, thanks</button>
 						</div>
 		      </div>
@@ -213,7 +213,7 @@ module FrontendHelper
 					</div>
 		    </div>
 		    <div class=\"modal-footer text-center\">
-			    <button type=\"button\" class=\"btn btn-success buy-button\" class=\"hfUpsellBuy\">Buy Now</button>
+			    <button type=\"button\" class=\"btn btn-success buy-button\" id=\"hfUpsellBuy\">Buy Now</button>
 			    <button type=\"button\" data-next=\"downProduct#{index+1}\" data-current=\"downProduct#{index}\" class=\"btn btn-default downsell-cancel cancel-button\" id=\"hfUpsellCancel\">No, thanks</button>
 				</div>
       </div>"
@@ -282,7 +282,7 @@ module FrontendHelper
 					</div>
 		    </div>
 		    <div class=\"modal-footer text-center\">
-			    <button type=\"button\" class=\"btn btn-success buy-button hfUpsellBuy\" class=\"hfUpsellBuy\">Buy Now</button>
+			    <button type=\"button\" class=\"btn btn-success buy-button\" id=\"hfUpsellBuy\">Buy Now</button>
 			    <button type=\"button\" data-next=\"upProduct#{index+1}\" data-current=\"upProduct#{index}\" class=\"btn btn-default upsell-cancel cancel-button\" id=\"hfUpsellCancel\">No, thanks</button>
 				</div>
       </div>"
@@ -345,7 +345,7 @@ module FrontendHelper
 						end
 			    @upsell_body += "</div>
 				  <div class=\"modal-footer text-center\">
-					  <button type=\"button\" class=\"btn btn-success buy-button hfUpsellBuy\" class=\"hfUpsellBuy\">Buy Now</button>
+					  <button type=\"button\" class=\"btn btn-success buy-button\" id=\"hfUpsellBuy\">Buy Now</button>
 					  <button type=\"button\" data-next=\"upProduct#{index+1}\" data-current=\"upProduct#{index}\" class=\"btn btn-default upsell-cancel cancel-button\" id=\"hfUpsellCancel\">No, thanks</button>
 					</div>
 	      </div>
