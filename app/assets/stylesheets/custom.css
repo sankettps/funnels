@@ -669,3 +669,28 @@ input[type=text].colorpicker{
 .error{
   border: 1px solid red;
 }
+.navbar-header img{
+  width: 40px;
+}
+.navbar-brand{
+      padding: 6px 15px;
+}
+.panel-default>.panel-heading{
+  background: #50248F !important;
+}
+#products .dataTables_wrapper .dataTables_paginate .paginate_button.current, #products .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover, #products .dataTables_wrapper .dataTables_paginate .paginate_button:hover{
+    border: 1px solid #50248F !important;
+    background: #50248F !important;
+}
+.btn-primary{
+  background: #50248F !important;
+}
+.btn-danger{
+  background: #c9302c !important;
+}
+.btn-success{
+  background: #449d44 !important;
+}
+.btn{
+  border-radius: 0px !important;
+}

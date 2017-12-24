@@ -92,8 +92,7 @@
               <label>Create Downsells</label>
             </div>
             <div class="col-xs-5 text-right">
-            <button type="button" class="btn btn-funnel funnel-submit" data-toggle="modal" data-target="#downsellModal">Select</button>
-              <!-- <button type="button" class="btn btn-funnel">Select</button> -->
+            <button type="button" class="btn btn-funnel" data-toggle="modal" data-target="#downsellModal">Select</button>
             </div>
           </div>
         </div>
@@ -101,7 +100,8 @@
     </div>
     <div class="row text-right">
       
-    <%= submit_tag("Submit", :id=>"button", :class=>"btn btn-funnel funnel-submit", :name=>"Update") %>
+    <%#= submit_tag("Submit", :id=>"button", :class=>"btn btn-funnel funnel-submit", :name=>"Update") %>
+    <button type="button" class="btn btn-funnel funnel-submit">Update</button> 
     </div>
   </div>
   <div id="funnelModal" class="modal fade" role="dialog">
@@ -166,7 +166,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading funnel-heading">
                             Results
-                            <button type="button" class="btn btn-small btn-primary select-all">Select All</button>
+                            <button type="button" class="btn btn-small btn-success select-all">Select All</button>
                         </div>
                         <div class="panel-body">
                             <div id="products">

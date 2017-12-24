@@ -41,6 +41,9 @@ $(document).ready(function(){
         all_products_array.push(pid);
     });
     $('#trigger-products').val($.unique( all_products_array ).join(','));
+    if(all_products_array.length > 0){
+      $('.funnel-products-error').removeClass('error');
+    }
   });
 
   $("body").on('click', '.select-upsell-products', function() {
@@ -50,6 +53,9 @@ $(document).ready(function(){
           all_upsell_products_array.push(pid);
       });
       $('#up_product_ids').val($.unique( all_upsell_products_array ).join(','));
+      if(all_upsell_products_array.length > 0){
+        $('.upsell-error').removeClass('error');
+      }
     });
 
   $("body").on('click', '.select-downsell-products', function() {
@@ -59,6 +65,9 @@ $(document).ready(function(){
         all_downsell_products_array.push(pid);
     });
     $('#down_product_ids').val($.unique( all_downsell_products_array ).join(','));
+    if(all_downsell_products_array.length > 0){
+        $('.downsell-error').removeClass('error');
+      }
   });
   // Product Filter JS
 
