@@ -89,7 +89,6 @@ class FunnelsController < ShopifyApp::AuthenticatedController
   # POST /funnels
   # POST /funnels.json
   def create
-    render json: params and return
     @funnel = @shop.funnels.create(funnel_params)
     if @funnel.present?
       funnel_product_ids = FilterShopProduct.where(product_id: params[:funnel][:funnel_product_ids].split(',')).ids

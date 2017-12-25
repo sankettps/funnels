@@ -44,15 +44,15 @@
       </div>
       <div class="col-xs-12 col-sm-8 funnel-card">
         <div class="card">
-          <input type="checkbox" id="colors" name="funnel[is_advance_colors]" class="switch-input funnel_status" <%= @funnel.is_advance_colors ? "checked" : '' %>>
+          <input type="checkbox" id="colors" name="funnel[is_advance_colors]" class="switch-input funnel_status" <%= @funnel.is_advance_colors.present? ? "checked" : '' %>>
           <label for="colors" class="switch-label">Advanced Pop-Up Colors</label>
         </div>
         <div class="card">
-          <input type="checkbox" id="redirect" name="funnel[is_skip_cart]" class="switch-input funnel_status" <%= @funnel.is_skip_cart ? "checked" : '' %>>
+          <input type="checkbox" id="redirect" name="funnel[is_skip_cart]" class="switch-input funnel_status" <%= @funnel.is_skip_cart.present? ? "checked" : '' %>>
           <label for="redirect" class="switch-label">Re-direct to Checkout(Skip Cart Page)</label>
         </div>
         <div class="card">
-          <input type="checkbox" id="display_disc" name="funnel[is_display_desc]" class="switch-input funnel_status" <%= @funnel.is_display_desc ? "checked" : '' %>>
+          <input type="checkbox" id="display_disc" name="funnel[is_display_desc]" class="switch-input funnel_status" <%= @funnel.is_display_desc.present? ? "checked" : '' %>>
           <label for="display_disc" class="switch-label">Display Product Descriptions</label>
         </div>
         <div class="card-item">
