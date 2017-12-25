@@ -1,4 +1,4 @@
-<!-- <div class="loader"><img src="/assets/loader.svg"></div> -->
+<div id="loading"><img src="/images/loader.gif"></div>
 <%= form_tag "/funnels/create", :method => :post, :class => "form-horizontal funnel-form",name: 'funnel_form',id: "add_funnel_form" do %>
   <input type="hidden" name="funnel[funnel_product_ids]" id="trigger-products">
   <input type="hidden" name="funnel[upsell_product_ids]" id="up_product_ids">
@@ -92,7 +92,6 @@
             </div>
             <div class="col-xs-5 text-right">
             <button type="button" class="btn btn-funnel" data-toggle="modal" data-target="#downsellModal">Select</button>
-              <!-- <button type="button" class="btn btn-funnel">Select</button> -->
             </div>
           </div>
         </div>
@@ -100,7 +99,6 @@
     </div>
     <div class="row text-right">
      <button type="button" class="btn btn-funnel funnel-submit">Submit</button> 
-    <%#= submit_tag("Submit", :id=>"button", :class=>"btn btn-funnel funnel-submit", :name=>"submit") %>
     </div>
   </div>
   <div id="funnelModal" class="modal fade" role="dialog">
@@ -183,8 +181,6 @@
                             </div>
                         </div>
                     </div>
-
-
                     
                   </div>  
                   <div class="col-md-6 col-sm-12">
@@ -370,12 +366,4 @@
     </div>
   </div>
 <% end %>
-
-
-
-
-
-
-
-
 <%= render 'common' %>

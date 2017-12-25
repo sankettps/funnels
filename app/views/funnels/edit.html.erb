@@ -1,4 +1,4 @@
-<div id="loading"><img src="/assets/loader1.gif"></div>
+<div id="loading"><img src="/images/loader.gif"></div>
 <%= form_tag "/funnels/update", :method => :post, :class => "form-horizontal funnel-form",name: 'funnel_form',id: "add_funnel_form" do %>
   <input type="hidden" name="funnel[funnel_product_ids]" id="trigger-products" value="<%= @funnel_products.join(',') %>">
   <input type="hidden" name="funnel[upsell_product_ids]" id="up_product_ids" value="<%= @funnel_upsell_products.join(',') %>">

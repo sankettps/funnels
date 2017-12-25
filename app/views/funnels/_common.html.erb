@@ -27,9 +27,7 @@ $(document).ready(function(){
     }else{
       $('.downsell-error').removeClass('error');
     }
-    alert(flag);
     if(flag==0){
-      alert();
       $('#add_funnel_form').submit();
     }
   });  
@@ -457,6 +455,7 @@ $(document).ready(function(){
             $(this).autocomplete({
               source: res
             });
+            $(this).autocomplete( "option", "appendTo", ".product-filter" );
     });
   }
 
