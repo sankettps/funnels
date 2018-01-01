@@ -25,7 +25,8 @@ test:
 production:
   adapter:  postgresql
   database: heroFunnels_development
-  username: postgres
+  username: pguser
+  password: pguser
   pool: 5
   timeout: 5000
   host: localhost
