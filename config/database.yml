@@ -24,7 +24,7 @@ test:
   
 production:
   adapter:  postgresql
-  database: heroFunnels_development
+  database: heroFunnels_production
   username: pguser
   password: pguser
   pool: 5
