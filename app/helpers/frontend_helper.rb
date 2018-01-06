@@ -321,9 +321,7 @@ module FrontendHelper
 			      			<div class=\"row\">
 			      				<div class=\"col-xs-12\">
 			      					<p class=\"pro-price\">#{@shop.currency_symbol} #{@up_variant.price}</p>
-			      					#{index == 0 ? "<input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\">
-			      					<input type=\"hidden\" name=\"\" id=\"hfUpsellProduct\" value=\"#{@up_product.id}\">
-			      					<input type=\"hidden\" name=\"\" id=\"hfProduct\" value=\"#{@filter_product.product_id}\">" : ""} </div>
+			      					#{index == 0 ? "<input type=\"hidden\" name=\"\" id=\"hfUpsellVariant\" value=\"#{@up_variant.id}\"><input type=\"hidden\" name=\"\" id=\"hfUpsellProduct\" value=\"#{@up_product.id}\"><input type=\"hidden\" name=\"\" id=\"hfProduct\" value=\"#{@filter_product.product_id}\">" : ""} </div>
 			      			</div>
 							<div>
 								<select  id=\"herofunnelUpProduct#{index}\">"
@@ -458,9 +456,7 @@ module FrontendHelper
 			      			<div class=\"row\">
 			      				<div class=\"col-xs-12\">
 			      					<p class=\"pro-price\">#{@shop.currency_symbol} #{@down_variant.price}</p>
-			      					#{index == 0 ? "<input type=\"hidden\" name=\"\" id=\"hfDownsellVariant\" value=\"#{@down_variant.id}\">
-			      					<input type=\"hidden\" name=\"\" id=\"hfDownsellProduct\" value=\"#{@down_product.id}\">
-			      					<input type=\"hidden\" name=\"\" id=\"hfProduct\" value=\"#{@filter_product.product_id}\">" : ""} </div>
+			      					#{index == 0 ? "<input type=\"hidden\" name=\"\" id=\"hfDownsellVariant\" value=\"#{@down_variant.id}\"><input type=\"hidden\" name=\"\" id=\"hfDownsellProduct\" value=\"#{@down_product.id}\"><input type=\"hidden\" name=\"\" id=\"hfProduct\" value=\"#{@filter_product.product_id}\">" : ""} </div>
 			      			</div>
 							<div>
 								<select id=\"herofunnelDownProduct#{index}\">"

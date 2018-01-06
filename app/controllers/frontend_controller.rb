@@ -128,6 +128,7 @@ class FrontendController < ApplicationController
 			@report = @shop.funnel_reports.create(hf_type: params[:hf_type],cart_token: params[:cart_token],funnel_id: params[:track_id])
 				puts "<========viewd====report created==#{@report.inspect}==>"
 		end
+		render plain: ''
 	end
 	
 	def funnel_product_added
@@ -144,6 +145,7 @@ class FrontendController < ApplicationController
 				@hf_report.update(product_id: params[:variant_id])
 			end
 		end
+		render plain: ''
 	end
 
 	def test
