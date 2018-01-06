@@ -551,7 +551,7 @@ body{
 .navbar-default{
   background-color: #fff;
 }
-.material-form input[type=text],.material-form input[type=email],.material-form textarea{
+.material-form input[type=text],.material-form input[type=email]{
   background-color: transparent;
   border: none;
   border-bottom: 1px solid #BDBDC0;
