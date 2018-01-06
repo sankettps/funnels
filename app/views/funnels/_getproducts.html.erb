@@ -3,7 +3,7 @@
     <% @products.each do |product| %>
         <tr class="single_product <%= product.product_id %>">
             <td><%= product.product_id %></td>
-            <td><img src="<%= product.image %>" width="30" height="30" /></td>
+            <td><img src="<%= product.image || '/images/no_image.jpg' %>" width="30" height="30" /></td>
             <td data-pid="<%= product.product_id %>" data-ptitle="<%= product.title %>"" data-pimage="<%= product.image %>" class="product_data"><%= product.title %></td>
             <td><button type="button" class="btn btn-small btn-success add-product">Add</button></td>
         </tr>

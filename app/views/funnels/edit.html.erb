@@ -1,4 +1,4 @@
-<div id="loading"><img src="/assets/loader1.gif"></div>
+<div id="loading"><img src="/images/loader.gif"></div>
 <%= form_tag "/funnels/update", :method => :post, :class => "form-horizontal funnel-form",name: 'funnel_form',id: "add_funnel_form" do %>
   <input type="hidden" name="funnel[funnel_product_ids]" id="trigger-products" value="<%= @funnel_products.join(',') %>">
   <input type="hidden" name="funnel[upsell_product_ids]" id="up_product_ids" value="<%= @funnel_upsell_products.join(',') %>">
@@ -44,15 +44,15 @@
       </div>
       <div class="col-xs-12 col-sm-8 funnel-card">
         <div class="card">
-          <input type="checkbox" id="colors" name="funnel[is_advance_colors]" class="switch-input funnel_status" <%= @funnel.is_advance_colors ? "checked" : '' %>>
+          <input type="checkbox" id="colors" name="funnel[is_advance_colors]" class="switch-input funnel_status" <%= @funnel.is_advance_colors.present? ? "checked" : '' %>>
           <label for="colors" class="switch-label">Advanced Pop-Up Colors</label>
         </div>
         <div class="card">
-          <input type="checkbox" id="redirect" name="funnel[is_skip_cart]" class="switch-input funnel_status" <%= @funnel.is_skip_cart ? "checked" : '' %>>
+          <input type="checkbox" id="redirect" name="funnel[is_skip_cart]" class="switch-input funnel_status" <%= @funnel.is_skip_cart.present? ? "checked" : '' %>>
           <label for="redirect" class="switch-label">Re-direct to Checkout(Skip Cart Page)</label>
         </div>
         <div class="card">
-          <input type="checkbox" id="display_disc" name="funnel[is_display_desc]" class="switch-input funnel_status" <%= @funnel.is_display_desc ? "checked" : '' %>>
+          <input type="checkbox" id="display_disc" name="funnel[is_display_desc]" class="switch-input funnel_status" <%= @funnel.is_display_desc.present? ? "checked" : '' %>>
           <label for="display_disc" class="switch-label">Display Product Descriptions</label>
         </div>
         <div class="card-item">
@@ -92,8 +92,7 @@
               <label>Create Downsells</label>
             </div>
             <div class="col-xs-5 text-right">
-            <button type="button" class="btn btn-funnel funnel-submit" data-toggle="modal" data-target="#downsellModal">Select</button>
-              <!-- <button type="button" class="btn btn-funnel">Select</button> -->
+            <button type="button" class="btn btn-funnel" data-toggle="modal" data-target="#downsellModal">Select</button>
             </div>
           </div>
         </div>
@@ -101,7 +100,8 @@
     </div>
     <div class="row text-right">
       
-    <%= submit_tag("Submit", :id=>"button", :class=>"btn btn-funnel funnel-submit", :name=>"Update") %>
+    <%#= submit_tag("Submit", :id=>"button", :class=>"btn btn-funnel funnel-submit", :name=>"Update") %>
+    <button type="button" class="btn btn-funnel funnel-submit">Update</button> 
     </div>
   </div>
   <div id="funnelModal" class="modal fade" role="dialog">
@@ -166,7 +166,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading funnel-heading">
                             Results
-                            <button type="button" class="btn btn-small btn-primary select-all">Select All</button>
+                            <button type="button" class="btn btn-small btn-success select-all">Select All</button>
                         </div>
                         <div class="panel-body">
                             <div id="products">

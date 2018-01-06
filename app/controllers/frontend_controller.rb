@@ -76,7 +76,7 @@ class FrontendController < ApplicationController
     			@downsell_body = ''
 		 		@html = downsell_modal_html_piyush #downsell_modal_html
 		 		# @funnel
-		 		@response = {data: @html,hf_time_out:(@funnel.down_sell_time_out * 1000),track_id: @funnel.id,redirect_page: @funnel.redirect_page}
+		 		@response = {data: @html,hf_time_out:(@funnel.down_sell_time_out * 1000),track_id: @funnel.id,redirect_page: (@funnel.is_skip_cart) ? 'checkout' : 'cart'}
 		 	else
 		 		puts "no funnel=========================="
 	 			@response = {data: ''}
@@ -94,13 +94,13 @@ class FrontendController < ApplicationController
 	 	@shop = Shop.find_by_shopify_domain(params[:shop_id])
 	 	if @shop.present?
 	 		# @funnel = @shop.funnels.find_by(is_active: true)
-	 		# params[:product_id] = 10941480908
+	 		params[:product_id] = 10941480908
 	 		@filter_product = FilterShopProduct.find_by(product_id: params[:product_id])
 	 		# render json: @filter_product and return
 	 		@funnel = @filter_product.funnels.find_by(is_active: true) if @filter_product
 
-	 		@shop_url ="https://#{ShopifyApp.configuration.api_key}:#{@shop.shopify_token}@#{@shop.shopify_domain}/admin/"
-  		# @shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
+	 		# @shop_url ="https://#{ShopifyApp.configuration.api_key}:#{@shop.shopify_token}@#{@shop.shopify_domain}/admin/"
+  		@shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
     		ShopifyAPI::Base.site = @shop_url
 			puts "<======funnel========#{@funnel.inspect}===============>"
     	if @funnel
@@ -109,7 +109,7 @@ class FrontendController < ApplicationController
 			
 		 		@html = upsell_modal_html_piyush
 		 		# @funnel
-		 		@response = {data: @html,track_id: @funnel.id,redirect_page: @funnel.redirect_page}
+		 		@response = {data: @html,track_id: @funnel.id,redirect_page: (@funnel.is_skip_cart) ? 'checkout' : 'cart'}
 		 	else
 		 		puts "no funnel=========================="
 	 			@response = {data: '',redirect_page: '/checkout'}

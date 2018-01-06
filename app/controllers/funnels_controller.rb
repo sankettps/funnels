@@ -89,11 +89,6 @@ class FunnelsController < ShopifyApp::AuthenticatedController
   # POST /funnels
   # POST /funnels.json
   def create
-    # @funnel = Funnel.new(funnel_params)
-    # params[:funnel][:up_product_id] = FilterShopProduct.find_by(product_id: params[:funnel][:up_product_id]).try(:id)
-    # params[:funnel][:down_product_id] = FilterShopProduct.find_by(product_id: params[:funnel][:down_product_id]).try(:id)
-    # params[:funnel][:upsell_product_ids] = "10941480908,10941215180,10927523532"
-    # params[:funnel][:downsell_product_ids] = "10941481228,10941480780,10945801164"
     @funnel = @shop.funnels.create(funnel_params)
     if @funnel.present?
       funnel_product_ids = FilterShopProduct.where(product_id: params[:funnel][:funnel_product_ids].split(',')).ids
@@ -115,12 +110,8 @@ class FunnelsController < ShopifyApp::AuthenticatedController
       end
     end
   end
-
-  # PATCH/PUT /funnels/1
-  # PATCH/PUT /funnels/1.json
   def update
     @funnel = Funnel.find(params[:id])
-    # @funnel = @funnel.update(funnel_params)
     if @funnel.present?
       modify_params
       # @funnel.funnel_products.destroy_all
@@ -133,8 +124,6 @@ class FunnelsController < ShopifyApp::AuthenticatedController
       @funnel.filter_shop_product_ids = funnel_product_ids if funnel_product_ids.present?
       @funnel.upsell_filter_product_ids = upsell_product_ids if upsell_product_ids.present?
       @funnel.downsell_filter_product_ids = downsell_product_ids if downsell_product_ids.present?
-      # Funnel.first.filter_shop_product_ids = [1, 2, 3, 4, 5]
-      # params[funnel][funnel_product_ids]
     end
     respond_to do |format|
       if @funnel.update(funnel_params)
@@ -147,8 +136,6 @@ class FunnelsController < ShopifyApp::AuthenticatedController
     end
   end
 
-  # DELETE /funnels/1
-  # DELETE /funnels/1.json
   def destroy
     @funnel = @shop.funnels.find(params[:id])
     puts "<*****************in destroy and funnel==>#{@funnel.inspect}********>"
@@ -174,7 +161,6 @@ class FunnelsController < ShopifyApp::AuthenticatedController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_funnel
       @funnel = Funnel.find(params[:id])
     end
@@ -187,14 +173,9 @@ class FunnelsController < ShopifyApp::AuthenticatedController
 
     def set_current_shop
       @current_shop = ShopifyAPI::Shop.current
-      # render json: @current_shop and return
       @shop = Shop.find_by_shopify_domain(@current_shop.myshopify_domain)
-      # @current_shop = Shop.first
-      # render json: @current_shop and return
-      # @shop = Shop.first
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def funnel_params
       params.require(:funnel).permit(:name, :up_sell_title, :down_sell_title, :down_sell_time_out, :is_advance_colors, :is_active, :shop_id, :is_display_desc, :is_skip_cart)
     end
