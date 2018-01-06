@@ -113,9 +113,14 @@ class FunnelsController < ShopifyApp::AuthenticatedController
   def update
     @funnel = Funnel.find(params[:id])
     if @funnel.present?
+      modify_params
+      # @funnel.funnel_products.destroy_all
+      # @funnel.upsell_products.destroy_all
+      # @funnel.downsell_products.destroy_all
       funnel_product_ids = FilterShopProduct.where(product_id: params[:funnel][:funnel_product_ids].split(',')).ids
       upsell_product_ids = FilterShopProduct.where(product_id: params[:funnel][:upsell_product_ids].split(',')).ids
       downsell_product_ids = FilterShopProduct.where(product_id: params[:funnel][:downsell_product_ids].split(',')).ids
+      
       @funnel.filter_shop_product_ids = funnel_product_ids if funnel_product_ids.present?
       @funnel.upsell_filter_product_ids = upsell_product_ids if upsell_product_ids.present?
       @funnel.downsell_filter_product_ids = downsell_product_ids if downsell_product_ids.present?
@@ -158,6 +163,12 @@ class FunnelsController < ShopifyApp::AuthenticatedController
   private
     def set_funnel
       @funnel = Funnel.find(params[:id])
+    end
+
+    def modify_params
+      params[:funnel][:is_advance_colors] = false unless params[:funnel][:is_advance_colors].present?
+      params[:funnel][:is_skip_cart] = false unless params[:funnel][:is_skip_cart].present?
+      params[:funnel][:is_display_desc] = false unless params[:funnel][:is_display_desc].present?
     end
 
     def set_current_shop

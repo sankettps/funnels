@@ -47,6 +47,11 @@
                       </td>
                     </tr>
                   <% end %>
+                  <% unless @funnels.count > 0 %>
+                    <tr>
+                      <td colspan="6" class="text-center"> No any funnel created yet</td>
+                    </tr>
+                  <% end %>
                 </tbody>
       </table>
     </div>
