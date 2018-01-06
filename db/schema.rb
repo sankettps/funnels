@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 20171209033846) do
     t.integer "down_sell_time_out"
     t.integer "down_sell_interval"
     t.boolean "is_display_desc"
-    t.string "is_skip_cart"
+    t.boolean "is_skip_cart"
     t.boolean "is_active"
     t.boolean "is_advance_colors"
     t.bigint "shop_id"
