@@ -568,6 +568,23 @@ body{
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
+.material-form textarea{
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #BDBDC0;
+  border-radius: 0;
+  outline: none;
+  height: auto;
+  width: 100%;
+  padding: 6px 0;
+  font-size: 14px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
 input[type=text].colorpicker{
   padding-left: 44px;
 }
@@ -634,10 +651,10 @@ input[type=text].colorpicker{
 }
 .stats-wrap{
   padding-left: 0px;
-  padding-right: 3px;
+  padding-right: 10px;
 }
 .stats-wrap-next{
-  padding-left: 3px;
+  padding-left: 10px;
   padding-right: 0px;
 }
 @media (min-width: 40em){
@@ -761,4 +778,13 @@ input[type=text].colorpicker{
 }
 .ui-menu-item-wrapper{
   padding: 5px;
+}
+.funnel-stastics .statistics-data{
+  padding: 1rem;
+}
+.funnel-stastics .statistics-title{
+  background: #734bcd;
+  color: #fff;
+  font-size: 2rem;
+  border-radius: 3px 3px 0 0;
 }
