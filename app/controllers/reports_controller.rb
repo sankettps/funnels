@@ -22,7 +22,8 @@ class ReportsController < ShopifyApp::AuthenticatedController
 	end
 
 	def statistics
-		
+		@upsell_reports = @shop.funnel_reports.where(hf_type: "upSell")
+		@downsell_reports = @shop.funnel_reports.where(hf_type: "downSell")
 	end
 	
 	def set_current_shop

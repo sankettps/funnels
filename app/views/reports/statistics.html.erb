@@ -10,17 +10,17 @@
           <table class="table">
             <thead>
                 <tr>
-                    <th><h4>121</h4></th>
+                    <th><h4><%= @upsell_reports.where("created_at >= ?", Time.now.beginning_of_day).count %></h4></th>
                     <th><h4>Bundle Views</h4></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><h4>$1001</h4></td>
+                    <td><h4>$<%= @upsell_reports.where("created_at >= ?", Time.now.beginning_of_day).sum("price") %></h4></td>
                     <td><h4>Added to Cart<h4></td>
                 </tr>
                 <tr>
-                    <td><h4>$729</h4></td>
+                    <td><h4>$<%= @upsell_reports.where("created_at >= ? AND is_purchased = true", Time.now.beginning_of_day).sum("price") %></h4></td>
                     <td><h4>Amount Purchased</h4></td>
                 </tr>
             </tbody>
@@ -29,7 +29,7 @@
       </div>
     </div>
 
-     <div class="col-xs-6 stats-wrap-next">
+    <div class="col-xs-6 stats-wrap-next">
       <div class="col-xs-12 funnel-card p-0">
         <div class="funnel-card-section statistics-title">
           <div class="annoted-heading">Today's - Downsell Stats</div>
@@ -38,17 +38,17 @@
           <table class="table">
             <thead>
                 <tr>
-                    <th><h4>121</h4></th>
+                    <th><h4><%= @downsell_reports.where("created_at >= ?", Time.now.beginning_of_day).count %></h4></th>
                     <th><h4>Bundle Views</h4></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><h4>$1001</h4></td>
+                    <td><h4>$<%= @downsell_reports.where("created_at >= ?", Time.now.beginning_of_day).sum("price") %></h4></td>
                     <td><h4>Added to Cart<h4></td>
                 </tr>
                 <tr>
-                    <td><h4>$729</h4></td>
+                    <td><h4>$<%= @downsell_reports.where("created_at >= ? AND is_purchased = true", Time.now.beginning_of_day).sum("price") %></h4></td>
                     <td><h4>Amount Purchased</h4></td>
                 </tr>
             </tbody>
@@ -68,17 +68,17 @@
           <table class="table">
             <thead>
                 <tr>
-                    <th><h4>121</h4></th>
+                    <th><h4><%= @upsell_reports.where("created_at >= ?", (Time.now.beginning_of_day - 30.days)).count %></h4></th>
                     <th><h4>Bundle Views</h4></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><h4>$1001</h4></td>
+                    <td><h4>$<%= @upsell_reports.where("created_at >= ?", (Time.now.beginning_of_day - 30.days)).sum("price") %></h4></td>
                     <td><h4>Added to Cart<h4></td>
                 </tr>
                 <tr>
-                    <td><h4>$729</h4></td>
+                    <td><h4>$<%= @upsell_reports.where("created_at >= ? AND is_purchased = true", (Time.now.beginning_of_day - 30.days)).sum("price") %></h4></td>
                     <td><h4>Amount Purchased</h4></td>
                 </tr>
             </tbody>
@@ -96,17 +96,17 @@
           <table class="table">
             <thead>
                 <tr>
-                    <th><h4>121</h4></th>
+                    <th><h4><%= @downsell_reports.where("created_at >= ?", (Time.now.beginning_of_day - 30.days)).count %></h4></th>
                     <th><h4>Bundle Views</h4></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><h4>$1001</h4></td>
+                    <td><h4>$<%= @downsell_reports.where("created_at >= ?", (Time.now.beginning_of_day - 30.days)).sum("price") %></h4></td>
                     <td><h4>Added to Cart<h4></td>
                 </tr>
                 <tr>
-                    <td><h4>$729</h4></td>
+                    <td><h4>$<%= @downsell_reports.where("created_at >= ? AND is_purchased = true", (Time.now.beginning_of_day - 30.days)).sum("price") %></h4></td>
                     <td><h4>Amount Purchased</h4></td>
                 </tr>
             </tbody>
