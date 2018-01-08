@@ -292,6 +292,7 @@ module FrontendHelper
 
 	def upsell_modal_html_piyush
 		@funnel.upsell_products.each_with_index do |up_product,index|
+			puts "index====#{index}"
 				# up_product.filter_shop_product
     		@up_product_img_array = {}
 				@up_product = ShopifyAPI::Product.find(up_product.filter_shop_product.product_id)
@@ -299,6 +300,8 @@ module FrontendHelper
 				@up_product.options.each {|option| arr_options << option.name}
 				@up_product.options = arr_options
     		@up_variant = @up_product.variants.first
+    		puts "up_variant id====#{@up_variant.id}"
+    		puts "up_variant id====#{index == 0 ? "index==0" : "not == 0"}"
 		 		@up_product.images.each do |img|
 			 		if img.variant_ids.present?
 			 			img.variant_ids.each do |vid|
