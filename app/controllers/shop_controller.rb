@@ -119,7 +119,7 @@ class ShopController < ApplicationController
       @p_image = 
       @shop_url="https://#{@store_id}/admin/products/#{product[0]}"
 
-      @html = "<tr class='single_product #{product[0]}'><td>#{product[0]}</td><td><img src='#{product[2] | '/images/no_image.jpg'}' width='30' height='30' /></td><td data-pid='#{product[0]}' data-ptitle='#{product[1]}' data-pimage='#{product[2]}' class='product_data'>#{product[1]}</td><td><button type='button' class='btn btn-small btn-success add-product'>Add</button></td></tr>"
+      @html = "<tr class='single_product #{product[0]}'><td>#{product[0]}</td><td><img src='#{product[2] | "/images/no_image.jpg"}' width='30' height='30' /></td><td data-pid='#{product[0]}' data-ptitle='#{product[1]}' data-pimage='#{product[2]}' class='product_data'>#{product[1]}</td><td><button type='button' class='btn btn-small btn-success add-product'>Add</button></td></tr>"
 
       @table_html = @table_html + @html
     end 
@@ -272,7 +272,7 @@ class ShopController < ApplicationController
         @p_id=product['product_id']
         @p_title=product['title']
         @shop_url="https://#{@store_id}/admin/products/#{@p_id}"
-        @html = "<tr class='single_product #{product['product_id']}'><td>#{product['product_id']}</td><td><img src='#{product['image'] | '/images/no_image.jpg'}' width='30' height='30' /></td><td data-pid='#{product['product_id']}' data-ptitle='#{product['product_id']}' data-pimage='#{product['image']}' class='product_data'>#{product['title']}</td><td><button type='button' class='btn btn-small btn-success add-product'>Add</button></td></tr>"
+        @html = "<tr class='single_product #{product['product_id']}'><td>#{product['product_id']}</td><td><img src='#{product['image'] | "/images/no_image.jpg"}' width='30' height='30' /></td><td data-pid='#{product['product_id']}' data-ptitle='#{product['product_id']}' data-pimage='#{product['image']}' class='product_data'>#{product['title']}</td><td><button type='button' class='btn btn-small btn-success add-product'>Add</button></td></tr>"
         @table_html = @table_html + @html
       end 
     end
