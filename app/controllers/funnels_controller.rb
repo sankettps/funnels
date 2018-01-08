@@ -9,17 +9,15 @@ class FunnelsController < ShopifyApp::AuthenticatedController
     @funnels = Funnel.all
   end
 
-  # GET /funnels/1
-  # GET /funnels/1.json
   def show
   end
 
-  # GET /funnels/new
   def new
     @funnel = Funnel.new
     # @shop_url = "https://fd7ec4c589db58b5652eccf59279b7d3:520600ed3d4e5b15de332ab367f25ea8@welovedrones.myshopify.com/admin/"
     # ShopifyAPI::Base.site = @shop_url
-    @store_id = @current_shop.myshopify_domain 
+    # @store_id = 'welovedrones.myshopify.com'
+    # @store_id = @current_shop.myshopify_domain 
     @currency_symbol = @shop.currency_symbol
     @currency = @shop.currency
     @shop_url="https://#{@store_id}/admin/products/"
@@ -34,7 +32,6 @@ class FunnelsController < ShopifyApp::AuthenticatedController
     @product_smart_collections=ShopifyAPI::SmartCollection.find(:all).collect(&:title).join(",")
   end
 
-  # GET /funnels/1/edit
   def edit
     @funnel = Funnel.find(params[:id])
     @funnel_products = @funnel.funnel_products.collect(&:filter_shop_product_id)
@@ -86,8 +83,6 @@ class FunnelsController < ShopifyApp::AuthenticatedController
     @selected_downsell_products_count = @funnel_downsell_products.count
   end
 
-  # POST /funnels
-  # POST /funnels.json
   def create
     @funnel = @shop.funnels.create(funnel_params)
     if @funnel.present?
@@ -97,8 +92,6 @@ class FunnelsController < ShopifyApp::AuthenticatedController
       @funnel.filter_shop_product_ids = funnel_product_ids if funnel_product_ids.present?
       @funnel.upsell_filter_product_ids = upsell_product_ids if upsell_product_ids.present?
       @funnel.downsell_filter_product_ids = downsell_product_ids if downsell_product_ids.present?
-      # Funnel.first.filter_shop_product_ids = [1, 2, 3, 4, 5]
-      # params[funnel][funnel_product_ids]
     end
     respond_to do |format|
       if @funnel.save
@@ -174,6 +167,7 @@ class FunnelsController < ShopifyApp::AuthenticatedController
     def set_current_shop
       @current_shop = ShopifyAPI::Shop.current
       @shop = Shop.find_by_shopify_domain(@current_shop.myshopify_domain)
+      # @shop = Shop.first
     end
 
     def funnel_params
