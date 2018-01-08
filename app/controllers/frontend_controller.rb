@@ -116,7 +116,7 @@ class FrontendController < ApplicationController
 		 		puts "no shop=========================="
 	 		@response = {data: ''}
 	 	end
-	 	# render json: @response
+	 	render json: @response
 	end
 
 	def funnel_product_viewed
