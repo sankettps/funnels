@@ -19,7 +19,7 @@ ShopifyApp.configure do |config|
   # config.scope = "read_orders, read_products, write_themes"
   config.scope = "read_orders, read_products, read_themes, write_themes, write_script_tags"
 
-  config.embedded_app = true
+  config.embedded_app = false
   config.after_authenticate_job = false
   config.session_repository = Shop
   config.webhooks = [
