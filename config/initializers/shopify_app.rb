@@ -1,8 +1,8 @@
 ShopifyApp.configure do |config|
   config.application_name = "Hero Funnels App"
   # ==================live========================
-  config.api_key = "60ff38e2475924fba4e5589bc06d0e3c"
-  config.secret = "51f813288b86402879469e22f5381bda"
+  # config.api_key = "60ff38e2475924fba4e5589bc06d0e3c"
+  # config.secret = "51f813288b86402879469e22f5381bda"
 
   # ==================local sank========================
   # config.api_key = "ecd5c0c1818ab329ee117ee64d3f31c9"
@@ -13,8 +13,8 @@ ShopifyApp.configure do |config|
   # config.secret = "49f8583d94cc7d24baac925f9eea3b15"
 
   # ==================amazone========================
-  # config.api_key = "31cfe1e2c0c3d2d4c9dbfca112ec30db"
-  # config.secret = "722af4ec04b905dd0acc2b3f50bbb62a"
+  config.api_key = "93dd4437ca224158983db75dc8e0d9a3"
+  config.secret = "06d8524ce675cff5fca770bcd7c3972e"
 
   # config.scope = "read_orders, read_products, write_themes"
   config.scope = "read_orders, read_products, read_themes, write_themes, write_script_tags"
